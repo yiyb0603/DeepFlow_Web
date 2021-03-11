@@ -1,0 +1,9 @@
+.LeftSidebar {
+	width: 190px;
+	border-right: 1px solid var(--bd-sidebar);
+
+	&-Menus {
+		position: sticky;
+		top: 0;
+	}
+}

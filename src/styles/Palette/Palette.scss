@@ -1,0 +1,28 @@
+:root {
+	--bd-sidebar: #eaecf5;
+
+	--red: #fc1739;
+	--yellow: #fff824;
+	--orange: #f25c05;
+	--skyblue: #5197e8;
+	--main: #3370ff;
+	--green: #1f993b;
+	--purple: #8012c9;
+	--pink: #f24b99;
+	--navy: #1e2d87;
+	--gray: #c4c3be;
+	--lighterGray: #ededeb;
+	--black: #212121;
+	--white: #ffffff;
+}
+
+.light {
+	--theme: #f7f8fb;
+	--lighter-theme: #f1f1f1;
+	--contrast: #212121;
+}
+
+.dark {
+	--theme: #212121;
+	--contrast: #f7f8fb;
+}

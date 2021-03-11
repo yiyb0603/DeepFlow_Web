@@ -1,0 +1,27 @@
+.InfoInput {
+	width: 300px;
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	font-size: 1.2rem;
+	border-bottom: 1px solid var(--gray);
+	padding-bottom: 0.35rem;
+	margin: 0.4rem 0;
+	color: var(--contrast);
+
+	&-Input {
+		flex: 1;
+		outline: none;
+		border: none;
+		background: none;
+		margin-left: 5px;
+
+		&::placeholder {
+			color: var(--gray);
+		}
+	}
+
+	&:focus-within {
+		border-bottom: 1px solid var(--main);
+	}
+}
