@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import AuthSpinner from '../AuthSpinner';
@@ -11,8 +12,16 @@ interface RegisterSubmitProps {
 }
 
 const RegisterSubmit = ({ isLoading, onClick }: RegisterSubmitProps): JSX.Element => {
+  const handleSubmit = useCallback((): void => {
+    if (isLoading) {
+      return;
+    }
+
+    onClick();
+  }, [isLoading, onClick]);
+
   return (
-    <div className={cx('RegisterSubmit')} onClick={onClick}>
+    <div className={cx('RegisterSubmit')} onClick={handleSubmit}>
       <div className={cx('RegisterSubmit-Text')}>
         {
           isLoading ? <AuthSpinner /> : '회원가입'

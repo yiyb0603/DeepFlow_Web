@@ -1,6 +1,9 @@
-import React from 'react';
+import { CSSProperties } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import { useHistory, useLocation } from 'react-router';
+import { History } from 'history';
+import { palette } from 'styles/Palette/Palette';
 
 const style = require('./LeftSidebarItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -12,10 +15,23 @@ interface LeftSidebarItemProps {
 }
 
 const SidebarItem = ({ icon, menuName, link }: LeftSidebarItemProps): JSX.Element => {
+  const history: History<unknown> = useHistory();
+  const { pathname } = useLocation();
+
+  const sameLinkStyle: CSSProperties = {
+    backgroundColor: palette.lighterGray,
+  };
+
   return (
-    <div className={cx('LeftSidebarItem')}>
+    <div
+      style={pathname === link ? sameLinkStyle : {}}
+      className={cx('LeftSidebarItem')}
+      onClick={() => history.push(link)}
+    >
       {icon}
-      <div className={cx('LeftSidebarItem-MenuName')}>{menuName}</div>
+      <div className={cx('LeftSidebarItem-MenuName', {
+        'LeftSidebarItem-SameMenu': pathname === link,
+      })}>{menuName}</div>
     </div>
   );
 };

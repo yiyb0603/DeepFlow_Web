@@ -1,7 +1,5 @@
 import timeCounting from 'time-counting';
 
-const parseTime = (time: string | Date) => {
+export const calculateTime = (time: string | Date): string => {
 	return timeCounting(time, { lang: 'ko' });
 };
-
-export default parseTime;

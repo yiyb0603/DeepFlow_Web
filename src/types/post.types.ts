@@ -8,7 +8,7 @@ export interface IPost {
   title: string;
   introduction: string;
   thumbnail: string | null;
-  contents: string;
+  contents?: string;
   user: IUser;
   commentCount: number;
   likeCount: number;

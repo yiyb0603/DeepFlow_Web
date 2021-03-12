@@ -4,6 +4,7 @@ import { IUser } from "./user.types";
 export interface INotice {
   idx: number;
   title: string;
+  introduction: string;
   contents: string;
   user: IUser;
   createdAt: Date | string;

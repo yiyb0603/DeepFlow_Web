@@ -3,13 +3,16 @@
 	border-bottom: 1px solid var(--lighterGray);
 }
 
+$maxHeight: 345px;
+
 .GridItem {
 	width: 300px;
-	height: 320px;
-	max-height: 320px;
+	height: $maxHeight;
+	max-height: $maxHeight;
 	margin-right: 0.75rem;
 	margin-bottom: 0.75rem;
 	border: 1px solid var(--lighterGray);
+	border-radius: 5px;
 
 	&-ImageWrap {
 		width: 100%;
@@ -24,32 +27,42 @@
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
-			border-radius: 8px;
+			border-radius: 5px;
 		}
 	}
 
 	&-Contents {
+		color: var(--contrast);
+
 		&-Title {
+			max-width: 100%;
+			overflow-x: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
 			@include sectionStyle();
+			font-weight: 500;
+			font-size: 1.3rem;
 		}
 
 		&-Introduction {
+			height: 95px;
+			max-height: 95px;
 			@include sectionStyle();
+			font-size: 1.18rem;
 		}
 
-		&-Tags {
-			max-width: 100%;
+		&-Info {
+			height: 35px;
+			max-height: 35px;
 			display: flex;
 			display: -webkit-flex;
+			justify-content: space-between;
 			align-items: center;
-			padding: 6px 4px;
+			padding: 0 0.8rem;
 
-			&-Tag {
-				margin-right: 6px;
-				background-color: var(--main);
-				color: var(--white);
-				border-radius: 5px;
-				padding: 3px 8px;
+			&-UserInfo {
+				font-size: 1.1rem;
+				font-weight: 500;
 			}
 		}
 	}

@@ -6,8 +6,8 @@ import { BsFillGrid3X3GapFill } from 'react-icons/bs';
 import Sample from 'assets/images/sample.png';
 import { EView } from 'lib/enum/theme';
 import { IPost } from 'types/post.types';
-import GridItem from 'components/Common/GridItem';
-import ListItem from 'components/Common/ListItem';
+import GridItem from 'components/Common/Post/GridItem';
+import ListItem from 'components/Common/Post/ListItem';
 
 const style = require('./RecentPost.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -52,36 +52,19 @@ const RecentPost = ({ recentPosts }: RecentPostProps): JSX.Element => {
       <div className={cx('RecentPost-List')} style={flexStyle}>
       {
         recentPosts.map((post: IPost) => {
-          const { idx, title, thumbnail, introduction, createdAt, viewCount, commentCount, likeCount, postTags } = post;
+          const { idx, thumbnail, user } = post;
+          const postProps = {
+            key: idx,
+            thumbnail: thumbnail || Sample,
+            ...post,
+            user,
+          }
+
           return (
             <>
               {
                 viewMode === LIST ?
-                <ListItem
-                  key={idx}
-                  idx={idx}
-                  title={title}
-                  introduction={introduction}
-                  thumbnail={thumbnail || Sample}
-                  createdAt={createdAt}
-                  viewCount={viewCount}
-                  commentCount={commentCount}
-                  likeCount={likeCount}
-                  postTags={postTags}
-                /> :
-                
-                <GridItem
-                  key={idx}
-                  idx={idx}
-                  title={title}
-                  introduction='안녕안녕 123423432432423423ㅇ날안녕안녕'
-                  thumbnail={thumbnail}
-                  createdAt={createdAt}
-                  viewCount={viewCount}
-                  commentCount={commentCount}
-                  likeCount={likeCount}
-                  postTags={postTags}
-                />
+                <ListItem {...postProps} /> : <GridItem {...postProps} />
               }
             </>
           );

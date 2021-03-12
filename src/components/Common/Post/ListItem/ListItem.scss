@@ -1,24 +1,20 @@
-$height: 135px;
+$height: 145px;
 
 .ListItem {
-	width: 95%;
+	width: 97%;
 	height: $height;
 	max-height: $height;
 	display: flex;
 	display: -webkit-flex;
 	flex-direction: column;
 	-ms-flex-direction: column;
-	justify-content: center;
 	padding-right: 0.625rem;
 	margin-bottom: 1.375rem;
 	background-color: var(--theme);
-	border: 1px solid var(--lighterGray);
-	border-radius: 8px;
 
 	&-Contents {
 		display: flex;
 		display: -webkit-flex;
-		align-items: center;
 
 		&-ImageWrap {
 			width: 160px;
@@ -26,12 +22,16 @@ $height: 135px;
 			max-height: $height;
 			user-select: none;
 			-webkit-user-drag: none;
+			position: relative;
 			display: flex;
+			z-index: 0;
 
 			&-Thumbnail {
 				width: 100%;
 				height: 100%;
-				border-radius: 8px;
+				outline: none;
+				border: none;
+				border-radius: 5px;
 			}
 		}
 
@@ -44,28 +44,33 @@ $height: 135px;
 				display: -webkit-flex;
 				justify-content: space-between;
 				align-items: center;
-				color: var(--gray);
+
+				&-Writer {
+					color: var(--contrast);
+					font-size: 1.1rem;
+					margin: 0.5rem 0;
+				}
 
 				&-RightInfo {
 					display: flex;
 					display: -webkit-flex;
-
-					&-InfoWrap {
-						display: flex;
-						display: -webkit-flex;
-						margin-left: 0.625rem;
-
-						&-Icon {
-							margin-top: 2px;
-							margin-right: 2px;
-						}
-					}
 				}
 			}
 
 			&-Title {
 				font-weight: 500;
 				color: var(--contrast);
+				font-size: 1.35rem;
+				border-bottom: 1px solid var(--lighterGray);
+				padding-bottom: 0.5rem;
+			}
+
+			&-Introduction {
+				height: 45px;
+				max-height: 45px;
+				color: var(--contrast);
+				font-size: 1.18rem;
+				padding-top: 0.35rem;
 			}
 
 			&-Tags {

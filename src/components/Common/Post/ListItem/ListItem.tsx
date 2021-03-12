@@ -1,9 +1,10 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import React from 'react';
-import { AiOutlineEye } from 'react-icons/ai';
-import { BiCommentDetail } from 'react-icons/bi';
-import { FiClock } from 'react-icons/fi';
+import { isNullOrUndefined } from 'converter/isNullOrUndefined';
+import { calculateTime } from 'lib/TimeCounting';
+import { IUser } from 'types/user.types';
+import TimeSticker from '../TimeSticker';
+import PostSubInfo from '../PostSubInfo';
 
 const style = require('./ListItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -18,6 +19,7 @@ export interface ItemProps {
   likeCount?: number;
   commentCount?: number;
   postTags?: string[];
+  user?: IUser;
 }
 
 const ListItem = ({
@@ -30,6 +32,7 @@ const ListItem = ({
   likeCount,
   commentCount,
   postTags,
+  user,
 }: ItemProps): JSX.Element => {
   return (
     <div className={cx('ListItem')}>
@@ -40,35 +43,39 @@ const ListItem = ({
             className={cx('ListItem-Contents-ImageWrap-Thumbnail')}
             alt='thumbnail'
           />
+
+          <TimeSticker text={calculateTime(createdAt)} />
         </div>
 
         <div className={cx('ListItem-Contents-ContentsWrap')}>
           <div className={cx('ListItem-Contents-ContentsWrap-Top')}>
-            <div>yiyb0603</div>
-
             {
-              viewCount && likeCount && commentCount ?
-              <div className={cx('ListItem-Contents-ContentsWrap-Top-RightInfo')}>
-                <div className={cx('ListItem-Contents-ContentsWrap-Top-RightInfo-InfoWrap')}>
-                  <FiClock className={cx('ListItem-Contents-ContentsWrap-Top-RightInfo-InfoWrap-Icon')} />
-                  <div>3분전</div>
-                </div>
-
-                <div className={cx('ListItem-Contents-ContentsWrap-Top-RightInfo-InfoWrap')}>
-                  <AiOutlineEye className={cx('ListItem-Contents-ContentsWrap-Top-RightInfo-InfoWrap-Icon')} />
-                  <div>3분전</div>
-                </div>
-
-                <div className={cx('ListItem-Contents-ContentsWrap-Top-RightInfo-InfoWrap')}>
-                  <BiCommentDetail className={cx('ListItem-Contents-ContentsWrap-Top-RightInfo-InfoWrap-Icon')} />
-                  <div>3분전</div>
-                </div>
-              </div> : <></>
+              user &&
+              <div className={cx('ListItem-Contents-ContentsWrap-Top-Writer')}>
+                작성자: {user.name}
+              </div>
             }
+
+            <div className={cx('ListItem-Contents-ContentsWrap-Top-RightInfo')}>
+              {
+                !isNullOrUndefined(viewCount) &&
+                !isNullOrUndefined(likeCount) &&
+                !isNullOrUndefined(commentCount) ?
+                <PostSubInfo
+                  viewCount={viewCount!}
+                  likeCount={likeCount!}
+                  commentCount={commentCount!}
+                /> : <></>
+              }
+            </div>
           </div>
 
           <div className={cx('ListItem-Contents-ContentsWrap-Title')}>
-            {title}
+            제목: {title}
+          </div>
+
+          <div className={cx('ListItem-Contents-ContentsWrap-Introduction')}>
+            {introduction}
           </div>
 
           <div className={cx('ListItem-Contents-ContentsWrap-Tags')}>

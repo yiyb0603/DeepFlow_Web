@@ -17,7 +17,7 @@ export const sideItems: ISideItemsType[] = [
   {
     menuName: '메인',
     icon: <VscHome className={ICON_CLASS} />,
-    link: '',
+    link: '/',
   },
 
   {
@@ -41,7 +41,7 @@ export const sideItems: ISideItemsType[] = [
   {
     menuName: '공지사항',
     icon: <HiOutlineSpeakerphone className={ICON_CLASS} />,
-    link: '',
+    link: '/notice',
   },
 
   {

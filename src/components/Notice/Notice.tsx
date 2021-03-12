@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import ListItem from 'components/Common/ListItem';
+import ListItem from 'components/Common/Post/ListItem';
 import { INotice } from 'types/notice.types';
 import Sample from 'assets/images/sample.png';
 
@@ -16,13 +16,13 @@ const Notice = ({ noticeList }: NoticeProps): JSX.Element => {
     <div className={cx('Notice')}>
       {
         noticeList.map((notice: INotice) => {
-          const { idx, title, createdAt } = notice;
+          const { idx, title, introduction, createdAt } = notice;
           return (
             <ListItem
               key={idx}
               idx={idx}
               title={title}
-              introduction={'안녕하세요 공지사항입니다....'}
+              introduction={introduction}
               createdAt={createdAt}
               thumbnail={Sample}
             />

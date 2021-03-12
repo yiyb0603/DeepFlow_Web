@@ -5,3 +5,8 @@ export const recentPostState = atom<IPost[]>({
   key: 'recentPostState',
   default: [],
 });
+
+export const postPageState = atom<number>({
+  key: 'postPage',
+  default: 1,
+});
