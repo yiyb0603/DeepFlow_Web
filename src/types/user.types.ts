@@ -1,6 +1,11 @@
 import { EMajor } from "lib/enum/majors";
 import { IResponse } from "./Response";
 
+export interface IToken {
+  idx: number;
+  githubId: string;
+}
+
 export interface IGithubUser {
   avatar: string;
   description: string;
@@ -27,5 +32,27 @@ export interface IGithubResponse extends IResponse {
 export interface ILoginResponse extends IResponse {
   data: {
     accessToken: string;
+  },
+}
+
+export interface IUser {
+  idx: number;
+  githubId: string;
+  name: string;
+  generation: number;
+  major: EMajor;
+  location: string;
+  blog: string;
+  position: string;
+  avatar: string;
+  description: string;
+  rank: number;
+  joinedAt: Date | string;
+  isAdmin: boolean;
+}
+
+export interface IUserResponse extends IResponse {
+  data: {
+    user: IUser;
   },
 }

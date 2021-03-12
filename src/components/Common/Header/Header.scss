@@ -52,27 +52,41 @@
 			}
 		}
 
-		&-LoginWrap {
+		&-RightWrap {
 			display: flex;
 			display: -webkit-flex;
-			border: 1px solid var(--contrast);
-			border-radius: 25px;
-			padding: 6px 10px;
-			color: var(--contrast);
-			cursor: pointer;
+			align-items: center;
 
-			&-Icon {
-				margin-right: 4px;
-				font-size: 1.5rem;
+			&-Login {
+				display: flex;
+				display: -webkit-flex;
+				border: 1px solid var(--contrast);
+				border-radius: 25px;
+				padding: 6px 10px;
+				color: var(--contrast);
+				cursor: pointer;
+
+				&-Icon {
+					margin-right: 4px;
+					font-size: 1.5rem;
+				}
+
+				&-Name {
+					font-size: 1.1rem;
+				}
+
+				&:hover {
+					background-color: var(--contrast);
+					color: var(--theme);
+				}
 			}
 
-			&-Name {
-				font-size: 1.1rem;
-			}
-
-			&:hover {
-				background-color: var(--contrast);
-				color: var(--theme);
+			&-Profile {
+				width: 45px;
+				height: 45px;
+				border-radius: 50%;
+				margin-left: 0.625rem;
+				cursor: pointer;
 			}
 		}
 	}

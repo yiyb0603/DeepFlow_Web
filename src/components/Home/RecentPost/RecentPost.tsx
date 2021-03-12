@@ -1,69 +1,22 @@
-import React, { CSSProperties, useCallback, useState } from 'react';
+import { CSSProperties, useCallback, useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
 import { BsFillGrid3X3GapFill } from 'react-icons/bs';
-import RecentPostItem from './RecentPostItem';
 import Sample from 'assets/images/sample.png';
 import { EView } from 'lib/enum/theme';
-import RecentPostGridItem from './RecentPostGridItem';
+import { IPost } from 'types/post.types';
+import GridItem from 'components/Common/GridItem';
+import ListItem from 'components/Common/ListItem';
 
 const style = require('./RecentPost.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-const dummys = [
-  {
-    title: '테스트테스트테스트123123',
-    thumbnail: Sample,
-    createdAt: '2021-03-02',
-    viewCount: 10,
-    commentCount: 2,
-    likeCount: 5,
-    tags: ['React', 'Vue', 'Angular', 'TypeScript'],
-  },
+interface RecentPostProps {
+  recentPosts: IPost[];
+}
 
-  {
-    title: '테스트테스트테스트456456',
-    thumbnail: Sample,
-    createdAt: '2021-03-02',
-    viewCount: 10,
-    commentCount: 2,
-    likeCount: 5,
-    tags: ['React', 'Vue', 'Angular', 'TypeScript'],
-  },
-
-  {
-    title: '테스트테스트테스트789789',
-    thumbnail: Sample,
-    createdAt: '2021-03-02',
-    viewCount: 10,
-    commentCount: 2,
-    likeCount: 5,
-    tags: ['React', 'Vue', 'Angular', 'TypeScript'],
-  },
-
-  {
-    title: '테스트테스트테스트789789',
-    thumbnail: Sample,
-    createdAt: '2021-03-02',
-    viewCount: 10,
-    commentCount: 2,
-    likeCount: 5,
-    tags: ['React', 'Vue', 'Angular', 'TypeScript'],
-  },
-
-  {
-    title: '테스트테스트테스트789789',
-    thumbnail: Sample,
-    createdAt: '2021-03-02',
-    viewCount: 10,
-    commentCount: 2,
-    likeCount: 5,
-    tags: ['React', 'Vue', 'Angular', 'TypeScript'],
-  },
-];
-
-const RecentPost = (): JSX.Element => {
+const RecentPost = ({ recentPosts }: RecentPostProps): JSX.Element => {
   const { LIST, GRID } = EView;
   const [viewMode, setViewMode] = useState<EView>(GRID);
 
@@ -98,25 +51,28 @@ const RecentPost = (): JSX.Element => {
       </div>
       <div className={cx('RecentPost-List')} style={flexStyle}>
       {
-        dummys.map((dummy, idx: number) => {
-          const { title, thumbnail, createdAt, viewCount, commentCount, likeCount, tags } = dummy;
+        recentPosts.map((post: IPost) => {
+          const { idx, title, thumbnail, introduction, createdAt, viewCount, commentCount, likeCount, postTags } = post;
           return (
             <>
               {
                 viewMode === LIST ?
-                <RecentPostItem
+                <ListItem
                   key={idx}
+                  idx={idx}
                   title={title}
-                  thumbnail={thumbnail}
+                  introduction={introduction}
+                  thumbnail={thumbnail || Sample}
                   createdAt={createdAt}
                   viewCount={viewCount}
                   commentCount={commentCount}
                   likeCount={likeCount}
-                  tags={tags}
+                  postTags={postTags}
                 /> :
                 
-                <RecentPostGridItem
+                <GridItem
                   key={idx}
+                  idx={idx}
                   title={title}
                   introduction='안녕안녕 123423432432423423ㅇ날안녕안녕'
                   thumbnail={thumbnail}
@@ -124,7 +80,7 @@ const RecentPost = (): JSX.Element => {
                   viewCount={viewCount}
                   commentCount={commentCount}
                   likeCount={likeCount}
-                  tags={tags}
+                  postTags={postTags}
                 />
               }
             </>

@@ -7,7 +7,7 @@ import { IGithubCodeDto } from 'lib/api/auth/auth.dto';
 import { getGithubInfo, handleRegister } from 'lib/api/auth/auth.api';
 import { useRecoilState } from 'recoil';
 import { githubInfoState, registerLoading } from 'atom/auth';
-import { IGithubResponse, ILoginResponse, IRegisterRequest } from 'types/user.types';
+import { IGithubResponse, IGithubUser, ILoginResponse, IRegisterRequest } from 'types/user.types';
 import { groupingState } from 'converter/groupingState';
 import { EMajor } from 'lib/enum/majors';
 import AuthError from 'error/AuthError';
@@ -28,10 +28,10 @@ const SignUpContainer = (): JSX.Element => {
   const [position, setPosition] = useState<string>('');
 
   const [generation, setGeneration] = useState<number>(1);
-  const [major, setMajor] = useState(EMajor.SOFTWARE);
+  const [major, setMajor] = useState<EMajor>(EMajor.SOFTWARE);
 
-  const [githubInfo, setGithubInfo] = useRecoilState(githubInfoState);
-  const [isLoading, setIsLoading] = useRecoilState(registerLoading);
+  const [githubInfo, setGithubInfo] = useRecoilState<IGithubUser | null>(githubInfoState);
+  const [isLoading, setIsLoading] = useRecoilState<boolean>(registerLoading);
 
   const onChangeDescription = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;

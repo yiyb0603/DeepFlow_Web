@@ -1,6 +1,6 @@
-import { customAxios } from "lib/CustomAxios";
-import { IGithubCodeDto } from "./auth.dto";
-import { IGithubResponse, ILoginResponse, IRegisterRequest } from "types/user.types";
+import { customAxios } from 'lib/CustomAxios';
+import { IGithubCodeDto } from './auth.dto';
+import { IGithubResponse, ILoginResponse, IRegisterRequest } from 'types/user.types';
 
 export const getGithubInfo = async (githubCodeDto: IGithubCodeDto): Promise<IGithubResponse> => {
   const url: string = '/user/github-info';

@@ -1,4 +1,4 @@
-import React, { StrictMode } from 'react';
+import { Suspense } from 'react';
 import App from 'components/App';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
@@ -10,9 +10,9 @@ const Root = (): JSX.Element => {
   return (
     <RecoilRoot>
       <BrowserRouter>
-        <StrictMode>
+        <Suspense fallback={null}>
           <App />
-        </StrictMode>
+        </Suspense>
       </BrowserRouter>
     </RecoilRoot>
   );
