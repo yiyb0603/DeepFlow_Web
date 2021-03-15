@@ -75,7 +75,7 @@ const ListItem = ({
           </div>
 
           <div className={cx('ListItem-Contents-ContentsWrap-Introduction')}>
-            {introduction}
+            <div>{introduction}</div>
           </div>
 
           <div className={cx('ListItem-Contents-ContentsWrap-Tags')}>

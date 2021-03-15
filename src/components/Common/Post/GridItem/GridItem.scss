@@ -1,5 +1,5 @@
 @mixin sectionStyle() {
-	padding: 6px 4px;
+	padding: 5px;
 	border-bottom: 1px solid var(--lighterGray);
 }
 
@@ -45,20 +45,28 @@ $maxHeight: 345px;
 		}
 
 		&-Introduction {
-			height: 95px;
-			max-height: 95px;
-			@include sectionStyle();
-			font-size: 1.18rem;
+			& > div {
+				max-width: 100%;
+				height: 100px;
+				max-height: 100px;
+				line-height: 1.6rem;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 4;
+				@include sectionStyle();
+				font-size: 1rem;
+			}
 		}
 
 		&-Info {
-			height: 35px;
-			max-height: 35px;
 			display: flex;
 			display: -webkit-flex;
 			justify-content: space-between;
 			align-items: center;
 			padding: 0 0.8rem;
+			margin-top: 2px;
 
 			&-UserInfo {
 				font-size: 1.1rem;

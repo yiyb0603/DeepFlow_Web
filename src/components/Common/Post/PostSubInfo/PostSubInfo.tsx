@@ -21,12 +21,12 @@ const PostSubInfo = ({
     <div className={cx('PostSubInfo')}>
       <div className={cx('PostSubInfo-InfoWrap')}>
         <AiOutlineLike className={cx('PostSubInfo-InfoWrap-Icon')} />
-        <div>{viewCount}</div>
+        <div>{likeCount}</div>
       </div>
 
       <div className={cx('PostSubInfo-InfoWrap')}>
         <AiOutlineEye className={cx('PostSubInfo-InfoWrap-Icon')} />
-        <div>{likeCount}</div>
+        <div>{viewCount}</div>
       </div>
 
       <div className={cx('PostSubInfo-InfoWrap')}>

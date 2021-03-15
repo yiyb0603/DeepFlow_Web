@@ -34,7 +34,7 @@ const GridItem = ({
         </div>
         
         <div className={cx('GridItem-Contents-Introduction')}>
-          {introduction}
+          <div>{introduction}</div>
         </div>
 
         <div className={cx('GridItem-Contents-Info')}>

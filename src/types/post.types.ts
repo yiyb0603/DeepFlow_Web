@@ -2,6 +2,10 @@ import { EPost } from "lib/enum/post";
 import { IResponse } from "./Response";
 import { IUser } from "./user.types";
 
+export interface IPageParam {
+  idx: string | undefined;
+}
+
 export interface IPost {
   idx: number;
   category: EPost;
@@ -22,5 +26,11 @@ export interface IPost {
 export interface IPostListResponse extends IResponse {
   data: {
     recentPosts: IPost[];
+  },
+}
+
+export interface IPostResponse extends IResponse {
+  data: {
+    post: IPost;
   },
 }

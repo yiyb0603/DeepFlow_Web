@@ -6,6 +6,7 @@ import { useRecoilValue } from 'recoil';
 import { themeState } from 'atom/theme';
 import SignPage from 'pages/SignPage';
 import NoticePage from 'pages/NoticePage';
+import PostPage from 'pages/PostPage';
 
 const App = (): JSX.Element => {
   const { LIGHT } = ETheme;
@@ -17,6 +18,7 @@ const App = (): JSX.Element => {
         <Route exact path='/' component={HomePage} />
         <Route exact path='/github-login' component={SignPage} />
         <Route exact path='/notice' component={NoticePage} />
+        <Route exact path='/post/:idx' component={PostPage} />
       </Switch>
     </div>
   );

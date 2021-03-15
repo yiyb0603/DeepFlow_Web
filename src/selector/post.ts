@@ -4,7 +4,7 @@ import { getRecentPosts } from "lib/api/post/post.api";
 import { IPost, IPostListResponse } from "types/post.types";
 
 export const getRecentPostsState = selectorFamily<IPost[], number>({
-  key: 'recentPostState',
+  key: 'getRecentPostsState',
   get: (count: number) => async ({ get }) => {
     get(recentPostState);
     const response: IPostListResponse = await getRecentPosts(count);
