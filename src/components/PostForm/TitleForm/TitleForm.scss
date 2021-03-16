@@ -1,0 +1,20 @@
+.TitleForm {
+  width: 50%;
+  margin-bottom: 1rem;
+
+  &-Input {
+    width: 100%;
+    outline: none;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--main);
+    padding-bottom: 0.5rem;
+    font-size: 2.75rem;
+    font-weight: bold;
+    color: var(--contrast);
+
+    &::placeholder {
+      color: var(--gray);
+    }
+  }
+}

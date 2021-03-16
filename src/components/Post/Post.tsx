@@ -11,9 +11,10 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 interface PostProps {
   post: IPost;
+  requestDeletePost: (postIdx: number) => Promise<void>;
 }
 
-const Post = ({ post }: PostProps): JSX.Element => {
+const Post = ({ post, requestDeletePost }: PostProps): JSX.Element => {
   const { idx, title, category, introduction, contents, thumbnail, postTags, createdAt, user } = post;
 
   return (
@@ -21,11 +22,15 @@ const Post = ({ post }: PostProps): JSX.Element => {
       <div className={cx('Post-Title')}>{title}</div>
 
       <TopInfo
+        idx={idx}
         createdAt={createdAt}
         user={user}
+        requestDeletePost={requestDeletePost}
       />
       <PostTags postTags={postTags} />
       <Thumbnail thumbnail={thumbnail!} />
+
+      <div>{introduction}</div>
 
       <div className={cx('Post-Contents')}>
         <MarkdownRender contents={contents!} />

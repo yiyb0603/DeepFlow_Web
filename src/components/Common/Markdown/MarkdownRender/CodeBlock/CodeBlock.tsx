@@ -6,7 +6,7 @@ interface ICodeBlockProps {
 	value: string;
 }
 
-const CodeBlock = ({ language, value }: ICodeBlockProps) => {
+const CodeBlock = ({ language, value }: ICodeBlockProps): JSX.Element => {
 	return (
 		<SyntaxHighlighter language={language} style={styles.prism}>
 			{value}

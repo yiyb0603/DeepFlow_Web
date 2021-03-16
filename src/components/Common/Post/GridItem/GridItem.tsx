@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import { Link } from 'react-router-dom';
 import { calculateTime } from 'lib/TimeCounting';
 import { ItemProps } from '../ListItem/ListItem';
 import TimeSticker from '../TimeSticker';
@@ -22,7 +23,7 @@ const GridItem = ({
   user,
 }: ItemProps): JSX.Element => {
   return (
-    <div className={cx('GridItem')}>
+    <Link to={`/post/${idx}`} className={cx('GridItem')}>
       <div className={cx('GridItem-ImageWrap')}>
         <img src={thumbnail || ''} className={cx('GridItem-ImageWrap-Thumbnail')} alt='thumbnail' />
         <TimeSticker text={calculateTime(createdAt)} />
@@ -54,7 +55,7 @@ const GridItem = ({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

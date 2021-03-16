@@ -7,11 +7,13 @@ const style = require('./TopInfo.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface TopInfoProps {
+  idx: number;
   createdAt: Date | string;
   user: IUser;
+  requestDeletePost: (postIdx: number) => Promise<void>
 }
 
-const TopInfo = ({ createdAt, user }: TopInfoProps): JSX.Element => {
+const TopInfo = ({ idx, createdAt, user, requestDeletePost }: TopInfoProps): JSX.Element => {
   return (
     <div className={cx('TopInfo')}>
       <div className={cx('TopInfo-Left')}>
@@ -23,7 +25,13 @@ const TopInfo = ({ createdAt, user }: TopInfoProps): JSX.Element => {
 
       <div className={cx('TopInfo-Right')}>
         <div className={cx('TopInfo-Right-Modify')}>수정</div>
-        <div className={cx('TopInfo-Right-Delete')}>삭제</div>
+        
+        <div
+          className={cx('TopInfo-Right-Delete')}
+          onClick={() => requestDeletePost(idx)}
+        >
+          삭제
+        </div>
       </div>
     </div>
   );

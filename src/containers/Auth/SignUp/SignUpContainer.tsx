@@ -72,7 +72,7 @@ const SignUpContainer = (): JSX.Element => {
         if (data.accessToken !== undefined) {
           const { accessToken } = data;
           
-          setCookie('accessToken', accessToken);
+          setCookie('access_token', accessToken);
           history.push('/');
           successToast('로그인 되었습니다.');
           return;

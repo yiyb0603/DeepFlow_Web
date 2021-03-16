@@ -1,6 +1,6 @@
-import React, { CSSProperties } from "react";
+import { CSSProperties } from 'react';
 
-const Image = (props: any) => {
+const Image = (props: any): JSX.Element => {
   const imageStyle: CSSProperties = {
     display: 'block',
     margin: '10px 0',
@@ -11,7 +11,7 @@ const Image = (props: any) => {
   }
 
   return (
-    <img {...props} style ={imageStyle} />
+    <img {...props} alt='images' style ={imageStyle} />
   );
 };
 

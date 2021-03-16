@@ -4,9 +4,11 @@ import { useRecoilState } from 'recoil';
 import { History } from 'history';
 import { postState } from 'atom/post';
 import Post from 'components/Post';
-import { getPostByIdx } from 'lib/api/post/post.api';
+import { deletePost, getPostByIdx } from 'lib/api/post/post.api';
 import { IPageParam, IPost, IPostResponse } from 'types/post.types';
 import PostError from 'error/PostError';
+import { IResponse } from 'types/Response';
+import { successToast } from 'lib/Toast';
 
 const PostContainer = (): JSX.Element => {
   const { idx }: IPageParam = useParams();
@@ -27,16 +29,37 @@ const PostContainer = (): JSX.Element => {
     }
   }, [history, postIdx, setPost]);
 
+  const requestDeletePost = useCallback(async (postIdx: number): Promise<void> => {
+    try {
+      const { status }: IResponse = await deletePost(postIdx);
+
+      if (status === 200) {
+        successToast('글을 삭제하였습니다.');
+        history.goBack();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [history]);
+
   useEffect(() => {
     if (Number.isInteger(postIdx)) {
       requestPostByIdx();
     }
-  }, [postIdx, requestPostByIdx]);
+
+    return () => {
+      setPost(null);
+    }
+  }, [postIdx, requestPostByIdx, setPost]);
 
   return (
     <>
     {
-      post === null ? <></> : <Post post={post} />
+      post === null ? <></> :
+      <Post
+        post={post}
+        requestDeletePost={requestDeletePost}
+      />
     }
     </>
   );

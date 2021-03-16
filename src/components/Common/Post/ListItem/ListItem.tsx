@@ -5,6 +5,7 @@ import { calculateTime } from 'lib/TimeCounting';
 import { IUser } from 'types/user.types';
 import TimeSticker from '../TimeSticker';
 import PostSubInfo from '../PostSubInfo';
+import { Link } from 'react-router-dom';
 
 const style = require('./ListItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -35,7 +36,7 @@ const ListItem = ({
   user,
 }: ItemProps): JSX.Element => {
   return (
-    <div className={cx('ListItem')}>
+    <Link to={`/post/${idx}`} className={cx('ListItem')}>
       <div className={cx('ListItem-Contents')}>
         <div className={cx('ListItem-Contents-ImageWrap')}>
           <img
@@ -92,7 +93,7 @@ const ListItem = ({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

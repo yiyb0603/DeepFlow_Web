@@ -7,7 +7,7 @@ interface MarkdownRenderProps {
 	contents: string;
 }
 
-const MarkdownRender = ({ contents }: MarkdownRenderProps) => {
+const MarkdownRender = ({ contents }: MarkdownRenderProps): JSX.Element => {
 	return (
 		<ReactMarkdown
 			source={contents}

@@ -22,7 +22,7 @@ const HeaderContainer = (): JSX.Element => {
       e.preventDefault();
       e.stopPropagation();
       setMyInfo(null);
-      removeCookie('accessToken');
+      removeCookie('access_token');
       successToast('로그아웃 되었습니다.');
       history.push('/');
     }
