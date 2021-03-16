@@ -1,3 +1,5 @@
+import { memo } from 'react';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { isNullOrUndefined } from 'converter/isNullOrUndefined';
@@ -5,7 +7,6 @@ import { calculateTime } from 'lib/TimeCounting';
 import { IUser } from 'types/user.types';
 import TimeSticker from '../TimeSticker';
 import PostSubInfo from '../PostSubInfo';
-import { Link } from 'react-router-dom';
 
 const style = require('./ListItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -97,4 +98,4 @@ const ListItem = ({
   );
 };
 
-export default ListItem;
+export default memo(ListItem);

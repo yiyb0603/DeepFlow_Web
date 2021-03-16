@@ -1,4 +1,5 @@
-import { ChangeEvent, KeyboardEvent } from 'react';
+import { ChangeEvent, KeyboardEvent, LegacyRef } from 'react';
+import Editor from 'react-markdown-editor-lite';
 import { EPost } from 'lib/enum/post';
 
 export default interface PostFormProps {
@@ -29,4 +30,6 @@ export default interface PostFormProps {
     contents: string;
     onChangeContents: (text: string) => void;
   };
+
+  requestCreatePost: (isTemp: boolean) => Promise<void>;
 }

@@ -1,4 +1,4 @@
-import { CSSProperties, useCallback, useState } from 'react';
+import { CSSProperties, memo, useCallback, useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
@@ -75,4 +75,4 @@ const RecentPost = ({ recentPosts }: RecentPostProps): JSX.Element => {
   );
 };
 
-export default RecentPost;
+export default memo(RecentPost);

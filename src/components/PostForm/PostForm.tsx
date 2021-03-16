@@ -1,10 +1,12 @@
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import MarkdownForm from 'components/Common/Markdown/MarkdownForm';
 import PostFormProps from './PostForm.props';
-import SelectCategory from './SelectCategory';
 import TagForm from './TagForm';
 import TitleForm from './TitleForm';
+import TagList from './TagList';
+import PostSubmit from './PostSubmit';
 
 const style = require('./PostForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -17,30 +19,44 @@ const PostForm = ({
   contentsState,
   onKeydownTagInput,
   handleFilterPostTag,
+  requestCreatePost,
 }: PostFormProps): JSX.Element => {
+  const { title, onChangeTitle } = titleState;
+  const { onChangeCategory } = categoryState;
   const { contents, onChangeContents } = contentsState;
+  const { postTags } = postTagState;
+  const { tagInput, onChangeTagInput } = tagInputState;
   
   return (
     <div className={cx('PostForm')}>
-      <TitleForm title={titleState.title} onChangeTitle={titleState.onChangeTitle} />
+      <TitleForm title={title} onChangeTitle={onChangeTitle} />
 
       <div className={cx('PostForm-CategoryTagWrapper')}>
-        <SelectCategory onChangeCategory={categoryState.onChangeCategory} />
-        <TagForm
-          postTags={postTagState.postTags}
-          tagInput={tagInputState.tagInput}
-          onChangeTagInput={tagInputState.onChangeTagInput}
-          onKeydownTagInput={onKeydownTagInput}
-          handleFilterPostTag={handleFilterPostTag}
-        />
+        <div className={cx('PostForm-CategoryTagWrapper-Left')}>
+          <TagForm
+            postTags={postTags}
+            tagInput={tagInput}
+            onChangeTagInput={onChangeTagInput}
+            onKeydownTagInput={onKeydownTagInput}
+            handleFilterPostTag={handleFilterPostTag}
+          />
+        </div>
+
+        <TagList postTags={postTags} />
       </div>
 
       <MarkdownForm
+        title={title}
         contents={contents}
         onChangeContents={onChangeContents}
+      />
+
+      <PostSubmit
+        onChangeCategory={onChangeCategory}
+        requestCreatePost={requestCreatePost}
       />
     </div>
   );
 };
 
-export default PostForm;
+export default memo(PostForm);

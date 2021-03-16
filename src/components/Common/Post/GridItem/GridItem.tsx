@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { Link } from 'react-router-dom';
@@ -59,4 +60,4 @@ const GridItem = ({
   );
 };
 
-export default GridItem;
+export default memo(GridItem);

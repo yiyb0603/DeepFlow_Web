@@ -1,20 +1,35 @@
 .TitleForm {
-  width: 50%;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  align-items: flex-end;
   margin-bottom: 1rem;
 
+  & > * {
+    width: 50%;
+    font-size: 2.75rem;
+  }
+
   &-Input {
-    width: 100%;
     outline: none;
     background: none;
     border: none;
-    border-bottom: 1px solid var(--main);
-    padding-bottom: 0.5rem;
-    font-size: 2.75rem;
+    margin-right: 2rem;
     font-weight: bold;
     color: var(--contrast);
 
     &::placeholder {
-      color: var(--gray);
+      color: var(--lighterBlack);
     }
+  }
+
+  &-Title {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    outline: none;
+    border: none;
+    background: none;
+    font-weight: bold;
   }
 }

@@ -1,13 +1,27 @@
 .TagForm {
   display: flex;
   display: -webkit-flex;
-  align-items: flex-end;
+
+  &-Wrapper {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    &-Input {
+      outline: none;
+      border: none;
+      padding-bottom: 0.45rem;
+      background: none;
+      font-size: 1.4rem;
+    }
+  }
 
   &-Tag {
     font-size: 1.4rem;
     padding: 5px 8px;
     border-radius: 1rem;
-    margin: 0 0.5rem;
+    margin: 0.5rem;
     position: relative;
     background-color: var(--lighterGray);
     color: var(--main);
@@ -20,15 +34,5 @@
       color: var(--red);
       cursor: pointer;
     }
-  }
-
-  &-Input {
-    outline: none;
-    border: none;
-    border-bottom: 1px solid var(--gray);
-    padding-bottom: 0.2rem;
-    background: none;
-    font-size: 1.4rem;
-    margin-left: 0.5rem;
   }
 }

@@ -2,6 +2,7 @@ import { ChangeEvent, KeyboardEvent } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { MdClose } from 'react-icons/md';
+import TagItem from 'components/Common/Post/TagItem';
 
 const style = require('./TagForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -23,28 +24,27 @@ const TagForm = ({
 }: TagFormProps): JSX.Element => {
   return (
     <div className={cx('TagForm')}>
-      {
-        postTags.map((postTag: string, idx: number) => (
-          <div
-            className={cx('TagForm-Tag')}
-            key={idx}
-          >
-            <MdClose
-              className={cx('TagForm-Tag-Close')}
-              onClick={() => handleFilterPostTag(postTag)}
+      <div className={cx('TagForm-Wrapper')}>
+        {
+          postTags.map((postTag: string, idx: number) => (
+            <TagItem
+              key={idx}
+              postTag={postTag}
+              isClose={true}
+              filterFunction={() => handleFilterPostTag(postTag)}
             />
-            {postTag}
-          </div>
-        ))
-      }
-      <input
-        type='text'
-        className={cx('TagForm-Input')}
-        value={tagInput}
-        onChange={onChangeTagInput}
-        onKeyDown={onKeydownTagInput}
-        placeholder='태그를 입력하세요'
-      />
+          ))
+        }
+
+        <input
+          type='text'
+          className={cx('TagForm-Wrapper-Input')}
+          value={tagInput}
+          onChange={onChangeTagInput}
+          onKeyDown={onKeydownTagInput}
+          placeholder='태그를 입력하세요'
+        />
+      </div>
     </div>
   );
 };

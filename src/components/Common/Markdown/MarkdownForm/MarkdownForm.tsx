@@ -1,10 +1,13 @@
+import { memo } from 'react';
 import MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js';
 import MdEditor from 'react-markdown-editor-lite';
-import 'highlight.js/styles/atom-one-light.css';
+import 'highlight.js/styles/rainbow.css';
 import 'react-markdown-editor-lite/lib/index.css';
+import './MarkdownForm.scss';
 
 interface MarkdownFormProps {
+	title: string;
 	contents: string;
 	onChangeContents: (text: string) => void;
 }
@@ -26,18 +29,21 @@ const mdParser: MarkdownIt = new MarkdownIt({
 });
 
 const MarkdownForm = ({
+	title,
 	contents,
 	onChangeContents,
 }: MarkdownFormProps): JSX.Element => {
 	return (
 		<MdEditor
 			value={contents}
-			onChange={({ text }: { text: string }) => onChangeContents(text)}
-			style={{ height: '80vh' }}
+			onChange={(e) => onChangeContents(e.text)}
+			style={{ height: '75vh' }}
 			renderHTML={(text: string) => mdParser.render(text)}
 			placeholder="내용을 입력하세요..."
-		/>
+		>
+			{title}
+		</MdEditor>
 	);
 };
 
-export default MarkdownForm;
+export default memo(MarkdownForm);

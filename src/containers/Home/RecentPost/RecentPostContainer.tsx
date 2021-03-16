@@ -1,11 +1,25 @@
-import { useRecoilValue } from 'recoil';
+import { memo, useCallback, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 import RecentPost from 'components/Home/RecentPost';
-import { getRecentPostsState } from 'selector/post';
-import { IPost } from 'types/post.types';
+import { recentPostState } from 'atom/post';
+import { getRecentPosts } from 'lib/api/post/post.api';
 
 const RecentPostContainer = (): JSX.Element => {
   const POST_COUNT: number = 6;
-  const recentPosts = useRecoilValue<IPost[]>(getRecentPostsState(POST_COUNT));
+  const [recentPosts, setRecentPosts] = useRecoilState(recentPostState);
+
+  const requestRecentPosts = useCallback(async () => {
+    try {
+      const { data } = await getRecentPosts(POST_COUNT);
+      setRecentPosts(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [setRecentPosts]);
+
+  useEffect(() => {
+    requestRecentPosts();
+  }, [requestRecentPosts]);
 
   return (
     <RecentPost
@@ -14,4 +28,4 @@ const RecentPostContainer = (): JSX.Element => {
   );
 };
 
-export default RecentPostContainer;
+export default memo(RecentPostContainer);

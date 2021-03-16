@@ -13,6 +13,7 @@ interface IPaletteTypes {
 	lighterGray: string;
 	gray: string;
 	white: string;
+	lighterBlack: string;
 	black: string;
 	snow: string;
 };
@@ -31,7 +32,8 @@ export const palette: IPaletteTypes = {
 	pink: '#E0234E',
 	lighterGray: '#dfe6e9',
 	white: '#ffffff',
+	lighterBlack: '#495057',
 	black: '#000000',
-	gray: '#b2bec3',
+	gray: '#f1f3f5',
 	snow: '#dff9fb',
 };

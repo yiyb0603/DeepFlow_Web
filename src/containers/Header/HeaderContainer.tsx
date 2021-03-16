@@ -1,4 +1,4 @@
-import { useCallback, MouseEvent } from 'react';
+import { useCallback, MouseEvent, memo } from 'react';
 import { useRecoilState } from 'recoil';
 import { useHistory } from 'react-router';
 import { History } from 'history';
@@ -37,4 +37,4 @@ const HeaderContainer = (): JSX.Element => {
   );
 };
 
-export default HeaderContainer;
+export default memo(HeaderContainer);

@@ -1,0 +1,36 @@
+@mixin buttonStyle($color, $background) {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  height: 45px;
+  color: $color;
+  background-color: $background;
+  padding: 0 1.4rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.PostSubmit {
+  width: 50%;
+  height: 70px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding-right: 0.63rem;
+  padding-left: 2rem;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &-Wrapper {
+    &-Save {
+      @include buttonStyle(var(--lighterBlack), var(--gray));
+      margin-right: 0.75rem;
+    }
+
+    &-Submit {
+      @include buttonStyle(var(--white), var(--main));
+    }
+  }
+}

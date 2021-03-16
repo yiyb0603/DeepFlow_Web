@@ -23,6 +23,16 @@ export interface IPost {
   isTemp: boolean;
 }
 
+export interface IAllContents {
+  thumbnail: string;
+  title: string;
+  contents: string;
+}
+
+export interface IPostSaveResponse extends IResponse {
+  idx?: number;
+}
+
 export interface IPostListResponse extends IResponse {
   data: {
     recentPosts: IPost[];
