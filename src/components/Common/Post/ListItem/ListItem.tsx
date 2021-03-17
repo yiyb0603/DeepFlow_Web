@@ -7,6 +7,7 @@ import { calculateTime } from 'lib/TimeCounting';
 import { IUser } from 'types/user.types';
 import TimeSticker from '../TimeSticker';
 import PostSubInfo from '../PostSubInfo';
+import Sample from 'assets/images/sample.png';
 
 const style = require('./ListItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -41,7 +42,7 @@ const ListItem = ({
       <div className={cx('ListItem-Contents')}>
         <div className={cx('ListItem-Contents-ImageWrap')}>
           <img
-            src={thumbnail ?? ''}
+            src={thumbnail || Sample}
             className={cx('ListItem-Contents-ImageWrap-Thumbnail')}
             alt='thumbnail'
           />

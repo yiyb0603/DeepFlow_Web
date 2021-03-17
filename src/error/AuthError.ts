@@ -1,4 +1,5 @@
 import { History } from 'history';
+import { ErrorStatus } from 'lib/enum/response';
 import { errorToast } from 'lib/Toast';
 import { IError } from 'types/Response';
 import CustomError from './CustomError';
@@ -14,7 +15,7 @@ export default class AuthError extends CustomError {
     const { status, message } = this;
 
     switch (status) {
-      case 401:
+      case ErrorStatus.UNAUTHORIZED:
         errorToast('깃허브 인증을 실패했습니다.');
         history.push('/');
         return;

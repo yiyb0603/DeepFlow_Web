@@ -9,12 +9,13 @@ import { errorToast, successToast } from 'lib/Toast';
 import { customTrim } from 'converter/customTrim';
 import { IPostDto } from 'lib/api/post/post.dto';
 import { createPost, modifyPost } from 'lib/api/post/post.api';
-import { IPostSaveResponse } from 'types/post.types';
+import SubmitModal from 'components/PostForm/SubmitModal';
 
 const PostFormContainer = (): JSX.Element => {
   const history: History = useHistory();
   const [tagInput, setTagInput] = useState<string>('');
   const [postIdx, setPostIdx] = useState<number | null>(null);
+  const [isSubmitModal, setIsSubmitModal] = useState<boolean>(false);
   const [request, setRequest] = useState<IPostDto>({
     category: EPost.QUESTION,
     title: '',
@@ -24,7 +25,18 @@ const PostFormContainer = (): JSX.Element => {
     postTags: [],
   });
 
-  const { category, title, contents, thumbnail, postTags } = request;
+  const { category, title, contents, thumbnail, introduction, postTags } = request;
+
+  const handleIsModal = useCallback((isModal: boolean): void => {
+    setIsSubmitModal(isModal);
+
+    if (customTrim(request.introduction).length > 150) {
+      setRequest({
+        ...request,
+        introduction: request.introduction.slice(0, 150),
+      });
+    }
+  }, [request]);
 
   const onChangeTitle = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
@@ -32,6 +44,15 @@ const PostFormContainer = (): JSX.Element => {
     setRequest({
       ...request,
       title: value,
+    });
+  }, [request]);
+
+  const onChangeIntroduction = useCallback((e: ChangeEvent<HTMLTextAreaElement>): void => {
+    const { value } = e.target;
+
+    setRequest({
+      ...request,
+      introduction: value,
     });
   }, [request]);
 
@@ -93,13 +114,19 @@ const PostFormContainer = (): JSX.Element => {
   const onChangeContents = useCallback((contents: string): void => {
     setRequest({
       ...request,
+      introduction: contents,
       contents,
-    })
+    });
   }, [request]);
+
+  const onChangeThumbnail = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
+    // todo
+  }, []);
 
   const requestCreatePost = useCallback(async (isTemp: boolean): Promise<void> => {
     try {
       request.isTemp = isTemp;
+      handleIsModal(false);
 
       if (isTemp) {
         if (postIdx === null) {
@@ -123,7 +150,7 @@ const PostFormContainer = (): JSX.Element => {
     } catch (error) {
       console.log(error);
     }
-  }, [history, postIdx, request]);
+  }, [handleIsModal, history, postIdx, request]);
 
   const handleKeyEvents = useCallback((e: globalThis.KeyboardEvent): void => {
     if (e.key === 'Tab') {
@@ -146,16 +173,30 @@ const PostFormContainer = (): JSX.Element => {
   }, [handleKeyEvents]);
   
   return (
-    <PostForm
-      titleState={groupingState('title', title, onChangeTitle)}
-      categoryState={groupingState('category', category, onChangeCategory)}
-      tagInputState={groupingState('tagInput', tagInput, onChangeTagInput)}
-      postTagState={groupingState('postTags', postTags, onChangePostTags)}
-      contentsState={groupingState('contents', contents, onChangeContents)}
-      onKeydownTagInput={onKeydownTagInput}
-      handleFilterPostTag={handleFilterPostTag}
-      requestCreatePost={requestCreatePost}
-    />
+    <>
+      {
+        isSubmitModal &&
+        <SubmitModal
+          title={title}
+          introductionState={groupingState('introduction', introduction, onChangeIntroduction)}
+          thumbnailState={groupingState('thumbnail', thumbnail, onChangeThumbnail)}
+          handleIsModal={handleIsModal}
+          requestCreatePost={requestCreatePost}
+        />
+      }
+
+      <PostForm
+        titleState={groupingState('title', title, onChangeTitle)}
+        categoryState={groupingState('category', category, onChangeCategory)}
+        tagInputState={groupingState('tagInput', tagInput, onChangeTagInput)}
+        postTagState={groupingState('postTags', postTags, onChangePostTags)}
+        contentsState={groupingState('contents', contents, onChangeContents)}
+        onKeydownTagInput={onKeydownTagInput}
+        handleFilterPostTag={handleFilterPostTag}
+        handleIsModal={handleIsModal}
+        requestCreatePost={requestCreatePost}
+      />
+    </>
   );
 };
 

@@ -6,7 +6,7 @@ import PostFormProps from './PostForm.props';
 import TagForm from './TagForm';
 import TitleForm from './TitleForm';
 import TagList from './TagList';
-import PostSubmit from './PostSubmit';
+import FormBottom from './FormBottom';
 
 const style = require('./PostForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -19,6 +19,7 @@ const PostForm = ({
   contentsState,
   onKeydownTagInput,
   handleFilterPostTag,
+  handleIsModal,
   requestCreatePost,
 }: PostFormProps): JSX.Element => {
   const { title, onChangeTitle } = titleState;
@@ -51,7 +52,8 @@ const PostForm = ({
         onChangeContents={onChangeContents}
       />
 
-      <PostSubmit
+      <FormBottom
+        handleIsModal={handleIsModal}
         onChangeCategory={onChangeCategory}
         requestCreatePost={requestCreatePost}
       />

@@ -21,7 +21,7 @@ const TagItem = ({ postTag, isClose = false, filterFunction }: TagItemProps): JS
           onClick={() => filterFunction!(postTag)}
         />
       }
-      {postTag}
+      <div className={cx('TagItem-Text')}>{postTag}</div>
     </div>
   );
 };

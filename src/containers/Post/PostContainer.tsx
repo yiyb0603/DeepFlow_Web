@@ -9,6 +9,7 @@ import { IPageParam, IPost, IPostResponse } from 'types/post.types';
 import PostError from 'error/PostError';
 import { IResponse } from 'types/Response';
 import { successToast } from 'lib/Toast';
+import { EResponse } from 'lib/enum/response';
 
 const PostContainer = (): JSX.Element => {
   const { idx }: IPageParam = useParams();
@@ -21,7 +22,7 @@ const PostContainer = (): JSX.Element => {
     try {
       const { status, data }: IPostResponse = await getPostByIdx(postIdx);
       
-      if (status === 200) {
+      if (status === EResponse.OK) {
         setPost(data.post);
       }
     } catch (error) {
@@ -33,7 +34,7 @@ const PostContainer = (): JSX.Element => {
     try {
       const { status }: IResponse = await deletePost(postIdx);
 
-      if (status === 200) {
+      if (status === EResponse.OK) {
         successToast('글을 삭제하였습니다.');
         history.goBack();
       }

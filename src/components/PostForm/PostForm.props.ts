@@ -31,5 +31,6 @@ export default interface PostFormProps {
     onChangeContents: (text: string) => void;
   };
 
+  handleIsModal: (isModal: boolean) => void;
   requestCreatePost: (isTemp: boolean) => Promise<void>;
 }

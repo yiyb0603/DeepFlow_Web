@@ -7,6 +7,7 @@ import { ItemProps } from '../ListItem/ListItem';
 import TimeSticker from '../TimeSticker';
 import PostSubInfo from '../PostSubInfo';
 import { isNullOrUndefined } from 'converter/isNullOrUndefined';
+import Sample from 'assets/images/sample.png';
 
 const style = require('./GridItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -26,13 +27,13 @@ const GridItem = ({
   return (
     <Link to={`/post/${idx}`} className={cx('GridItem')}>
       <div className={cx('GridItem-ImageWrap')}>
-        <img src={thumbnail || ''} className={cx('GridItem-ImageWrap-Thumbnail')} alt='thumbnail' />
+        <img src={thumbnail || Sample} className={cx('GridItem-ImageWrap-Thumbnail')} alt='thumbnail' />
         <TimeSticker text={calculateTime(createdAt)} />
       </div>
 
       <div className={cx('GridItem-Contents')}>
         <div className={cx('GridItem-Contents-Title')}>
-          제목: {title}
+          {title}
         </div>
         
         <div className={cx('GridItem-Contents-Introduction')}>

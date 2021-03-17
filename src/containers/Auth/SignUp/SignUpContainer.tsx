@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState, ChangeEvent } from 'react';
 import { useHistory, useLocation } from 'react-router';
+import { useRecoilState } from 'recoil';
 import queryString from 'query-string';
 import { History } from 'history';
 import SignUp from "components/Auth/SignUp";
 import { IGithubCodeDto } from 'lib/api/auth/auth.dto';
 import { getGithubInfo, handleRegister } from 'lib/api/auth/auth.api';
-import { useRecoilState } from 'recoil';
 import { githubInfoState, registerLoading } from 'atom/auth';
 import { IGithubResponse, IGithubUser, ILoginResponse, IRegisterRequest } from 'types/user.types';
 import { groupingState } from 'converter/groupingState';
@@ -15,11 +15,11 @@ import { setCookie } from 'lib/Cookie';
 import { successToast } from 'lib/Toast';
 import { validateSignUp } from 'validation/auth.validation';
 import GithubLoading from 'components/Auth/GithubLoading';
+import { EResponse } from 'lib/enum/response';
 
 const SignUpContainer = (): JSX.Element => {
   const { search } = useLocation();
   const { code } = queryString.parse(search);
-
   const history: History<unknown> = useHistory();
 
   const [description, setDescription] = useState<string>('');
@@ -68,7 +68,7 @@ const SignUpContainer = (): JSX.Element => {
       };
 
       const { status, data }: IGithubResponse = await getGithubInfo(githubInfo);
-      if (status === 200) {
+      if (status === EResponse.OK) {
         if (data.accessToken !== undefined) {
           const { accessToken } = data;
           
@@ -116,7 +116,7 @@ const SignUpContainer = (): JSX.Element => {
       setIsLoading(true);
       const { status, data }: ILoginResponse = await handleRegister(request);
 
-      if (status === 200) {
+      if (status === EResponse.OK) {
         setCookie('accessToken', data.accessToken);
         history.push('/');
         successToast('회원가입을 성공하였습니다.');
