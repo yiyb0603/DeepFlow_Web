@@ -1,7 +1,11 @@
-.custom-html-style p {
-  font-size: 1.4rem;
+.custom-html-style {
+	div,
+	p,
+	code {
+		font-size: 1.4rem;
+	}
 }
 
 .rc-md-editor .editor-container .sec-md .input {
-  font-size: 1.4rem;
+	font-size: 1.4rem;
 }

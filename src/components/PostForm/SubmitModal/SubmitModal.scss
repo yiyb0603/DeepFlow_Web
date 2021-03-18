@@ -1,6 +1,6 @@
 .SubmitModal {
-	width: 425px;
-	height: 500px;
+	width: 450px;
+	height: 550px;
 	background-color: var(--white);
 	position: fixed;
 	top: 50%;
@@ -24,14 +24,14 @@
 
 		&-Thumbnail {
 			width: 100%;
-			height: 40%;
-			max-height: 40%;
+			height: 45%;
+			max-height: 45%;
 			object-fit: cover;
 		}
 
 		&-Contents {
 			height: 40%;
-			padding: 5px 0.625rem;
+			padding: 0.625rem;
 
 			&-Title {
 				font-size: 1.3rem;

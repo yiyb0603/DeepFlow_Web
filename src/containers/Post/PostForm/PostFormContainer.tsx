@@ -10,6 +10,9 @@ import { customTrim } from 'converter/customTrim';
 import { IPostDto } from 'lib/api/post/post.dto';
 import { createPost, modifyPost } from 'lib/api/post/post.api';
 import SubmitModal from 'components/PostForm/SubmitModal';
+import { uploadFiles } from 'lib/api/uploads/uploads.api';
+import { IUploadResponse } from 'types/uploads.types';
+import { EResponse } from 'lib/enum/response';
 
 const PostFormContainer = (): JSX.Element => {
   const history: History = useHistory();
@@ -119,9 +122,23 @@ const PostFormContainer = (): JSX.Element => {
     });
   }, [request]);
 
-  const onChangeThumbnail = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-    // todo
-  }, []);
+  const onChangeThumbnail = useCallback(async (e: ChangeEvent<HTMLInputElement>): Promise<void> => {
+    try {
+      const { files } = e.target;
+      const formData: FormData = new FormData();
+      formData.append('images', files![0]);
+
+      const { status, data }: IUploadResponse = await uploadFiles(formData);
+      if (status === EResponse.OK) {
+        setRequest({
+          ...request,
+          thumbnail: data.files[0],
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [request]);
 
   const requestCreatePost = useCallback(async (isTemp: boolean): Promise<void> => {
     try {

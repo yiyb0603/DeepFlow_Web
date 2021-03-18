@@ -1,7 +1,8 @@
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import PostButton from 'components/Common/Post/PostButton';
+import SelectThumbnail from './SelectThumbnail';
 
 const style = require('./SubmitModal.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -15,7 +16,7 @@ interface SubmitModalProps {
 
   thumbnailState: {
     thumbnail: string;
-    onChangeThumbnail: (e: ChangeEvent<HTMLInputElement>) => void;
+    onChangeThumbnail: (e: ChangeEvent<HTMLInputElement>) => Promise<void>;
   };
 
   handleIsModal: (isModal: boolean) => void;
@@ -37,11 +38,7 @@ const SubmitModal = ({
       <div className={cx('SubmitModal-Overlay')} onClick={() => handleIsModal(false)}></div>
       <div className={cx('SubmitModal')}>
         <div className={cx('SubmitModal-Wrapper')}>
-          <img
-            src='https://miro.medium.com/max/3182/1*ZdpBdyvqfb6qM1InKR2sQQ.png'
-            className={cx('SubmitModal-Wrapper-Thumbnail')}
-            alt='thumbnail'
-          />
+          <SelectThumbnail thumbnail={thumbnail} onChangeThumbnail={onChangeThumbnail} />
           
           <div className={cx('SubmitModal-Wrapper-Contents')}>
             <div className={cx('SubmitModal-Wrapper-Contents-Title')}>
@@ -74,4 +71,4 @@ const SubmitModal = ({
   );
 };
 
-export default SubmitModal;
+export default memo(SubmitModal);

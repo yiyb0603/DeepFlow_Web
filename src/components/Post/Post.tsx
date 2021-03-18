@@ -15,7 +15,7 @@ interface PostProps {
 }
 
 const Post = ({ post, requestDeletePost }: PostProps): JSX.Element => {
-  const { idx, title, category, introduction, contents, thumbnail, postTags, createdAt, user } = post;
+  const { idx, title, contents, thumbnail, postTags, createdAt, user } = post;
 
   return (
     <div className={cx('Post')}>
@@ -29,8 +29,6 @@ const Post = ({ post, requestDeletePost }: PostProps): JSX.Element => {
       />
       <PostTags postTags={postTags} />
       <Thumbnail thumbnail={thumbnail!} />
-
-      <div>{introduction}</div>
 
       <div className={cx('Post-Contents')}>
         <MarkdownRender contents={contents!} />

@@ -1,7 +1,6 @@
 import { ChangeEvent, KeyboardEvent } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { MdClose } from 'react-icons/md';
 import TagItem from 'components/Common/Post/TagItem';
 
 const style = require('./TagForm.scss');
