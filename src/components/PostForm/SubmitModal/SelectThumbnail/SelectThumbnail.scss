@@ -40,6 +40,14 @@ $selectBackground: #cccfd8;
 		transform: translate(-50%, 0%);
 		transition: 0.2s ease;
 
+		&-Show {
+			height: 100%;
+
+			& > * {
+				opacity: 1;
+			}
+		}
+
 		&-Icon {
 			font-size: 3rem;
 			color: var(--white);

@@ -9,15 +9,21 @@ export const getPostByIdx = async (postIdx: number): Promise<IPostResponse> => {
   return data;
 }
 
-export const createPost = async (postDto: IPostDto): Promise<IPostSaveResponse> => {
+export const createPost = async (postDto: IPostDto, isTemp: boolean): Promise<IPostSaveResponse> => {
   const url: string = '/post';
-  const { data } = await customAxios.post(url, postDto);
+  const { data } = await customAxios.post(url, {
+    ...postDto,
+    isTemp,
+  });
   return data;
 }
 
-export const modifyPost = async (postIdx: number, postDto: IPostDto): Promise<IResponse> => {
+export const modifyPost = async (postIdx: number, postDto: IPostDto, isTemp: boolean): Promise<IResponse> => {
   const url: string = `/post/${postIdx}`;
-  const { data } = await customAxios.put(url, postDto);
+  const { data } = await customAxios.put(url, {
+    ...postDto,
+    isTemp,
+  });
   return data;
 }
 

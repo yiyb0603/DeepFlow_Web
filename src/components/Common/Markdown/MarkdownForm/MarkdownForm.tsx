@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { ChangeEvent, memo } from 'react';
 import MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js';
 import MdEditor from 'react-markdown-editor-lite';
@@ -9,7 +9,7 @@ import './MarkdownForm.scss';
 interface MarkdownFormProps {
 	title: string;
 	contents: string;
-	onChangeContents: (text: string) => void;
+	onChangeContents: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 const mdParser: MarkdownIt = new MarkdownIt({
@@ -36,7 +36,7 @@ const MarkdownForm = ({
 	return (
 		<MdEditor
 			value={contents}
-			onChange={(e) => onChangeContents(e.text)}
+			onChange={(data, e) => onChangeContents(e!)}
 			style={{ height: '75vh' }}
 			renderHTML={(text: string) => mdParser.render(text)}
 			placeholder="내용을 입력하세요..."

@@ -7,5 +7,4 @@ export interface IPostDto {
   title: string;
   contents: string;
   postTags: string[];
-  isTemp?: boolean;
 }

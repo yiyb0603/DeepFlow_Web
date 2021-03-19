@@ -1,5 +1,4 @@
-import { ChangeEvent, KeyboardEvent, LegacyRef } from 'react';
-import Editor from 'react-markdown-editor-lite';
+import { ChangeEvent, KeyboardEvent } from 'react';
 import { EPost } from 'lib/enum/post';
 
 export default interface PostFormProps {
@@ -28,7 +27,7 @@ export default interface PostFormProps {
 
   contentsState: {
     contents: string;
-    onChangeContents: (text: string) => void;
+    onChangeContents: (e: ChangeEvent<HTMLTextAreaElement>) => void;
   };
 
   handleIsModal: (isModal: boolean) => void;

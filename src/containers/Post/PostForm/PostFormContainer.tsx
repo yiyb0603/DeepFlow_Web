@@ -1,5 +1,6 @@
-import { ChangeEvent, KeyboardEvent, memo, useCallback, useEffect, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useCallback, useEffect, useState, memo } from 'react';
 import { useHistory } from 'react-router';
+import { useRecoilState } from 'recoil';
 import { History } from 'history';
 import { groupingState } from 'converter/groupingState';
 import PostForm from 'components/PostForm';
@@ -10,25 +11,17 @@ import { customTrim } from 'converter/customTrim';
 import { IPostDto } from 'lib/api/post/post.dto';
 import { createPost, modifyPost } from 'lib/api/post/post.api';
 import SubmitModal from 'components/PostForm/SubmitModal';
-import { uploadFiles } from 'lib/api/uploads/uploads.api';
-import { IUploadResponse } from 'types/uploads.types';
-import { EResponse } from 'lib/enum/response';
+import { requestPostState } from 'atom/post';
 
 const PostFormContainer = (): JSX.Element => {
   const history: History = useHistory();
   const [tagInput, setTagInput] = useState<string>('');
   const [postIdx, setPostIdx] = useState<number | null>(null);
   const [isSubmitModal, setIsSubmitModal] = useState<boolean>(false);
-  const [request, setRequest] = useState<IPostDto>({
-    category: EPost.QUESTION,
-    title: '',
-    contents: '',
-    thumbnail: '',
-    introduction: '',
-    postTags: [],
-  });
+  const [contents, setContents] = useState<string>('');
 
-  const { category, title, contents, thumbnail, introduction, postTags } = request;
+  const [request, setRequest] = useRecoilState<IPostDto>(requestPostState);
+  const { category, title, introduction, postTags } = request;
 
   const handleIsModal = useCallback((isModal: boolean): void => {
     setIsSubmitModal(isModal);
@@ -39,7 +32,7 @@ const PostFormContainer = (): JSX.Element => {
         introduction: request.introduction.slice(0, 150),
       });
     }
-  }, [request]);
+  }, [request, setRequest]);
 
   const onChangeTitle = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
@@ -48,7 +41,7 @@ const PostFormContainer = (): JSX.Element => {
       ...request,
       title: value,
     });
-  }, [request]);
+  }, [request, setRequest]);
 
   const onChangeIntroduction = useCallback((e: ChangeEvent<HTMLTextAreaElement>): void => {
     const { value } = e.target;
@@ -57,14 +50,14 @@ const PostFormContainer = (): JSX.Element => {
       ...request,
       introduction: value,
     });
-  }, [request]);
+  }, [request, setRequest]);
 
   const onChangeCategory = useCallback((category: EPost): void => {
     setRequest({
       ...request,
       category,
     });
-  }, [request]);
+  }, [request, setRequest]);
 
   const onChangeTagInput = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
@@ -97,7 +90,7 @@ const PostFormContainer = (): JSX.Element => {
       postTags: [...postTags, tagInput],
     });
     setTagInput('');
-  }, [request, postTags, tagInput]);
+  }, [tagInput, postTags, setRequest, request]);
 
   const onKeydownTagInput = useCallback((e: KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === ',' || e.key === 'Enter') {
@@ -112,53 +105,37 @@ const PostFormContainer = (): JSX.Element => {
       ...request,
       postTags: postTags.filter((tag) => tag !== tagName),
     });
-  }, [request]);
+  }, [request, setRequest]);
 
-  const onChangeContents = useCallback((contents: string): void => {
+  const onChangeContents = useCallback((e: ChangeEvent<HTMLTextAreaElement>): void => {
+    const { value } = e.target;
+    
+    setContents(value);
     setRequest({
       ...request,
       introduction: contents,
-      contents,
+      contents: value,
     });
-  }, [request]);
-
-  const onChangeThumbnail = useCallback(async (e: ChangeEvent<HTMLInputElement>): Promise<void> => {
-    try {
-      const { files } = e.target;
-      const formData: FormData = new FormData();
-      formData.append('images', files![0]);
-
-      const { status, data }: IUploadResponse = await uploadFiles(formData);
-      if (status === EResponse.OK) {
-        setRequest({
-          ...request,
-          thumbnail: data.files[0],
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, [request]);
+  }, [contents, request, setRequest]);
 
   const requestCreatePost = useCallback(async (isTemp: boolean): Promise<void> => {
     try {
-      request.isTemp = isTemp;
       handleIsModal(false);
 
       if (isTemp) {
         if (postIdx === null) {
-          const { idx } = await createPost(request);
+          const { idx } = await createPost(request, isTemp);
           setPostIdx(idx!);
         } else {
-          await modifyPost(postIdx, request);
+          await modifyPost(postIdx, request, isTemp);
         }
         
         successToast('글 임시저장을 성공하였습니다.');
       } else {
         if (postIdx === null) {
-          await createPost(request);
+          await createPost(request, isTemp);
         } else {
-          await modifyPost(postIdx, request);
+          await modifyPost(postIdx, request, isTemp);
         }
 
         successToast('글 작성을 성공하였습니다.');
@@ -196,7 +173,6 @@ const PostFormContainer = (): JSX.Element => {
         <SubmitModal
           title={title}
           introductionState={groupingState('introduction', introduction, onChangeIntroduction)}
-          thumbnailState={groupingState('thumbnail', thumbnail, onChangeThumbnail)}
           handleIsModal={handleIsModal}
           requestCreatePost={requestCreatePost}
         />
