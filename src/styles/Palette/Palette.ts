@@ -34,6 +34,6 @@ export const palette: IPaletteTypes = {
 	white: '#ffffff',
 	lighterBlack: '#495057',
 	black: '#000000',
-	gray: '#f1f3f5',
+	gray: '#b2b2b2',
 	snow: '#dff9fb',
 };

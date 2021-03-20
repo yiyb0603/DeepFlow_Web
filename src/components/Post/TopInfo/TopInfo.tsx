@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import { Link } from 'react-router-dom';
 import { calculateTime } from 'lib/TimeCounting';
 import { IUser } from 'types/user.types';
 
@@ -24,7 +25,12 @@ const TopInfo = ({ idx, createdAt, user, requestDeletePost }: TopInfoProps): JSX
       </div>
 
       <div className={cx('TopInfo-Right')}>
-        <div className={cx('TopInfo-Right-Modify')}>수정</div>
+        <Link
+          to={`/post-form/${idx}`}
+          className={cx('TopInfo-Right-Modify')}
+        >
+          수정
+        </Link>
         
         <div
           className={cx('TopInfo-Right-Delete')}

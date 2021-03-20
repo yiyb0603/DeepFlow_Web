@@ -1,34 +1,16 @@
-import { useCallback, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router';
-import { useRecoilState } from 'recoil';
+import { useCallback } from 'react';
+import { useHistory } from 'react-router';
 import { History } from 'history';
-import { postState } from 'atom/post';
 import Post from 'components/Post';
-import { deletePost, getPostByIdx } from 'lib/api/post/post.api';
-import { IPageParam, IPost, IPostResponse } from 'types/post.types';
-import PostError from 'error/PostError';
+import { deletePost } from 'lib/api/post/post.api';
 import { IResponse } from 'types/Response';
 import { successToast } from 'lib/Toast';
 import { EResponse } from 'lib/enum/response';
+import usePostByIdx from 'hooks/usePostByIdx';
 
 const PostContainer = (): JSX.Element => {
-  const { idx }: IPageParam = useParams();
-  const postIdx: number = parseInt(idx!);
   const history: History<unknown> = useHistory();
-
-  const [post, setPost] = useRecoilState<IPost | null>(postState);
-
-  const requestPostByIdx = useCallback(async (): Promise<void> => {
-    try {
-      const { status, data }: IPostResponse = await getPostByIdx(postIdx);
-      
-      if (status === EResponse.OK) {
-        setPost(data.post);
-      }
-    } catch (error) {
-      new PostError(error).getPostError(history);
-    }
-  }, [history, postIdx, setPost]);
+  const { post } = usePostByIdx();
 
   const requestDeletePost = useCallback(async (postIdx: number): Promise<void> => {
     try {
@@ -42,16 +24,6 @@ const PostContainer = (): JSX.Element => {
       console.log(error);
     }
   }, [history]);
-
-  useEffect(() => {
-    if (Number.isInteger(postIdx)) {
-      requestPostByIdx();
-    }
-
-    return () => {
-      setPost(null);
-    }
-  }, [postIdx, requestPostByIdx, setPost]);
 
   return (
     <>

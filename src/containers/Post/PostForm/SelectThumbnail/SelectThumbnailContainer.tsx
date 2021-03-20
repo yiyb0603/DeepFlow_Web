@@ -29,15 +29,15 @@ const SelectThumbnailContainer = (): JSX.Element => {
 
       const { status, data } = await uploadFiles(formData);
       if (status === EResponse.OK) {
-        setRequest({
+        setRequest((request: IPostDto) => ({
           ...request,
           thumbnail: data.files[0],
-        });
+        }));
       }
     } catch (error) {
       console.log(error);
     }
-  }, [request, setRequest]);
+  }, [setRequest]);
 
   const handleDragIn = useCallback((e: DragEvent): void => {
     e.preventDefault();

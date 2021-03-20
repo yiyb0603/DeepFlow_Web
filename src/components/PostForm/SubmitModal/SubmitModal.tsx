@@ -15,14 +15,14 @@ interface SubmitModalProps {
   };
 
   handleIsModal: (isModal: boolean) => void;
-  requestCreatePost: (isTemp: boolean) => Promise<void>;
+  requestOfferPost: (isTemp: boolean) => Promise<void>;
 }
 
 const SubmitModal = ({
   title,
   introductionState,
   handleIsModal,
-  requestCreatePost,
+  requestOfferPost,
 }: SubmitModalProps): JSX.Element => {
   const { introduction, onChangeIntroduction } = introductionState;
   
@@ -54,7 +54,7 @@ const SubmitModal = ({
               <PostButton
                 text='작성'
                 color='Blue'
-                onClick={() => requestCreatePost(false)}
+                onClick={() => requestOfferPost(false)}
               />
             </div>
           </div>

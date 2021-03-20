@@ -31,5 +31,5 @@ export default interface PostFormProps {
   };
 
   handleIsModal: (isModal: boolean) => void;
-  requestCreatePost: (isTemp: boolean) => Promise<void>;
+  requestOfferPost: (isTemp: boolean) => Promise<void>;
 }

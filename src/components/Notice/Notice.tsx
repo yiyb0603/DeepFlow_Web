@@ -16,7 +16,7 @@ const Notice = ({ noticeList }: NoticeProps): JSX.Element => {
     <div className={cx('Notice')}>
       {
         noticeList.map((notice: INotice) => {
-          const { idx, title, introduction, createdAt } = notice;
+          const { idx, title, introduction, createdAt, updatedAt } = notice;
           return (
             <ListItem
               key={idx}
@@ -24,6 +24,7 @@ const Notice = ({ noticeList }: NoticeProps): JSX.Element => {
               title={title}
               introduction={introduction}
               createdAt={createdAt}
+              updatedAt={updatedAt}
               thumbnail={Sample}
             />
           )

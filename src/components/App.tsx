@@ -20,6 +20,7 @@ const App = (): JSX.Element => {
         <Route exact path='/github-login' component={SignPage} />
         <Route exact path='/notice' component={NoticePage} />
         <Route exact path='/post-form' component={PostFormPage} />
+        <Route exact path='/post-form/:idx' component={PostFormPage} />
         <Route exact path='/post/:idx' component={PostPage} />
       </Switch>
     </div>

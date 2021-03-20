@@ -12,9 +12,12 @@ import { IPostDto } from 'lib/api/post/post.dto';
 import { createPost, modifyPost } from 'lib/api/post/post.api';
 import SubmitModal from 'components/PostForm/SubmitModal';
 import { requestPostState } from 'atom/post';
+import usePostByIdx from 'hooks/usePostByIdx';
 
 const PostFormContainer = (): JSX.Element => {
   const history: History = useHistory();
+  const { post } = usePostByIdx();
+
   const [tagInput, setTagInput] = useState<string>('');
   const [postIdx, setPostIdx] = useState<number | null>(null);
   const [isSubmitModal, setIsSubmitModal] = useState<boolean>(false);
@@ -111,14 +114,14 @@ const PostFormContainer = (): JSX.Element => {
     const { value } = e.target;
     
     setContents(value);
-    setRequest({
+    setRequest((request: IPostDto) => ({
       ...request,
       introduction: contents,
       contents: value,
-    });
-  }, [contents, request, setRequest]);
+    }));
+  }, [contents, setRequest]);
 
-  const requestCreatePost = useCallback(async (isTemp: boolean): Promise<void> => {
+  const requestOfferPost = useCallback(async (isTemp: boolean): Promise<void> => {
     try {
       handleIsModal(false);
 
@@ -146,6 +149,20 @@ const PostFormContainer = (): JSX.Element => {
     }
   }, [handleIsModal, history, postIdx, request]);
 
+  const handleSetProperties = useCallback(async (): Promise<void> => {
+    const { idx, title, category, thumbnail, introduction, contents, postTags } = post!;
+    setPostIdx(idx);
+    setContents(contents!);
+    setRequest({
+      title,
+      introduction,
+      category,
+      thumbnail: thumbnail!,
+      contents: contents!,
+      postTags,
+    });
+  }, [post, setRequest]);
+
   const handleKeyEvents = useCallback((e: globalThis.KeyboardEvent): void => {
     if (e.key === 'Tab') {
       e.preventDefault();
@@ -154,9 +171,13 @@ const PostFormContainer = (): JSX.Element => {
 
     if (e.ctrlKey && e.key === 's') {
       e.preventDefault();
-      requestCreatePost(true);
+      requestOfferPost(true);
     }
-  }, [requestCreatePost]);
+  }, [requestOfferPost]);
+
+  useEffect(() => {
+    handleSetProperties();
+  }, [handleSetProperties]);
 
   useEffect(() => {
     document.addEventListener('keydown', handleKeyEvents, true);
@@ -174,7 +195,7 @@ const PostFormContainer = (): JSX.Element => {
           title={title}
           introductionState={groupingState('introduction', introduction, onChangeIntroduction)}
           handleIsModal={handleIsModal}
-          requestCreatePost={requestCreatePost}
+          requestOfferPost={requestOfferPost}
         />
       }
 
@@ -187,7 +208,7 @@ const PostFormContainer = (): JSX.Element => {
         onKeydownTagInput={onKeydownTagInput}
         handleFilterPostTag={handleFilterPostTag}
         handleIsModal={handleIsModal}
-        requestCreatePost={requestCreatePost}
+        requestOfferPost={requestOfferPost}
       />
     </>
   );

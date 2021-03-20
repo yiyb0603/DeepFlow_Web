@@ -10,13 +10,13 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface FormBottomProps {
   handleIsModal: (isModal: boolean) => void;
   onChangeCategory: (category: EPost) => void;
-  requestCreatePost: (isTemp: boolean) => Promise<void>;
+  requestOfferPost: (isTemp: boolean) => Promise<void>;
 }
 
 const FormBottom = ({
   handleIsModal,
   onChangeCategory,
-  requestCreatePost
+  requestOfferPost,
 }: FormBottomProps): JSX.Element => {
   return (
     <div className={cx('FormBottom')}>
@@ -26,7 +26,7 @@ const FormBottom = ({
         <PostButton
           text='임시저장'
           color='Gray'
-          onClick={() => requestCreatePost(true)}
+          onClick={() => requestOfferPost(true)}
         />
         
         <PostButton

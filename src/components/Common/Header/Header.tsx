@@ -29,7 +29,7 @@ const Header = ({ authUrl, myInfo, handleLogout }: HeaderProps): JSX.Element => 
           <div className={cx('Header-Contents-RightWrap')}>
             <a href={authUrl} className={cx('Header-Contents-RightWrap-Login')} onClick={handleLogout}>
               <IoLogoGithub className={cx('Header-Contents-RightWrap-Login-Icon')} />
-              <div className={cx('Header-Contents-RightWrap-LoginWrap-Name')}>
+              <div className={cx('Header-Contents-RightWrap-Login-Name')}>
                 {
                   !myInfo ? '로그인' : '로그아웃'
                 }

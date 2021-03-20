@@ -20,7 +20,7 @@ const PostForm = ({
   onKeydownTagInput,
   handleFilterPostTag,
   handleIsModal,
-  requestCreatePost,
+  requestOfferPost,
 }: PostFormProps): JSX.Element => {
   const { title, onChangeTitle } = titleState;
   const { onChangeCategory } = categoryState;
@@ -55,7 +55,7 @@ const PostForm = ({
       <FormBottom
         handleIsModal={handleIsModal}
         onChangeCategory={onChangeCategory}
-        requestCreatePost={requestCreatePost}
+        requestOfferPost={requestOfferPost}
       />
     </div>
   );

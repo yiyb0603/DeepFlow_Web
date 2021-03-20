@@ -2,7 +2,6 @@ import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { Link } from 'react-router-dom';
-import { calculateTime } from 'lib/TimeCounting';
 import { ItemProps } from '../ListItem/ListItem';
 import TimeSticker from '../TimeSticker';
 import PostSubInfo from '../PostSubInfo';
@@ -19,6 +18,7 @@ const GridItem = ({
   thumbnail,
   postTags,
   createdAt,
+  updatedAt,
   viewCount,
   commentCount,
   likeCount,
@@ -28,7 +28,7 @@ const GridItem = ({
     <Link to={`/post/${idx}`} className={cx('GridItem')}>
       <div className={cx('GridItem-ImageWrap')}>
         <img src={thumbnail || Sample} className={cx('GridItem-ImageWrap-Thumbnail')} alt='thumbnail' />
-        <TimeSticker text={calculateTime(createdAt)} />
+        <TimeSticker createdAt={createdAt} updatedAt={updatedAt} />
       </div>
 
       <div className={cx('GridItem-Contents')}>

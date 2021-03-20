@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { isNullOrUndefined } from 'converter/isNullOrUndefined';
-import { calculateTime } from 'lib/TimeCounting';
 import { IUser } from 'types/user.types';
 import TimeSticker from '../TimeSticker';
 import PostSubInfo from '../PostSubInfo';
@@ -18,6 +17,7 @@ export interface ItemProps {
   introduction: string;
   thumbnail: string | null;
   createdAt: Date | string;
+  updatedAt: Date | string | null;
   viewCount?: number;
   likeCount?: number;
   commentCount?: number;
@@ -31,6 +31,7 @@ const ListItem = ({
   introduction,
   thumbnail,
   createdAt,
+  updatedAt,
   viewCount,
   likeCount,
   commentCount,
@@ -47,7 +48,7 @@ const ListItem = ({
             alt='thumbnail'
           />
 
-          <TimeSticker text={calculateTime(createdAt)} />
+          <TimeSticker createdAt={createdAt} updatedAt={updatedAt} />
         </div>
 
         <div className={cx('ListItem-Contents-ContentsWrap')}>
