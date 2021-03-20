@@ -1,24 +1,19 @@
 import { useCallback, MouseEvent, memo } from 'react';
-import { useRecoilState } from 'recoil';
 import { useHistory } from 'react-router';
 import { History } from 'history';
-import { getUserInfoState } from 'selector/user';
-import Header from 'components/Common/Header';
+import useMyInfo from 'hooks/useMyInfo';
 import { CLIENT_ID, REDIRECT_URL } from 'config/config.json';
 import { removeCookie } from 'lib/Cookie';
-import { IToken } from 'types/user.types';
-import { getMyInfo } from 'util/getMyInfo';
 import { successToast } from 'lib/Toast';
+import Header from 'components/Common/Header';
 
 const HeaderContainer = (): JSX.Element => {
   const authUrl: string = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}`;
-  const myToken: IToken = getMyInfo() || null;
   const history: History<unknown> = useHistory();
-
-  const [myInfo, setMyInfo] = useRecoilState(getUserInfoState(myToken ? myToken.idx : null));
+  const { myInfo, setMyInfo } = useMyInfo();
 
   const handleLogout = useCallback((e: MouseEvent<HTMLHyperlinkElementUtils>): void => {
-    if (myToken) {
+    if (myInfo) {
       e.preventDefault();
       e.stopPropagation();
       setMyInfo(null);
@@ -26,7 +21,7 @@ const HeaderContainer = (): JSX.Element => {
       successToast('로그아웃 되었습니다.');
       history.push('/');
     }
-  }, [history, myToken, setMyInfo]);
+  }, [history, myInfo, setMyInfo]);
 
   return (
     <Header

@@ -1,4 +1,4 @@
-import { EPost } from "lib/enum/post";
+import { EPost } from 'lib/enum/post';
 
 export interface IPostDto {
   category: EPost;

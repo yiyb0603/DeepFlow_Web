@@ -1,10 +1,10 @@
 import { ChangeEvent } from "react";
 import { EMajor } from "lib/enum/majors";
-import { IGithubUser } from "types/user.types";
+import { IRegisterRequest } from "types/user.types";
 
 export default interface SignUpProps {
   isLoading: boolean;
-  githubInfo: IGithubUser;
+  request: IRegisterRequest;
 
   descriptionState: {
     description: string;

@@ -1,12 +1,8 @@
-import { useRecoilState, useRecoilValue } from "recoil";
-import { getNoticeListState } from "selector/notice";
-import { postPageState } from "atom/post";
-import Notice from "components/Notice";
-import { INotice } from "types/notice.types";
+import useNoticeList from 'hooks/useNoticeList';
+import Notice from 'components/Notice';
 
 const NoticeContainer = (): JSX.Element => {
-  const [page, setPage] = useRecoilState<number>(postPageState);
-  const noticeList = useRecoilValue<INotice[]>(getNoticeListState(page));
+  const { noticeList } = useNoticeList();
 
   return (
     <Notice

@@ -17,7 +17,7 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 const SignUp = ({
   isLoading,
-  githubInfo,
+  request,
   descriptionState,
   locationState,
   blogState,
@@ -26,7 +26,7 @@ const SignUp = ({
   majorState,
   requestRegister,
 }: SignUpProps) => {
-  const { avatar, name, githubId } = githubInfo;
+  const { avatar, name, githubId } = request;
   const selectStyle: CSSProperties = {
     width: '45%',
   };

@@ -15,8 +15,7 @@ export interface IGithubUser {
   blog: string;
 }
 
-export interface IRegisterRequest {
-  githubInfo: IGithubUser,
+export interface IRegisterRequest extends IGithubUser {
   generation: number;
   major: EMajor;
   position: string;

@@ -1,9 +1,20 @@
-import { atom } from "recoil";
-import { IGithubUser } from "types/user.types";
+import { EMajor } from 'lib/enum/majors';
+import { atom } from 'recoil';
+import { IRegisterRequest } from 'types/user.types';
 
-export const githubInfoState = atom<IGithubUser | null>({
-  key: 'githubInfoState',
-  default: null,
+export const requestRegisterState = atom<IRegisterRequest>({
+  key: 'requestRegisterState',
+  default: {
+    avatar: '',
+    description: '',
+    githubId: '',
+    location: '',
+    name: '',
+    blog: '',
+    generation: 1,
+    major: EMajor.SOFTWARE,
+    position: '',
+  },
 });
 
 export const registerLoading = atom<boolean>({

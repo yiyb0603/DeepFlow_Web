@@ -1,144 +1,30 @@
-import { useCallback, useEffect, useState, ChangeEvent } from 'react';
-import { useHistory, useLocation } from 'react-router';
-import { useRecoilState } from 'recoil';
-import queryString from 'query-string';
-import { History } from 'history';
-import SignUp from "components/Auth/SignUp";
-import { IGithubCodeDto } from 'lib/api/auth/auth.dto';
-import { getGithubInfo, handleRegister } from 'lib/api/auth/auth.api';
-import { githubInfoState, registerLoading } from 'atom/auth';
-import { IGithubResponse, IGithubUser, ILoginResponse, IRegisterRequest } from 'types/user.types';
+import useRegister from 'hooks/useRegister';
 import { groupingState } from 'converter/groupingState';
-import { EMajor } from 'lib/enum/majors';
-import AuthError from 'error/AuthError';
-import { setCookie } from 'lib/Cookie';
-import { successToast } from 'lib/Toast';
-import { validateSignUp } from 'validation/auth.validation';
+import SignUp from 'components/Auth/SignUp';
 import GithubLoading from 'components/Auth/GithubLoading';
-import { EResponse } from 'lib/enum/response';
 
 const SignUpContainer = (): JSX.Element => {
-  const { search } = useLocation();
-  const { code } = queryString.parse(search);
-  const history: History<unknown> = useHistory();
+  const {
+    request,
+    isLoading,
+    onChangeDescription,
+    onChangeLocation,
+    onChangeBlog,
+    onChangePosition,
+    onChangeGeneration,
+    onChangeMajor,
+    requestRegister,
+  } = useRegister();
 
-  const [description, setDescription] = useState<string>('');
-  const [location, setLocation] = useState<string>('');
-  const [blog, setBlog] = useState<string>('');
-  const [position, setPosition] = useState<string>('');
-
-  const [generation, setGeneration] = useState<number>(1);
-  const [major, setMajor] = useState<EMajor>(EMajor.SOFTWARE);
-
-  const [githubInfo, setGithubInfo] = useRecoilState<IGithubUser | null>(githubInfoState);
-  const [isLoading, setIsLoading] = useRecoilState<boolean>(registerLoading);
-
-  const onChangeDescription = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
-    setDescription(value);
-  }, []);
-
-  const onChangeLocation = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
-    setLocation(value);
-  }, []);
-
-  const onChangeBlog = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
-    setBlog(value);
-  }, []);
-
-  const onChangePosition = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
-    setPosition(value);
-  }, []);
-
-  const onChangeGeneration = useCallback((generation: number): void => {
-    setGeneration(generation);
-  }, []);
-
-  const onChangeMajor = useCallback((major: number): void => {
-    setMajor(major);
-  }, []);
-  
-  const requestLoginOrGithubInfo = useCallback(async (): Promise<void> => {
-    try {
-      const githubInfo: IGithubCodeDto = {
-        code: String(code),
-      };
-
-      const { status, data }: IGithubResponse = await getGithubInfo(githubInfo);
-      if (status === EResponse.OK) {
-        if (data.accessToken !== undefined) {
-          const { accessToken } = data;
-          
-          setCookie('access_token', accessToken);
-          history.push('/');
-          successToast('로그인 되었습니다.');
-          return;
-        }
-
-        const { githubInfo: { description, location, blog } } = data;
-
-        setGithubInfo(data.githubInfo);
-        setDescription(description);
-        setLocation(location);
-        setBlog(blog);
-      }
-    } catch (error) {
-      new AuthError(error).registerError(history);
-    }
-  }, [code, history, setGithubInfo]);
-
-  const requestRegister = useCallback(async (): Promise<void> => {
-    try {
-      const { avatar, githubId, name } = githubInfo!;
-
-      const request: IRegisterRequest = {
-        githubInfo: {
-          avatar,
-          githubId,
-          name,
-          description,
-          location,
-          blog,
-        },
-
-        generation,
-        major,
-        position,
-      };
-
-      if (!validateSignUp(request)) {
-        return;
-      }
-
-      setIsLoading(true);
-      const { status, data }: ILoginResponse = await handleRegister(request);
-
-      if (status === EResponse.OK) {
-        setCookie('accessToken', data.accessToken);
-        history.push('/');
-        successToast('회원가입을 성공하였습니다.');
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [blog, description, generation, githubInfo, history, location, major, position, setIsLoading]);
-
-  useEffect(() => {
-    requestLoginOrGithubInfo();
-  }, [requestLoginOrGithubInfo]);
+  const { description, location, blog, position, generation, major } = request;
 
   return (
     <>
     {
-      githubInfo === null ? <GithubLoading /> :
+      request.githubId === '' ? <GithubLoading /> :
       <SignUp
         isLoading={isLoading}
-        githubInfo={githubInfo}
+        request={request}
         descriptionState={groupingState('description', description, onChangeDescription)}
         locationState={groupingState('location', location, onChangeLocation)}
         blogState={groupingState('blog', blog, onChangeBlog)}

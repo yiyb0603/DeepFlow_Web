@@ -1,8 +1,7 @@
-import classNames from 'classnames';
-import { ClassNamesFn } from 'classnames/types';
 import { useCallback } from 'react';
 import { AiOutlineGithub, AiOutlineLink } from 'react-icons/ai';
-import { MdLocationOn } from 'react-icons/md';
+import classNames from 'classnames';
+import { ClassNamesFn } from 'classnames/types';
 
 const style = require('./PostUserInfo.scss');
 const cx: ClassNamesFn = classNames.bind(style);

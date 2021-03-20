@@ -1,7 +1,7 @@
-import { customAxios } from "lib/CustomAxios";
-import { IPostResponse, IPostSaveResponse } from "types/post.types";
-import { ICustomResponse, IResponse } from "types/Response";
-import { IPostDto } from "./post.dto";
+import { customAxios } from 'lib/CustomAxios';
+import { IPostResponse, IPostSaveResponse } from 'types/post.types';
+import { ICustomResponse, IResponse } from 'types/Response';
+import { IPostDto } from './post.dto';
 
 export const getPostByIdx = async (postIdx: number): Promise<IPostResponse> => {
   const url: string = `/post/${postIdx}`;
