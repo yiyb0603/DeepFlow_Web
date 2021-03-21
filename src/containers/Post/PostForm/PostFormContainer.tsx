@@ -176,8 +176,10 @@ const PostFormContainer = (): JSX.Element => {
   }, [requestOfferPost]);
 
   useEffect(() => {
-    handleSetProperties();
-  }, [handleSetProperties]);
+    if (post !== null) {
+      handleSetProperties();
+    }
+  }, [handleSetProperties, post]);
 
   useEffect(() => {
     document.addEventListener('keydown', handleKeyEvents, true);

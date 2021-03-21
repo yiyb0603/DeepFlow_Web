@@ -1,10 +1,14 @@
 import { ChangeEvent, memo } from 'react';
+import classNames from 'classnames';
+import { ClassNamesFn } from 'classnames/types';
 import MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js';
 import MdEditor from 'react-markdown-editor-lite';
 import 'highlight.js/styles/rainbow.css';
 import 'react-markdown-editor-lite/lib/index.css';
-import './MarkdownForm.scss';
+
+const style = require('./MarkdownForm.scss');
+const cx: ClassNamesFn = classNames.bind(style);
 
 interface MarkdownFormProps {
 	title: string;
@@ -34,15 +38,17 @@ const MarkdownForm = ({
 	onChangeContents,
 }: MarkdownFormProps): JSX.Element => {
 	return (
-		<MdEditor
-			value={contents}
-			onChange={(data, e) => onChangeContents(e!)}
-			style={{ height: '75vh' }}
-			renderHTML={(text: string) => mdParser.render(text)}
-			placeholder="내용을 입력하세요..."
-		>
-			{title}
-		</MdEditor>
+		<div className={cx('MarkdownForm')}>
+			<MdEditor
+				value={contents}
+				onChange={(data, e) => onChangeContents(e!)}
+				style={{ height: '75vh' }}
+				renderHTML={(text: string) => mdParser.render(text)}
+				placeholder="내용을 입력하세요..."
+			>
+				{title}
+			</MdEditor>
+		</div>
 	);
 };
 

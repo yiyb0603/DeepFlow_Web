@@ -6,8 +6,7 @@ const Image = (props: any): JSX.Element => {
     margin: '10px 0',
     width: '100%',
     maxWidth: '100%',
-    maxHeight: 520,
-    objectFit: 'fill',
+    objectFit: 'cover',
   }
 
   return (

@@ -33,9 +33,15 @@ export interface IPostSaveResponse extends IResponse {
   idx?: number;
 }
 
-export interface IPostListResponse extends IResponse {
+export interface IRecentPostListResponse extends IResponse {
   data: {
     recentPosts: IPost[];
+  },
+}
+
+export interface IPostListResponse extends IResponse {
+  data: {
+    posts: IPost[];
   },
 }
 

@@ -1,7 +1,9 @@
 import { recentPostState } from 'atom/post';
 import { getRecentPosts } from 'lib/api/post/post.api';
+import { EResponse } from 'lib/enum/response';
 import { useCallback, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
+import { IRecentPostListResponse } from 'types/post.types';
 
 const useRecentPosts = () => {
   const POST_COUNT: number = 6;
@@ -9,8 +11,11 @@ const useRecentPosts = () => {
 
   const requestRecentPosts = useCallback(async () => {
     try {
-      const { data } = await getRecentPosts(POST_COUNT);
-      setRecentPosts(data);
+      const { status, data }: IRecentPostListResponse = await getRecentPosts(POST_COUNT);
+      
+      if (status === EResponse.OK) {
+        setRecentPosts(data.recentPosts);
+      }
     } catch (error) {
       console.log(error);
     }

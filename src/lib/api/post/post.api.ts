@@ -1,6 +1,6 @@
 import { customAxios } from 'lib/CustomAxios';
-import { IPostResponse, IPostSaveResponse } from 'types/post.types';
-import { ICustomResponse, IResponse } from 'types/Response';
+import { IPostResponse, IPostSaveResponse, IRecentPostListResponse } from 'types/post.types';
+import { IResponse } from 'types/Response';
 import { IPostDto } from './post.dto';
 
 export const getPostByIdx = async (postIdx: number): Promise<IPostResponse> => {
@@ -33,10 +33,8 @@ export const deletePost = async (postIdx: number): Promise<IResponse> => {
   return data;
 }
 
-export const getRecentPosts = async (count: number): Promise<ICustomResponse> => {
+export const getRecentPosts = async (count: number): Promise<IRecentPostListResponse> => {
   const url: string = `/post/recent?count=${count}`;
   const { data } = await customAxios.get(url);
-  return {
-    data: data.data.recentPosts,
-  };
+  return data;
 }
