@@ -55,3 +55,9 @@ export interface IUserResponse extends IResponse {
     user: IUser;
   },
 }
+
+export interface IUserListResponse extends IResponse {
+  data: {
+    users: IUser[];
+  },
+}

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { ItemProps } from '../ListItem/ListItem';
 import TimeSticker from '../TimeSticker';
 import PostSubInfo from '../PostSubInfo';
-import { isNullOrUndefined } from 'converter/isNullOrUndefined';
+import { isNullOrUndefined } from 'util/isNullOrUndefined';
 import Sample from 'assets/images/sample.png';
 
 const style = require('./GridItem.scss');

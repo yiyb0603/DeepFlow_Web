@@ -5,7 +5,7 @@ import { History } from 'history';
 import { groupingState } from 'converter/groupingState';
 import PostForm from 'components/PostForm';
 import { EPost } from 'lib/enum/post';
-import { isEmpty } from 'converter/isEmpty';
+import { isEmpty } from 'util/isEmpty';
 import { errorToast, successToast } from 'lib/Toast';
 import { customTrim } from 'converter/customTrim';
 import { IPostDto } from 'lib/api/post/post.dto';

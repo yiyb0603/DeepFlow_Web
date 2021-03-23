@@ -1,13 +1,14 @@
 import { Route, Switch } from 'react-router';
-import 'semantic-ui-css/semantic.min.css';
-import HomePage from 'pages/HomePage';
-import { ETheme } from 'lib/enum/theme';
 import { useRecoilValue } from 'recoil';
+import 'semantic-ui-css/semantic.min.css';
+import { ETheme } from 'lib/enum/theme';
 import { themeState } from 'atom/theme';
-import SignPage from 'pages/SignPage';
-import NoticePage from 'pages/NoticePage';
-import PostPage from 'pages/PostPage';
-import PostFormPage from 'pages/PostFormPage';
+import SignPage from 'pages/Sign';
+import HomePage from 'pages/Home';
+import NoticePage from 'pages/Notice';
+import PostPage from 'pages/Post';
+import PostFormPage from 'pages/PostForm';
+import UserListPage from 'pages/UserList';
 
 const App = (): JSX.Element => {
   const { LIGHT } = ETheme;
@@ -22,6 +23,7 @@ const App = (): JSX.Element => {
         <Route exact path='/post-form' component={PostFormPage} />
         <Route exact path='/post-form/:idx' component={PostFormPage} />
         <Route exact path='/post/:idx' component={PostPage} />
+        <Route exact path='/users' component={UserListPage} />
       </Switch>
     </div>
   );

@@ -1,4 +1,4 @@
-import { isEmpty } from "converter/isEmpty";
+import { isEmpty } from "util/isEmpty";
 import { errorToast } from "lib/Toast";
 import { IRegisterRequest } from "types/user.types";
 

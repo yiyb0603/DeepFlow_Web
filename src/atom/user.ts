@@ -5,3 +5,8 @@ export const userInfoState = atom<IUser | null>({
   key: 'myInfoState',
   default: null,
 });
+
+export const userListState = atom<(IUser | IUser[])[]>({
+  key: 'userListState',
+  default: [] as (IUser | IUser[])[],
+});

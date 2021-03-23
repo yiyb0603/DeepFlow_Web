@@ -19,13 +19,11 @@ const ToggleTheme = (): JSX.Element => {
     if (theme === DARK) {
       setCookie('theme', LIGHT);
       setTheme(LIGHT);
-      document.getElementById('root')!.className = 'light';
       return;
     }
 
     setCookie('theme', DARK);
     setTheme(DARK);
-    document.getElementById('root')!.className = 'dark';
   }, [DARK, LIGHT, setTheme, theme]);
 
   return (

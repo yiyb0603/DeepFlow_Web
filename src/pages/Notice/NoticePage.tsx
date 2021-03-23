@@ -1,5 +1,5 @@
-import PageTemplate from "components/Template/PageTemplate";
-import NoticeContainer from "containers/Notice";
+import PageTemplate from 'components/Template/PageTemplate';
+import NoticeContainer from 'containers/Notice';
 
 const NoticePage = (): JSX.Element => {
   return (

@@ -35,7 +35,7 @@ export const sideItems: ISideItemsType[] = [
   {
     menuName: '멤버 목록',
     icon: <MdCardMembership className={ICON_CLASS} />,
-    link: '',
+    link: '/users',
   },
 
   {

@@ -4,11 +4,6 @@ import { atom } from "recoil";
 
 const { LIGHT, DARK } = ETheme;
 
-export const themeState = atom<ETheme>({
-  key: 'themeState',
-  default: Number(getCookie('theme')),
-});
-
 export const getTheme = (): ETheme => {
   const theme: ETheme = Number(getCookie('theme'));
 
@@ -18,3 +13,8 @@ export const getTheme = (): ETheme => {
 
   return LIGHT;
 };
+
+export const themeState = atom<ETheme>({
+  key: 'themeState',
+  default: getTheme(),
+});

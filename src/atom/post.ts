@@ -11,7 +11,7 @@ export const postState = atom<IPost | null>({
 // menu: recent post list state
 export const recentPostState = atom<IPost[]>({
   key: 'recentPostState',
-  default: [],
+  default: [] as IPost[],
 });
 
 export const requestPostState = atom<IPostDto>({

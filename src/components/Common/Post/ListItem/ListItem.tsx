@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { isNullOrUndefined } from 'converter/isNullOrUndefined';
+import { isNullOrUndefined } from 'util/isNullOrUndefined';
 import { IUser } from 'types/user.types';
 import TimeSticker from '../TimeSticker';
 import PostSubInfo from '../PostSubInfo';

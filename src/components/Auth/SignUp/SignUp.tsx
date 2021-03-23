@@ -90,13 +90,18 @@ const SignUp = ({
 
             <div className={cx('SignUp-Contents-Bottom')}>
               <Select
-                defaultValue={generations[0].value}
                 style={selectStyle}
+                defaultValue={1}
                 onChange={generationState.onChangeGeneration}
               >
                 {
-                  generations.map(({ text, value }: IAuthOption, idx: number) => (
-                    <Option key={idx} value={value}>{text}</Option>
+                  generations.map((_: unknown, idx: number) => (
+                    <Option
+                      key={idx}
+                      value={idx + 1}
+                    >
+                      {idx + 1}기
+                    </Option>
                   ))
                 }
               </Select>

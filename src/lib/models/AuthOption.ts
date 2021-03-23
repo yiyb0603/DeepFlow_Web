@@ -1,39 +1,11 @@
+import { getGenerations } from "util/getGenerations";
+
 export interface IAuthOption {
   value: number;
   text: string;
 }
 
-export const generations: IAuthOption[] = [
-  {
-    value: 1,
-    text: '1기',
-  },
-
-  {
-    value: 2,
-    text: '2기',
-  },
-
-  {
-    value: 3,
-    text: '3기',
-  },
-
-  {
-    value: 4,
-    text: '4기',
-  },
-
-  {
-    value: 5,
-    text: '5기',
-  },
-
-  {
-    value: 6,
-    text: '6기',
-  },
-];
+export const generations: unknown[] = Array.apply(null, new Array(getGenerations()).map(() => 0));
 
 export const majors: IAuthOption[] = [
   {

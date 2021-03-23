@@ -1,5 +1,5 @@
-import PageTemplate from 'components/Template/PageTemplate';
 import HomeContainer from 'containers/Home';
+import PageTemplate from 'components/Template/PageTemplate';
 
 const HomePage = (): JSX.Element => {
   return (
