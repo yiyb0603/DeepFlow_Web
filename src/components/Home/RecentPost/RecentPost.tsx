@@ -9,6 +9,7 @@ import { IPost } from 'types/post.types';
 import GridItem from 'components/Common/Post/GridItem';
 import ListItem from 'components/Common/Post/ListItem';
 import RecentPostTitle from './RecentPostTitle';
+import NoPosts from 'components/Common/NoPosts';
 
 const style = require('./RecentPost.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -56,7 +57,7 @@ const RecentPost = ({ recentPosts }: RecentPostProps): JSX.Element => {
       </div>
       <div className={cx('RecentPost-List')} style={flexStyle}>
       {
-        recentPosts.map((post: IPost) => {
+        recentPosts.length > 0 ? recentPosts.map((post: IPost) => {
           const { idx, thumbnail, user } = post;
           const postProps = {
             key: idx,
@@ -73,7 +74,7 @@ const RecentPost = ({ recentPosts }: RecentPostProps): JSX.Element => {
               }
             </>
           );
-        })
+        }) : <NoPosts text={'최근 올라온 글이 없습니다.'} imageWidth={'30%'} />
       }
       </div>
     </div>

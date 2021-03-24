@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import PageTitle from 'components/Common/PageTitle';
 import { IUser } from 'types/user.types';
 import Generation from './Generation';
-import TopSection from './TopSection';
 import UserItem from './UserItem';
 
 const style = require('./UserList.scss');
@@ -15,7 +15,7 @@ interface UserListProps {
 const UserList = ({ userList }: UserListProps): JSX.Element => {
   return (
     <div className={cx('UserList')}>
-      <TopSection />
+      <PageTitle title='유저 목록' subTitle='유저 목록이 여기에 표시됩니다.' />
       {
         userList.map((users: IUser | IUser[], idx: number) => {
           const generation: number = idx + 1;

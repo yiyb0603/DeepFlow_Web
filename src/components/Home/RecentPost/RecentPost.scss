@@ -3,14 +3,15 @@
 		display: flex;
 		display: -webkit-flex;
 		justify-content: space-between;
-		align-items: center;
+		margin-bottom: 2rem;
+		padding-bottom: 0.75rem;
+		border-bottom: 1px solid var(--gray);
 
 		&-Select {
 			display: flex;
 			display: -webkit-flex;
 			justify-content: flex-end;
 			padding-right: 1.2rem;
-			margin-bottom: 0.75rem;
 
 			&-Item {
 				margin-left: 0.3rem;
