@@ -1,8 +1,8 @@
+import { useCallback, useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { noticeListState } from 'atom/notice'
 import { getNoticeList } from 'lib/api/notice/notice.api';
 import { EResponse } from 'lib/enum/response';
-import { useCallback, useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil'
 import { INotice } from 'types/notice.types';
 
 const useNoticeList = () => {
@@ -11,10 +11,10 @@ const useNoticeList = () => {
 
   const requestNoticeList = useCallback(async (): Promise<void> => {
     try {
-      const { status, data } = await getNoticeList(page);
+      const { status, data: { notices } } = await getNoticeList(page);
 
       if (status === EResponse.OK) {
-        setNoticeList(data.notices);
+        setNoticeList(notices);
       }
     } catch (error) {
       console.log(error);

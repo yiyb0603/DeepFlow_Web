@@ -3,6 +3,11 @@ import { EPost } from "lib/enum/post";
 import { atom } from "recoil";
 import { IPost } from "types/post.types";
 
+export const recentPostLoading = atom<boolean>({
+  key: 'recentPostLoading',
+  default: true,
+});
+
 export const postState = atom<IPost | null>({
   key: 'postState',
   default: null,

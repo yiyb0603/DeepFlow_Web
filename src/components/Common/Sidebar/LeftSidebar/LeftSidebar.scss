@@ -5,5 +5,9 @@
 	&-Menus {
 		position: sticky;
 		top: 0;
+
+		&-Wrapper {
+			padding-top: 2rem;
+		}
 	}
 }

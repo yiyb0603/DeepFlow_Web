@@ -1,19 +1,26 @@
 .RecentPost {
-	&-Select {
+	&-Top {
 		display: flex;
 		display: -webkit-flex;
-		justify-content: flex-end;
-		padding-right: 1.2rem;
-		margin-bottom: 0.75rem;
+		justify-content: space-between;
+		align-items: center;
 
-		&-Item {
-			margin-left: 0.3rem;
-			font-size: 2rem;
-			color: var(--lighterBlack);
-			cursor: pointer;
+		&-Select {
+			display: flex;
+			display: -webkit-flex;
+			justify-content: flex-end;
+			padding-right: 1.2rem;
+			margin-bottom: 0.75rem;
 
-			&-Current {
-				color: var(--main) !important;
+			&-Item {
+				margin-left: 0.3rem;
+				font-size: 2rem;
+				color: var(--lighterBlack);
+				cursor: pointer;
+
+				&-Current {
+					color: var(--main) !important;
+				}
 			}
 		}
 	}
@@ -23,6 +30,5 @@
 		display: -webkit-flex;
 		flex: 1;
 		flex-flow: column wrap;
-		align-items: center;
 	}
 }
