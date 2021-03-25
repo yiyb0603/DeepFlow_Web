@@ -21,7 +21,12 @@ const TopInfo = ({ idx, createdAt, user, requestDeletePost }: TopInfoProps): JSX
         <div className={cx('TopInfo-Left-CreatedAt')}>
           {calculateTime(createdAt)}
         </div>
-        <div className={cx('TopInfo-Left-UserName')}>{user.name}</div>
+        <Link
+          to={`/user/${user.idx}`}
+          className={cx('TopInfo-Left-UserName')}
+        >
+          {user.name}
+        </Link>
       </div>
 
       <div className={cx('TopInfo-Right')}>

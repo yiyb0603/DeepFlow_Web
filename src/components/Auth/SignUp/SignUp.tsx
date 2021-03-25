@@ -4,7 +4,7 @@ import { ClassNamesFn } from 'classnames/types';
 import { Select } from 'antd';
 import { CgHello } from 'react-icons/cg';
 import { BiBuilding } from 'react-icons/bi';
-import { AiOutlineLink } from 'react-icons/ai';
+import { AiOutlineLink, AiOutlineMail } from 'react-icons/ai';
 import { HiCode } from 'react-icons/hi';
 import { generations, IAuthOption, majors } from 'lib/models/AuthOption';
 import InfoInput from '../InfoInput';
@@ -18,6 +18,7 @@ const cx: ClassNamesFn = classNames.bind(style);
 const SignUp = ({
   isLoading,
   request,
+  emailState,
   descriptionState,
   locationState,
   blogState,
@@ -57,6 +58,13 @@ const SignUp = ({
                 </div>
 
                 <div className={cx('SignUp-Contents-Top-RightWrap-InputWrap')}>
+                  <InfoInput
+                    value={emailState.email}
+                    onChange={emailState.onChangeEmail}
+                    placeholder='이메일을 입력하세요.'
+                    icon={<AiOutlineMail />}
+                  />
+
                   <InfoInput
                     value={descriptionState.description}
                     onChange={descriptionState.onChangeDescription}

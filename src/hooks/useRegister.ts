@@ -1,7 +1,6 @@
 import { ChangeEvent, useCallback, useEffect } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import queryString from 'query-string';
 import { History } from 'history';
 import { registerLoading, requestRegisterState } from 'atom/auth';
 import AuthError from 'error/AuthError';
@@ -12,14 +11,22 @@ import { EResponse } from 'lib/enum/response';
 import { successToast } from 'lib/Toast';
 import { IGithubResponse, ILoginResponse, IRegisterRequest } from 'types/user.types';
 import { validateSignUp } from 'validation/auth.validation';
+import useQueryString from './util/useQueryString';
 
 const useRegister = () => {
-  const { search } = useLocation();
-  const { code } = queryString.parse(search);
+  const { code } = useQueryString();
   const history: History<unknown> = useHistory();
   
   const [request, setRequest] = useRecoilState<IRegisterRequest>(requestRegisterState);
   const [isLoading, setIsLoading] = useRecoilState<boolean>(registerLoading);
+
+  const onChangeEmail = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
+    const { value } = e.target;
+    setRequest((request: IRegisterRequest) => ({
+      ...request,
+      email: value,
+    }));
+  }, [setRequest]);
 
   const onChangeDescription = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
@@ -88,15 +95,10 @@ const useRegister = () => {
           return;
         }
 
-        const { githubInfo: { githubId, avatar, name, description, location, blog } } = data;
+        const { githubInfo } = data;
         setRequest((request: IRegisterRequest) => ({
           ...request,
-          githubId,
-          avatar,
-          name,
-          description,
-          location,
-          blog,
+          ...githubInfo,
         }));
       }
     } catch (error) {
@@ -132,6 +134,7 @@ const useRegister = () => {
   return {
     isLoading,
     request,
+    onChangeEmail,
     onChangeDescription,
     onChangeLocation,
     onChangeBlog,

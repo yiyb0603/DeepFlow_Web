@@ -13,6 +13,7 @@ export interface IGithubUser {
   location: string;
   name: string;
   blog: string;
+  email: string;
 }
 
 export interface IRegisterRequest extends IGithubUser {
@@ -39,6 +40,7 @@ export interface IUser {
   githubId: string;
   name: string;
   generation: number;
+  email: string;
   major: EMajor;
   location: string;
   blog: string;

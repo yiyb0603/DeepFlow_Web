@@ -9,6 +9,7 @@ export const requestRegisterState = atom<IRegisterRequest>({
     description: '',
     githubId: '',
     location: '',
+    email: '',
     name: '',
     blog: '',
     generation: 1,

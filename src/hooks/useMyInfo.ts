@@ -23,7 +23,7 @@ const useMyInfo = () => {
 
   useEffect(() => {
     const myToken: IToken = getMyInfo();
-    if (myToken !== null) {
+    if (myToken) {
       requestMyInfo(myToken.idx);
     }
   }, [requestMyInfo]);

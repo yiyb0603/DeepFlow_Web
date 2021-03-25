@@ -6,6 +6,11 @@ export default interface SignUpProps {
   isLoading: boolean;
   request: IRegisterRequest;
 
+  emailState: {
+    email: string;
+    onChangeEmail: (e: ChangeEvent<HTMLInputElement>) => void;
+  }
+
   descriptionState: {
     description: string;
     onChangeDescription: (e: ChangeEvent<HTMLInputElement>) => void;

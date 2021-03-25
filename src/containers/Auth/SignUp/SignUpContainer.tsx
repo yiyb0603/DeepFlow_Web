@@ -7,6 +7,7 @@ const SignUpContainer = (): JSX.Element => {
   const {
     request,
     isLoading,
+    onChangeEmail,
     onChangeDescription,
     onChangeLocation,
     onChangeBlog,
@@ -16,7 +17,7 @@ const SignUpContainer = (): JSX.Element => {
     requestRegister,
   } = useRegister();
 
-  const { description, location, blog, position, generation, major } = request;
+  const { description, location, blog, email, position, generation, major } = request;
 
   return (
     <>
@@ -25,6 +26,7 @@ const SignUpContainer = (): JSX.Element => {
       <SignUp
         isLoading={isLoading}
         request={request}
+        emailState={groupingState('email', email, onChangeEmail)}
         descriptionState={groupingState('description', description, onChangeDescription)}
         locationState={groupingState('location', location, onChangeLocation)}
         blogState={groupingState('blog', blog, onChangeBlog)}

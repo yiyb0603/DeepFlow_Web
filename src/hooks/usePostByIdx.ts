@@ -1,18 +1,17 @@
 import { useCallback, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { History } from 'history';
 import { postState } from 'atom/post';
-import { IPageParam, IPost, IPostResponse } from 'types/post.types';
+import { IPost, IPostResponse } from 'types/post.types';
 import { getPostByIdx } from 'lib/api/post/post.api';
 import { EResponse } from 'lib/enum/response';
 import PostError from 'error/PostError';
+import usePageParam from './util/usePageParam';
 
 const usePostByIdx = () => {
   const history: History<unknown> = useHistory();
-  const { idx }: IPageParam = useParams();
-
-  const postIdx: number = parseInt(idx!);
+  const postIdx: number = usePageParam();
   const [post, setPost] = useRecoilState<IPost | null>(postState);
 
   const requestPostByIdx = useCallback(async (): Promise<void> => {

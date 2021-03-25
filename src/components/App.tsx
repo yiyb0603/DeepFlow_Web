@@ -9,6 +9,7 @@ import NoticePage from 'pages/Notice';
 import PostPage from 'pages/Post';
 import PostFormPage from 'pages/PostForm';
 import UserListPage from 'pages/UserList';
+import UserInfoPage from 'pages/UserInfo';
 
 const App = (): JSX.Element => {
   const { LIGHT } = ETheme;
@@ -24,6 +25,7 @@ const App = (): JSX.Element => {
         <Route exact path='/post-form/:idx' component={PostFormPage} />
         <Route exact path='/post/:idx' component={PostPage} />
         <Route exact path='/users' component={UserListPage} />
+        <Route exact path='/user/:idx' component={UserInfoPage} />
       </Switch>
     </div>
   );

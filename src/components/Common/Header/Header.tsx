@@ -1,4 +1,5 @@
-import React, { MouseEvent } from 'react';
+import { MouseEvent } from 'react';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { IoLogoGithub } from 'react-icons/io';
@@ -38,11 +39,13 @@ const Header = ({ authUrl, myInfo, handleLogout }: HeaderProps): JSX.Element => 
 
             {
               myInfo &&
-              <img
-                src={myInfo.avatar}
-                className={cx('Header-Contents-RightWrap-Profile')}
-                alt='profile'
-              />
+              <Link to={`/user/${myInfo.idx}`}>
+                <img
+                  src={myInfo.avatar}
+                  className={cx('Header-Contents-RightWrap-Profile')}
+                  alt='profile'
+                />
+              </Link>
             }
           </div>
         </div>
