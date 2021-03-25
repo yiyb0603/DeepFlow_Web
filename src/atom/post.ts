@@ -13,6 +13,11 @@ export const postState = atom<IPost | null>({
   default: null,
 });
 
+export const questionListState = atom<IPost[]>({
+  key: 'questionListState',
+  default: [] as IPost[],
+});
+
 // menu: recent post list state
 export const recentPostState = atom<IPost[]>({
   key: 'recentPostState',
@@ -27,10 +32,10 @@ export const popularPostState = atom<IPost[]>({
 export const requestPostState = atom<IPostDto>({
   key: 'requestPostState',
   default: {
-    category: EPost.QUESTION,
+    title: '',
     introduction: '',
     thumbnail: '',
-    title: '',
+    category: EPost.QUESTION,
     contents: '',
     postTags: [],
   },

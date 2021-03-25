@@ -47,6 +47,7 @@ export interface IPopularPostListResponse extends IResponse {
 
 export interface IPostListResponse extends IResponse {
   data: {
+    totalCount?: number;
     posts: IPost[];
   },
 }

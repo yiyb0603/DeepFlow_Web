@@ -26,11 +26,12 @@ const UserList = ({ userList }: UserListProps): JSX.Element => {
               <div key={idx}>
                 {
                   isExistGeneration &&
-                  <Generation text={generation + '기'} />
+                  <Generation text={`${generation}기`} />
                 }
                 {
                   Array.isArray(users) &&
-                  users.map(({ idx, avatar, name, description, joinedAt }: IUser) => {
+                  users.map((user: IUser) => {
+                    const { idx, avatar, name, description, joinedAt } = user;
                     return (
                       <UserItem
                         key={idx}

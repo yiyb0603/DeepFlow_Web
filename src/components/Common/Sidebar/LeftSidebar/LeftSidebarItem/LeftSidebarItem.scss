@@ -10,7 +10,9 @@
 	font-size: 1.2rem;
 	color: var(--contrast);
 
-	&-SameMenu {
+	&-Current {
+		background-color: var(--lighterGray);
+		border-right: 2px solid var(--main);
 		color: var(--black);
 	}
 

@@ -1,4 +1,4 @@
-import { ChangeEvent, memo } from 'react';
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import MarkdownIt from 'markdown-it';
@@ -13,7 +13,7 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface MarkdownFormProps {
 	title: string;
 	contents: string;
-	onChangeContents: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+	onChangeContents: (text: string) => void;
 }
 
 const mdParser: MarkdownIt = new MarkdownIt({
@@ -41,7 +41,7 @@ const MarkdownForm = ({
 		<div className={cx('MarkdownForm')}>
 			<MdEditor
 				value={contents}
-				onChange={(data, e) => onChangeContents(e!)}
+				onChange={({ text }) => onChangeContents(text)}
 				style={{ height: '75vh' }}
 				renderHTML={(text: string) => mdParser.render(text)}
 				placeholder="내용을 입력하세요..."

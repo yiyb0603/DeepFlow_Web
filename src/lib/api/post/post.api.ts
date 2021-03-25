@@ -1,7 +1,20 @@
 import { customAxios } from 'lib/CustomAxios';
-import { IPopularPostListResponse, IPostResponse, IPostSaveResponse, IRecentPostListResponse } from 'types/post.types';
+import { EPost } from 'lib/enum/post';
+import {
+  IPopularPostListResponse,
+  IPostListResponse,
+  IPostResponse,
+  IPostSaveResponse,
+  IRecentPostListResponse
+} from 'types/post.types';
 import { IResponse } from 'types/Response';
 import { IPostDto } from './post.dto';
+
+export const getPostsByCategory = async (category: EPost, page: number): Promise<IPostListResponse> => {
+  const url: string = `/post?category=${category}&page=${page}`;
+  const { data } = await customAxios.get(url);
+  return data;
+}
 
 export const getPostByIdx = async (postIdx: number): Promise<IPostResponse> => {
   const url: string = `/post/${postIdx}`;

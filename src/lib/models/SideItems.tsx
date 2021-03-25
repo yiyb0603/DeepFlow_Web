@@ -29,7 +29,7 @@ export const sideItems: ISideItemsType[] = [
   {
     menuName: '질문글',
     icon: <FaStackOverflow className={ICON_CLASS} />,
-    link: '',
+    link: '/questions',
   },
 
   {

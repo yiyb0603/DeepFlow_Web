@@ -13,6 +13,8 @@ import { createPost, modifyPost } from 'lib/api/post/post.api';
 import SubmitModal from 'components/PostForm/SubmitModal';
 import { requestPostState } from 'atom/post';
 import usePostByIdx from 'hooks/usePostByIdx';
+import { MAX_TAG_LENGTH } from 'util/constants';
+import { validatePost } from 'validation/post.validation';
 
 const PostFormContainer = (): JSX.Element => {
   const history: History = useHistory();
@@ -77,7 +79,7 @@ const PostFormContainer = (): JSX.Element => {
       return;
     }
 
-    if (postTags.length >= 5) {
+    if (postTags.length >= MAX_TAG_LENGTH) {
       errorToast('태그는 최대 5개까지 가능합니다.');
       return;
     }
@@ -110,19 +112,21 @@ const PostFormContainer = (): JSX.Element => {
     });
   }, [request, setRequest]);
 
-  const onChangeContents = useCallback((e: ChangeEvent<HTMLTextAreaElement>): void => {
-    const { value } = e.target;
-    
-    setContents(value);
+  const onChangeContents = useCallback((text: string): void => {
+    setContents(text);
     setRequest((request: IPostDto) => ({
       ...request,
       introduction: contents,
-      contents: value,
+      contents: text,
     }));
   }, [contents, setRequest]);
 
   const requestOfferPost = useCallback(async (isTemp: boolean): Promise<void> => {
     try {
+      if (!validatePost(request)) {
+        return;
+      }
+
       handleIsModal(false);
 
       if (isTemp) {

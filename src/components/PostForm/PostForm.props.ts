@@ -27,7 +27,7 @@ export default interface PostFormProps {
 
   contentsState: {
     contents: string;
-    onChangeContents: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+    onChangeContents: (text: string) => void;
   };
 
   handleIsModal: (isModal: boolean) => void;

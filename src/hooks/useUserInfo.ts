@@ -4,11 +4,12 @@ import { userInfoState } from 'atom/user';
 import { getUserInfo } from 'lib/api/user/user.api';
 import { EResponse } from 'lib/enum/response';
 import usePageParam from './util/usePageParam';
+import { IUser } from 'types/user.types';
 
 const useUserInfo = () => {
   const userIdx: number = usePageParam();
-  const [isLoading, setIsLoading] = useState(true);
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [userInfo, setUserInfo] = useRecoilState<IUser | null>(userInfoState);
 
   const requestUserInfo = useCallback(async (): Promise<void> => {
     try {
