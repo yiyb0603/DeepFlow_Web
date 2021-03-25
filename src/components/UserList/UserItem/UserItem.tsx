@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { calculateTime } from 'lib/TimeCounting';
@@ -6,6 +7,7 @@ const style = require('./UserItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface UserItemProps {
+  idx: number;
   avatar: string;
   name: string;
   description: string;
@@ -13,13 +15,14 @@ interface UserItemProps {
 }
 
 const UserItem = ({
+  idx,
   avatar,
   name,
   description,
   joinedAt,
 }: UserItemProps): JSX.Element => {
   return (
-    <div className={cx('UserItem')}>
+    <Link to={`/user/${idx}`} className={cx('UserItem')}>
       <div className={cx('UserItem-Left')}>
         <div className={cx('UserItem-Left-ContentsWrap')}>
           <img
@@ -36,7 +39,7 @@ const UserItem = ({
       </div>
 
       <div>{calculateTime(joinedAt)}</div>
-    </div>
+    </Link>
   );
 };
 

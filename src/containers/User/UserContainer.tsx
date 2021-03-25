@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import UserInfo from 'components/UserInfo';
 import useUserInfo from 'hooks/useUserInfo';
+import UserLoading from 'components/UserList/UserLoading';
 
 const UserContainer = (): JSX.Element => {
-  const { userInfo, setUserInfo } = useUserInfo();
+  const { isLoading, userInfo, setUserInfo } = useUserInfo();
 
   useEffect(() => {
     return () => {
@@ -14,9 +15,9 @@ const UserContainer = (): JSX.Element => {
   return (
     <>
     {
-      userInfo === null ? <></> :
+      userInfo === null && isLoading ? <UserLoading /> :
       <UserInfo
-        userInfo={userInfo}
+        userInfo={userInfo!}
       />
     }
     </>

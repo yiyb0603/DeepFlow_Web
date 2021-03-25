@@ -10,3 +10,8 @@ export const userListState = atom<(IUser | IUser[])[]>({
   key: 'userListState',
   default: [] as (IUser | IUser[])[],
 });
+
+export const userLoading = atom<boolean>({
+  key: 'userLoading',
+  default: true,
+});

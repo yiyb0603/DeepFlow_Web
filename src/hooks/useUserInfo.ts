@@ -1,12 +1,13 @@
-import { userInfoState } from "atom/user";
-import { getUserInfo } from "lib/api/user/user.api";
-import { EResponse } from "lib/enum/response";
-import { useCallback, useEffect } from "react";
-import { useRecoilState } from "recoil";
-import usePageParam from "./util/usePageParam";
+import { useState, useCallback, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { userInfoState } from 'atom/user';
+import { getUserInfo } from 'lib/api/user/user.api';
+import { EResponse } from 'lib/enum/response';
+import usePageParam from './util/usePageParam';
 
 const useUserInfo = () => {
   const userIdx: number = usePageParam();
+  const [isLoading, setIsLoading] = useState(true);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
 
   const requestUserInfo = useCallback(async (): Promise<void> => {
@@ -18,8 +19,10 @@ const useUserInfo = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
-  }, [setUserInfo, userIdx]);
+  }, [setIsLoading, setUserInfo, userIdx]);
   
   useEffect(() => {
     if (Number.isInteger(userIdx)) {
@@ -28,6 +31,7 @@ const useUserInfo = () => {
   }, [requestUserInfo, userIdx]);
 
   return {
+    isLoading,
     userInfo,
     setUserInfo,
   };

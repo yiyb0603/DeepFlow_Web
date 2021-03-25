@@ -34,6 +34,7 @@ const UserList = ({ userList }: UserListProps): JSX.Element => {
                     return (
                       <UserItem
                         key={idx}
+                        idx={idx}
                         avatar={avatar}
                         name={name}
                         description={description}
