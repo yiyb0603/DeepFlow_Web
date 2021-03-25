@@ -39,6 +39,12 @@ export interface IRecentPostListResponse extends IResponse {
   },
 }
 
+export interface IPopularPostListResponse extends IResponse {
+  data: {
+    popularPosts: IPost[];
+  },
+}
+
 export interface IPostListResponse extends IResponse {
   data: {
     posts: IPost[];

@@ -1,7 +1,9 @@
 .RightSidebar {
-	width: 255px;
+	width: 260px;
 	min-height: 100%;
 	border-left: 1px solid var(--bd-sidebar);
 	overflow-x: hidden;
 	overflow-y: auto;
+	padding-top: 1.5rem;
+	padding-left: 1rem;
 }

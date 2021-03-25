@@ -1,0 +1,23 @@
+.PopularItem {
+	&-Title {
+		max-width: 100%;
+		white-space: nowrap;
+		font-size: 1.2rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		cursor: pointer;
+		margin-bottom: 0.2rem;
+
+		&:hover {
+			color: var(--main);
+		}
+	}
+
+	&-SubInfo {
+		display: flex;
+		display: -webkit-flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-right: 0.8rem;
+	}
+}
