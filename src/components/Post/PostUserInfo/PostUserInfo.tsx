@@ -45,7 +45,7 @@ const PostUserInfo = ({
       </div>
 
       <div className={cx('PostUserInfo-Right')}>
-        <AiOutlineGithub onClick={() => handlePushToAdress(github)} />
+        <AiOutlineGithub style={{ marginRight: 5, }} onClick={() => handlePushToAdress(github)} />
         <AiOutlineLink onClick={() => handlePushToAdress(blog)} />
       </div>
     </div>

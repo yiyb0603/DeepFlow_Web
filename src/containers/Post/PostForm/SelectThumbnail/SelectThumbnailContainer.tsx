@@ -93,9 +93,7 @@ const SelectThumbnailContainer = (): JSX.Element => {
   useEffect(() => {
     initDragEvents();
 
-    return () => {
-      resetDragEvents();
-    };
+    return () => resetDragEvents();
   }, [initDragEvents, resetDragEvents]);
 
   return (

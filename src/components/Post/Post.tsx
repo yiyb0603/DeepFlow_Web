@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
+import CommentContainer from 'containers/Comment';
 import { IPost } from 'types/post.types';
 import PostTags from './PostTags';
 import PostUserInfo from './PostUserInfo';
@@ -44,6 +45,8 @@ const Post = ({ post, requestDeletePost }: PostProps): JSX.Element => {
         github={userGithubAddress}
         location={user.location}
       />
+
+      <CommentContainer />
     </div>
   );
 };

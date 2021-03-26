@@ -7,9 +7,7 @@ const UserContainer = (): JSX.Element => {
   const { isLoading, userInfo, setUserInfo } = useUserInfo();
 
   useEffect(() => {
-    return () => {
-      setUserInfo(null);
-    }
+    return () => setUserInfo(null);
   }, [setUserInfo]);
 
   return (

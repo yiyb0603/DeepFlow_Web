@@ -1,10 +1,18 @@
-import useCommentList from 'hooks/useCommentList';
+import { useEffect } from 'react';
+import useCommentList from 'hooks/useComment';
+import Comment from 'components/Comment';
 
 const CommentContainer = (): JSX.Element => {
-  const { commentList } = useCommentList();
+  const { commentList, requestCommentList } = useCommentList();
+
+  useEffect(() => {
+    requestCommentList();
+  }, [requestCommentList]);
 
   return (
-    <></>
+    <Comment
+      commentList={commentList}
+    />
   );
 }
 

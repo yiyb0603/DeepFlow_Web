@@ -1,4 +1,4 @@
-interface IPaletteTypes {
+interface IPalette {
 	red: string;
 	orange: string;
 	yellow: string;
@@ -18,7 +18,7 @@ interface IPaletteTypes {
 	snow: string;
 };
 
-export const palette: IPaletteTypes = {
+export const palette: IPalette = {
 	red: '#ff1001',
 	orange: '#ff811d',
 	yellow: '#faef18',
@@ -30,10 +30,10 @@ export const palette: IPaletteTypes = {
 	purple: '#9621d9',
 	mint: '#31e1eb',
 	pink: '#E0234E',
+	gray: '#9e9e9e',
 	lighterGray: '#dfe6e9',
 	white: '#ffffff',
 	lighterBlack: '#495057',
 	black: '#000000',
-	gray: '#b2b2b2',
 	snow: '#dff9fb',
 };

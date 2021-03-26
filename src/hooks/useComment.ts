@@ -1,11 +1,11 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import { commentListState } from 'atom/comment';
 import usePageParam from './util/usePageParam';
 import { getCommentsByPostIdx } from 'lib/api/comment/comment.api';
 import { EResponse } from 'lib/enum/response';
 
-const useCommentList = () => {
+const useComment = () => {
   const [commentList, setCommentList] = useRecoilState(commentListState);
   const postIdx: number = usePageParam();
 
@@ -21,13 +21,10 @@ const useCommentList = () => {
     }
   }, [postIdx, setCommentList]);
 
-  useEffect(() => {
-    requestCommentList();
-  }, [requestCommentList]);
-
   return {
     commentList,
+    requestCommentList,
   };
 };
 
-export default useCommentList;
+export default useComment;

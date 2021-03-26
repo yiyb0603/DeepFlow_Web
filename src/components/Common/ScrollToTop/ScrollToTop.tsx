@@ -26,9 +26,7 @@ const ScrollToTop = (): JSX.Element => {
 	useEffect(() => {
 		window.addEventListener('scroll', detectingScroll, true);
 
-		return () => {
-			window.removeEventListener('scroll', detectingScroll, true);
-		};
+		return () => window.removeEventListener('scroll', detectingScroll, true);
 	}, [detectingScroll]);
 
 	return (

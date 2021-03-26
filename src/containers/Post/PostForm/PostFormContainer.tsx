@@ -188,9 +188,7 @@ const PostFormContainer = (): JSX.Element => {
   useEffect(() => {
     document.addEventListener('keydown', handleKeyEvents, true);
 
-    return () => {
-      document.removeEventListener('keydown', handleKeyEvents, true);
-    }
+    return () => document.removeEventListener('keydown', handleKeyEvents, true);
   }, [handleKeyEvents]);
   
   return (
