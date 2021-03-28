@@ -38,7 +38,7 @@ const UserItem = ({
         </div>
       </div>
 
-      <div>{calculateTime(joinedAt)}</div>
+      <div className={cx('UserItem-JoinedAt')}>{calculateTime(joinedAt)}</div>
     </Link>
   );
 };

@@ -1,13 +1,16 @@
 .CommentItem {
+	border-left: 4px solid var(--main);
+	padding: 1rem;
+
 	&-TopInfo {
 		display: flex;
 		display: -webkit-flex;
+		flex-wrap: wrap;
 		justify-content: space-between;
 		align-items: center;
-		margin-bottom: 1rem;
+		margin-bottom: 0.8rem;
 
 		&-Left {
-			width: 90%;
 			display: flex;
 			display: -webkit-flex;
 			align-items: center;
@@ -35,8 +38,6 @@
 		&-Right {
 			display: flex;
 			display: -webkit-flex;
-			flex: 1;
-			justify-content: space-around;
 			font-size: 1.3rem;
 
 			& > * {
@@ -45,11 +46,14 @@
 
 			&-Delete {
 				color: var(--red);
+				margin-left: 0.35rem;
 			}
 		}
 	}
 
 	&-Contents {
 		font-size: 1.3rem;
+		word-break: break-all;
+		white-space: pre-wrap;
 	}
 }
