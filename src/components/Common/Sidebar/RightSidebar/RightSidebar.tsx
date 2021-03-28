@@ -12,8 +12,6 @@ interface RightSidebarProps {
 }
 
 const RightSidebar = ({ popularPosts }: RightSidebarProps): JSX.Element => {
-  console.log(popularPosts);
-
   return (
     <div className={cx('RightSidebar')}>
       <PopularTitle />
