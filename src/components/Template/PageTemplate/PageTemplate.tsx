@@ -1,7 +1,7 @@
 import { ReactNode, memo } from 'react';
 import classNames from 'classnames';
-import LeftSidebar from 'components/Common/Sidebar/LeftSidebar';
 import { ClassNamesFn } from 'classnames/types';
+import LeftSidebar from 'components/Common/Sidebar/LeftSidebar';
 import ToggleTheme from 'components/Common/ToggleTheme';
 import ScrollToTop from 'components/Common/ScrollToTop';
 import Footer from 'components/Common/Footer';

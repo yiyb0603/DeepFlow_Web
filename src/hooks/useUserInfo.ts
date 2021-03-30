@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import { userInfoState, userPostState } from 'atom/user';
 import { getUserInfo } from 'lib/api/user/user.api';

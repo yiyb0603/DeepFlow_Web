@@ -1,0 +1,28 @@
+.MobileSidebarItem {
+	display: flex;
+	display: -webkit-flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 0.8rem 1.6rem;
+	border-bottom: 1px solid var(--lighterGray);
+	transition: 0.15s ease-in-out;
+	cursor: pointer;
+	font-size: 1.2rem;
+	color: var(--white);
+
+	&-Current {
+		background-color: var(--lighterGray);
+		border-right: 2px solid var(--main);
+		color: var(--black);
+	}
+
+	&-Icon {
+		margin-right: 0.4rem;
+		font-size: 1.6rem;
+	}
+
+	&:hover {
+		background-color: var(--lighterGray);
+		color: var(--black) !important;
+	}
+}

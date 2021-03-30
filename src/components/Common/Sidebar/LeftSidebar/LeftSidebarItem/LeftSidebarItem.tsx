@@ -13,7 +13,7 @@ interface LeftSidebarItemProps {
   link: string;
 }
 
-const SidebarItem = ({ icon, menuName, link }: LeftSidebarItemProps): JSX.Element => {
+const LeftSidebarItem = ({ icon, menuName, link }: LeftSidebarItemProps): JSX.Element => {
   const history: History<unknown> = useHistory();
   const pathname: string = usePathName();
 
@@ -30,4 +30,4 @@ const SidebarItem = ({ icon, menuName, link }: LeftSidebarItemProps): JSX.Elemen
   );
 };
 
-export default SidebarItem;
+export default LeftSidebarItem;
