@@ -1,5 +1,10 @@
 .UserInfo {
-	width: 100%;
+	width: 90%;
 	height: 100%;
 	color: var(--contrast);
+	margin: auto;
+
+	&-PostList {
+		margin-top: 2rem;
+	}
 }

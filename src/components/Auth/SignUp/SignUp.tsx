@@ -6,7 +6,7 @@ import { CgHello } from 'react-icons/cg';
 import { BiBuilding } from 'react-icons/bi';
 import { AiOutlineLink, AiOutlineMail } from 'react-icons/ai';
 import { HiCode } from 'react-icons/hi';
-import { generations, IAuthOption, majors } from 'lib/models/AuthOption';
+import { generations, IAuthOption, majors } from 'lib/models/authOption';
 import InfoInput from '../InfoInput';
 import RegisterSubmit from '../RegisterSubmit';
 import SignUpProps from './SignUp.props';

@@ -2,7 +2,8 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { Link } from 'react-router-dom';
 import { calculateTime } from 'lib/TimeCounting';
-import { IUser } from 'types/user.types';
+import { IToken, IUser } from 'types/user.types';
+import { getMyInfo } from 'util/getMyInfo';
 
 const style = require('./TopInfo.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -15,6 +16,8 @@ interface TopInfoProps {
 }
 
 const TopInfo = ({ idx, createdAt, user, requestDeletePost }: TopInfoProps): JSX.Element => {
+  const myInfo: IToken = getMyInfo();
+
   return (
     <div className={cx('TopInfo')}>
       <div className={cx('TopInfo-Left')}>
@@ -29,21 +32,24 @@ const TopInfo = ({ idx, createdAt, user, requestDeletePost }: TopInfoProps): JSX
         </Link>
       </div>
 
-      <div className={cx('TopInfo-Right')}>
-        <Link
-          to={`/post-form/${idx}`}
-          className={cx('TopInfo-Right-Modify')}
-        >
-          수정
-        </Link>
-        
-        <div
-          className={cx('TopInfo-Right-Delete')}
-          onClick={() => requestDeletePost(idx)}
-        >
-          삭제
+      {
+        myInfo && myInfo.idx === user.idx &&
+        <div className={cx('TopInfo-Right')}>
+          <Link
+            to={`/post-form/${idx}`}
+            className={cx('TopInfo-Right-Modify')}
+          >
+            수정
+          </Link>
+          
+          <div
+            className={cx('TopInfo-Right-Delete')}
+            onClick={() => requestDeletePost(idx)}
+          >
+            삭제
+          </div>
         </div>
-      </div>
+      }
     </div>
   );
 };

@@ -1,17 +1,32 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import NoPosts from 'components/Common/NoPosts';
+import ListItem from 'components/Common/Post/ListItem';
+import { EUserPost } from 'lib/enum/post';
+import { IPost } from 'types/post.types';
 import { IUser } from 'types/user.types';
 import InfoBox from './InfoBox';
+import PostTab from './PostTab';
 
 const style = require('./UserInfo.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface UserInfoProps {
   userInfo: IUser;
+  userPostTabState: {
+    userPostTab: EUserPost;
+    onChangeUserPostTab: (userPostTab: EUserPost) => void;
+  };
+  userPostList: IPost[];
 }
 
-const UserInfo = ({ userInfo }: UserInfoProps): JSX.Element => {
+const UserInfo = ({
+  userInfo,
+  userPostTabState,
+  userPostList,
+}: UserInfoProps): JSX.Element => {
   const { avatar, githubId, name, email, description, position, blog } = userInfo;
+  const { userPostTab, onChangeUserPostTab } = userPostTabState;
 
   return (
     <div className={cx('UserInfo')}>
@@ -24,6 +39,24 @@ const UserInfo = ({ userInfo }: UserInfoProps): JSX.Element => {
         position={position}
         blog={blog}
       />
+
+      <PostTab
+        userPostTab={userPostTab}
+        onChangeUserPostTab={onChangeUserPostTab}
+      />
+
+      <div className={cx('UserInfo-PostList')}>
+      {
+        userPostList.length > 0 ? userPostList.map((post: IPost) => {
+          return (
+            <ListItem
+              key={post.idx}
+              {...post}
+            />
+          );
+        }) : <NoPosts text='작성한 글 목록이 없습니다.' />
+      }
+      </div>
     </div>
   );
 };

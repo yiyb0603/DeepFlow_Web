@@ -1,6 +1,4 @@
-import React from 'react';
 import { VscHome } from 'react-icons/vsc';
-import { RiDashboardFill } from 'react-icons/ri';
 import { FaStackOverflow } from 'react-icons/fa';
 import { MdCardMembership } from 'react-icons/md';
 import { HiOutlineSpeakerphone } from 'react-icons/hi';
@@ -18,12 +16,6 @@ export const sideItems: ISideItemsType[] = [
     menuName: '메인',
     icon: <VscHome className={ICON_CLASS} />,
     link: '/',
-  },
-
-  {
-    menuName: '게시글',
-    icon: <RiDashboardFill className={ICON_CLASS} />,
-    link: '',
   },
 
   {

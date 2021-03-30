@@ -22,34 +22,10 @@ const Questions = ({ questionList }: QuestionsProps): JSX.Element => {
       <div className={cx('Questions-List')}>
         {
           questionList.map((question: IPost) => {
-            const {
-              idx,
-              title,
-              introduction,
-              thumbnail,
-              postTags,
-              viewCount,
-              commentCount,
-              likeCount,
-              createdAt,
-              updatedAt,
-              user,
-            } = question;
-
             return (
               <ListItem
-                key={idx}
-                idx={idx}
-                title={title}
-                introduction={introduction}
-                thumbnail={thumbnail}
-                postTags={postTags}
-                createdAt={createdAt}
-                updatedAt={updatedAt}
-                viewCount={viewCount}
-                commentCount={commentCount}
-                likeCount={likeCount}
-                user={user}
+                key={question.idx}
+                {...question}
               />
             );
           })
