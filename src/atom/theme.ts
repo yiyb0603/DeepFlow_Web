@@ -1,6 +1,6 @@
-import { getCookie } from "lib/Cookie";
-import { ETheme } from "lib/enum/theme";
-import { atom } from "recoil";
+import { getCookie } from 'lib/Cookie';
+import { ETheme } from 'lib/enum/theme';
+import { atom } from 'recoil';
 
 const { LIGHT, DARK } = ETheme;
 

@@ -1,5 +1,5 @@
-import { EMajor } from "lib/enum/majors";
-import { IResponse } from "./Response";
+import { EMajor } from 'lib/enum/majors';
+import { IResponse } from './Response';
 
 export interface IToken {
   idx: number;

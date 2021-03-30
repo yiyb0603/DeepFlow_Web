@@ -1,5 +1,5 @@
-import { IResponse } from "./Response";
-import { IUser } from "./user.types";
+import { IResponse } from './Response';
+import { IUser } from './user.types';
 
 export interface INotice {
   idx: number;

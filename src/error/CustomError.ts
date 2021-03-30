@@ -1,4 +1,4 @@
-import { IError } from "types/Response";
+import { IError } from 'types/Response';
 
 export default class CustomError {
   public status: number = 0;

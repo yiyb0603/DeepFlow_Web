@@ -1,4 +1,4 @@
-import { getGenerations } from "util/getGenerations";
+import { getGenerations } from 'util/getGenerations';
 
 export interface IAuthOption {
   value: number;

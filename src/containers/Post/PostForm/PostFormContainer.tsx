@@ -13,7 +13,7 @@ import { createPost, modifyPost } from 'lib/api/post/post.api';
 import SubmitModal from 'components/PostForm/SubmitModal';
 import { requestPostState } from 'atom/post';
 import usePostByIdx from 'hooks/usePostByIdx';
-import { MAX_TAG_LENGTH } from 'util/constants';
+import { MAX_TAG_LENGTH } from 'constants/post';
 import { validatePost } from 'validation/post.validation';
 
 const PostFormContainer = (): JSX.Element => {

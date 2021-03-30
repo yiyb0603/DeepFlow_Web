@@ -1,8 +1,8 @@
-import { popularPostState } from "atom/post";
-import { getPopularPosts } from "lib/api/post/post.api";
-import { EResponse } from "lib/enum/response";
-import { useCallback, useEffect } from "react";
-import { useRecoilState } from "recoil";
+import { popularPostState } from 'atom/post';
+import { getPopularPosts } from 'lib/api/post/post.api';
+import { EResponse } from 'lib/enum/response';
+import { useCallback, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 
 const usePopularPosts = () => {
   const POST_COUNT: number = 3;

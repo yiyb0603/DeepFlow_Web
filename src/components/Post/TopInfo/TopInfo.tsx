@@ -15,7 +15,12 @@ interface TopInfoProps {
   requestDeletePost: (postIdx: number) => Promise<void>
 }
 
-const TopInfo = ({ idx, createdAt, user, requestDeletePost }: TopInfoProps): JSX.Element => {
+const TopInfo = ({
+  idx,
+  createdAt,
+  user,
+  requestDeletePost
+}: TopInfoProps): JSX.Element => {
   const myInfo: IToken = getMyInfo();
 
   return (

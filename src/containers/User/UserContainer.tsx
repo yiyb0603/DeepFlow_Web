@@ -1,11 +1,14 @@
-import { useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { History } from 'history';
-import UserInfo from 'components/UserInfo';
+import { chunkArray } from 'util/chunkArray';
 import useUserInfo from 'hooks/useUserInfo';
-import UserLoading from 'components/UserList/UserLoading';
+import { IPost } from 'types/post.types';
+import { CHUNK_COUNT } from 'constants/user';
 import { EUserPost } from 'lib/enum/post';
 import { groupingState } from 'converter/groupingState';
+import UserInfo from 'components/UserInfo';
+import UserLoading from 'components/UserList/UserLoading';
 
 const UserContainer = (): JSX.Element => {
   const {
@@ -14,22 +17,52 @@ const UserContainer = (): JSX.Element => {
     userPostList,
     userPostTab,
     setUserPostTab,
+    renderUserInfo,
   } = useUserInfo();
+
   const history: History<unknown> = useHistory();
+  const [page, setPage] = useState<number>(1);
+  const splitedPostList: IPost[][] = chunkArray(userPostList, CHUNK_COUNT);
 
   const onChangeUserPostTab = useCallback((userPostTab: EUserPost): void => {
     history.push(`?tab=${userPostTab}`);
+    setPage(1);
     setUserPostTab(userPostTab);
   }, [history, setUserPostTab]);
+
+  const handlePrevPage = useCallback((): void => {
+    if (page === 1) {
+      setPage(splitedPostList.length);
+      return;
+    }
+
+    setPage((prevPage: number) => prevPage - 1);
+  }, [page, splitedPostList.length]);
+
+  const handleNextPage = useCallback((): void => {
+    if (page === splitedPostList.length) {
+      setPage(1);
+      return;
+    }
+
+    setPage((prevPage: number) => prevPage + 1);
+  }, [page, splitedPostList]);
+
+  useEffect(() => {
+    renderUserInfo();
+  }, [renderUserInfo]);
 
   return (
     <>
     {
-      userInfo === null && isLoading ? <UserLoading /> :
+      isLoading ? <UserLoading /> :
       <UserInfo
         userInfo={userInfo!}
         userPostTabState={groupingState('userPostTab', userPostTab, onChangeUserPostTab)}
-        userPostList={userPostList}
+        page={page}
+        handlePrevPage={handlePrevPage}
+        handleNextPage={handleNextPage}
+        splitedPostList={splitedPostList}
       />
     }
     </>

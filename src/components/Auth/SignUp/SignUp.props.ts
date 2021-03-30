@@ -1,6 +1,6 @@
-import { ChangeEvent } from "react";
-import { EMajor } from "lib/enum/majors";
-import { IRegisterRequest } from "types/user.types";
+import { ChangeEvent } from 'react';
+import { EMajor } from 'lib/enum/majors';
+import { IRegisterRequest } from 'types/user.types';
 
 export default interface SignUpProps {
   isLoading: boolean;

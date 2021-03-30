@@ -1,0 +1,1 @@
+export const CHUNK_COUNT: number = 5;

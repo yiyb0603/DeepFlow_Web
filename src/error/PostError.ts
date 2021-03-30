@@ -1,8 +1,8 @@
 import { History } from 'history';
 import { ErrorStatus } from 'lib/enum/response';
 import { errorToast } from 'lib/Toast';
-import { IError } from "types/Response";
-import CustomError from "./CustomError";
+import { IError } from 'types/Response';
+import CustomError from './CustomError';
 
 export default class PostError extends CustomError {
   constructor(

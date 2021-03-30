@@ -1,7 +1,7 @@
 import { isEmpty } from 'util/isEmpty';
 import { errorToast } from 'lib/Toast';
 import { IRegisterRequest } from 'types/user.types';
-import { EMAIL_REGULAR } from 'util/constants';
+import { EMAIL_REGULAR } from 'constants/auth';
 
 export const validateSignUp = (request: IRegisterRequest): boolean => {
   const { position, description, location, email, blog } = request;

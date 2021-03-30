@@ -1,6 +1,6 @@
 import { IPostDto } from 'lib/api/post/post.dto';
 import { errorToast } from 'lib/Toast';
-import { MAX_TAG_LENGTH } from 'util/constants';
+import { MAX_TAG_LENGTH } from 'constants/post';
 import { isEmpty } from 'util/isEmpty';
 import { isNullOrUndefined } from 'util/isNullOrUndefined';
 

@@ -1,6 +1,6 @@
-import { EPost } from "lib/enum/post";
-import { IResponse } from "./Response";
-import { IUser } from "./user.types";
+import { EPost } from 'lib/enum/post';
+import { IResponse } from './Response';
+import { IUser } from './user.types';
 
 export interface IPageParam {
   idx: string | undefined;

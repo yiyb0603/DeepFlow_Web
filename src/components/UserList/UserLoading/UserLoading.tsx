@@ -1,4 +1,4 @@
-import PageLoading from "components/Common/PageLoading";
+import PageLoading from 'components/Common/PageLoading';
 
 const UserLoading = (): JSX.Element => {
   return (

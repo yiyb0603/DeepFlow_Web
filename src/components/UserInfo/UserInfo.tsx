@@ -6,6 +6,7 @@ import { EUserPost } from 'lib/enum/post';
 import { IPost } from 'types/post.types';
 import { IUser } from 'types/user.types';
 import InfoBox from './InfoBox';
+import PostPageControl from './PostPageControl';
 import PostTab from './PostTab';
 
 const style = require('./UserInfo.scss');
@@ -17,13 +18,21 @@ interface UserInfoProps {
     userPostTab: EUserPost;
     onChangeUserPostTab: (userPostTab: EUserPost) => void;
   };
-  userPostList: IPost[];
+  
+  page: number;
+  handlePrevPage: () => void;
+  handleNextPage: () => void;
+
+  splitedPostList: IPost[][];
 }
 
 const UserInfo = ({
   userInfo,
   userPostTabState,
-  userPostList,
+  page,
+  handlePrevPage,
+  handleNextPage,
+  splitedPostList,
 }: UserInfoProps): JSX.Element => {
   const { avatar, githubId, name, email, description, position, blog } = userInfo;
   const { userPostTab, onChangeUserPostTab } = userPostTabState;
@@ -47,7 +56,8 @@ const UserInfo = ({
 
       <div className={cx('UserInfo-PostList')}>
       {
-        userPostList.length > 0 ? userPostList.map((post: IPost) => {
+        splitedPostList.length > 0 ?
+        splitedPostList[page - 1].map((post: IPost) => {
           return (
             <ListItem
               key={post.idx}
@@ -57,6 +67,16 @@ const UserInfo = ({
         }) : <NoPosts text='작성한 글 목록이 없습니다.' />
       }
       </div>
+
+      {
+        splitedPostList.length > 1 &&
+        <PostPageControl
+          page={page}
+          postLength={splitedPostList.length}
+          handlePrevPage={handlePrevPage}
+          handleNextPage={handleNextPage}
+        />
+      }
     </div>
   );
 };

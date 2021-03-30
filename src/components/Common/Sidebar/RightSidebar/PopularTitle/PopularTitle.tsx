@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { APP_NAME } from 'util/constants';
+import { APP_NAME } from 'constants/util';
 
 const style = require('./PopularTitle.scss');
 const cx: ClassNamesFn = classNames.bind(style);

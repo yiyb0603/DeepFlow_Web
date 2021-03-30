@@ -29,10 +29,8 @@ const useUserInfo = () => {
       }
     } catch (error) {
       console.log(error);
-    } finally {
-      setIsLoading(false);
     }
-  }, [setIsLoading, setUserInfo, userIdx]);
+  }, [setUserInfo, userIdx]);
 
   const requestUserPosts = useCallback(async (): Promise<void> => {
     try {
@@ -45,13 +43,17 @@ const useUserInfo = () => {
       console.log(error);
     }
   }, [setUserPostList, userIdx, userPostTab]);
-  
-  useEffect(() => {
+
+  const renderUserInfo = useCallback(async (): Promise<void> => {
     if (Number.isInteger(userIdx)) {
-      requestUserInfo();
-      requestUserPosts();
+      setIsLoading(true);
+      
+      await requestUserInfo();
+      await requestUserPosts();
+      
+      setIsLoading(false);
     }
-  }, [requestUserInfo, requestUserPosts, userIdx, userPostTab]);
+  }, [requestUserInfo, requestUserPosts, userIdx]);
 
   return {
     isLoading,
@@ -60,6 +62,7 @@ const useUserInfo = () => {
     userPostList,
     userPostTab,
     setUserPostTab,
+    renderUserInfo,
   };
 }
 

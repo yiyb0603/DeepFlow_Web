@@ -1,5 +1,5 @@
-import PageTemplate from "components/Template/PageTemplate";
-import UserListContainer from "containers/UserList";
+import PageTemplate from 'components/Template/PageTemplate';
+import UserListContainer from 'containers/UserList';
 
 const UserListPage = (): JSX.Element => {
   return (
