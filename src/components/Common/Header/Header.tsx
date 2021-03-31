@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { IoLogoGithub } from 'react-icons/io';
+import { GITHUB_AUTH_URL } from 'constants/auth';
 import { IUser } from 'types/user.types';
 import ToggleMenu from '../MobileSidebar/ToggleMenu';
 
@@ -10,12 +11,11 @@ const style = require('./Header.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface HeaderProps {
-  authUrl: string;
   myInfo: IUser | null;
   handleLogout: (e: MouseEvent<HTMLHyperlinkElementUtils>) => void;
 }
 
-const Header = ({ authUrl, myInfo, handleLogout }: HeaderProps): JSX.Element => {
+const Header = ({ myInfo, handleLogout }: HeaderProps): JSX.Element => {
   const [isSideShow, setIsSideShow] = useState<boolean>(false);
 
   return (
@@ -31,7 +31,11 @@ const Header = ({ authUrl, myInfo, handleLogout }: HeaderProps): JSX.Element => 
         </div>
 
         <div className={cx('Header-Contents-RightWrap')}>
-          <a href={authUrl} className={cx('Header-Contents-RightWrap-Login')} onClick={handleLogout}>
+          <a
+            href={GITHUB_AUTH_URL}
+            className={cx('Header-Contents-RightWrap-Login')}
+            onClick={handleLogout}
+          >
             <IoLogoGithub className={cx('Header-Contents-RightWrap-Login-Icon')} />
             <div className={cx('Header-Contents-RightWrap-Login-Name')}>
               {

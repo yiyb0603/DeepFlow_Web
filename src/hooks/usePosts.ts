@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { getPostsByCategory } from 'lib/api/post/post.api';
 import { EPost } from 'lib/enum/post';
 import { EResponse } from 'lib/enum/response';
@@ -9,7 +9,7 @@ import useQueryString from './util/useQueryString';
 
 const usePosts = (category: EPost) => {
   const query = useQueryString();
-  const page: number = isNaN(Number(query.page)) ? 1 : Number(query.page);
+  const page: number = useMemo(() => isNaN(Number(query.page)) ? 1 : Number(query.page), [query]);
 
   const [currentPage, setCurrentPage] = useState<number>(page);
   const [totalPage, setTotalPage] = useState<number>(1);

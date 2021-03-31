@@ -4,9 +4,10 @@ import { commentListState } from 'atom/comment';
 import usePageParam from './util/usePageParam';
 import { getCommentsByPostIdx } from 'lib/api/comment/comment.api';
 import { EResponse } from 'lib/enum/response';
+import { IComment } from 'types/comment.types';
 
 const useComment = () => {
-  const [commentList, setCommentList] = useRecoilState(commentListState);
+  const [commentList, setCommentList] = useRecoilState<IComment[]>(commentListState);
   const postIdx: number = usePageParam();
 
   const requestCommentList = useCallback(async (): Promise<void> => {

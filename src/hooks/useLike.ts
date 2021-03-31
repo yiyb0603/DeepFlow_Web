@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useMemo } from 'react';
 import { createLike, deleteLike, getLikeList } from 'lib/api/like/like.api';
 import { ILikeDto } from 'lib/api/like/like.dto';
 import { EResponse } from 'lib/enum/response';
@@ -10,7 +10,7 @@ import { errorToast } from 'lib/Toast';
 
 const useLike = () => {
   const postIdx: number = usePageParam();
-  const myInfo: IToken = getMyInfo();
+  const myInfo: IToken = useMemo(() => getMyInfo(), []);
 
   const [likeList, setLikeList] = useState<ILike[]>([]);
   const [isPressed, setIsPressed] = useState<boolean>(false);
@@ -59,10 +59,12 @@ const useLike = () => {
         }
       }
 
+      requestLikeList();
+    
     } catch (error) {
       console.log(error);
     }
-  }, [isAccessable, isPressed, likeList, myInfo, postIdx]);
+  }, [isAccessable, isPressed, likeList, myInfo, postIdx, requestLikeList]);
 
   useEffect(() => {
     requestLikeList();

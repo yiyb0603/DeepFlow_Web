@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 import { History } from 'history';
 import { chunkArray } from 'util/chunkArray';
@@ -22,7 +22,7 @@ const UserContainer = (): JSX.Element => {
 
   const history: History<unknown> = useHistory();
   const [page, setPage] = useState<number>(1);
-  const splitedPostList: IPost[][] = chunkArray(userPostList, CHUNK_COUNT);
+  const splitedPostList: IPost[][] = useMemo(() => chunkArray(userPostList, CHUNK_COUNT), [userPostList]);
 
   const onChangeUserPostTab = useCallback((userPostTab: EUserPost): void => {
     history.push(`?tab=${userPostTab}`);

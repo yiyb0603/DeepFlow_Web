@@ -5,12 +5,10 @@ import { EPost } from 'lib/enum/post';
 const { Option } = Select;
 
 interface SelectCategoryProps {
-  category?: EPost;
   onChangeCategory?: (category: EPost) => void;
 }
 
 const SelectCategory = ({
-  category,
   onChangeCategory
 }: SelectCategoryProps): JSX.Element => {
   const { QUESTION, POST } = EPost;

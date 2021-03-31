@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { PostTabProps } from '../PostTab';
@@ -11,7 +12,7 @@ interface TabItemProps extends PostTabProps {
 }
 
 const TabItem = ({ name, route, userPostTab, onChangeUserPostTab }: TabItemProps): JSX.Element => {
-  const splitedRouteTab: number = Number(route.split("=")[1]);
+  const splitedRouteTab: number = useMemo(() => Number(route.split('=')[1]), [route]);
 
   return (
     <div className={cx('TabItem', {

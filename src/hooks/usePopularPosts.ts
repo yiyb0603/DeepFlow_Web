@@ -1,16 +1,16 @@
-import { popularPostState } from 'atom/post';
-import { getPopularPosts } from 'lib/api/post/post.api';
-import { EResponse } from 'lib/enum/response';
 import { useCallback, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
+import { popularPostState } from 'atom/post';
+import { POPULAR_COUNT } from 'constants/post';
+import { getPopularPosts } from 'lib/api/post/post.api';
+import { EResponse } from 'lib/enum/response';
 
 const usePopularPosts = () => {
-  const POST_COUNT: number = 3;
   const [popularPosts, setPopularPosts] = useRecoilState(popularPostState);
 
   const requestPopularPosts = useCallback(async (): Promise<void> => {
     try {
-      const { status, data: { popularPosts } } = await getPopularPosts(POST_COUNT);
+      const { status, data: { popularPosts } } = await getPopularPosts(POPULAR_COUNT);
 
       if (status === EResponse.OK) {
         setPopularPosts(popularPosts);

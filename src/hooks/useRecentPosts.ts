@@ -4,15 +4,15 @@ import { recentPostLoading, recentPostState } from 'atom/post';
 import { getRecentPosts } from 'lib/api/post/post.api';
 import { EResponse } from 'lib/enum/response';
 import { IRecentPostListResponse } from 'types/post.types';
+import { RECENT_COUNT } from 'constants/post';
 
 const useRecentPosts = () => {
-  const POST_COUNT: number = 6;
   const [isLoading, setIsLoading] = useRecoilState(recentPostLoading);
   const [recentPosts, setRecentPosts] = useRecoilState(recentPostState);
 
   const requestRecentPosts = useCallback(async (): Promise<void> => {
     try {
-      const { status, data: { recentPosts } }: IRecentPostListResponse = await getRecentPosts(POST_COUNT);
+      const { status, data: { recentPosts } }: IRecentPostListResponse = await getRecentPosts(RECENT_COUNT);
       
       if (status === EResponse.OK) {
         setRecentPosts(recentPosts);

@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
 import { myInfoState } from 'atom/user';
 import { getUserInfo } from 'lib/api/user/user.api';
@@ -8,6 +8,7 @@ import { EResponse } from 'lib/enum/response';
 
 const useMyInfo = () => {
   const [myInfo, setMyInfo] = useRecoilState<IUser | null>(myInfoState);
+  const myToken: IToken = useMemo(() => getMyInfo(), []);
 
   const requestMyInfo = useCallback(async (idx: number): Promise<void> => {
     try {
@@ -22,11 +23,10 @@ const useMyInfo = () => {
   }, [setMyInfo]);
 
   useEffect(() => {
-    const myToken: IToken = getMyInfo();
     if (myToken) {
       requestMyInfo(myToken.idx);
     }
-  }, [requestMyInfo]);
+  }, [myToken, requestMyInfo]);
 
   return {
     myInfo,

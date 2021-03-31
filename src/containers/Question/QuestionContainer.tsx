@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { useHistory } from 'react-router';
 import { History } from 'history';
 import Questions from 'components/Questions';
@@ -12,7 +12,7 @@ const QuestionContainer = (): JSX.Element => {
   const [numberListPage, setNumberListPage] = useState<number>(Math.ceil(currentPage / 5) || 1);
 
   const history: History<unknown> = useHistory();
-  const splitedNumberList: number[][] = paginationNumber(totalPage);
+  const splitedNumberList: number[][] = useMemo(() => paginationNumber(totalPage), [totalPage]);
 
   const onChangeCurrentPage = useCallback((page: number): void => {
     if (currentPage !== page) {

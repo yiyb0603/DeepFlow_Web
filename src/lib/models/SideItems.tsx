@@ -3,6 +3,7 @@ import { FaStackOverflow } from 'react-icons/fa';
 import { MdCardMembership } from 'react-icons/md';
 import { HiOutlineSpeakerphone } from 'react-icons/hi';
 import { IoIosInformationCircleOutline } from 'react-icons/io';
+import { AiOutlineTags } from 'react-icons/ai';
 
 export interface ISideItemsType {
   menuName: string;
@@ -28,6 +29,12 @@ export const sideItems: ISideItemsType[] = [
     menuName: '멤버 목록',
     icon: <MdCardMembership className={ICON_CLASS} />,
     link: '/users',
+  },
+
+  {
+    menuName: '태그 목록',
+    icon: <AiOutlineTags className={ICON_CLASS} />,
+    link: '/tags',
   },
 
   {
