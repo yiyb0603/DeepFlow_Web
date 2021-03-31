@@ -23,7 +23,16 @@ export const successToast = (message: string): void => {
     backgroundColor: palette.green,
     message,
     button: <MdClose style={iconStyle} />,
-    icon: <BsCheckCircle style={iconStyle} />
+    icon: <BsCheckCircle style={iconStyle} />,
+  });
+}
+
+export const infoToast = (message: string): void => {
+  showToast({
+    backgroundColor: palette.skyBlue,
+    message,
+    button: <MdClose style={iconStyle} />,
+    icon: <BiErrorAlt style={iconStyle} />,
   });
 }
 
@@ -32,6 +41,6 @@ export const errorToast = (message: string): void => {
     backgroundColor: palette.red,
     message,
     button: <MdClose style={iconStyle} />,
-    icon: <BiErrorAlt style={iconStyle} />
+    icon: <BiErrorAlt style={iconStyle} />,
   });
 }

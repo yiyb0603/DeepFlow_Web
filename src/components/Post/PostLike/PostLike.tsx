@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { CgUserList } from 'react-icons/cg';
+import { infoToast } from 'lib/Toast';
 import { ILike } from 'types/like.types';
 import LikeSubmit from './LikeSubmit';
 import LikeList from './LikeList';
@@ -23,8 +24,13 @@ const PostLike = ({
   const [isModal, setIsModal] = useState<boolean>(false);
 
   const onChangeIsModal = useCallback((): void => {
+    if (!isModal && likeList.length <= 0) {
+      infoToast('현재 좋아요 목록이 없습니다.');
+      return;
+    }
+
     setIsModal((prevModal: boolean) => !prevModal);
-  }, []);
+  }, [isModal, likeList]);
 
   return (
     <div className={cx('PostLike')}>
