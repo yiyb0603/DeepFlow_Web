@@ -1,3 +1,4 @@
+import { CSSProperties } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 
@@ -22,11 +23,15 @@ const PageNumberList = ({
   handleNextPage,
   onChangeCurrentPage,
 }: PageNumberListProps) => {
+  const visibilityStyle: CSSProperties = {
+    visibility: pageList.length > 1 ? 'unset' : 'hidden',
+  }
+
   return (
     <div className={cx('PageNumberList')}>
       <button
         className={cx('PageNumberList-Button')}
-        style={{ visibility: pageList.length > 1 ? 'unset' : 'hidden' }}
+        style={visibilityStyle}
         onClick={handlePrevPage}
       >
         이전
@@ -51,7 +56,7 @@ const PageNumberList = ({
       
       <button
         className={cx('PageNumberList-Button')}
-        style={{ visibility: pageList.length > 1 ? 'unset' : 'hidden' }}
+        style={visibilityStyle}
         onClick={handleNextPage}
       >
         다음
