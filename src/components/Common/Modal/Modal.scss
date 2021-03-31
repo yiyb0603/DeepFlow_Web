@@ -1,0 +1,43 @@
+.Modal {
+	&-Overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.4);
+		z-index: 2;
+	}
+
+	&-Box {
+		width: 25%;
+		height: 50%;
+		background-color: var(--white);
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 3;
+		padding: 1rem;
+
+		&-Top {
+			display: flex;
+			display: -webkit-flex;
+			justify-content: space-between;
+			align-items: center;
+			border-bottom: 0.5px solid var(--gray);
+			padding-bottom: 0.2rem;
+			margin-bottom: 0.5rem;
+
+			&-Title {
+				font-size: 1.2rem;
+				font-weight: 500;
+			}
+
+			&-Close {
+				font-size: 1.8rem;
+				cursor: pointer;
+			}
+		}
+	}
+}

@@ -1,13 +1,13 @@
 import { useCallback, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { userInfoState } from 'atom/user';
+import { myInfoState } from 'atom/user';
 import { getUserInfo } from 'lib/api/user/user.api';
 import { IToken, IUser } from 'types/user.types';
 import { getMyInfo } from 'util/getMyInfo';
 import { EResponse } from 'lib/enum/response';
 
 const useMyInfo = () => {
-  const [myInfo, setMyInfo] = useRecoilState<IUser | null>(userInfoState);
+  const [myInfo, setMyInfo] = useRecoilState<IUser | null>(myInfoState);
 
   const requestMyInfo = useCallback(async (idx: number): Promise<void> => {
     try {

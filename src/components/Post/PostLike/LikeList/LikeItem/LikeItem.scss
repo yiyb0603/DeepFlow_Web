@@ -1,0 +1,37 @@
+.LikeItem {
+	width: 100%;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 0.5rem;
+
+	&-Left {
+		display: flex;
+		display: -webkit-flex;
+		align-items: center;
+
+		&-Profile {
+			width: 70px;
+			height: 70px;
+			object-fit: cover;
+			border-radius: 50%;
+			margin-right: 0.6rem;
+		}
+
+		&-ContentsWrap {
+			&-Name {
+				font-size: 1.2rem;
+				font-weight: 500;
+			}
+
+			&-Description {
+				max-width: 100%;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				font-size: 1.1rem;
+			}
+		}
+	}
+}

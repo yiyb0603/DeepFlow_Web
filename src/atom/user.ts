@@ -2,6 +2,11 @@ import { atom } from 'recoil';
 import { IPost } from 'types/post.types';
 import { IUser } from 'types/user.types';
 
+export const myInfoState = atom<IUser | null>({
+  key: 'myInfoState',
+  default: null,
+});
+
 export const userInfoState = atom<IUser | null>({
   key: 'userInfoState',
   default: null,

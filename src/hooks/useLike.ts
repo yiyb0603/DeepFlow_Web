@@ -6,6 +6,7 @@ import { ILike } from 'types/like.types';
 import { IToken } from 'types/user.types';
 import { getMyInfo } from 'util/getMyInfo';
 import usePageParam from './util/usePageParam';
+import { errorToast } from 'lib/Toast';
 
 const useLike = () => {
   const postIdx: number = usePageParam();
@@ -13,6 +14,15 @@ const useLike = () => {
 
   const [likeList, setLikeList] = useState<ILike[]>([]);
   const [isPressed, setIsPressed] = useState<boolean>(false);
+
+  const isAccessable = useCallback((): boolean => {
+    if (!myInfo) {
+      errorToast('로그인 후 좋아요가 가능합니다.');
+      return false;
+    }
+
+    return true;
+  }, [myInfo]);
 
   const requestLikeList = useCallback(async () => {
     try {
@@ -32,11 +42,14 @@ const useLike = () => {
 
   const handlePressLike = useCallback(async (): Promise<void> => {
     try {
-      const likeDto: ILikeDto = {
-        postIdx,
-      };
+      if (!isAccessable()) {
+        return;
+      }
 
       if (!isPressed) {
+        const likeDto: ILikeDto = {
+          postIdx,
+        };
         await createLike(likeDto);
       } else {
         const pressedLike: ILike | undefined = likeList.find((like: ILike) => like.user.idx === myInfo.idx);
@@ -49,7 +62,7 @@ const useLike = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [isPressed, likeList, myInfo, postIdx]);
+  }, [isAccessable, isPressed, likeList, myInfo, postIdx]);
 
   useEffect(() => {
     requestLikeList();
