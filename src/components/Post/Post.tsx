@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
 import CommentContainer from 'containers/Comment';
+import LikeContainer from 'containers/Like';
 import { IPost } from 'types/post.types';
 import PostTags from './PostTags';
 import PostUserInfo from './PostUserInfo';
@@ -36,6 +37,8 @@ const Post = ({ post, requestDeletePost }: PostProps): JSX.Element => {
       <div className={cx('Post-Contents')}>
         <MarkdownRender contents={contents!} />
       </div>
+
+      <LikeContainer />
 
       <PostUserInfo
         avatar={user.avatar}

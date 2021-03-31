@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { IoLogoGithub } from 'react-icons/io';
-import Headroom from 'react-headroom';
 import { IUser } from 'types/user.types';
 import ToggleMenu from '../MobileSidebar/ToggleMenu';
 
