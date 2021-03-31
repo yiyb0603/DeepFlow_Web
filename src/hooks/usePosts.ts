@@ -5,29 +5,38 @@ import { EResponse } from 'lib/enum/response';
 import { useRecoilState } from 'recoil';
 import { questionListState } from 'atom/post';
 import { IPost } from 'types/post.types';
+import useQueryString from './util/useQueryString';
 
 const usePosts = (category: EPost) => {
-  const [page, setPage] = useState<number>(1);
+  const query = useQueryString();
+  const page: number = isNaN(Number(query.page)) ? 1 : Number(query.page);
+
+  const [currentPage, setCurrentPage] = useState<number>(page);
+  const [totalPage, setTotalPage] = useState<number>(1);
   const [questionList, setQuestionList] = useRecoilState<IPost[]>(questionListState);
 
   const requestPostList = useCallback(async () => {
     try {
-      const { status, data: { posts } } = await getPostsByCategory(category, page);
+      const { status, data: { posts, totalPage } } = await getPostsByCategory(category, currentPage);
 
       if (status === EResponse.OK) {
         setQuestionList(posts);
+        setTotalPage(totalPage!);
       }
     } catch (error) {
       console.log(error);
     }
-  }, [category, page, setQuestionList]);
+  }, [category, currentPage, setQuestionList]);
 
   useEffect(() => {
     requestPostList();
-  }, [requestPostList]);
+  }, [requestPostList, currentPage]);
 
   return {
     questionList,
+    totalPage,
+    currentPage,
+    setCurrentPage,
   };
 }
 
