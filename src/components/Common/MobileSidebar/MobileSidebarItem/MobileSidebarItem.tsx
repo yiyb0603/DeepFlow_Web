@@ -18,7 +18,7 @@ const MobileSidebarItem = ({
   menuName,
   icon,
 }: MobileSidebarItemProps) => {
-  const history: History<unknown> = useHistory();
+  const history: History = useHistory();
   const pathname: string = usePathName();
 
   return (

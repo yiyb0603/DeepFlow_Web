@@ -1,0 +1,13 @@
+.SelectTab {
+	width: 50%;
+	text-align: center;
+	padding-bottom: 0.5rem;
+	font-size: 1.3rem;
+	cursor: pointer;
+	border-bottom: 1px solid var(--gray);
+
+	&-Current {
+		color: var(--main);
+		border-bottom: 1px solid var(--main);
+	}
+}

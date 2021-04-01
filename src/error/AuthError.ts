@@ -11,7 +11,7 @@ export default class AuthError extends CustomError {
     super(_error);
   }
 
-  public registerError(history: History<unknown>): void {
+  public registerError(history: History): void {
     const { status, message } = this;
 
     switch (status) {

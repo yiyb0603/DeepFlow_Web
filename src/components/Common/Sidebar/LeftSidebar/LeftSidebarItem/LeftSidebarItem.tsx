@@ -14,7 +14,7 @@ interface LeftSidebarItemProps {
 }
 
 const LeftSidebarItem = ({ icon, menuName, link }: LeftSidebarItemProps): JSX.Element => {
-  const history: History<unknown> = useHistory();
+  const history: History = useHistory();
   const pathname: string = usePathName();
 
   return (

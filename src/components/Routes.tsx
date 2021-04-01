@@ -7,6 +7,7 @@ import SignPage from 'pages/Sign';
 import UserInfoPage from 'pages/UserInfo';
 import UserListPage from 'pages/UserList';
 import QuestionPage from 'pages/Question';
+import TagsPage from 'pages/Tags';
 
 const Routes = (): JSX.Element => {
   return (
@@ -20,6 +21,7 @@ const Routes = (): JSX.Element => {
       <Route exact path='/users' component={UserListPage} />
       <Route exact path='/user/:idx' component={UserInfoPage} />
       <Route exact path='/questions' component={QuestionPage} />
+      <Route exact path ='/tags' component={TagsPage} />
     </Switch>
   );
 }

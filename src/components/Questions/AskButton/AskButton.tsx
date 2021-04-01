@@ -10,7 +10,7 @@ const style = require('./AskButton.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const AskButton = (): JSX.Element => {
-  const history: History<unknown> = useHistory();
+  const history: History = useHistory();
   const handlePushToForm = useCallback((): void => {
     if (!getMyInfo()) {
       errorToast('로그인 후 이용가능합니다.');

@@ -12,7 +12,7 @@ import { successToast } from 'lib/Toast';
 import { IResponse } from 'types/Response';
 
 const usePostByIdx = () => {
-  const history: History<unknown> = useHistory();
+  const history: History = useHistory();
   const postIdx: number = usePageParam();
   const [post, setPost] = useRecoilState<IPost | null>(postState);
 

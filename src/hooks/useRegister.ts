@@ -15,7 +15,7 @@ import useQueryString from './util/useQueryString';
 
 const useRegister = () => {
   const { code } = useQueryString();
-  const history: History<unknown> = useHistory();
+  const history: History = useHistory();
   
   const [request, setRequest] = useRecoilState<IRegisterRequest>(requestRegisterState);
   const [isLoading, setIsLoading] = useRecoilState<boolean>(registerLoading);

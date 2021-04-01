@@ -27,7 +27,7 @@ const PopularItem = ({
   commentCount,
   likeCount,
 }: PopularItemProps) => {
-  const history: History<unknown> = useHistory();
+  const history: History = useHistory();
 
   return (
     <div className={cx('PopularItem')}>

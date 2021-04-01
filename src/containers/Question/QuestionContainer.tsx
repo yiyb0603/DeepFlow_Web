@@ -11,7 +11,7 @@ const QuestionContainer = (): JSX.Element => {
   const { questionList, totalPage, currentPage, setCurrentPage } = usePosts(EPost.QUESTION);
   const [numberListPage, setNumberListPage] = useState<number>(Math.ceil(currentPage / 5) || 1);
 
-  const history: History<unknown> = useHistory();
+  const history: History = useHistory();
   const splitedNumberList: number[][] = useMemo(() => paginationNumber(totalPage), [totalPage]);
 
   const onChangeCurrentPage = useCallback((page: number): void => {

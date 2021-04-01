@@ -11,7 +11,7 @@ export default class PostError extends CustomError {
     super(_error);
   }
 
-  public getPostError(history: History<unknown>): void {
+  public getPostError(history: History): void {
     const { status, message } = this;
     switch (status) {
       case ErrorStatus.NOT_FOUND:

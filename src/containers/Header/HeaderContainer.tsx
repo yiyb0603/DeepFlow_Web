@@ -7,7 +7,7 @@ import { successToast } from 'lib/Toast';
 import Header from 'components/Common/Header';
 
 const HeaderContainer = (): JSX.Element => {
-  const history: History<unknown> = useHistory();
+  const history: History = useHistory();
   const { myInfo, setMyInfo } = useMyInfo();
 
   const handleLogout = useCallback((e: MouseEvent<HTMLHyperlinkElementUtils>): void => {

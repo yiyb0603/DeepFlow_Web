@@ -20,7 +20,7 @@ const UserContainer = (): JSX.Element => {
     renderUserInfo,
   } = useUserInfo();
 
-  const history: History<unknown> = useHistory();
+  const history: History = useHistory();
   const [page, setPage] = useState<number>(1);
   const splitedPostList: IPost[][] = useMemo(() => chunkArray(userPostList, CHUNK_COUNT), [userPostList]);
 
