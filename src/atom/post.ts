@@ -29,6 +29,11 @@ export const popularPostState = atom<IPost[]>({
   default: [] as IPost[],
 });
 
+export const tagPostState = atom<IPost[]>({
+  key: 'tagPostState',
+  default: [] as IPost[],
+});
+
 export const requestPostState = atom<IPostDto>({
   key: 'requestPostState',
   default: {

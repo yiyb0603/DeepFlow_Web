@@ -63,3 +63,9 @@ export const getPopularPosts = async (count: number): Promise<IPopularPostListRe
   const { data } = await customAxios.get(url);
   return data;
 }
+
+export const getPostsByTag = async (tagName: string, category: EPost): Promise<IPostListResponse> => {
+  const url: string = `/posts/tag?category=${category}&tagName=${tagName}`;
+  const { data } = await customAxios.get(url);
+  return data;
+}
