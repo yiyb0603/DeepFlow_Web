@@ -6,3 +6,7 @@ export const decodeToken = (): IToken => {
   const token = getCookie('access_token');
   return jwt.decode(token) as IToken;
 }
+
+export const getToken = (): string => {
+  return getCookie('access_token') as string;
+}

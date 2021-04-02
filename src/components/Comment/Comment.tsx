@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import CommentFormContainer from 'containers/Comment/CommentForm';
 import { IComment } from 'types/comment.types';
-import CommentItem from './CommentItem';
+import CommentItem from '../Common/Comment/CommentItem';
 
 const style = require('./Comment.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -32,7 +32,7 @@ const Comment = ({
       <div className={cx('Comment-List')}>
         {
           commentList.map((comment: IComment) => {
-            const { idx, contents, createdAt, updatedAt, user} = comment;
+            const { idx, contents, createdAt, updatedAt, user, replies } = comment;
 
             return (
               <CommentItem
@@ -42,6 +42,7 @@ const Comment = ({
                 createdAt={createdAt}
                 updatedAt={updatedAt}
                 user={user}
+                replies={replies}
                 onModifyClick={onModifyClick}
                 requestDeleteComment={requestDeleteComment}
               />

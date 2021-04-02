@@ -1,0 +1,11 @@
+.ReplyCancel {
+	width: 50px;
+	height: 35px;
+	outline: none;
+	border: none;
+	border-radius: 10px;
+	background-color: var(--lighterBlack);
+	color: var(--white);
+	cursor: pointer;
+	z-index: 2;
+}

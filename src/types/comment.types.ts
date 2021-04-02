@@ -1,3 +1,4 @@
+import { IReply } from './reply.types';
 import { IResponse } from './Response';
 import { IUser } from './user.types';
 
@@ -7,6 +8,7 @@ export interface IComment {
   createdAt: Date | string;
   updatedAt: Date | string | null;
   user: IUser;
+  replies: IReply[];
 }
 
 export interface ICommentModify {

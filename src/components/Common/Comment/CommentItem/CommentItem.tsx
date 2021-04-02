@@ -1,9 +1,12 @@
-import { useMemo } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { calculateTime } from 'lib/TimeCounting';
 import { IToken, IUser } from 'types/user.types';
 import { getMyInfo } from 'util/getMyInfo';
+import ToggleReply from '../../../Comment/ToggleReply';
+import { IReply } from 'types/reply.types';
+import { groupingState } from 'converter/groupingState';
 
 const style = require('./CommentItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -14,6 +17,7 @@ interface CommentItemProps {
   createdAt: Date | string;
   updatedAt: Date | string | null;
   user: IUser;
+  replies?: IReply[];
   onModifyClick: (idx: number, contents: string) => void;
   requestDeleteComment: (commentIdx: number) => void;
 }
@@ -24,10 +28,16 @@ const CommentItem = ({
   createdAt,
   updatedAt,
   user,
+  replies,
   onModifyClick,
   requestDeleteComment,
 }: CommentItemProps) => {
   const myInfo: IToken = useMemo(() => getMyInfo(), []);
+  const [isShowReply, setIsShowReply] = useState<boolean>(false);
+
+  const onChangeIsShowReply = useCallback((): void => {
+    setIsShowReply((prevShowReply: boolean) => !prevShowReply);
+  }, []);
 
   return (
     <div className={cx('CommentItem')}>
@@ -66,6 +76,14 @@ const CommentItem = ({
       </div>
 
       <div className={cx('CommentItem-Contents')}>{contents}</div>
+      {
+        replies &&
+        <ToggleReply
+          commentIdx={idx}
+          isShowReplyState={groupingState('isShowReply', isShowReply, onChangeIsShowReply)}
+          replies={replies}
+        />
+      }
     </div>
   );
 };

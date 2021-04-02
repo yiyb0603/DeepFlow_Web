@@ -1,0 +1,61 @@
+.ReplyItem {
+	border-left: 4px solid var(--main);
+	margin-top: 1rem;
+	padding-left: 1rem;
+
+	&-TopInfo {
+		display: flex;
+		display: -webkit-flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 0.8rem;
+
+		&-Left {
+			display: flex;
+			display: -webkit-flex;
+			align-items: center;
+
+			&-Profile {
+				width: 80px;
+				height: 80px;
+				border-radius: 50%;
+				margin-right: 0.7rem;
+			}
+
+			&-UserTime {
+				font-size: var(--font-contents);
+
+				&-User {
+					font-weight: 500;
+				}
+
+				&-Time {
+					color: var(--gray);
+				}
+			}
+		}
+
+		&-Right {
+			display: flex;
+			display: -webkit-flex;
+			font-size: var(--font-contents);
+
+			& > * {
+				cursor: pointer;
+			}
+
+			&-Delete {
+				color: var(--red);
+				margin-left: 0.4rem;
+			}
+		}
+	}
+
+	&-Contents {
+		font-size: var(--font-contents);
+		word-break: break-all;
+		white-space: pre-wrap;
+		margin-bottom: 1.5rem;
+	}
+}

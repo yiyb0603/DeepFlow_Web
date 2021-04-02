@@ -1,6 +1,5 @@
 .CommentItem {
-	border-left: 5px solid var(--main);
-	padding: 1rem;
+	margin-bottom: 1.5rem;
 
 	&-TopInfo {
 		display: flex;
@@ -46,7 +45,7 @@
 
 			&-Delete {
 				color: var(--red);
-				margin-left: 0.35rem;
+				margin-left: 0.4rem;
 			}
 		}
 	}
