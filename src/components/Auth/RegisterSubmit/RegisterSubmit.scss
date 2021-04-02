@@ -10,7 +10,7 @@
 	cursor: pointer;
 
 	&-Text {
-		font-size: 1.15rem;
+		font-size: var(--font-smallest);
 		color: var(--white);
 	}
 }

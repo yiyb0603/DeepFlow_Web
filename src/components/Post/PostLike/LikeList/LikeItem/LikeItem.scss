@@ -21,7 +21,7 @@
 
 		&-ContentsWrap {
 			&-Name {
-				font-size: 1.2rem;
+				font-size: var(--font-small);
 				font-weight: 500;
 			}
 
@@ -30,7 +30,7 @@
 				white-space: nowrap;
 				text-overflow: ellipsis;
 				overflow: hidden;
-				font-size: 1.1rem;
+				font-size: var(--font-smallest);
 			}
 		}
 	}

@@ -49,7 +49,7 @@ $selectBackground: #cccfd8;
 		}
 
 		&-Icon {
-			font-size: 3rem;
+			font-size: var(--font-large);
 			color: var(--white);
 			opacity: 0;
 			cursor: pointer;

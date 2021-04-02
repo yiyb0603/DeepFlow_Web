@@ -25,25 +25,25 @@
 
 		&-Contents {
 			&-Name {
-				font-size: 1.85rem;
+				font-size: var(--font-normallest);
 				font-weight: bold;
 			}
 
 			&-Description {
-				font-size: 1.15rem;
+				font-size: var(--font-small);
 				color: var(--gray);
 				font-weight: 400;
 				margin-bottom: 0.35rem;
 			}
 
 			&-Location {
-				font-size: 1.15rem;
+				font-size: var(--font-small);
 			}
 		}
 	}
 
 	&-Right {
-		font-size: 3rem;
+		font-size: var(--font-large);
 
 		& > * {
 			opacity: 0.5;

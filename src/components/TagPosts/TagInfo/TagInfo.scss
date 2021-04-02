@@ -1,17 +1,17 @@
 .TagInfo {
 	&-Title {
-		font-size: 2.2rem;
+		font-size: var(--font-big);
 		font-weight: bold;
 	}
 
 	&-Description {
-		font-size: 1.2rem;
+		font-size: var(--font-small);
 		font-weight: 400;
 		margin-bottom: 0.5rem;
 	}
 
 	&-Count {
 		margin-bottom: 0.5rem;
-		font-size: 1.2rem;
+		font-size: var(--font-small);
 	}
 }

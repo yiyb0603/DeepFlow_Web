@@ -8,12 +8,12 @@
 	align-items: center;
 
 	&-Title {
-		font-size: 1.5rem;
+		font-size: var(--font-normal);
 	}
 
 	&-SubTitle {
 		color: var(--lighterBlack);
-		font-size: 1.2rem;
+		font-size: var(--font-small);
 		margin: 0.75rem 0;
 	}
 }

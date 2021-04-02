@@ -33,22 +33,22 @@
 				align-items: center;
 
 				&-Name {
-					font-size: 1.9rem;
+					font-size: var(--font-regular);
 					font-weight: bold;
 					margin-right: 0.25rem;
 				}
 
 				&-Id {
-					font-size: 1.35rem;
+					font-size: var(--font-contents);
 				}
 			}
 
 			&-Description {
-				font-size: 1.2rem;
+				font-size: var(--font-small);
 			}
 
 			&-Position {
-				font-size: 1.2rem;
+				font-size: var(--font-small);
 			}
 		}
 	}
@@ -62,7 +62,7 @@
 
 		& > * {
 			color: var(--contrast);
-			font-size: 2.85rem;
+			font-size: var(--font-biggest);
 			cursor: pointer;
 
 			&:hover {

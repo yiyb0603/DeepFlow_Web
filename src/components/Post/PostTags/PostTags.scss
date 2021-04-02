@@ -1,17 +1,17 @@
 .PostTags {
-  display: flex;
-  display: -webkit-flex;
-  flex: 1;
-  flex-wrap: wrap;
-  align-items: center;
-  margin: 1.4rem 0;
+	display: flex;
+	display: -webkit-flex;
+	flex: 1;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: 1.4rem 0;
 
-  &-Tag {
-    font-size: 1.1rem;
-    margin-right: 0.4rem;
-    padding: 5px 1rem;
-    border-radius: 25px;
-    background-color: var(--lighterGray);
-    color: var(--main);
-  }
+	&-Tag {
+		font-size: var(--font-smallest);
+		margin-right: 0.4rem;
+		padding: 5px 1rem;
+		border-radius: 25px;
+		background-color: var(--lighterGray);
+		color: var(--main);
+	}
 }

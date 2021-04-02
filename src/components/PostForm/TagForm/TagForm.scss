@@ -1,38 +1,38 @@
 .TagForm {
-  display: flex;
-  display: -webkit-flex;
+	display: flex;
+	display: -webkit-flex;
 
-  &-Wrapper {
-    display: flex;
-    display: -webkit-flex;
-    align-items: center;
-    flex-wrap: wrap;
+	&-Wrapper {
+		display: flex;
+		display: -webkit-flex;
+		align-items: center;
+		flex-wrap: wrap;
 
-    &-Input {
-      outline: none;
-      border: none;
-      padding-bottom: 0.45rem;
-      background: none;
-      font-size: 1.4rem;
-    }
-  }
+		&-Input {
+			outline: none;
+			border: none;
+			padding-bottom: 0.45rem;
+			background: none;
+			font-size: var(--font-contents);
+		}
+	}
 
-  &-Tag {
-    font-size: 1.4rem;
-    padding: 5px 8px;
-    border-radius: 1rem;
-    margin: 0.5rem;
-    position: relative;
-    background-color: var(--lighterGray);
-    color: var(--main);
+	&-Tag {
+		font-size: var(--font-contents);
+		padding: 5px 8px;
+		border-radius: 1rem;
+		margin: 0.5rem;
+		position: relative;
+		background-color: var(--lighterGray);
+		color: var(--main);
 
-    &-Close {
-      position: absolute;
-      top: -0.4rem;
-      right: -0.4rem;
-      font-weight: bold;
-      color: var(--red);
-      cursor: pointer;
-    }
-  }
+		&-Close {
+			position: absolute;
+			top: -0.4rem;
+			right: -0.4rem;
+			font-weight: bold;
+			color: var(--red);
+			cursor: pointer;
+		}
+	}
 }

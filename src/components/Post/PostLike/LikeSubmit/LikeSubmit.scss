@@ -8,7 +8,7 @@
 	margin-right: 0.5rem;
 
 	&-Like {
-		font-size: 2.5rem;
+		font-size: var(--font-bigger);
 		cursor: pointer;
 
 		&-Pressed {
@@ -17,6 +17,6 @@
 	}
 
 	&-Text {
-		font-size: 1.25rem;
+		font-size: var(--font-small);
 	}
 }

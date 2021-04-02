@@ -4,7 +4,7 @@
 	&-Title {
 		max-width: 100%;
 		white-space: nowrap;
-		font-size: 1.2rem;
+		font-size: var(--font-small);
 		overflow: hidden;
 		text-overflow: ellipsis;
 		cursor: pointer;

@@ -8,7 +8,7 @@
 
 	&-Text {
 		color: var(--main);
-		font-size: 1.4rem;
+		font-size: var(--font-contents);
 	}
 
 	&-Close {

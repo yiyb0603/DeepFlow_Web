@@ -23,7 +23,7 @@
 			}
 
 			&-UserTime {
-				font-size: 1.3rem;
+				font-size: var(--font-contents);
 
 				&-User {
 					font-weight: 500;
@@ -38,7 +38,7 @@
 		&-Right {
 			display: flex;
 			display: -webkit-flex;
-			font-size: 1.3rem;
+			font-size: var(--font-contents);
 
 			& > * {
 				cursor: pointer;
@@ -52,7 +52,7 @@
 	}
 
 	&-Contents {
-		font-size: 1.3rem;
+		font-size: var(--font-contents);
 		word-break: break-all;
 		white-space: pre-wrap;
 	}

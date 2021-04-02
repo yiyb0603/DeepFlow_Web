@@ -30,12 +30,12 @@
 			margin-bottom: 0.5rem;
 
 			&-Title {
-				font-size: 1.2rem;
+				font-size: var(--font-small);
 				font-weight: 500;
 			}
 
 			&-Close {
-				font-size: 1.8rem;
+				font-size: var(--font-normallest);
 				cursor: pointer;
 			}
 		}

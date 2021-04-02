@@ -12,13 +12,13 @@
 		align-items: flex-end;
 
 		&-Title {
-			font-size: 2rem;
+			font-size: var(--font-regular);
 			font-weight: 500;
 			margin-right: 0.5rem;
 		}
 
 		&-SubTitle {
-			font-size: 1.15rem;
+			font-size: var(--font-small);
 			margin-bottom: 4px;
 		}
 	}

@@ -1,37 +1,37 @@
 .TopInfo {
-  display: flex;
-  display: -webkit-flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1.5rem;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 1.5rem;
 
-  & > * {
-    display: flex;
-    display: -webkit-flex;
-  }
+	& > * {
+		display: flex;
+		display: -webkit-flex;
+	}
 
-  &-Left {
-    font-size: 1.3rem;
+	&-Left {
+		font-size: var(--font-contents);
 
-    &-CreatedAt {
-      margin-right: 0.4rem;
-      color: var(--main);
-    }
-  }
+		&-CreatedAt {
+			margin-right: 0.4rem;
+			color: var(--main);
+		}
+	}
 
-  &-Right {
-    font-size: 1.3rem;
+	&-Right {
+		font-size: var(--font-contents);
 
-    & > * {
-      cursor: pointer;
-    }
+		& > * {
+			cursor: pointer;
+		}
 
-    &-Modify {
-      margin-right: 0.4rem;
-    }
+		&-Modify {
+			margin-right: 0.4rem;
+		}
 
-    &-Delete {
-      color: var(--red);
-    }
-  }
+		&-Delete {
+			color: var(--red);
+		}
+	}
 }

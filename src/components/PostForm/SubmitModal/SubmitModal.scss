@@ -34,7 +34,7 @@
 			padding: 0.625rem;
 
 			&-Title {
-				font-size: 1.3rem;
+				font-size: var(--font-contents);
 				font-weight: 500;
 				border-bottom: 1px solid var(--lighterBlack);
 				padding-bottom: 0.4rem;

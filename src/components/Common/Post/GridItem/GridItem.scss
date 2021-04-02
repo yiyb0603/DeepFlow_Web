@@ -41,7 +41,7 @@ $maxHeight: 345px;
 			text-overflow: ellipsis;
 			@include sectionStyle();
 			font-weight: 500;
-			font-size: 1.3rem;
+			font-size: var(--font-contents);
 		}
 
 		&-Introduction {
@@ -56,7 +56,7 @@ $maxHeight: 345px;
 				-webkit-box-orient: vertical;
 				-webkit-line-clamp: 4;
 				@include sectionStyle();
-				font-size: 1rem;
+				font-size: var(--font-default);
 			}
 		}
 
@@ -69,7 +69,7 @@ $maxHeight: 345px;
 			margin-top: 2px;
 
 			&-UserInfo {
-				font-size: 1.1rem;
+				font-size: var(--font-smallest);
 				font-weight: 500;
 			}
 		}

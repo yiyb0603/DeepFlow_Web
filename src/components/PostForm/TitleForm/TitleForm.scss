@@ -1,35 +1,35 @@
 .TitleForm {
-  display: flex;
-  display: -webkit-flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 1rem;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	margin-bottom: 1rem;
 
-  & > * {
-    width: 50%;
-    font-size: 2.75rem;
-  }
+	& > * {
+		width: 50%;
+		font-size: var(--font-biggest);
+	}
 
-  &-Input {
-    outline: none;
-    background: none;
-    border: none;
-    margin-right: 2rem;
-    font-weight: bold;
-    color: var(--contrast);
+	&-Input {
+		outline: none;
+		background: none;
+		border: none;
+		margin-right: 2rem;
+		font-weight: bold;
+		color: var(--contrast);
 
-    &::placeholder {
-      color: var(--lighterBlack);
-    }
-  }
+		&::placeholder {
+			color: var(--lighterBlack);
+		}
+	}
 
-  &-Title {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    outline: none;
-    border: none;
-    background: none;
-    font-weight: bold;
-  }
+	&-Title {
+		max-width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		outline: none;
+		border: none;
+		background: none;
+		font-weight: bold;
+	}
 }
