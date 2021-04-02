@@ -1,0 +1,14 @@
+.CommentInput {
+	width: 100%;
+	height: 80%;
+	overflow-y: auto;
+	display: flex;
+	display: -webkit-flex;
+
+	&-Input {
+		flex: 1;
+		outline: none;
+		border: none;
+		padding: 0.5rem;
+	}
+}

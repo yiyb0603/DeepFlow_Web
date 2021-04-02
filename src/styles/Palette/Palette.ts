@@ -31,7 +31,7 @@ export const palette: IPalette = {
 	mint: '#31e1eb',
 	pink: '#E0234E',
 	gray: '#9e9e9e',
-	lighterGray: '#dfe6e9',
+	lighterGray: '#e6e6e6',
 	white: '#ffffff',
 	lighterBlack: '#495057',
 	black: '#000000',

@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import CommentFormContainer from 'containers/Comment/CommentForm';
 import { IComment } from 'types/comment.types';
 import CommentItem from './CommentItem';
 
@@ -14,6 +15,8 @@ const Comment = ({ commentList }: CommentProps): JSX.Element => {
   return (
     <div className={cx('Comment')}>
       <h3>{commentList.length}개의 댓글</h3>
+
+      <CommentFormContainer />
 
       <div className={cx('Comment-List')}>
         {

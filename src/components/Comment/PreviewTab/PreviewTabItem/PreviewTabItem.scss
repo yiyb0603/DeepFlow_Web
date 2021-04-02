@@ -1,0 +1,19 @@
+.PreviewTabItem {
+	width: 120px;
+	height: 40px;
+	background-color: var(--lighterGray);
+	border-right: 1px solid var(--lighterGray);
+	display: flex;
+	display: -webkit-flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+
+	&-Selected {
+		background-color: var(--white);
+	}
+
+	&-Icon {
+		margin-right: 0.2rem;
+	}
+}

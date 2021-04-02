@@ -9,8 +9,6 @@ import { questionListState, tagPostState } from 'atom/post';
 import { IPost } from 'types/post.types';
 import useQueryString from './util/useQueryString';
 import { paginationNumber } from 'util/paginationNumber';
-import { chunkArray } from 'util/chunkArray';
-import { CHUNK_COUNT } from 'constants/user';
 
 const usePosts = (category: EPost) => {
   const { tag }: { tag: string } = useParams();
