@@ -3,11 +3,27 @@
 	height: 45px;
 	display: flex;
 	display: -webkit-flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 	align-items: center;
 	border-top: 1px solid var(--lighterGray);
 	background-color: var(--white);
 	padding: 0 0.5rem;
+
+	&-Cancel {
+		display: flex;
+		display: -webkit-flex;
+		align-items: center;
+
+		&-Text {
+			font-size: var(--font-small);
+		}
+
+		&-Icon {
+			font-size: var(--font-regular) !important;
+			color: var(--red);
+			cursor: pointer;
+		}
+	}
 
 	&-Button {
 		width: 85px;

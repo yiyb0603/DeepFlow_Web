@@ -1,3 +1,4 @@
+import { MutableRefObject } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import CommentFormContainer from 'containers/Comment/CommentForm';
@@ -9,14 +10,24 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 interface CommentProps {
   commentList: IComment[];
+  commentInputRef: MutableRefObject<HTMLTextAreaElement | null>;
+  onModifyClick: (idx: number, contents: string) => void;
+  requestDeleteComment: (commentIdx: number) => Promise<void>;
 }
 
-const Comment = ({ commentList }: CommentProps): JSX.Element => {
+const Comment = ({
+  commentList,
+  commentInputRef,
+  onModifyClick,
+  requestDeleteComment,
+}: CommentProps): JSX.Element => {
   return (
     <div className={cx('Comment')}>
       <h3>{commentList.length}개의 댓글</h3>
 
-      <CommentFormContainer />
+      <CommentFormContainer
+        commentInputRef={commentInputRef}
+      />
 
       <div className={cx('Comment-List')}>
         {
@@ -31,6 +42,8 @@ const Comment = ({ commentList }: CommentProps): JSX.Element => {
                 createdAt={createdAt}
                 updatedAt={updatedAt}
                 user={user}
+                onModifyClick={onModifyClick}
+                requestDeleteComment={requestDeleteComment}
               />
             );
           })

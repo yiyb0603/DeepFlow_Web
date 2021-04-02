@@ -9,6 +9,11 @@ export interface IComment {
   user: IUser;
 }
 
+export interface ICommentModify {
+  idx: number;
+  contents: string;
+}
+
 export interface ICommentListResponse extends IResponse {
   data: {
     comments: IComment[];

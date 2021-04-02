@@ -1,7 +1,9 @@
+import { useMemo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { calculateTime } from 'lib/TimeCounting';
-import { IUser } from 'types/user.types';
+import { IToken, IUser } from 'types/user.types';
+import { getMyInfo } from 'util/getMyInfo';
 
 const style = require('./CommentItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -12,6 +14,8 @@ interface CommentItemProps {
   createdAt: Date | string;
   updatedAt: Date | string | null;
   user: IUser;
+  onModifyClick: (idx: number, contents: string) => void;
+  requestDeleteComment: (commentIdx: number) => void;
 }
 
 const CommentItem = ({
@@ -20,7 +24,11 @@ const CommentItem = ({
   createdAt,
   updatedAt,
   user,
+  onModifyClick,
+  requestDeleteComment,
 }: CommentItemProps) => {
+  const myInfo: IToken = useMemo(() => getMyInfo(), []);
+
   return (
     <div className={cx('CommentItem')}>
       <div className={cx('CommentItem-TopInfo')}>
@@ -32,15 +40,29 @@ const CommentItem = ({
           />
 
           <div className={cx('CommentItem-TopInfo-Left-UserTime')}>
-            <div className={cx('CommentItem-TopInfo-Left-UserTime-User')}>{user.name}</div>
-            <div className={cx('CommentItem-TopInfo-Left-UserTime-Time')}>{calculateTime(createdAt)}</div>
+            <div className={cx('CommentItem-TopInfo-Left-UserTime-User')}>
+              {user.name}
+            </div>
+            
+            <div className={cx('CommentItem-TopInfo-Left-UserTime-Time')}>
+              {calculateTime(createdAt)}
+              <span>{updatedAt && '(수정됨)'}</span>
+            </div>
           </div>
         </div>
 
-        <div className={cx('CommentItem-TopInfo-Right')}>
-          <span>수정</span>
-          <span className={cx('CommentItem-TopInfo-Right-Delete')}>삭제</span>
-        </div>
+        {
+          myInfo && myInfo.idx === user.idx &&
+          <div className={cx('CommentItem-TopInfo-Right')}>
+            <span onClick={() => onModifyClick(idx, contents)}>수정</span>
+            <span
+              className={cx('CommentItem-TopInfo-Right-Delete')}
+              onClick={() => requestDeleteComment(idx)}
+            >
+              삭제
+            </span>
+          </div>
+        }
       </div>
 
       <div className={cx('CommentItem-Contents')}>{contents}</div>

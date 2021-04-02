@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, MutableRefObject } from 'react';
 import { useRecoilValue } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
@@ -18,27 +18,32 @@ interface CommentFormProps {
     onChangeContents: (e: ChangeEvent<HTMLTextAreaElement>) => void;
   };
 
-  requestCreateComment: () => Promise<void>;
+  commentInputRef: MutableRefObject<HTMLTextAreaElement | null>;
+  requestOfferComment: () => Promise<void>;
 }
 
 const CommentForm = ({
   contentsState,
-  requestCreateComment,
+  commentInputRef,
+  requestOfferComment,
 }: CommentFormProps): JSX.Element => {
   const { WRITE } = ECommentTab;
-  const commentTab: ECommentTab = useRecoilValue<ECommentTab>(commentTabState);
+  const commentTab = useRecoilValue<ECommentTab>(commentTabState);
 
   return (
     <div className={cx('CommentForm')}>
       <PreviewTab />
       {
         commentTab === WRITE ?
-        <CommentInput contentsState={contentsState} />
+        <CommentInput
+          contentsState={contentsState}
+          commentInputRef={commentInputRef}
+        />
         :
         <CommentPreview contents={contentsState.contents} />
       }
 
-      <CommentSubmit requestCreateComment={requestCreateComment} />
+      <CommentSubmit requestOfferComment={requestOfferComment} />
     </div>
   );
 };
