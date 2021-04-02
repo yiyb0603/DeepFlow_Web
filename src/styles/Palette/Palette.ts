@@ -22,7 +22,7 @@ export const palette: IPalette = {
 	red: '#ff1001',
 	orange: '#ff811d',
 	yellow: '#faef18',
-	green: '#22ab4b',
+	green: '#3fb950',
 	lighterGreen: '#1bcc8c',
 	main: '#3A47EC',
 	skyBlue: '#00a8ff',
