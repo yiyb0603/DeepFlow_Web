@@ -4,11 +4,11 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { AiOutlineMinusSquare, AiOutlinePlusSquare } from 'react-icons/ai';
 import { IReply, IReplyModify } from 'types/reply.types';
-import ReplyContainer from 'containers/Reply';
 import ReplyWriteButton from 'components/Reply/ReplyWriteButton';
-import ReplyFormContainer from 'containers/Reply/ReplyForm';
+import ReplyFormContainer from 'containers/Reply/ReplyFormContainer';
 import { modifyReplyState, replyContents } from 'atom/reply';
 import usePageParam from 'hooks/util/usePageParam';
+import ReplyItem from 'components/Reply/ReplyItem';
 
 const style = require('./ToggleReply.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -66,7 +66,7 @@ const ToggleReply = ({
       {
         isShowReply &&
         replies.length > 0 && replies.map(({ idx, contents, createdAt, updatedAt, user, fk_comment_idx }) => (
-          <ReplyContainer
+          <ReplyItem
             key={idx}
             idx={idx}
             contents={contents}
