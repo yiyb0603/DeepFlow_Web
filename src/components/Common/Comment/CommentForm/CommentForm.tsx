@@ -21,7 +21,7 @@ interface CommentFormProps {
 
   commentInputRef?: MutableRefObject<HTMLTextAreaElement | null>;
   requestOfferComment: () => Promise<void>;
-  onChangeIsReplyWrite?: () => void;
+  onChangeIsReplyWrite?: (isReplyWrite: boolean) => void;
   type: EComment;
 }
 
@@ -53,7 +53,7 @@ const CommentForm = ({
       <div className={cx('CommentForm-BottomWrap')}>
         {
           type === REPLY &&
-          <ReplyCancel onChangeIsReplyWrite={onChangeIsReplyWrite!} />
+          <ReplyCancel onChangeIsReplyWrite={() => onChangeIsReplyWrite!(false)} />
         }
         <CommentSubmit requestOfferComment={requestOfferComment} />
       </div>

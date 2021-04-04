@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import TagItem from 'components/Common/Post/TagItem';
 
 const style = require('./PostTags.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -13,7 +14,10 @@ const PostTags = ({ postTags }: PostTagsProps): JSX.Element => {
     <div className={cx('PostTags')}>
       {
         postTags.map((tag: string, idx: number) => (
-          <div className={cx('PostTags-Tag')} key={idx}>{tag}</div>
+          <TagItem
+            key={idx}
+            postTag={tag}
+          />
         ))
       }
     </div>

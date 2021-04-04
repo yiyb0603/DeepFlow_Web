@@ -58,19 +58,25 @@ const RecentPost = ({ recentPosts }: RecentPostProps): JSX.Element => {
       <div className={cx('RecentPost-List')} style={flexStyle}>
       {
         recentPosts.length > 0 ? recentPosts.map((post: IPost) => {
-          const { idx, thumbnail, user } = post;
+          const { idx, thumbnail } = post;
           const postProps = {
-            key: idx,
             thumbnail: thumbnail || Sample,
             ...post,
-            user,
           }
 
           return (
             <>
               {
                 viewMode === LIST ?
-                <ListItem {...postProps} /> : <GridItem {...postProps} />
+                <ListItem
+                  key={idx}
+                  {...postProps}
+                />
+                :
+                <GridItem
+                  key={idx}  
+                  {...postProps}
+                />
               }
             </>
           );

@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import useReply from 'hooks/useReply';
 import { groupingState } from 'converter/groupingState';
 import { EComment } from 'lib/enum/comment';
@@ -8,24 +8,25 @@ import { createReply, modifyReply } from 'lib/api/reply/reply.api';
 import { IReplyDto } from 'lib/api/reply/reply.dto';
 import usePageParam from 'hooks/util/usePageParam';
 import useComment from 'hooks/useComment';
-import { modifyReplyState } from 'atom/reply';
+import { isShowReplyState, modifyReplyState } from 'atom/reply';
 import { IReplyModify } from 'types/reply.types';
 import { EResponse } from 'lib/enum/response';
 
 interface ReplyFormContainerProps {
-  onChangeIsReplyWrite: () => void;
   commentIdx: number;
+  onChangeIsReplyWrite: (isReplyWrite: boolean) => void;
 }
 
 const ReplyFormContainer = ({
-  onChangeIsReplyWrite,
   commentIdx,
+  onChangeIsReplyWrite,
 }: ReplyFormContainerProps): JSX.Element => {
   const postIdx: number = usePageParam();
 
   const { requestCommentList } = useComment();
   const { contents, setContents, onChangeContents } = useReply();
 
+  const setIsShowReply = useSetRecoilState<boolean>(isShowReplyState);
   const [modifyObject, setModifyObject] = useRecoilState<IReplyModify | null>(modifyReplyState);
 
   const requestOfferReply = useCallback(async (): Promise<void> => {
@@ -46,12 +47,13 @@ const ReplyFormContainer = ({
         await createReply(replyDto);
       }
 
-      setContents('');
       await requestCommentList();
+      setContents('');
+      setIsShowReply(true);
     } catch (error) {
       console.log(error);
     }
-  }, [commentIdx, contents, modifyObject, postIdx, requestCommentList, setContents, setModifyObject]);
+  }, [commentIdx, contents, modifyObject, postIdx, requestCommentList, setContents, setIsShowReply, setModifyObject]);
 
   return (
     <CommentForm

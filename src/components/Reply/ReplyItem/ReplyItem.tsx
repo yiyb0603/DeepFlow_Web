@@ -21,7 +21,7 @@ interface ReplyItemProps {
   user: IUser;
   commentIdx: number;
   onClickModifyReply: (idx: number, contents: string) => void;
-  onChangeIsReplyWrite: () => void;
+  onChangeIsReplyWrite: (isReplyWrite: boolean) => void;
 }
 
 const ReplyItem = ({

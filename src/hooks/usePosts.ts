@@ -2,15 +2,15 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { useHistory, useParams } from 'react-router-dom';
 import { History } from 'history';
-import { getPostsByCategory, getPostsByTag } from 'lib/api/post/post.api';
+import { getPostsByCategory, getPostsByTag, getTempPosts } from 'lib/api/post/post.api';
 import { EPost } from 'lib/enum/post';
 import { EResponse } from 'lib/enum/response';
-import { questionListState, tagPostState } from 'atom/post';
+import { questionListState, tagPostState, tempPostState } from 'atom/post';
 import { IPost } from 'types/post.types';
 import useQueryString from './util/useQueryString';
 import { paginationNumber } from 'util/paginationNumber';
 
-const usePosts = (category: EPost) => {
+const usePosts = (category?: EPost) => {
   const { tag }: { tag: string } = useParams();
   const query = useQueryString();
   const page: number = useMemo(() => isNaN(Number(query.page)) ? 1 : Number(query.page), [query]);
@@ -20,6 +20,7 @@ const usePosts = (category: EPost) => {
 
   const [questionList, setQuestionList] = useRecoilState<IPost[]>(questionListState);
   const [tagPostList, setTagPostList] = useRecoilState<IPost[]>(tagPostState);
+  const [tempPosts, setTempPosts] = useRecoilState<IPost[]>(tempPostState);
 
   const [numberListPage, setNumberListPage] = useState<number>(Math.ceil(currentPage / 5) || 1);
 
@@ -53,7 +54,7 @@ const usePosts = (category: EPost) => {
 
   const requestPostList = useCallback(async () => {
     try {
-      const { status, data: { posts, totalPage } } = await getPostsByCategory(category, currentPage);
+      const { status, data: { posts, totalPage } } = await getPostsByCategory(category!, currentPage);
 
       if (status === EResponse.OK) {
         setQuestionList(posts);
@@ -63,10 +64,22 @@ const usePosts = (category: EPost) => {
       console.log(error);
     }
   }, [category, currentPage, setQuestionList]);
+
+  const requestTempPosts = useCallback(async (): Promise<void> => {
+    try {
+      const { status, data: { posts } } = await getTempPosts();
+
+      if (status === EResponse.OK) {
+        setTempPosts(posts);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [setTempPosts]);
   
   const requestPostsByTag = useCallback(async (): Promise<void> => {
     try {
-      const { status, data: { posts, totalPage } } = await getPostsByTag(tag, category);
+      const { status, data: { posts, totalPage } } = await getPostsByTag(tag, category!);
 
       if (status === EResponse.OK) {
         setTagPostList(posts);
@@ -95,6 +108,9 @@ const usePosts = (category: EPost) => {
 
     tagPostList,
     requestPostsByTag,
+
+    tempPosts,
+    requestTempPosts,
   };
 }
 

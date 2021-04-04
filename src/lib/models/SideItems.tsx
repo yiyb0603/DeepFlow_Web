@@ -53,7 +53,7 @@ export const sideItems: ISideItemsType[] = [
   {
     menuName: '임시저장',
     icon: <VscSaveAs className={ICON_CLASS} />,
-    link: '',
+    link: '/temp',
     mustToken: true,
   },
 ];

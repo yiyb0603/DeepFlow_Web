@@ -6,6 +6,11 @@ export const modifyReplyState = atom<IReplyModify | null>({
   default: null,
 });
 
+export const isShowReplyState = atom<boolean>({
+  key: 'isShowReplyState',
+  default: false,
+});
+
 export const replyContents = atom<string>({
   key: 'replyContents',
   default: '',

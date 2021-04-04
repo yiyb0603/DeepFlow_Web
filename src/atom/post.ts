@@ -18,7 +18,6 @@ export const questionListState = atom<IPost[]>({
   default: [] as IPost[],
 });
 
-// menu: recent post list state
 export const recentPostState = atom<IPost[]>({
   key: 'recentPostState',
   default: [] as IPost[],
@@ -26,6 +25,11 @@ export const recentPostState = atom<IPost[]>({
 
 export const popularPostState = atom<IPost[]>({
   key: 'popularPostState',
+  default: [] as IPost[],
+});
+
+export const tempPostState = atom<IPost[]>({
+  key: 'tempPostState',
   default: [] as IPost[],
 });
 

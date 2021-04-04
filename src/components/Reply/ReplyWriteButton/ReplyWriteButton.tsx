@@ -5,7 +5,7 @@ const style = require('./ReplyWriteButton.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface ReplyWriteButtonProps {
-  onChangeIsReplyWrite: () => void;
+  onChangeIsReplyWrite: (isReplyWrite: boolean) => void;
 }
 
 const ReplyWriteButton = ({
@@ -14,7 +14,7 @@ const ReplyWriteButton = ({
   return (
     <button
       className={cx('ReplyWriteButton')}
-      onClick={onChangeIsReplyWrite}
+      onClick={() => onChangeIsReplyWrite(true)}
     >
       답글 작성
     </button>

@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
@@ -23,6 +23,7 @@ export interface ItemProps {
   commentCount?: number;
   postTags?: string[];
   user?: IUser;
+  isTemp?: boolean;
 }
 
 const ListItem = ({
@@ -37,9 +38,12 @@ const ListItem = ({
   commentCount,
   postTags,
   user,
+  isTemp,
 }: ItemProps): JSX.Element => {
+  const postLink: string = useMemo(() => isTemp ? `/post-form/${idx}` : `/post/${idx}`, [idx, isTemp]);
+
   return (
-    <Link to={`/post/${idx}`} className={cx('ListItem')}>
+    <Link to={postLink} className={cx('ListItem')}>
       <div className={cx('ListItem-Contents')}>
         <div className={cx('ListItem-Contents-ImageWrap')}>
           <img

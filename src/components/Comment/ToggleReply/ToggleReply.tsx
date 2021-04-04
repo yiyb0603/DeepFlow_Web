@@ -1,13 +1,13 @@
 import { useCallback, useState } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { SetterOrUpdater, useRecoilState, useSetRecoilState } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { AiOutlineMinusSquare, AiOutlinePlusSquare } from 'react-icons/ai';
 import { IReply, IReplyModify } from 'types/reply.types';
+import { isShowReplyState, modifyReplyState, replyContents } from 'atom/reply';
+import usePageParam from 'hooks/util/usePageParam';
 import ReplyWriteButton from 'components/Reply/ReplyWriteButton';
 import ReplyFormContainer from 'containers/Reply/ReplyFormContainer';
-import { modifyReplyState, replyContents } from 'atom/reply';
-import usePageParam from 'hooks/util/usePageParam';
 import ReplyItem from 'components/Reply/ReplyItem';
 
 const style = require('./ToggleReply.scss');
@@ -15,32 +15,33 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 interface ToggleReplyProps {
   commentIdx: number;
-
-  isShowReplyState: {
-    isShowReply: boolean;
-    onChangeIsShowReply: () => void;
-  };
-
   replies: IReply[];
 }
 
 const ToggleReply = ({
   commentIdx,
-  isShowReplyState,
   replies,
 }: ToggleReplyProps): JSX.Element => {
-  const { isShowReply, onChangeIsShowReply } = isShowReplyState;
   const postIdx: number = usePageParam();
 
-  const setContents = useSetRecoilState<string>(replyContents);
-  const [modifyReply, setModifyReply] = useRecoilState<IReplyModify | null>(modifyReplyState);
-  
   const [isReplyWrite, setIsReplyWrite] = useState<boolean>(false);
+  const [modifyReply, setModifyReply] = useRecoilState<IReplyModify | null>(modifyReplyState);
+  const setContents: SetterOrUpdater<string> = useSetRecoilState<string>(replyContents);
+  const [isShowReply, setIsShowReply] = useRecoilState<boolean>(isShowReplyState);
 
-  const onChangeIsReplyWrite = useCallback((): void => {
-    setIsReplyWrite((prevReplyWrite: boolean) => !prevReplyWrite);
+  const onChangeIsShowReply = useCallback((): void => {
+    if (replies.length <= 0) {
+      return;
+    }
+
+    setIsShowReply((prevShowReply: boolean) => !prevShowReply);
+  }, [replies, setIsShowReply]);
+
+  const onChangeIsReplyWrite = useCallback((isReplyWrite: boolean): void => {
+    setIsReplyWrite(isReplyWrite);
+    setContents('');
     setModifyReply(null);
-  }, [setModifyReply]);
+  }, [setContents, setModifyReply]);
 
   const onClickModifyReply = useCallback((idx: number, contents: string): void => {
     setModifyReply({
