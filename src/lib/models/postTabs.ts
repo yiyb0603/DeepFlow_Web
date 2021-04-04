@@ -3,7 +3,7 @@ export interface IPostTab {
   route: string;
 }
 
-export const postTabs: IPostTab[] = [
+export const userPostTabs: IPostTab[] = [
   {
     name: '작성한 글',
     route: '?tab=0',

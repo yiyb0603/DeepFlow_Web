@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import LeftSidebarItem from './LeftSidebarItem';
 import { ISideItemsType, sideItems } from 'lib/models/sideItems';
+import { getMyInfo } from 'util/getMyInfo';
 
 const style = require('./LeftSidebar.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -13,14 +14,20 @@ const LeftSidebar = (): JSX.Element => {
         <div className={cx('LeftSidebar-Menus-Wrapper')}>
           {
             sideItems.map((item: ISideItemsType, idx: number) => {
-              const { link, menuName, icon } = item;
+              const { menuName, icon, link, mustToken } = item;
+
               return (
-                <LeftSidebarItem
-                  key={idx}
-                  link={link}
-                  menuName={menuName}
-                  icon={icon}
-                />
+                <>
+                {
+                  (!mustToken || getMyInfo()) &&
+                  <LeftSidebarItem
+                    key={idx}
+                    menuName={menuName}
+                    icon={icon}
+                    link={link}
+                  />
+                }
+                </>
               );
             })
           }

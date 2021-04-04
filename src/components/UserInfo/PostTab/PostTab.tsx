@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { EUserPost } from 'lib/enum/post';
-import { postTabs } from 'lib/models/postTabs';
+import { userPostTabs } from 'lib/models/postTabs';
 import SelectTab from 'components/Common/SelectTab';
 
 const style = require('./PostTab.scss');
@@ -19,7 +19,7 @@ const PostTab = ({
   return (
     <div className={cx('PostTab')}>
       {
-        postTabs.map(({ name, route }, idx: number) => (
+        userPostTabs.map(({ name, route }, idx: number) => (
           <SelectTab
             key={idx}
             name={name}

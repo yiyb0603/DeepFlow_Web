@@ -1,4 +1,4 @@
-import { VscHome } from 'react-icons/vsc';
+import { VscHome, VscSaveAs } from 'react-icons/vsc';
 import { FaStackOverflow } from 'react-icons/fa';
 import { MdCardMembership } from 'react-icons/md';
 import { HiOutlineSpeakerphone } from 'react-icons/hi';
@@ -9,6 +9,7 @@ export interface ISideItemsType {
   menuName: string;
   icon: JSX.Element;
   link: string;
+  mustToken?: boolean;
 }
 
 const ICON_CLASS: string = 'LeftSidebarItem-Icon';
@@ -47,5 +48,12 @@ export const sideItems: ISideItemsType[] = [
     menuName: 'About',
     icon: <IoIosInformationCircleOutline className={ICON_CLASS} />,
     link: '',
+  },
+
+  {
+    menuName: '임시저장',
+    icon: <VscSaveAs className={ICON_CLASS} />,
+    link: '',
+    mustToken: true,
   },
 ];
