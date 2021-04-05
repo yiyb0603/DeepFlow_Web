@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import { SERVER_URL } from 'config/config.json';
+import { refreshToken } from 'util/refreshToken';
 import { getToken } from './Token';
 
 export const customAxios: AxiosInstance = axios.create({
@@ -9,3 +10,5 @@ export const customAxios: AxiosInstance = axios.create({
     access_token: getToken(),
   },
 });
+
+customAxios.interceptors.request.use(refreshToken);

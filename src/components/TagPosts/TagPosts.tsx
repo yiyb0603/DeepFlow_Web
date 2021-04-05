@@ -19,7 +19,7 @@ const TagPosts = ({
 }: TagPostsProps): JSX.Element => {
   return (
     <div className={cx('TagPosts')}>
-      <TagInfo tagInfo={tagInfo} />
+      <TagInfo tagInfo={tagInfo} count={tagPostList.length} />
 
       <div className={cx('TagPosts-List')}>
         {

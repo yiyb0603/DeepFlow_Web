@@ -1,37 +1,35 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { History } from 'history';
-import SecureLS from 'secure-ls';
 import TagPosts from 'components/TagPosts';
 import usePosts from 'hooks/usePosts';
 import { EPost } from 'lib/enum/post';
-import { ITag } from 'types/tag.types';
+import useTag from 'hooks/useTag';
 
 const TagPostsContainer = (): JSX.Element => {
   const history: History = useHistory();
-  const ls: SecureLS = useMemo(() => new SecureLS({ encodingType: 'aes' }), []);
-  const tagInfo: ITag = useMemo(() => ls.get('tagInfo'), [ls]);
 
-  const {
-    tagPostList,
-    requestPostsByTag,
-  } = usePosts(EPost.QUESTION);
+  const { pageParam, tagInfo } = useTag();
+  const { tagPostList, requestPostsByTag } = usePosts(EPost.QUESTION);
   
   useEffect(() => {
-    if (!tagInfo) {
+    if (!pageParam.tag) {
       history.goBack();
     }
 
     requestPostsByTag();
-
-    return () => ls.remove('tagInfo');
-  }, [history, requestPostsByTag, tagInfo, ls]);
+  }, [history, requestPostsByTag, tagInfo, pageParam]);
 
   return (
-    <TagPosts
-      tagInfo={tagInfo}
-      tagPostList={tagPostList}
-    />
+    <>
+    {
+      tagInfo !== null &&
+      <TagPosts
+        tagInfo={tagInfo}
+        tagPostList={tagPostList}
+      />
+    }
+    </>
   );
 }
 

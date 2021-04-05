@@ -34,7 +34,7 @@ const UserInfo = ({
   handleNextPage,
   splitedPostList,
 }: UserInfoProps): JSX.Element => {
-  const { avatar, githubId, name, email, description, position, blog } = userInfo;
+  const { avatar, githubId, name, email, description, position, location, blog } = userInfo;
   const { userPostTab, onChangeUserPostTab } = userPostTabState;
 
   return (
@@ -46,6 +46,7 @@ const UserInfo = ({
         email={email}
         description={description}
         position={position}
+        location={location}
         blog={blog}
       />
 

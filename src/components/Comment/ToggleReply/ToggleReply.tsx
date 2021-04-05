@@ -61,7 +61,7 @@ const ToggleReply = ({
         {
           isShowReply ? <AiOutlineMinusSquare /> : <AiOutlinePlusSquare />
         }
-        <div className={cx('ToggleReply-Text')}>{replies.length}개의 답글</div>
+        <span className={cx('ToggleReply-Text')}>{replies.length}개의 답글</span>
       </div>
 
       {

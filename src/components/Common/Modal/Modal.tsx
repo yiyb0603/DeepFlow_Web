@@ -7,12 +7,16 @@ const style = require('./Modal.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface ModalProps {
+  width: string;
+  height: string;
   title: string;
   onChangeIsModal: () => void;
   children?: ReactNode;
 }
 
 const Modal = ({
+  width,
+  height,
   title,
   onChangeIsModal,
   children,
@@ -21,7 +25,7 @@ const Modal = ({
     <div className={cx('Modal')}>
       <div className={cx('Modal-Overlay')} onClick={onChangeIsModal}></div>
 
-      <div className={cx('Modal-Box')}>
+      <div className={cx('Modal-Box')} style={{ width, height }}>
         <div className={cx('Modal-Box-Top')}>
           <div className={cx('Modal-Box-Top-Title')}>{title}</div>
           <VscChromeClose

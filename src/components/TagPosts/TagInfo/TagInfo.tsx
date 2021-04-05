@@ -7,12 +7,14 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 interface TagInfoProps {
   tagInfo: ITag;
+  count: number;
 }
 
 const TagInfo = ({
   tagInfo,
+  count,
 }: TagInfoProps) => {
-  const { name, description, count } = tagInfo;
+  const { name, description } = tagInfo;
 
   return (
     <div className={cx('TagInfo')}>

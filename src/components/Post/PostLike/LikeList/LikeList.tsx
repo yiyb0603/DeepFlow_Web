@@ -17,7 +17,12 @@ const LikeList = ({
   onChangeIsModal,
 }: LikeListProps): JSX.Element => {
   return (
-    <Modal title='좋아요 목록' onChangeIsModal={onChangeIsModal}>
+    <Modal
+      width='25%'
+      height='50%'
+      title='좋아요 목록'
+      onChangeIsModal={onChangeIsModal}
+    >
       <div className={cx('LikeList')}>
         {
           likeList.map(({ idx, user, pressedAt }: ILike) => {

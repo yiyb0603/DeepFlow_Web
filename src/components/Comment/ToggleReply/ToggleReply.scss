@@ -1,16 +1,15 @@
 .ToggleReply {
-	display: flex;
-	display: -webkit-flex;
-	align-items: center;
+	display: inline-block;
 	color: var(--main);
 	margin: 0.5rem 0;
 
 	& > * {
 		font-size: var(--font-small);
 		cursor: pointer;
+		vertical-align: middle;
 	}
 
 	&-Text {
-		margin-left: 0.3rem;
+		margin-left: 0.2rem;
 	}
 }

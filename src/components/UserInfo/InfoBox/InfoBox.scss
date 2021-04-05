@@ -43,31 +43,36 @@
 				}
 			}
 
-			&-Description {
+			&-Info {
+				display: flex;
+				display: -webkit-flex;
+				align-items: center;
 				font-size: var(--font-small);
-			}
 
-			&-Position {
-				font-size: var(--font-small);
+				& > *:first-child {
+					margin-right: 0.2rem;
+				}
 			}
 		}
 	}
 
 	&-Right {
-		display: flex;
-		display: -webkit-flex;
-		flex: 1;
-		justify-content: space-between;
-		align-items: center;
+		&-Icons {
+			display: flex;
+			display: -webkit-flex;
+			flex: 1;
+			justify-content: space-between;
+			align-items: center;
 
-		& > * {
-			color: var(--contrast);
-			font-size: var(--font-biggest);
-			cursor: pointer;
+			& > * {
+				color: var(--contrast);
+				font-size: var(--font-biggest);
+				cursor: pointer;
 
-			&:hover {
-				opacity: 0.6;
-				color: var(--gray);
+				&:hover {
+					opacity: 0.6;
+					color: var(--gray);
+				}
 			}
 		}
 	}

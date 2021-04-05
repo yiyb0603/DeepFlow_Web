@@ -6,6 +6,12 @@ export interface ITagListResponse extends IResponse {
   },
 }
 
+export interface ITagResponse extends IResponse {
+  data: {
+    tag: ITag;
+  },
+}
+
 export interface ITag {
   name: string;
   description: string;
