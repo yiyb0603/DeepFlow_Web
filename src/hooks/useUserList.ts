@@ -1,13 +1,11 @@
-import { useRecoilState } from 'recoil';
-import { userListState } from 'atom/user';
+import { useCallback, useEffect, useState } from 'react';
 import { IUser, IUserListResponse } from 'types/user.types';
-import { useCallback, useEffect } from 'react';
 import { getUserList } from 'lib/api/user/user.api';
 import { EResponse } from 'lib/enum/response';
 import { getGenerations } from 'util/getGenerations';
 
 const useUserList = () => {
-  const [userList, setUserList] = useRecoilState<(IUser | IUser[])[]>(userListState);
+  const [userList, setUserList] = useState<(IUser | IUser[])[]>([]);
 
   const requestUserList = useCallback(async (): Promise<void> => {
     try {
@@ -31,10 +29,8 @@ const useUserList = () => {
   }, [setUserList]);
 
   useEffect(() => {
-    if (userList.length <= 0) {
-      requestUserList();
-    }
-  }, [userList, requestUserList]);
+    requestUserList();
+  }, [requestUserList]);
 
   return {
     userList,

@@ -70,6 +70,23 @@
 					align-items: center;
 					color: var(--contrast);
 
+					&-IdWrap {
+						display: flex;
+						display: -webkit-flex;
+						align-items: flex-end;
+						margin-bottom: 0.2rem;
+
+						&-Icon {
+							font-size: var(--font-normallest);
+							margin-right: 0.2rem;
+						}
+
+						&-Id {
+							font-size: var(--font-normal);
+							color: var(--lighterBlack);
+						}
+					}
+
 					&-Name {
 						font-size: var(--font-normal) !important;
 						margin-right: 0.375rem;

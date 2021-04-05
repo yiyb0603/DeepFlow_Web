@@ -6,15 +6,22 @@ const style = require('./InfoInput.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface InfoInputProps {
+  width?: string;
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
   icon: JSX.Element;
 }
 
-const InfoInput = ({ value, onChange, placeholder, icon }: InfoInputProps): JSX.Element => {
+const InfoInput = ({
+  width = '300px',
+  value,
+  onChange,
+  placeholder,
+  icon,
+}: InfoInputProps): JSX.Element => {
   return (
-    <div className={cx('InfoInput')}>
+    <div className={cx('InfoInput')} style={{ width }}>
       {icon}
       <input
         type='text'

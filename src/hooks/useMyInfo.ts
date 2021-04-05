@@ -31,6 +31,7 @@ const useMyInfo = () => {
   return {
     myInfo,
     setMyInfo,
+    requestMyInfo,
   };
 };
 

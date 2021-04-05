@@ -1,4 +1,5 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
+import { useRecoilState } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { AiOutlineGithub, AiOutlineHome } from 'react-icons/ai';
@@ -7,7 +8,8 @@ import { ImLocation2 } from 'react-icons/im';
 import { CgComment } from 'react-icons/cg';
 import { HiCode } from 'react-icons/hi';
 import ModifyButton from './ModifyButton';
-import ModifyInfoModal from './ModifyInfoModal';
+import ModifyInfoContainer from 'containers/ModifyInfo';
+import { modifyModalState } from 'atom/user';
 
 const style = require('./InfoBox.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -33,11 +35,11 @@ const InfoBox = ({
   location,
   blog,
 }: InfoBoxProps): JSX.Element => {
-  const [isModifyModal, setIsModifyModal] = useState<boolean>(false);
+  const [isModifyModal, setIsModifyModal] = useRecoilState<boolean>(modifyModalState);
 
   const onChangeIsModifyModal = useCallback((): void => {
     setIsModifyModal((prevIsModifyModal: boolean) => !prevIsModifyModal);
-  }, []);
+  }, [setIsModifyModal]);
 
   return (
     <div className={cx('InfoBox')}>
@@ -88,7 +90,7 @@ const InfoBox = ({
 
       {
         isModifyModal &&
-        <ModifyInfoModal onChangeIsModifyModal={onChangeIsModifyModal} />
+        <ModifyInfoContainer />
       }
     </div>
   );

@@ -1,11 +1,7 @@
 import { ChangeEvent } from 'react';
 import { EMajor } from 'lib/enum/majors';
-import { IRegisterRequest } from 'types/user.types';
 
-export default interface SignUpProps {
-  isLoading: boolean;
-  request: IRegisterRequest;
-
+export default interface ModifyInfoProps {
   nameState: {
     name: string;
     onChangeName: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -46,5 +42,6 @@ export default interface SignUpProps {
     onChangeMajor: (major: number) => void;
   };
 
-  requestRegister: () => Promise<void>;
-};
+  onChangeIsModifyModal: () => void;
+  requestModifyInfo: () => Promise<void>;
+}

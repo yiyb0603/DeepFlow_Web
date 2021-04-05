@@ -1,5 +1,4 @@
 .InfoInput {
-	width: 300px;
 	display: flex;
 	display: -webkit-flex;
 	align-items: center;
@@ -9,12 +8,16 @@
 	margin: 0.4rem 0;
 	color: var(--contrast);
 
+	& > *:first-child {
+		font-size: var(--font-normal);
+	}
+
 	&-Input {
 		flex: 1;
 		outline: none;
 		border: none;
 		background: none;
-		margin-left: 5px;
+		margin-left: 4px;
 
 		&::placeholder {
 			color: var(--gray);

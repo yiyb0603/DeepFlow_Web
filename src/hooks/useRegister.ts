@@ -20,8 +20,18 @@ const useRegister = () => {
   const [request, setRequest] = useRecoilState<IRegisterRequest>(requestRegisterState);
   const [isLoading, setIsLoading] = useRecoilState<boolean>(registerLoading);
 
+  const onChangeName = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
+    const { value } = e.target;
+
+    setRequest((request: IRegisterRequest) => ({
+      ...request,
+      name: value,
+    }));
+  }, [setRequest]);
+
   const onChangeEmail = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
+
     setRequest((request: IRegisterRequest) => ({
       ...request,
       email: value,
@@ -134,6 +144,7 @@ const useRegister = () => {
   return {
     isLoading,
     request,
+    onChangeName,
     onChangeEmail,
     onChangeDescription,
     onChangeLocation,

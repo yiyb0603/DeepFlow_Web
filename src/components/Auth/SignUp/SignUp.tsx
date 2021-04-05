@@ -1,23 +1,23 @@
-import { CSSProperties } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { Select } from 'antd';
 import { CgHello } from 'react-icons/cg';
 import { BiBuilding } from 'react-icons/bi';
-import { AiOutlineLink, AiOutlineMail } from 'react-icons/ai';
+import { AiOutlineLink, AiOutlineMail, AiOutlineGithub } from 'react-icons/ai';
 import { HiCode } from 'react-icons/hi';
-import { generations, IAuthOption, majors } from 'lib/models/authOption';
-import InfoInput from '../InfoInput';
+import { VscSymbolNamespace } from 'react-icons/vsc';
+import InfoInput from '../../Common/InfoInput';
 import RegisterSubmit from '../RegisterSubmit';
 import SignUpProps from './SignUp.props';
+import MajorSelect from 'components/Common/MajorSelect';
+import GenerationSelect from 'components/Common/GenerationSelect';
 
-const { Option } = Select;
 const style = require('./SignUp.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const SignUp = ({
   isLoading,
   request,
+  nameState,
   emailState,
   descriptionState,
   locationState,
@@ -27,10 +27,7 @@ const SignUp = ({
   majorState,
   requestRegister,
 }: SignUpProps) => {
-  const { avatar, name, githubId } = request;
-  const selectStyle: CSSProperties = {
-    width: '45%',
-  };
+  const { avatar, githubId } = request;
 
   return (
     <div className={cx('SignUp')}>
@@ -48,16 +45,20 @@ const SignUp = ({
 
               <div className={cx('SignUp-Contents-Top-RightWrap')}>
                 <div className={cx('SignUp-Contents-Top-RightWrap-NameWrap')}>
-                  <div className={cx('SignUp-Contents-Top-RightWrap-NameWrap-Name')}>
-                    이름: {name}
-                  </div>
-
-                  <div className={cx('SignUp-Contents-Top-RightWrap-NameWrap-GithubID')}>
-                    ({githubId})
+                  <div className={cx('SignUp-Contents-Top-RightWrap-NameWrap-IdWrap')}>
+                    <AiOutlineGithub className={cx('SignUp-Contents-Top-RightWrap-NameWrap-IdWrap-Icon')} />
+                    <div className={cx('SignUp-Contents-Top-RightWrap-NameWrap-IdWrap-Id')}>{githubId}</div>
                   </div>
                 </div>
 
                 <div className={cx('SignUp-Contents-Top-RightWrap-InputWrap')}>
+                  <InfoInput
+                    value={nameState.name}
+                    onChange={nameState.onChangeName}
+                    placeholder='이름을 입력하세요.'
+                    icon={<VscSymbolNamespace />}
+                  />
+
                   <InfoInput
                     value={emailState.email}
                     onChange={emailState.onChangeEmail}
@@ -97,34 +98,13 @@ const SignUp = ({
             </div>
 
             <div className={cx('SignUp-Contents-Bottom')}>
-              <Select
-                style={selectStyle}
-                defaultValue={1}
-                onChange={generationState.onChangeGeneration}
-              >
-                {
-                  generations.map((_: unknown, idx: number) => (
-                    <Option
-                      key={idx}
-                      value={idx + 1}
-                    >
-                      {idx + 1}기
-                    </Option>
-                  ))
-                }
-              </Select>
+              <GenerationSelect
+                generationState={generationState}
+              />
 
-              <Select
-                defaultValue={majors[0].value}
-                style={selectStyle}
-                onChange={majorState.onChangeMajor}
-              >
-                {
-                  majors.map(({ text, value }: IAuthOption, idx: number) => (
-                    <Option key={idx} value={value}>{text}</Option>
-                  ))
-                }
-              </Select>
+              <MajorSelect
+                majorState={majorState}
+              />
             </div>
             
             <div className={cx('SignUp-Contents-Submit')}>

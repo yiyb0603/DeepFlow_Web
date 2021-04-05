@@ -10,14 +10,16 @@
 	}
 
 	&-Box {
-		background-color: var(--white);
-		border-radius: 5px;
-		padding: 1rem;
 		position: fixed;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
 		z-index: 3;
+		background-color: var(--white);
+		border-radius: 5px;
+		padding: 1rem;
+		overflow-x: hidden;
+		overflow-y: auto;
 
 		&-Top {
 			display: flex;
@@ -25,11 +27,11 @@
 			justify-content: space-between;
 			align-items: center;
 			border-bottom: 0.5px solid var(--gray);
-			padding-bottom: 0.2rem;
+			padding-bottom: 0.4rem;
 			margin-bottom: 0.5rem;
 
 			&-Title {
-				font-size: var(--font-small);
+				font-size: var(--font-contents);
 				font-weight: 500;
 			}
 
