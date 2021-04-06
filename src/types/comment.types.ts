@@ -1,3 +1,4 @@
+import { ICommentEmoji } from './commentEmoji.types';
 import { IReply } from './reply.types';
 import { IResponse } from './Response';
 import { IUser } from './user.types';
@@ -9,6 +10,7 @@ export interface IComment {
   updatedAt: Date | string | null;
   user: IUser;
   replies: IReply[];
+  emojies: ICommentEmoji[];
 }
 
 export interface ICommentModify {

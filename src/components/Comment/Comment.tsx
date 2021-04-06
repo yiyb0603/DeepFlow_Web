@@ -32,7 +32,7 @@ const Comment = ({
       <div className={cx('Comment-List')}>
         {
           commentList.map((comment: IComment) => {
-            const { idx, contents, createdAt, updatedAt, user, replies } = comment;
+            const { idx, contents, createdAt, updatedAt, user, replies, emojies } = comment;
 
             return (
               <CommentItem
@@ -43,6 +43,7 @@ const Comment = ({
                 updatedAt={updatedAt}
                 user={user}
                 replies={replies}
+                emojies={emojies}
                 onModifyClick={onModifyClick}
                 requestDeleteComment={requestDeleteComment}
               />

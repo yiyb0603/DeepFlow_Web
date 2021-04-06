@@ -55,4 +55,11 @@
 		word-break: break-all;
 		white-space: pre-wrap;
 	}
+
+	&-Emojies {
+		display: flex;
+		display: -webkit-flex;
+		align-items: center;
+		margin-top: 0.5rem;
+	}
 }

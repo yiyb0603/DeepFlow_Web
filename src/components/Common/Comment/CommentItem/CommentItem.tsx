@@ -6,6 +6,9 @@ import { IToken, IUser } from 'types/user.types';
 import { getMyInfo } from 'util/getMyInfo';
 import ToggleReply from '../../../Comment/ToggleReply';
 import { IReply } from 'types/reply.types';
+import EmojiToggle from 'components/Emoji/EmojiToggle';
+import { ICommentEmoji } from 'types/commentEmoji.types';
+import EmojiItem from 'components/Emoji/EmojiItem';
 
 const style = require('./CommentItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -17,6 +20,7 @@ interface CommentItemProps {
   updatedAt: Date | string | null;
   user: IUser;
   replies?: IReply[];
+  emojies?: ICommentEmoji[];
   onModifyClick: (idx: number, contents: string) => void;
   requestDeleteComment: (commentIdx: number) => void;
 }
@@ -28,6 +32,7 @@ const CommentItem = ({
   updatedAt,
   user,
   replies,
+  emojies,
   onModifyClick,
   requestDeleteComment,
 }: CommentItemProps) => {
@@ -70,6 +75,28 @@ const CommentItem = ({
       </div>
 
       <div className={cx('CommentItem-Contents')}>{contents}</div>
+      <div className={cx('CommentItem-Emojies')}>
+        {
+          emojies && emojies.map(({
+            count,
+            emoji,
+            users,
+          }: ICommentEmoji, key: number) => (
+            <EmojiItem
+              key={key}
+              count={count}
+              emoji={emoji}
+              users={users}
+              commentIdx={idx}
+            />
+          ))
+        }
+        <EmojiToggle
+          commentIdx={idx}
+          emojies={emojies!}
+        />
+
+      </div>
       {
         replies &&
         <ToggleReply

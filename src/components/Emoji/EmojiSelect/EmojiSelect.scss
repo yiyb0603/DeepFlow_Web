@@ -1,0 +1,25 @@
+.EmojiSelect {
+	width: 180px;
+	height: 80px;
+	display: flex;
+	display: -webkit-flex;
+	flex-wrap: wrap;
+	align-items: center;
+	background-color: rgba(232, 232, 232, 0.8);
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: absolute;
+	top: -5.5rem;
+	border-radius: 10px;
+
+	&-Emoji {
+		font-size: var(--font-contents);
+		cursor: pointer;
+		margin-right: 0.4rem;
+		padding: 0.4rem;
+
+		&-Selected {
+			background-color: var(--gray);
+		}
+	}
+}

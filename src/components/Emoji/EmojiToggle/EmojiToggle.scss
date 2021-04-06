@@ -1,0 +1,11 @@
+.EmojiToggle {
+	position: relative;
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+
+	&-Toggle {
+		font-size: var(--font-normallest);
+		cursor: pointer;
+	}
+}
