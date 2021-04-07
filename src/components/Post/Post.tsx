@@ -4,6 +4,7 @@ import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
 import CommentContainer from 'containers/Comment';
 import LikeContainer from 'containers/Like';
 import { IPost } from 'types/post.types';
+import { getGithubAddress } from 'util/getGithubAddress';
 import PostTags from './PostTags';
 import PostUserInfo from './PostUserInfo';
 import Thumbnail from './Thumbnail';
@@ -19,7 +20,6 @@ interface PostProps {
 
 const Post = ({ post, requestDeletePost }: PostProps): JSX.Element => {
   const { idx, title, contents, thumbnail, postTags, createdAt, user } = post;
-  const userGithubAddress: string = `http://github.com/${user.githubId}`;
 
   return (
     <div className={cx('Post')}>
@@ -45,7 +45,7 @@ const Post = ({ post, requestDeletePost }: PostProps): JSX.Element => {
         name={user.name}
         description={user.description}
         blog={user.blog}
-        github={userGithubAddress}
+        github={getGithubAddress(user.githubId)}
         location={user.location}
       />
 

@@ -5,6 +5,7 @@ import { createRecommand, deleteRecommand, getRecommandsByUserIdx } from 'lib/ap
 import usePageParam from './util/usePageParam';
 import { EResponse } from 'lib/enum/response';
 import { IRecommandDto } from 'lib/api/userRecommand/userRecommand.dto';
+import { validateRecommand } from 'validation/recommand.validation';
 
 const useRecommand = () => {
   const userIdx: number = usePageParam();
@@ -31,6 +32,10 @@ const useRecommand = () => {
 
   const requestCreateRecommand = useCallback(async (): Promise<void> => {
     try {
+      if (!validateRecommand(reason)) {
+        return;
+      }
+      
       const recommandDto: IRecommandDto = {
         userIdx,
         reason,

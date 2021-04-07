@@ -63,7 +63,8 @@
 				border: 1px solid var(--contrast);
 				border-radius: 25px;
 				padding: 6px 10px;
-				color: var(--contrast);
+				background-color: var(--contrast);
+				color: var(--theme);
 				cursor: pointer;
 
 				&-Icon {
@@ -76,8 +77,8 @@
 				}
 
 				&:hover {
-					background-color: var(--contrast);
-					color: var(--theme);
+					background-color: var(--theme);
+					color: var(--contrast);
 				}
 			}
 

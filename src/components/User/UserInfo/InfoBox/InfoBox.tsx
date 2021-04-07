@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
@@ -10,11 +10,15 @@ import { HiCode } from 'react-icons/hi';
 import ModifyButton from './ModifyButton';
 import ModifyInfoContainer from 'containers/ModifyInfo';
 import { modifyModalState } from 'atom/user';
+import { getMyInfo } from 'util/getMyInfo';
+import { IToken } from 'types/user.types';
+import { getGithubAddress } from 'util/getGithubAddress';
 
 const style = require('./InfoBox.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface InfoBoxProps {
+  idx: number;
   avatar: string;
   name: string;
   githubId: string;
@@ -26,6 +30,7 @@ interface InfoBoxProps {
 }
 
 const InfoBox = ({
+  idx,
   avatar,
   name,
   githubId,
@@ -35,6 +40,7 @@ const InfoBox = ({
   location,
   blog,
 }: InfoBoxProps): JSX.Element => {
+  const myInfo: IToken = useMemo(() => getMyInfo(), []);
   const [isModifyModal, setIsModifyModal] = useRecoilState<boolean>(modifyModalState);
 
   const onChangeIsModifyModal = useCallback((): void => {
@@ -72,7 +78,7 @@ const InfoBox = ({
 
       <div className={cx('InfoBox-Right')}>
         <div className={cx('InfoBox-Right-Icons')}>
-          <a href={`https://github.com/${githubId}`} target='_blank' rel="noopener noreferrer">
+          <a href={getGithubAddress(githubId)} target='_blank' rel="noopener noreferrer">
             <AiOutlineGithub />
           </a>
 
@@ -85,7 +91,10 @@ const InfoBox = ({
           </a>
         </div>
         
-        <ModifyButton onClick={onChangeIsModifyModal} />
+        {
+          myInfo && myInfo.idx === idx &&
+          <ModifyButton onClick={onChangeIsModifyModal} />
+        }
       </div>
 
       {

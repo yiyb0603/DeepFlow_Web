@@ -33,7 +33,7 @@ const UserItem = ({
   return (
     <div className={cx('UserItem')}>
       {
-        canDelete && myInfo.idx === idx &&
+        canDelete && (myInfo && myInfo.idx === idx) &&
         <VscChromeClose
           className={cx('UserItem-Close')}
           onClick={onDelete}
