@@ -7,7 +7,7 @@ import { IPost } from 'types/post.types';
 import { CHUNK_COUNT } from 'constants/user';
 import { EUserPost } from 'lib/enum/post';
 import { groupingState } from 'converter/groupingState';
-import UserInfo from 'components/UserInfo';
+import UserInfo from 'components/User/UserInfo';
 import UserLoading from 'components/UserList/UserLoading';
 
 const UserContainer = (): JSX.Element => {

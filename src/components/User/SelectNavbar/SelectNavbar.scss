@@ -1,0 +1,12 @@
+.SelectNavbar {
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	margin-bottom: 1rem;
+
+	&-Item {
+		font-size: var(--font-small);
+		margin-right: 0.5rem;
+		cursor: pointer;
+	}
+}

@@ -1,4 +1,4 @@
-import ModifyInfoModal from 'components/UserInfo/InfoBox/ModifyInfoModal';
+import ModifyInfoModal from 'components/User/UserInfo/InfoBox/ModifyInfoModal';
 import { groupingState } from 'converter/groupingState';
 import useModifyInfo from 'hooks/useModifyInfo';
 

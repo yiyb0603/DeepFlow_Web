@@ -1,10 +1,10 @@
 import PageTemplate from 'components/Template/PageTemplate';
-import UserContainer from 'containers/User';
+import User from 'components/User';
 
 const UserInfoPage = () => {
   return (
     <PageTemplate>
-      <UserContainer />
+      <User />
     </PageTemplate>
   );
 }
