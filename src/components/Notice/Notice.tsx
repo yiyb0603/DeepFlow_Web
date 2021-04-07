@@ -3,7 +3,7 @@ import { ClassNamesFn } from 'classnames/types';
 import ListItem from 'components/Common/Post/ListItem';
 import { INotice } from 'types/notice.types';
 import Sample from 'assets/images/sample.png';
-import NoPosts from 'components/Common/NoPosts';
+import NoItems from 'components/Common/NoItems';
 import PageTitle from 'components/Common/PageTitle';
 
 const style = require('./Notice.scss');
@@ -31,7 +31,7 @@ const Notice = ({ noticeList }: NoticeProps): JSX.Element => {
               thumbnail={Sample}
             />
           )
-        }) : <NoPosts text={'공지사항이 없습니다.'} />
+        }) : <NoItems text={'공지사항이 없습니다.'} />
       }
     </div>
   );

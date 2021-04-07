@@ -1,8 +1,9 @@
-.NoPosts {
+.NoItems {
 	display: flex;
 	display: -webkit-flex;
 	flex-flow: column wrap;
 	align-items: center;
+	margin-top: 3rem;
 
 	&-Image {
 		width: 50%;

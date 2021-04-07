@@ -4,6 +4,7 @@ import { IPost } from 'types/post.types';
 import PageTitle from 'components/Common/PageTitle';
 import ListItem from 'components/Common/Post/ListItem';
 import PageNumberList, { PageNumberListProps } from 'components/Common/PageNumberList/PageNumberList';
+import NoItems from 'components/Common/NoItems';
 
 const style = require('./Temp.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -31,23 +32,26 @@ const Temp = ({
 
       <div className={cx('Temp-List')}>
         {
-          tempPosts.map((post: IPost) => (
+          tempPosts.length > 0 ? tempPosts.map((post: IPost) => (
             <ListItem
               key={post.idx}
               {...post}
             />
-          ))
+          )) : <NoItems text='임시저장글이 없습니다.' />
         }
       </div>
 
-      <PageNumberList
-        currentPage={currentPage}
-        onChangeCurrentPage={onChangeCurrentPage}
-        numberListPage={numberListPage}
-        handlePrevPage={handlePrevPage}
-        handleNextPage={handleNextPage}
-        pageList={pageList}
-      />
+      {
+        tempPosts.length > 0 &&
+        <PageNumberList
+          currentPage={currentPage}
+          onChangeCurrentPage={onChangeCurrentPage}
+          numberListPage={numberListPage}
+          handlePrevPage={handlePrevPage}
+          handleNextPage={handleNextPage}
+          pageList={pageList}
+        />
+      }
     </div>
   );
 };

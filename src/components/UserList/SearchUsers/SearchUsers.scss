@@ -1,0 +1,23 @@
+.SearchUsers {
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	outline: none;
+	background: none;
+	border: 1px solid var(--gray);
+	font-size: var(--font-small);
+	padding: 0.5rem;
+
+	&:focus-within {
+		border: 1px solid var(--main);
+	}
+
+	&-Icon {
+		font-size: var(--font-normal);
+		margin-right: 0.3rem;
+	}
+
+	&-Search {
+		all: unset;
+	}
+}

@@ -9,7 +9,7 @@ import { IPost } from 'types/post.types';
 import GridItem from 'components/Common/Post/GridItem';
 import ListItem from 'components/Common/Post/ListItem';
 import RecentPostTitle from './RecentPostTitle';
-import NoPosts from 'components/Common/NoPosts';
+import NoItems from 'components/Common/NoItems';
 
 const style = require('./RecentPost.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -80,7 +80,7 @@ const RecentPost = ({ recentPosts }: RecentPostProps): JSX.Element => {
               }
             </>
           );
-        }) : <NoPosts text={'최근 올라온 글이 없습니다.'} imageWidth={'30%'} />
+        }) : <NoItems text={'최근 올라온 글이 없습니다.'} imageWidth={'30%'} />
       }
       </div>
     </div>

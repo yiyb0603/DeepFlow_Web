@@ -1,13 +1,13 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import NoPosts from 'components/Common/NoPosts';
-import ListItem from 'components/Common/Post/ListItem';
 import { EUserPost } from 'lib/enum/post';
 import { IPost } from 'types/post.types';
 import { IUser } from 'types/user.types';
 import InfoBox from './InfoBox';
 import PostPageControl from './PostPageControl';
 import PostTab from './PostTab';
+import NoItems from 'components/Common/NoItems';
+import ListItem from 'components/Common/Post/ListItem';
 
 const style = require('./UserInfo.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -57,7 +57,7 @@ const UserInfo = ({
               {...post}
             />
           );
-        }) : <NoPosts text='작성한 글 목록이 없습니다.' />
+        }) : <NoItems text='작성한 글 목록이 없습니다.' />
       }
       </div>
 
