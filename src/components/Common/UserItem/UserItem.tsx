@@ -1,7 +1,10 @@
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import { VscChromeClose } from 'react-icons/vsc';
 import { calculateTime } from 'lib/TimeCounting';
+import { getMyInfo } from 'util/getMyInfo';
 
 const style = require('./UserItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -10,19 +13,32 @@ interface UserItemProps {
   idx: number;
   avatar: string;
   name: string;
-  description: string;
-  joinedAt: Date | string;
+  text: string;
+  date: Date | string;
+  canDelete?: boolean;
+  onDelete?: () => Promise<void>;
 }
 
 const UserItem = ({
   idx,
   avatar,
   name,
-  description,
-  joinedAt,
+  text,
+  date,
+  canDelete,
+  onDelete,
 }: UserItemProps): JSX.Element => {
+  const myInfo = useMemo(() => getMyInfo(), []);
+
   return (
-    <Link to={`/user/${idx}`} className={cx('UserItem')}>
+    <div className={cx('UserItem')}>
+      {
+        canDelete && myInfo.idx === idx &&
+        <VscChromeClose
+          className={cx('UserItem-Close')}
+          onClick={onDelete}
+        />
+      }
       <div className={cx('UserItem-Left')}>
         <div className={cx('UserItem-Left-ContentsWrap')}>
           <img
@@ -32,14 +48,14 @@ const UserItem = ({
           />
 
           <div className={cx('UserItem-Left-ContentsWrap-NameWrap')}>
-            <div className={cx('UserItem-Left-ContentsWrap-NameWrap-Name')}>{name}</div>
-            <div className={cx('UserItem-Left-ContentsWrap-NameWrap-Description')}>{description}</div>
+            <Link to={`/user/${idx}`} className={cx('UserItem-Left-ContentsWrap-NameWrap-Name')}>{name}</Link>
+            <div className={cx('UserItem-Left-ContentsWrap-NameWrap-Description')}>{text}</div>
           </div>
         </div>
       </div>
 
-      <div className={cx('UserItem-JoinedAt')}>{calculateTime(joinedAt)}</div>
-    </Link>
+      <div className={cx('UserItem-JoinedAt')}>{calculateTime(date)}</div>
+    </div>
   );
 };
 

@@ -3,7 +3,7 @@ import { ClassNamesFn } from 'classnames/types';
 import PageTitle from 'components/Common/PageTitle';
 import { IUser } from 'types/user.types';
 import Generation from './Generation';
-import UserItem from './UserItem';
+import UserItem from '../Common/UserItem';
 
 const style = require('./UserList.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -38,8 +38,8 @@ const UserList = ({ userList }: UserListProps): JSX.Element => {
                         idx={idx}
                         avatar={avatar}
                         name={name}
-                        description={description}
-                        joinedAt={joinedAt}
+                        text={description}
+                        date={joinedAt}
                       />
                     );
                   })

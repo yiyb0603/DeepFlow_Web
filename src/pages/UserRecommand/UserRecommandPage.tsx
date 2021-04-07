@@ -1,15 +1,15 @@
 import PageTemplate from 'components/Template/PageTemplate';
 import UserTemplate from 'components/User';
-import UserContainer from 'containers/User';
+import UserRecommandContainer from 'containers/UserRecommand';
 
-const UserInfoPage = (): JSX.Element => {
+const UserRecommandPage = (): JSX.Element => {
   return (
     <PageTemplate>
       <UserTemplate>
-        <UserContainer />
+        <UserRecommandContainer />
       </UserTemplate>
     </PageTemplate>
   );
 }
 
-export default UserInfoPage;
+export default UserRecommandPage;
