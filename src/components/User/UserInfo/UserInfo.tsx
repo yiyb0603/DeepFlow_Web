@@ -34,21 +34,12 @@ const UserInfo = ({
   handleNextPage,
   splitedPostList,
 }: UserInfoProps): JSX.Element => {
-  const { idx, avatar, githubId, name, email, description, position, location, blog } = userInfo;
   const { userPostTab, onChangeUserPostTab } = userPostTabState;
 
   return (
     <div className={cx('UserInfo')}>
       <InfoBox
-        idx={idx}
-        avatar={avatar}
-        githubId={githubId}
-        name={name}
-        email={email}
-        description={description}
-        position={position}
-        location={location}
-        blog={blog}
+        {...userInfo}
       />
 
       <PostTab

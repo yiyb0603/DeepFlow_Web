@@ -1,8 +1,10 @@
-import { MouseEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { MouseEvent, useCallback, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { History } from 'history';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { IoLogoGithub } from 'react-icons/io';
+import { ReactComponent as LogoImage } from 'assets/icons/TextLogo.svg';
 import { GITHUB_AUTH_URL } from 'constants/auth';
 import { IUser } from 'types/user.types';
 import ToggleMenu from '../MobileSidebar/ToggleMenu';
@@ -16,7 +18,12 @@ interface HeaderProps {
 }
 
 const Header = ({ myInfo, handleLogout }: HeaderProps): JSX.Element => {
+  const history: History = useHistory();
   const [isSideShow, setIsSideShow] = useState<boolean>(false);
+
+  const handlePushToHome = useCallback((): void => {
+    history.push('/');
+  }, [history]);
 
   return (
     <div className={cx('Header')}>
@@ -24,9 +31,9 @@ const Header = ({ myInfo, handleLogout }: HeaderProps): JSX.Element => {
         <ToggleMenu isSideShow={isSideShow} setIsSideShow={setIsSideShow} />
 
         <div className={cx('Header-Contents-LogoWrap')}>
-          <img
-            src='https://jenyasegeda.com/images/logo.svg'
-            alt='logo'
+          <LogoImage
+            className={cx('Header-Contents-LogoWrap-Logo')}
+            onClick={handlePushToHome}
           />
         </div>
 

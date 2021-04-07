@@ -33,31 +33,33 @@ const PostLike = ({
   }, [isModal, likeList]);
 
   return (
-    <div className={cx('PostLike')}>
-      <div className={cx('PostLike-Left')}>
-        <LikeSubmit
-          isPressed={isPressed}
-          likeCount={likeList.length}
-          handlePressLike={handlePressLike}
-        />
+    <>
+      <div className={cx('PostLike')}>
+        <div className={cx('PostLike-Left')}>
+          <LikeSubmit
+            isPressed={isPressed}
+            likeCount={likeList.length}
+            handlePressLike={handlePressLike}
+          />
 
-        <div className={cx('PostLike-Left-SubText')}>
-          글이 마음에 들으셨나요?
+          <div className={cx('PostLike-Left-SubText')}>
+            글이 마음에 들으셨나요?
+          </div>
         </div>
-      </div>
 
-      <div className={cx('PostLike-Right')}>
-        <CgUserList
-          className={cx('PostLike-Right-List')}
-          onClick={onChangeIsModal}
-        />
+        <div className={cx('PostLike-Right')}>
+          <CgUserList
+            className={cx('PostLike-Right-List')}
+            onClick={onChangeIsModal}
+          />
+        </div>
       </div>
 
       {
         isModal &&
         <LikeList likeList={likeList} onChangeIsModal={onChangeIsModal} />
       }
-    </div>
+    </>
   );
 };
 

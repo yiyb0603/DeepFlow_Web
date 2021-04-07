@@ -9,6 +9,7 @@ import { IReply } from 'types/reply.types';
 import EmojiToggle from 'components/Emoji/EmojiToggle';
 import { ICommentEmoji } from 'types/commentEmoji.types';
 import EmojiItem from 'components/Emoji/EmojiItem';
+import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
 
 const style = require('./CommentItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -74,7 +75,9 @@ const CommentItem = ({
         }
       </div>
 
-      <div className={cx('CommentItem-Contents')}>{contents}</div>
+      <div className={cx('CommentItem-Contents')}>
+        <MarkdownRender contents={contents} />
+      </div>
       <div className={cx('CommentItem-Emojies')}>
         {
           emojies && emojies.map(({

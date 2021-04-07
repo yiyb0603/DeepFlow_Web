@@ -16,6 +16,11 @@ interface IPalette {
 	lighterBlack: string;
 	black: string;
 	snow: string;
+	bronze: string;
+	silver: string;
+	platinum: string;
+	diamond: string;
+	master: string;
 };
 
 export const palette: IPalette = {
@@ -24,7 +29,7 @@ export const palette: IPalette = {
 	yellow: '#faef18',
 	green: '#3fb950',
 	lighterGreen: '#1bcc8c',
-	main: '#3A47EC',
+	main: '#3370ff',
 	skyBlue: '#00a8ff',
 	navy: '#000080',
 	purple: '#9621d9',
@@ -36,4 +41,9 @@ export const palette: IPalette = {
 	lighterBlack: '#495057',
 	black: '#000000',
 	snow: '#dff9fb',
+	bronze: '#cd7f32',
+	silver: '#c0c0c0',
+	platinum: '#44ad9a',
+	diamond: '#659abf',
+	master: '#fa465b',
 };

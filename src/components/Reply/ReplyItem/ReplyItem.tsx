@@ -9,6 +9,7 @@ import ReplyFormContainer from 'containers/Reply/ReplyFormContainer';
 import { modifyReplyState } from 'atom/reply';
 import useReply from 'hooks/useReply';
 import { IReplyModify } from 'types/reply.types';
+import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
 
 const style = require('./ReplyItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -74,7 +75,9 @@ const ReplyItem = ({
         }
       </div>
 
-      <div className={cx('ReplyItem-Contents')}>{contents}</div>
+      <div className={cx('ReplyItem-Contents')}>
+        <MarkdownRender contents={contents} />
+      </div>
       {
         modifyObject !== null &&
         modifyObject.idx === idx &&

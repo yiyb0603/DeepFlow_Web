@@ -1,0 +1,21 @@
+.RankProfile {
+	position: relative;
+
+	&-Profile {
+		width: 130px;
+		height: 130px;
+		object-fit: cover;
+		border-radius: 50%;
+	}
+
+	&-Rank {
+		padding: 0.4rem 0.8rem;
+		border-radius: 50%;
+		position: absolute;
+		bottom: 10%;
+		right: 10%;
+		transform: translate(5%, 5%);
+		font-size: var(--font-small);
+		font-weight: bold;
+	}
+}

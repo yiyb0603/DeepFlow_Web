@@ -3,7 +3,7 @@ import { ClassNamesFn } from 'classnames/types';
 import PageTitle from 'components/Common/PageTitle';
 import { IUser } from 'types/user.types';
 import Generation from './Generation';
-import UserItem from '../Common/UserItem';
+import UserItem from '../Common/User/UserItem';
 
 const style = require('./UserList.scss');
 const cx: ClassNamesFn = classNames.bind(style);

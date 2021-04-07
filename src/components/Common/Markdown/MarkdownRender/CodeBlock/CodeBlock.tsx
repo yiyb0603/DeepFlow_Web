@@ -9,7 +9,7 @@ interface ICodeBlockProps {
 const CodeBlock = ({ language, value }: ICodeBlockProps): JSX.Element => {
 	return (
 		<SyntaxHighlighter language={language} style={styles.prism}>
-			{value}
+			{value || ''}
 		</SyntaxHighlighter>
 	);
 };

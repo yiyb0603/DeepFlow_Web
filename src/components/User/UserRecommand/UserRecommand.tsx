@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { IUserRecommand } from 'types/userRecommand.types';
-import UserItem from 'components/Common/UserItem';
+import UserItem from 'components/Common/User/UserItem';
 import RecommandFormContainer from 'containers/UserRecommand/RecommandForm';
 
 const style = require('./UserRecommand.scss');

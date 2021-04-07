@@ -7,12 +7,14 @@ import { MdEmail } from 'react-icons/md';
 import { ImLocation2 } from 'react-icons/im';
 import { CgComment } from 'react-icons/cg';
 import { HiCode } from 'react-icons/hi';
-import ModifyButton from './ModifyButton';
-import ModifyInfoContainer from 'containers/ModifyInfo';
 import { modifyModalState } from 'atom/user';
 import { getMyInfo } from 'util/getMyInfo';
 import { IToken } from 'types/user.types';
 import { getGithubAddress } from 'util/getGithubAddress';
+import { ERank } from 'lib/enum/rank';
+import ModifyButton from './ModifyButton';
+import ModifyInfoContainer from 'containers/ModifyInfo';
+import RankProfile from 'components/Common/User/RankProfile';
 
 const style = require('./InfoBox.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -27,6 +29,7 @@ interface InfoBoxProps {
   position: string;
   location: string;
   blog: string;
+  rank: ERank;
 }
 
 const InfoBox = ({
@@ -39,6 +42,7 @@ const InfoBox = ({
   position,
   location,
   blog,
+  rank,
 }: InfoBoxProps): JSX.Element => {
   const myInfo: IToken = useMemo(() => getMyInfo(), []);
   const [isModifyModal, setIsModifyModal] = useRecoilState<boolean>(modifyModalState);
@@ -50,10 +54,9 @@ const InfoBox = ({
   return (
     <div className={cx('InfoBox')}>
       <div className={cx('InfoBox-Left')}>
-        <img
-          src={avatar}
-          className={cx('InfoBox-Left-Profile')}
-          alt='avatar'
+        <RankProfile
+          avatar={avatar}
+          rank={rank}
         />
 
         <div className={cx('InfoBox-Left-Contents')}>
