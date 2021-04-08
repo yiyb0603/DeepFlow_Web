@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { ISideItemsType, sideItems } from 'lib/models/SideItems';
+import { ISideItemsType, sideItems } from 'lib/models/sideItems';
 import MobileSidebarItem from './MobileSidebarItem';
 
 const style = require('./MobileSidebar.scss');
