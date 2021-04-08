@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import usePosts from 'hooks/usePosts';
 import Temp from 'components/Temp';
+import { groupingState } from 'converter/groupingState';
 
 const TempContainer = (): JSX.Element => {
   const {
@@ -21,12 +22,11 @@ const TempContainer = (): JSX.Element => {
   return (
     <Temp
       tempPosts={tempPosts}
-      currentPage={currentPage}
-      onChangeCurrentPage={onChangeCurrentPage}
+      currentPageState={groupingState('currentPage', currentPage, onChangeCurrentPage)}
       handlePrevPage={handlePrevPage}
       handleNextPage={handleNextPage}
       numberListPage={numberListPage}
-      pageList={splitedNumberList}
+      splitedNumberList={splitedNumberList}
     />
   );
 }

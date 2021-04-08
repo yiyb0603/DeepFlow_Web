@@ -5,7 +5,7 @@ import { ClassNamesFn } from 'classnames/types';
 const style = require('./PageNumberList.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-export interface PageNumberListProps {
+interface PageNumberListProps {
   currentPage: number;
   onChangeCurrentPage: (page: number) => void;
 

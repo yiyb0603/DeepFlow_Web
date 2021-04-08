@@ -11,6 +11,7 @@ import TagsPage from 'pages/Tags';
 import TagPostsPage from 'pages/TagPosts';
 import TempPage from 'pages/Temp';
 import UserRecommandPage from 'pages/UserRecommand';
+import SearchPostsPage from 'pages/SearchPosts';
 
 const Routes = (): JSX.Element => {
   return (
@@ -21,6 +22,7 @@ const Routes = (): JSX.Element => {
       <Route exact path='/post-form' component={PostFormPage} />
       <Route exact path='/post-form/:idx' component={PostFormPage} />
       <Route exact path='/post/:idx' component={PostPage} />
+      <Route exact path='/search-posts' component={SearchPostsPage} />
       <Route exact path='/users' component={UserListPage} />
       <Route exact path='/user/:idx' component={UserInfoPage} />
       <Route exact path='/user-recommand/:idx' component={UserRecommandPage} />

@@ -52,6 +52,12 @@ export const getUserPosts = async (userIdx: number, type: EUserPost): Promise<IP
   return data;
 }
 
+export const getPostsBySearch = async (keyword: string, category: EPost): Promise<IPostListResponse> => {
+  const url: string = `/posts/search?keyword=${keyword}&category=${category}`;
+  const { data } = await customAxios.get(url);
+  return data;
+}
+
 export const getRecentPosts = async (count: number): Promise<IRecentPostListResponse> => {
   const url: string = `/posts/recent?count=${count}`;
   const { data } = await customAxios.get(url);

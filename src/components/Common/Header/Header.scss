@@ -64,6 +64,11 @@
 			display: -webkit-flex;
 			align-items: center;
 
+			&-SearchIcon {
+				font-size: var(--font-medium);
+				cursor: pointer;
+			}
+
 			&-Login {
 				display: flex;
 				display: -webkit-flex;
@@ -71,6 +76,7 @@
 				border-radius: 25px;
 				padding: 6px 10px;
 				background-color: var(--contrast);
+				margin: 0 0.625rem;
 				color: var(--theme);
 				cursor: pointer;
 
@@ -93,7 +99,6 @@
 				width: 45px;
 				height: 45px;
 				border-radius: 50%;
-				margin-left: 0.625rem;
 				cursor: pointer;
 			}
 		}

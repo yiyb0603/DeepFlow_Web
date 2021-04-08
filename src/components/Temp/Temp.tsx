@@ -3,26 +3,27 @@ import { ClassNamesFn } from 'classnames/types';
 import { IPost } from 'types/post.types';
 import PageTitle from 'components/Common/PageTitle';
 import ListItem from 'components/Common/Post/ListItem';
-import PageNumberList, { PageNumberListProps } from 'components/Common/PageNumberList/PageNumberList';
+import PageNumberList from 'components/Common/PageNumberList';
 import NoItems from 'components/Common/NoItems';
+import { IPagination } from 'types/pagination.types';
 
 const style = require('./Temp.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface TempProps extends PageNumberListProps {
+interface TempProps extends IPagination {
   tempPosts: IPost[];
-  pageList: number[][];
 }
 
 const Temp = ({
   tempPosts,
-  currentPage,
-  onChangeCurrentPage,
+  currentPageState,
   numberListPage,
   handlePrevPage,
   handleNextPage,
-  pageList,
+  splitedNumberList,
 }: TempProps): JSX.Element => {
+  const { currentPage, onChangeCurrentPage } = currentPageState;
+
   return (
     <div className={cx('Temp')}>
       <PageTitle
@@ -49,7 +50,7 @@ const Temp = ({
           numberListPage={numberListPage}
           handlePrevPage={handlePrevPage}
           handleNextPage={handleNextPage}
-          pageList={pageList}
+          pageList={splitedNumberList}
         />
       }
     </div>

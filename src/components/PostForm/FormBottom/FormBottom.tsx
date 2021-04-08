@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import PostButton from 'components/Common/Post/PostButton';
 import { EPost } from 'lib/enum/post';
-import SelectCategory from '../SelectCategory';
+import CategorySelect from '../../Common/Post/CategorySelect';
 
 const style = require('./FormBottom.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -20,7 +20,7 @@ const FormBottom = ({
 }: FormBottomProps): JSX.Element => {
   return (
     <div className={cx('FormBottom')}>
-      <SelectCategory onChangeCategory={onChangeCategory} />
+      <CategorySelect onChangeCategory={onChangeCategory} />
 
       <div className={cx('FormBottom-Wrapper')}>
         <PostButton

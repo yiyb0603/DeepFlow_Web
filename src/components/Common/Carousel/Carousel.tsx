@@ -1,7 +1,6 @@
-import SwiperCore from 'swiper';
+import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styled from 'styled-components';
-import { Navigation, Pagination } from 'swiper';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
@@ -12,7 +11,8 @@ interface CarouselProps {
 }
 
 const Carousel = ({ images }: CarouselProps): JSX.Element => {
-  SwiperCore.use([Navigation, Pagination]);
+  SwiperCore.use([Navigation, Pagination, Autoplay]);
+  const FIVE_SECONDS: number = 5000;
   
   return (
     <Swiper
@@ -20,6 +20,7 @@ const Carousel = ({ images }: CarouselProps): JSX.Element => {
       slidesPerView={1}
       pagination={{ clickable: true }}
       loop={true}
+      autoplay={{ delay: FIVE_SECONDS }}
       navigation={true}
     >
       {

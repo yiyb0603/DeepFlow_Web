@@ -3,24 +3,15 @@ import { ClassNamesFn } from 'classnames/types';
 import PageNumberList from 'components/Common/PageNumberList';
 import PageTitle from 'components/Common/PageTitle';
 import ListItem from 'components/Common/Post/ListItem';
+import { IPagination } from 'types/pagination.types';
 import { IPost } from 'types/post.types';
 import AskButton from './AskButton';
 
 const style = require('./Questions.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface QuestionsProps {
+interface QuestionsProps extends IPagination {
   questionList: IPost[];
-  
-  currentPageState: {
-    currentPage: number;
-    onChangeCurrentPage: (page: number) => void;
-  };
-
-  handlePrevPage: () => void;
-  handleNextPage: () => void;
-  numberListPage: number;
-  splitedNumberList: number[][];
 }
 
 const Questions = ({

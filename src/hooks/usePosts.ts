@@ -1,56 +1,29 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import { useHistory, useParams } from 'react-router-dom';
-import { History } from 'history';
+import { useParams } from 'react-router-dom';
 import { getPostsByCategory, getPostsByTag, getTempPosts } from 'lib/api/post/post.api';
 import { EPost } from 'lib/enum/post';
 import { EResponse } from 'lib/enum/response';
 import { questionListState, tagPostState, tempPostState } from 'atom/post';
 import { IPost } from 'types/post.types';
-import useQueryString from './util/useQueryString';
-import { paginationNumber } from 'util/paginationNumber';
+import usePagination from './util/usePagination';
 
 const usePosts = (category?: EPost) => {
   const { tag }: { tag: string } = useParams();
-  const query = useQueryString();
-  const page: number = useMemo(() => isNaN(Number(query.page)) ? 1 : Number(query.page), [query]);
-
-  const [currentPage, setCurrentPage] = useState<number>(page);
-  const [totalPage, setTotalPage] = useState<number>(1);
-
   const [questionList, setQuestionList] = useRecoilState<IPost[]>(questionListState);
   const [tagPostList, setTagPostList] = useRecoilState<IPost[]>(tagPostState);
   const [tempPosts, setTempPosts] = useRecoilState<IPost[]>(tempPostState);
 
-  const [numberListPage, setNumberListPage] = useState<number>(Math.ceil(currentPage / 5) || 1);
-
-  const history: History = useHistory();
-  const splitedNumberList: number[][] = useMemo(() => paginationNumber(totalPage), [totalPage]);
-
-  const onChangeCurrentPage = useCallback((page: number): void => {
-    if (currentPage !== page) {
-      history.push(`?page=${page}`);
-      setCurrentPage(page);
-    }
-  }, [currentPage, history, setCurrentPage]);
-
-  const handlePrevPage = useCallback((): void => {
-    if (numberListPage === 1) {
-      setNumberListPage(splitedNumberList.length);
-      return;
-    }
-
-    setNumberListPage((prevListPage: number) => prevListPage - 1);
-  }, [numberListPage, splitedNumberList]);
-
-  const handleNextPage = useCallback((): void => {
-    if (numberListPage === splitedNumberList.length) {
-      setNumberListPage(1);
-      return;
-    }
-
-    setNumberListPage((prevListPage: number) => prevListPage + 1);
-  }, [numberListPage, splitedNumberList]);
+  const {
+    totalPage,
+    setTotalPage,
+    currentPage,
+    onChangeCurrentPage,
+    handlePrevPage,
+    handleNextPage,
+    numberListPage,
+    splitedNumberList,
+  } = usePagination();
 
   const requestPostList = useCallback(async () => {
     try {
@@ -63,7 +36,7 @@ const usePosts = (category?: EPost) => {
     } catch (error) {
       console.log(error);
     }
-  }, [category, currentPage, setQuestionList]);
+  }, [category, currentPage, setQuestionList, setTotalPage]);
 
   const requestTempPosts = useCallback(async (): Promise<void> => {
     try {
@@ -88,11 +61,7 @@ const usePosts = (category?: EPost) => {
     } catch (error) {
       console.log(error);
     }
-  }, [category, setTagPostList, tag]);
-
-  useEffect(() => {
-    return () => setTotalPage(1);
-  }, []);
+  }, [category, setTagPostList, setTotalPage, tag]);
 
   return {
     questionList,

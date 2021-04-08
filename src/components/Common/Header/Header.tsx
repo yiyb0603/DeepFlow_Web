@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { History } from 'history';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import { AiOutlineSearch } from 'react-icons/ai';
 import { IoLogoGithub } from 'react-icons/io';
 import { ReactComponent as LogoImage } from 'assets/icons/TextLogo.svg';
 import { GITHUB_AUTH_URL } from 'constants/auth';
@@ -21,8 +22,8 @@ const Header = ({ myInfo, handleLogout }: HeaderProps): JSX.Element => {
   const history: History = useHistory();
   const [isSideShow, setIsSideShow] = useState<boolean>(false);
 
-  const handlePushToHome = useCallback((): void => {
-    history.push('/');
+  const handlePushToPage = useCallback((url: string): void => {
+    history.push(url);
   }, [history]);
 
   return (
@@ -33,11 +34,16 @@ const Header = ({ myInfo, handleLogout }: HeaderProps): JSX.Element => {
         <div className={cx('Header-Contents-LogoWrap')}>
           <LogoImage
             className={cx('Header-Contents-LogoWrap-Logo')}
-            onClick={handlePushToHome}
+            onClick={() => handlePushToPage('/')}
           />
         </div>
 
         <div className={cx('Header-Contents-RightWrap')}>
+          <AiOutlineSearch
+            className={cx('Header-Contents-RightWrap-SearchIcon')}
+            onClick={() => handlePushToPage('/search-posts')}
+          />
+
           <a
             href={GITHUB_AUTH_URL}
             className={cx('Header-Contents-RightWrap-Login')}

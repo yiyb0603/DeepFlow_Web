@@ -1,16 +1,17 @@
 import { CSSProperties } from 'react';
 import { Select } from 'antd';
 import { EPost } from 'lib/enum/post';
+import './CategorySelect.scss';
 
 const { Option } = Select;
 
-interface SelectCategoryProps {
+interface CategorySelectProps {
   onChangeCategory?: (category: EPost) => void;
 }
 
-const SelectCategory = ({
-  onChangeCategory
-}: SelectCategoryProps): JSX.Element => {
+const CategorySelect = ({
+  onChangeCategory,
+}: CategorySelectProps): JSX.Element => {
   const { QUESTION, POST } = EPost;
 
   const selectStyle: CSSProperties = {
@@ -29,4 +30,4 @@ const SelectCategory = ({
   );
 };
 
-export default SelectCategory;
+export default CategorySelect;
