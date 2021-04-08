@@ -1,18 +1,56 @@
 import { useCallback, ChangeEvent } from 'react';
-import { deleteReply } from 'lib/api/reply/reply.api';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { isShowReplyState, modifyReplyState, replyContents } from 'atom/reply';
+import { IReplyDto } from 'lib/api/reply/reply.dto';
 import { EResponse } from 'lib/enum/response';
+import { createReply, deleteReply, modifyReply } from 'lib/api/reply/reply.api';
+import { IReplyModify } from 'types/reply.types';
 import useComment from './useComment';
-import { useRecoilState } from 'recoil';
-import { replyContents } from 'atom/reply';
+import usePageParam from './util/usePageParam';
+import { validateReply } from 'validation/reply.validation';
 
-const useReply = () => {
+const useReply = (commentIdx: number) => {
   const { requestCommentList } = useComment();
+  const postIdx: number = usePageParam();
+
   const [contents, setContents] = useRecoilState<string>(replyContents);
+  const setIsShowReply = useSetRecoilState<boolean>(isShowReplyState);
+  const [modifyObject, setModifyObject] = useRecoilState<IReplyModify | null>(modifyReplyState);
 
   const onChangeContents = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setContents(value);
   }, [setContents]);
+
+  const requestOfferReply = useCallback(async (): Promise<void> => {
+    try {
+      if (!validateReply(contents)) {
+        return;
+      }
+
+      const replyDto: IReplyDto = {
+        contents,
+        commentIdx,
+        postIdx,
+      }
+
+      if (modifyObject !== null) {
+        const { status } = await modifyReply(modifyObject.idx, replyDto);
+
+        if (status === EResponse.OK) {
+          setModifyObject(null);
+        }
+      } else {
+        await createReply(replyDto);
+      }
+
+      await requestCommentList();
+      setContents('');
+      setIsShowReply(true);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [commentIdx, contents, modifyObject, postIdx, requestCommentList, setContents, setIsShowReply, setModifyObject]);
 
   const requestDeleteReply = useCallback(async (replyIdx: number): Promise<void> => {
     try {
@@ -31,6 +69,7 @@ const useReply = () => {
     setContents,
     onChangeContents,
     
+    requestOfferReply,
     requestDeleteReply,
   };
 }

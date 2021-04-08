@@ -1,6 +1,6 @@
 import { IPostDto } from 'lib/api/post/post.dto';
 import { errorToast } from 'lib/Toast';
-import { MAX_TAG_LENGTH } from 'constants/post';
+import { MAX_INTRODUCTION_LENGTH, MAX_TAG_LENGTH, MAX_TITLE_LENGTH } from 'constants/post';
 import { isEmpty } from 'util/isEmpty';
 import { isNullOrUndefined } from 'util/isNullOrUndefined';
 
@@ -14,6 +14,16 @@ export const validatePost = (request: IPostDto): boolean => {
 
   if (isNullOrUndefined(thumbnail) || isEmpty(thumbnail)) {
     errorToast('썸네일을 추가해주세요.');
+    return false;
+  }
+
+  if (title.length > MAX_TITLE_LENGTH) {
+    errorToast('제목은 최대 50자까지 가능합니다.');
+    return false;
+  }
+
+  if (introduction.length > MAX_INTRODUCTION_LENGTH) {
+    errorToast('소개는 최대 150자까지 가능합니다.');
     return false;
   }
 

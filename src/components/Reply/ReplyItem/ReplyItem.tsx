@@ -35,7 +35,7 @@ const ReplyItem = ({
   onClickModifyReply,
   onChangeIsReplyWrite,
 }: ReplyItemProps): JSX.Element => {
-  const { requestDeleteReply } = useReply();
+  const { requestDeleteReply } = useReply(commentIdx);
   const myInfo: IToken = useMemo(() => getMyInfo(), []);
   const modifyObject = useRecoilValue<IReplyModify | null>(modifyReplyState);
 

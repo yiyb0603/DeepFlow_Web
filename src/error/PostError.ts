@@ -24,4 +24,18 @@ export default class PostError extends CustomError {
         return;
     }
   }
+
+  public postFormError(): void {
+    const { status, message } = this;
+
+    switch (status) {
+      case ErrorStatus.VALIDATE:
+        errorToast('검증 오류입니다.')
+        return;
+
+      default:
+        errorToast(message);
+        return;
+    }
+  }
 }
