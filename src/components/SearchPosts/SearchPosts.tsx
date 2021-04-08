@@ -26,7 +26,6 @@ interface SearchPostsProps extends IPagination {
 
   searchPosts: IPost[];
   onKeydownKeyword: (e: KeyboardEvent<HTMLInputElement>) => void;
-  requestSearchPosts: () => Promise<void>;
 }
 
 const SearchPosts = ({
@@ -39,7 +38,6 @@ const SearchPosts = ({
   handlePrevPage,
   handleNextPage,
   splitedNumberList,
-  requestSearchPosts,
 }: SearchPostsProps): JSX.Element => {
   const { currentPage, onChangeCurrentPage } = currentPageState;
 
@@ -54,7 +52,6 @@ const SearchPosts = ({
         onKeydownKeyword={onKeydownKeyword}
         keywordState={keywordState}
         categoryState={categoryState}
-        requestSearchPosts={requestSearchPosts}
       />
 
       <div className={cx('SearchPosts')}>
