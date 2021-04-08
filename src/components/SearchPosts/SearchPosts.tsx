@@ -8,6 +8,7 @@ import PageNumberList from 'components/Common/PageNumberList';
 import PageTitle from 'components/Common/PageTitle';
 import ListItem from 'components/Common/Post/ListItem';
 import SearchBar from './SearchBar';
+import NoItems from 'components/Common/NoItems';
 
 const style = require('./SearchPosts.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -25,6 +26,7 @@ interface SearchPostsProps extends IPagination {
 
   searchPosts: IPost[];
   onKeydownKeyword: (e: KeyboardEvent<HTMLInputElement>) => void;
+  requestSearchPosts: () => Promise<void>;
 }
 
 const SearchPosts = ({
@@ -37,6 +39,7 @@ const SearchPosts = ({
   handlePrevPage,
   handleNextPage,
   splitedNumberList,
+  requestSearchPosts,
 }: SearchPostsProps): JSX.Element => {
   const { currentPage, onChangeCurrentPage } = currentPageState;
 
@@ -51,16 +54,17 @@ const SearchPosts = ({
         onKeydownKeyword={onKeydownKeyword}
         keywordState={keywordState}
         categoryState={categoryState}
+        requestSearchPosts={requestSearchPosts}
       />
 
       <div className={cx('SearchPosts')}>
         {
-          searchPosts.map((post: IPost) => (
+          searchPosts.length > 0 ? searchPosts.map((post: IPost) => (
             <ListItem
               key={post.idx}
               {...post}
             />
-          ))
+          )) : <NoItems text='검색한 글이 없습니다.' />
         }
       </div>
 
