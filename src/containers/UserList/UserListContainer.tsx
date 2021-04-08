@@ -16,8 +16,12 @@ const UserListContainer = (): JSX.Element => {
   )}, [keyword, userList]);
 
   const filteredUsers: (IUser[])[] = useMemo(() => {
-    return filteredUsersByKeyword.filter((users) => users!.length > 0).map((user) => user!);
-  }, [filteredUsersByKeyword]);
+    if (keyword.length > 0) {
+      return filteredUsersByKeyword.filter((users) => users!.length > 0).map((user) => user!);
+    } else {
+      return filteredUsersByKeyword.map((user) => user!);
+    }
+  }, [filteredUsersByKeyword, keyword.length]);
 
   const onChangeKeyword = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
