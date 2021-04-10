@@ -33,38 +33,13 @@
 			}
 		}
 
-		&-SearchWrap {
-			display: flex;
-			display: -webkit-flex;
-			align-items: flex-end;
-			border-bottom: 1px solid var(--contrast);
-			padding: 8px 5px;
-
-			&-Icon {
-				margin-right: 8px;
-				color: var(--contrast);
-				font-size: var(--font-contents);
-			}
-
-			&-Input {
-				outline: none;
-				border: none;
-				background-color: var(--theme);
-				font-size: var(--font-default);
-				color: var(--contrast);
-
-				&::placeholder {
-					color: var(--contrast);
-				}
-			}
-		}
-
 		&-RightWrap {
 			display: flex;
 			display: -webkit-flex;
 			align-items: center;
 
 			&-SearchIcon {
+				color: var(--contrast);
 				font-size: var(--font-medium);
 				cursor: pointer;
 			}

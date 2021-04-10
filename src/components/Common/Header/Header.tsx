@@ -5,10 +5,14 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { IoLogoGithub } from 'react-icons/io';
-import { ReactComponent as LogoImage } from 'assets/icons/TextLogo.svg';
+import WhiteThemeLogo from 'assets/icons/TextBlackLogo.svg';
+import BlackThemeLogo from 'assets/icons/TextWhiteLogo.svg';
 import { GITHUB_AUTH_URL } from 'constants/auth';
 import { IUser } from 'types/user.types';
 import ToggleMenu from '../MobileSidebar/ToggleMenu';
+import { useRecoilValue } from 'recoil';
+import { themeState } from 'atom/theme';
+import { ETheme } from 'lib/enum/theme';
 
 const style = require('./Header.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -21,6 +25,8 @@ interface HeaderProps {
 const Header = ({ myInfo, handleLogout }: HeaderProps): JSX.Element => {
   const history: History = useHistory();
   const [isSideShow, setIsSideShow] = useState<boolean>(false);
+  
+  const theme: ETheme = useRecoilValue<ETheme>(themeState);
 
   const handlePushToPage = useCallback((url: string): void => {
     history.push(url);
@@ -32,7 +38,9 @@ const Header = ({ myInfo, handleLogout }: HeaderProps): JSX.Element => {
         <ToggleMenu isSideShow={isSideShow} setIsSideShow={setIsSideShow} />
 
         <div className={cx('Header-Contents-LogoWrap')}>
-          <LogoImage
+          <img
+            src={theme === ETheme.DARK ? BlackThemeLogo : WhiteThemeLogo}
+            alt='logo'
             className={cx('Header-Contents-LogoWrap-Logo')}
             onClick={() => handlePushToPage('/')}
           />
