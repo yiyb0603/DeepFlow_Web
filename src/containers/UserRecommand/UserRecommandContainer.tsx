@@ -1,19 +1,25 @@
-import { useEffect } from 'react';
-import UserRecommand from 'components/User/UserRecommand';
 import useRecommand from 'hooks/useRecommand';
+import UserRecommand from 'components/User/UserRecommand';
 
 const UserRecommandContainer = (): JSX.Element => {
-  const { userRecommands, requestRecommandList, requestDeleteRecommand } = useRecommand();
-
-  useEffect(() => {
-    requestRecommandList();
-  }, [requestRecommandList]);
+  const {
+    userInfo,
+    userRecommands,
+    requestDeleteRecommand,
+  } = useRecommand();
 
   return (
-    <UserRecommand
-      userRecommands={userRecommands}
-      requestDeleteRecommand={requestDeleteRecommand}
-    />
+    <>
+    {
+      userInfo === null ? <></>
+      :
+      <UserRecommand
+        userInfo={userInfo!}
+        userRecommands={userRecommands}
+        requestDeleteRecommand={requestDeleteRecommand}
+      />
+    }
+    </>
   );
 }
 

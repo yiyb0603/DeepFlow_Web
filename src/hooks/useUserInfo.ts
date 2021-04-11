@@ -62,6 +62,7 @@ const useUserInfo = () => {
     userPostList,
     userPostTab,
     setUserPostTab,
+    requestUserInfo,
     renderUserInfo,
   };
 }

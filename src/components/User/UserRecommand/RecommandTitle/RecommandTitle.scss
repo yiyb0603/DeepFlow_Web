@@ -1,0 +1,10 @@
+.RecommandTitle {
+	margin-bottom: 0.5rem;
+	font-size: var(--font-normal);
+	color: var(--gray);
+
+	&-UserName {
+		color: var(--contrast);
+		font-weight: bold;
+	}
+}

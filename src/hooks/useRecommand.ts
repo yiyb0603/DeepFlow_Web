@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { userRecommandListState } from 'atom/userRecommand';
 import { createRecommand, deleteRecommand, getRecommandsByUserIdx } from 'lib/api/userRecommand/userRecommand.api';
@@ -6,9 +6,11 @@ import usePageParam from './util/usePageParam';
 import { EResponse } from 'lib/enum/response';
 import { IRecommandDto } from 'lib/api/userRecommand/userRecommand.dto';
 import { validateRecommand } from 'validation/recommand.validation';
+import useUserInfo from './useUserInfo';
 
 const useRecommand = () => {
   const userIdx: number = usePageParam();
+  const { userInfo, requestUserInfo } = useUserInfo();
 
   const [reason, setReason] = useState<string>('');
   const [userRecommands, setUserRecommands] = useRecoilState(userRecommandListState);
@@ -64,14 +66,19 @@ const useRecommand = () => {
     }
   }, [requestRecommandList]);
 
+  useEffect(() => {
+    requestUserInfo();
+    requestRecommandList();
+  }, [requestRecommandList, requestUserInfo]);
+
   return {
+    userInfo,
     reason,
     onChangeReason,
     requestCreateRecommand,
     requestDeleteRecommand,
-
+    
     userRecommands,
-    requestRecommandList,
   };
 }
 
