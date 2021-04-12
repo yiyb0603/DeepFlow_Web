@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent } from 'react';
+import { memo, ChangeEvent, KeyboardEvent } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { EPost } from 'lib/enum/post';
@@ -25,6 +25,7 @@ interface SearchPostsProps extends IPagination {
   };
 
   searchPosts: IPost[];
+  handlePushToSearch: (keyword: string, category: EPost) => void;
   onKeydownKeyword: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
 
@@ -32,6 +33,7 @@ const SearchPosts = ({
   keywordState,
   categoryState,
   searchPosts,
+  handlePushToSearch,
   onKeydownKeyword,
   currentPageState,
   numberListPage,
@@ -49,6 +51,7 @@ const SearchPosts = ({
       />
 
       <SearchBar
+        handlePushToSearch={handlePushToSearch}
         onKeydownKeyword={onKeydownKeyword}
         keywordState={keywordState}
         categoryState={categoryState}
@@ -80,4 +83,4 @@ const SearchPosts = ({
   );
 };
 
-export default SearchPosts;
+export default memo(SearchPosts);

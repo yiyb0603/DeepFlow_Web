@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import SearchPosts from 'components/SearchPosts';
 import { groupingState } from 'converter/groupingState';
 import useSearchPosts from 'hooks/useSearchPosts';
@@ -9,6 +10,7 @@ const SearchPostsContainer = (): JSX.Element => {
     onKeydownKeyword,
     category,
     onChangeCategory,
+    handlePushToSearch,
     searchPosts,
     currentPage,
     onChangeCurrentPage,
@@ -28,9 +30,10 @@ const SearchPostsContainer = (): JSX.Element => {
       numberListPage={numberListPage}
       splitedNumberList={splitedNumberList}
       searchPosts={searchPosts}
+      handlePushToSearch={handlePushToSearch}
       onKeydownKeyword={onKeydownKeyword}
     />
   );
 }
 
-export default SearchPostsContainer;
+export default memo(SearchPostsContainer);

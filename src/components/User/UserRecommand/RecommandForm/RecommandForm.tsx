@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 
@@ -39,4 +39,4 @@ const RecommandForm = ({
   );
 };
 
-export default RecommandForm;
+export default memo(RecommandForm);

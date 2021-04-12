@@ -1,29 +1,24 @@
+import { memo, ReactNode } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { ISearchKeyword } from 'types/search.types';
-import HistoryItem from './HistoryItem';
-import { useRecoilValue } from 'recoil';
-import { searchKeywordState } from 'atom/search';
+import ClearHistory from './ClearHistory';
 
 const style = require('./SearchHistory.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-const SearchHistory = (): JSX.Element => {
-  const searchKeywords: ISearchKeyword[] = useRecoilValue<ISearchKeyword[]>(searchKeywordState);
+interface SearchHistoryProps {
+  children?: ReactNode;
+}
 
+const SearchHistory = ({
+  children,
+}: SearchHistoryProps): JSX.Element => {
   return (
     <div className={cx('SearchHistory')}>
-      {
-        Array.isArray(searchKeywords) && searchKeywords.map(({ idx, keyword }) => (
-          <HistoryItem
-            key={idx}
-            idx={idx}
-            keyword={keyword}
-          />
-        ))
-      }
+      {children}
+      <ClearHistory />
     </div>
   );
 };
 
-export default SearchHistory;
+export default memo(SearchHistory);

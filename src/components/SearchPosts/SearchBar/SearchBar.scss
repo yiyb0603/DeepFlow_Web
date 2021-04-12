@@ -33,7 +33,9 @@
 
 			&-Input {
 				width: 100%;
-				all: unset;
+				outline: none;
+				background: none;
+				border: none;
 				font-size: var(--font-normal);
 			}
 		}

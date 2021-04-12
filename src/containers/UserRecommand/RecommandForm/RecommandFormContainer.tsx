@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import RecommandForm from 'components/User/UserRecommand/RecommandForm';
 import { groupingState } from 'converter/groupingState';
 import useRecommand from 'hooks/useRecommand';
@@ -13,4 +14,4 @@ const RecommandFormContainer = (): JSX.Element => {
   );
 }
 
-export default RecommandFormContainer;
+export default memo(RecommandFormContainer);

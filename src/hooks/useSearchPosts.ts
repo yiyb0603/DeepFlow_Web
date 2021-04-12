@@ -1,6 +1,8 @@
-import { ChangeEvent, KeyboardEvent, useCallback, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useCallback, useEffect, useState } from 'react';
 import { SetterOrUpdater, useRecoilState, useSetRecoilState } from 'recoil';
-import { searchKeywordState, showSearchHistoryState } from 'atom/search';
+import { useHistory } from 'react-router-dom';
+import { History } from 'history';
+import { searchCategoryState, searchKeywordListState, searchKeywordState, showSearchHistoryState } from 'atom/search';
 import { customTrim } from 'converter/customTrim';
 import { getPostsBySearch } from 'lib/api/post/post.api';
 import { EPost } from 'lib/enum/post';
@@ -20,17 +22,19 @@ const useSearchPosts = () => {
     numberListPage,
     splitedNumberList,
   } = usePagination();
+  const history: History = useHistory();
 
-  const [keyword, setKeyword] = useState<string>('');
-  const [category, setCategory] = useState<EPost>(EPost.QUESTION);
   const [searchPosts, setSearchPosts] = useState<IPost[]>([]);
 
+  const [keyword, setKeyword] = useRecoilState<string>(searchKeywordState);
+  const [category, setCategory] = useRecoilState<EPost>(searchCategoryState);
   const setShowHistory: SetterOrUpdater<boolean> = useSetRecoilState<boolean>(showSearchHistoryState);
-  const [searchKeywords, setSearchKeywords] = useRecoilState<ISearchKeyword[]>(searchKeywordState);
+  const [searchKeywords, setSearchKeywords] = useRecoilState<ISearchKeyword[]>(searchKeywordListState);
 
-  const handleSaveKeywords = useCallback((): void => {
+  const handleSaveKeywords = useCallback((keyword: string, category: EPost): void => {
     const nextData: ISearchKeyword = {
       idx: searchKeywords.length > 0 ? searchKeywords[searchKeywords.length - 1].idx + 1 : 0,
+      category,
       keyword,
     };
 
@@ -38,15 +42,16 @@ const useSearchPosts = () => {
     
     setSearchKeywords(concatData);
     setStorage('keywords', JSON.stringify(concatData));
-  }, [keyword, searchKeywords, setSearchKeywords]);
+  }, [searchKeywords, setSearchKeywords]);
 
-  const requestSearchPosts = useCallback(async (): Promise<void> => {
+  const requestSearchPosts = useCallback(async (keyword: string, category: EPost): Promise<void> => {
     try {
       if (!customTrim(keyword)) {
         return;
       }
 
-      handleSaveKeywords();
+      handleSaveKeywords(keyword, category);
+
       const { status, data: { totalPage, posts } } = await getPostsBySearch(keyword, category);
 
       if (status === EResponse.OK) {
@@ -57,21 +62,39 @@ const useSearchPosts = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [category, handleSaveKeywords, keyword, setShowHistory, setTotalPage]);
+  }, [handleSaveKeywords, setShowHistory, setTotalPage]);
+
+  const handlePushToSearch = useCallback((keyword: string, category: EPost): void => {
+    history.push(`?keyword=${keyword}&category=${category}`);
+    setKeyword(keyword);
+    setCategory(category);
+    requestSearchPosts(keyword, category);
+  }, [history, requestSearchPosts, setCategory, setKeyword]);
 
   const onChangeKeyword = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
     setKeyword(value);
-  }, []);
+  }, [setKeyword]);
 
-  const onKeydownKeyword = useCallback(({ key }: KeyboardEvent<HTMLInputElement>): void => {
+  const onKeydownKeyword = useCallback((e: KeyboardEvent<HTMLInputElement>): void => {
+    const { key } = e;
     if (key === 'Enter') {
-      requestSearchPosts();
+      handlePushToSearch(keyword, category);
     }
-  }, [requestSearchPosts]);
+  }, [category, keyword, handlePushToSearch]);
 
   const onChangeCategory = useCallback((category: EPost): void => {
     setCategory(category);
+  }, [setCategory]);
+
+  useEffect(() => {
+    requestSearchPosts(keyword, category);
+
+    return () => {
+      setKeyword('');
+      setCategory(EPost.QUESTION);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {
@@ -81,6 +104,8 @@ const useSearchPosts = () => {
 
     category,
     onChangeCategory,
+
+    handlePushToSearch,
 
     searchPosts,
     currentPage,
