@@ -35,6 +35,7 @@ const UserRecommand = (): JSX.Element => {
                   name={user.name}
                   avatar={user.avatar}
                   text={reason}
+                  position={user.position}
                   date={recommandAt}
                   canDelete={true}
                   onDelete={() => requestDeleteRecommand(idx)}

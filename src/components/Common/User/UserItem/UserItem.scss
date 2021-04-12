@@ -36,17 +36,28 @@
 			}
 
 			&-NameWrap {
-				&-Name {
-					font-size: var(--font-contents);
-					font-weight: bold;
-				}
+				&-Wrap {
+					display: flex;
+					display: -webkit-flex;
+					align-items: center;
 
-				&-Description {
-					max-width: 100%;
-					white-space: nowrap;
-					text-overflow: ellipsis;
-					overflow: hidden;
-					font-size: var(--font-smallest);
+					&-Name {
+						font-size: var(--font-contents);
+						font-weight: bold;
+						margin-right: 0.5rem;
+					}
+
+					&-Position {
+						margin-top: 0.25rem;
+					}
+
+					&-Description {
+						max-width: 100%;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+						overflow: hidden;
+						font-size: var(--font-smallest);
+					}
 				}
 			}
 		}

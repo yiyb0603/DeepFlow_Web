@@ -14,6 +14,7 @@ interface UserItemProps {
   avatar: string;
   name: string;
   text: string;
+  position: string;
   date: Date | string;
   canDelete?: boolean;
   onDelete?: () => Promise<void>;
@@ -24,6 +25,7 @@ const UserItem = ({
   avatar,
   name,
   text,
+  position,
   date,
   canDelete,
   onDelete,
@@ -48,7 +50,16 @@ const UserItem = ({
           />
 
           <div className={cx('UserItem-Left-ContentsWrap-NameWrap')}>
-            <Link to={`/user/${idx}`} className={cx('UserItem-Left-ContentsWrap-NameWrap-Name')}>{name}</Link>
+            <div className={cx('UserItem-Left-ContentsWrap-NameWrap-Wrap')}>
+              <Link
+                to={`/user/${idx}`}
+                className={cx('UserItem-Left-ContentsWrap-NameWrap-Wrap-Name')}
+              >
+                {name}
+              </Link>
+
+              <div className={cx('UserItem-Left-ContentsWrap-NameWrap-Wrap-Position')}>{position}</div>
+            </div>
             <div className={cx('UserItem-Left-ContentsWrap-NameWrap-Description')}>{text}</div>
           </div>
         </div>

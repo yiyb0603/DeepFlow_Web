@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { ReactComponent as NoPost } from 'assets/images/no-post.svg';
+import NoPost from 'assets/images/no-post.svg';
 
 const style = require('./NoItems.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -17,7 +17,9 @@ const NoItems = ({
 }: NoItemsProps): JSX.Element => {
   return (
     <div className={cx('NoItems')}>
-      <NoPost
+      <img
+        src={NoPost}
+        alt='noPost'
         className={cx('NoItems-Image')}
         style={{ width: imageWidth }}
       />
