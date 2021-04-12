@@ -8,8 +8,8 @@ import { EView } from 'lib/enum/theme';
 import { IPost } from 'types/post.types';
 import GridItem from 'components/Common/Post/GridItem';
 import ListItem from 'components/Common/Post/ListItem';
-import RecentPostTitle from './RecentPostTitle';
 import NoItems from 'components/Common/NoItems';
+import SectionTitle from '../SectionTitle';
 
 const style = require('./RecentPost.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -36,25 +36,24 @@ const RecentPost = ({ recentPosts }: RecentPostProps): JSX.Element => {
 
   return (
     <div className={cx('RecentPost')}>
-      <div className={cx('RecentPost-Top')}>
-        <RecentPostTitle />
-
-        <div className={cx('RecentPost-Top-Select')}>
+      <SectionTitle title='최근 올라온 질문글'>
+        <div className={cx('RecentPost-Select')}>
           <AiOutlineUnorderedList
-            className={cx('RecentPost-Top-Select-Item', {
-              'RecentPost-Top-Select-Item-Current': viewMode === LIST,
+            className={cx('RecentPost-Select-Item', {
+              'RecentPost-Select-Item-Current': viewMode === LIST,
             })}
             onClick={() => onChangeViewMode(LIST)}
           />
           
           <BsFillGrid3X3GapFill
-            className={cx('RecentPost-Top-Select-Item', {
-              'RecentPost-Top-Select-Item-Current': viewMode === GRID,
+            className={cx('RecentPost-Select-Item', {
+              'RecentPost-Select-Item-Current': viewMode === GRID,
             })}
             onClick={() => onChangeViewMode(GRID)}
           />
         </div>
-      </div>
+      </SectionTitle>
+
       <div className={cx('RecentPost-List')} style={flexStyle}>
       {
         recentPosts.length > 0 ? recentPosts.map((post: IPost) => {

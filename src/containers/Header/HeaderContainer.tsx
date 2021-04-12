@@ -1,25 +1,9 @@
-import { useCallback, MouseEvent, memo } from 'react';
-import { useHistory } from 'react-router';
-import { History } from 'history';
-import useMyInfo from 'hooks/useMyInfo';
-import { removeCookie } from 'lib/Cookie';
-import { successToast } from 'lib/Toast';
+import { memo } from 'react';
+import useHeader from 'hooks/useHeader';
 import Header from 'components/Common/Header';
 
 const HeaderContainer = (): JSX.Element => {
-  const history: History = useHistory();
-  const { myInfo, setMyInfo } = useMyInfo();
-
-  const handleLogout = useCallback((e: MouseEvent<HTMLHyperlinkElementUtils>): void => {
-    if (myInfo) {
-      e.preventDefault();
-      e.stopPropagation();
-      setMyInfo(null);
-      removeCookie('access_token');
-      successToast('로그아웃 되었습니다.');
-      history.push('/');
-    }
-  }, [history, myInfo, setMyInfo]);
+  const { myInfo, handleLogout } = useHeader();
 
   return (
     <Header

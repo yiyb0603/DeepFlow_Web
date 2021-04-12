@@ -17,10 +17,21 @@ const ModifyInfoContainer = (): JSX.Element => {
     requestModifyInfo,
   } = useModifyInfo();
 
-  const { name, email, location, position, description, major, blog, generation } = modifyInfo;
+  const {
+    avatar,
+    name,
+    email,
+    location,
+    position,
+    description,
+    major,
+    blog,
+    generation,
+  } = modifyInfo;
   
   return (
     <ModifyInfoModal
+      avatar={avatar}
       nameState={groupingState('name', name, onChangeName)}
       emailState={groupingState('email', email, onChangeEmail)}
       descriptionState={groupingState('description', description, onChangeDescription)}

@@ -16,6 +16,7 @@ const style = require('./ModifyInfoModal.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const ModifyInfoModal = ({
+  avatar,
   nameState,
   emailState,
   descriptionState,
@@ -38,9 +39,9 @@ const ModifyInfoModal = ({
         <div className={cx('ModifyInfoModal-Center')}>
           <div className={cx('ModifyInfoModal-Center-LeftContents')}>
             <img
-              src='https://avatars.githubusercontent.com/u/50941453?s=400&u=0a72313c7abfa455f6270ac7b3d4d3bcb8ee1be9&v=4'
+              src={avatar}
               className={cx('ModifyInfoModal-Center-LeftContents-ProfileImage')}
-              alt='imageaaa'
+              alt='profile'
             />
           </div>
 

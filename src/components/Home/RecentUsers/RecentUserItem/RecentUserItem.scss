@@ -1,0 +1,43 @@
+.RecentUserItem {
+	width: 32%;
+	height: 92px;
+	max-height: 92px;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-between;
+	align-items: center;
+	border: 1px solid var(--lighterGray);
+	border-radius: 5px;
+	padding: 0.6rem;
+
+	&-Left {
+		display: flex;
+		display: -webkit-flex;
+		align-items: center;
+
+		&-Avatar {
+			height: 75px;
+			border-radius: 50%;
+			object-fit: cover;
+			margin-right: 0.8rem;
+		}
+
+		&-Info {
+			&-Name {
+				font-size: var(--font-contents);
+				font-weight: 500;
+			}
+
+			&-Position {
+				color: var(--gray);
+				font-weight: 500;
+			}
+		}
+	}
+
+	&-Recommand {
+		font-size: var(--font-bigger);
+		color: var(--gray);
+		cursor: pointer;
+	}
+}

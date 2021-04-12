@@ -2,6 +2,7 @@ import { ChangeEvent } from 'react';
 import { EMajor } from 'lib/enum/majors';
 
 export default interface ModifyInfoProps {
+  avatar: string;
   nameState: {
     name: string;
     onChangeName: (e: ChangeEvent<HTMLInputElement>) => void;
