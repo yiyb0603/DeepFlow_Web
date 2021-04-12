@@ -7,8 +7,9 @@ import { IReply, IReplyModify } from 'types/reply.types';
 import { isShowReplyState, modifyReplyState, replyContents } from 'atom/reply';
 import usePageParam from 'hooks/util/usePageParam';
 import ReplyWriteButton from 'components/Reply/ReplyWriteButton';
-import ReplyFormContainer from 'containers/Reply/ReplyFormContainer';
 import ReplyItem from 'components/Reply/ReplyItem';
+import { EComment } from 'lib/enum/comment';
+import CommentForm from 'components/Common/Comment/CommentForm';
 
 const style = require('./ToggleReply.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -90,8 +91,9 @@ const ToggleReply = ({
 
       {
         isReplyWrite && modifyReply === null &&
-        <ReplyFormContainer
+        <CommentForm
           commentIdx={commentIdx}
+          type={EComment.REPLY}
           onChangeIsReplyWrite={onChangeIsReplyWrite}
         />
       }

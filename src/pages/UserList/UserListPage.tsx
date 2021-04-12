@@ -1,12 +1,13 @@
+import { memo } from 'react';
 import PageTemplate from 'components/Template/PageTemplate';
-import UserListContainer from 'containers/UserList';
+import UserList from 'components/UserList';
 
 const UserListPage = (): JSX.Element => {
   return (
     <PageTemplate>
-      <UserListContainer />
+      <UserList />
     </PageTemplate>
   );
 };
 
-export default UserListPage;
+export default memo(UserListPage);

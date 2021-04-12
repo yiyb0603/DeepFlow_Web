@@ -1,12 +1,13 @@
+import { memo } from 'react';
+import Temp from 'components/Temp';
 import PageTemplate from 'components/Template/PageTemplate';
-import TempContainer from 'containers/Temp';
 
-const TempPage = () => {
+const TempPage = (): JSX.Element => {
   return (
     <PageTemplate>
-      <TempContainer />
+      <Temp />
     </PageTemplate>
   );
 }
 
-export default TempPage;
+export default memo(TempPage);

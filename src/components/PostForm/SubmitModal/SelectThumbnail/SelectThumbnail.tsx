@@ -1,27 +1,20 @@
-import { ChangeEvent, Dispatch, memo, MutableRefObject, SetStateAction } from 'react';
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { ImFolderUpload } from 'react-icons/im';
 import NoSelected from 'assets/images/select-thumbnail.png';
+import useSelectThumbnail from 'hooks/post/useSelectThumbnail';
 
 const style = require('./SelectThumbnail.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface SelectThumbnailProps {
-  dragRef: MutableRefObject<HTMLDivElement | null>;
-  isDragging: boolean;
-  setIsDragging: Dispatch<SetStateAction<boolean>>;
-  thumbnail: string;
-  onChangeThumbnail: (e: ChangeEvent<HTMLInputElement>) => Promise<void>;
-}
-
-const SelectThumbnail = ({
-  dragRef,
-  isDragging,
-  setIsDragging,
-  thumbnail,
-  onChangeThumbnail,
-}: SelectThumbnailProps): JSX.Element => {
+const SelectThumbnail = (): JSX.Element => {
+  const {
+    dragRef,
+    isDragging,
+    thumbnail,
+    onChangeThumbnail,
+  } = useSelectThumbnail();
   return (
     <div className={cx('SelectThumbnail')} ref={dragRef}>
       <img

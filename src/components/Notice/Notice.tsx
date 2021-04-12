@@ -3,17 +3,16 @@ import { ClassNamesFn } from 'classnames/types';
 import ListItem from 'components/Common/Post/ListItem';
 import { INotice } from 'types/notice.types';
 import Sample from 'assets/images/sample.png';
+import useNoticeList from 'hooks/notice/useNoticeList';
 import NoItems from 'components/Common/NoItems';
 import PageTitle from 'components/Common/PageTitle';
 
 const style = require('./Notice.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface NoticeProps {
-  noticeList: INotice[];
-}
+const Notice = (): JSX.Element => {
+  const { noticeList } = useNoticeList();
 
-const Notice = ({ noticeList }: NoticeProps): JSX.Element => {
   return (
     <div className={cx('Notice')}>
       <PageTitle title='공지사항' subTitle='공지사항 목록이 여기에 표시됩니다.' />

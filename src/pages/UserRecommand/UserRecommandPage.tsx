@@ -1,15 +1,16 @@
+import { memo } from 'react';
 import PageTemplate from 'components/Template/PageTemplate';
 import UserTemplate from 'components/User';
-import UserRecommandContainer from 'containers/UserRecommand';
+import UserRecommand from 'components/User/UserRecommand';
 
 const UserRecommandPage = (): JSX.Element => {
   return (
     <PageTemplate>
       <UserTemplate>
-        <UserRecommandContainer />
+        <UserRecommand />
       </UserTemplate>
     </PageTemplate>
   );
 }
 
-export default UserRecommandPage;
+export default memo(UserRecommandPage);

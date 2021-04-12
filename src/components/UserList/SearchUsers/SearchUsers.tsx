@@ -7,17 +7,14 @@ const style = require('./SearchUsers.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface SearchUsersProps {
-  keywordState: {
-    keyword: string;
-    onChangeKeyword: (e: ChangeEvent<HTMLInputElement>) => void;
-  };
+  keyword: string;
+  onChangeKeyword: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SearchUsers = ({
-  keywordState,
+  keyword,
+  onChangeKeyword,
 }: SearchUsersProps): JSX.Element => {
-  const { keyword, onChangeKeyword } = keywordState;
-  
   return (
     <div className={cx('SearchUsers')}>
       <AiOutlineSearch className={cx('SearchUsers-Icon')} />

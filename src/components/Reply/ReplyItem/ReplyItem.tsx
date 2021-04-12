@@ -5,11 +5,12 @@ import { useRecoilValue } from 'recoil';
 import { IToken, IUser } from 'types/user.types';
 import { getMyInfo } from 'util/getMyInfo';
 import { calculateTime } from 'lib/TimeCounting';
-import ReplyFormContainer from 'containers/Reply/ReplyFormContainer';
 import { modifyReplyState } from 'atom/reply';
-import useReply from 'hooks/useReply';
+import useReply from 'hooks/reply/useReply';
 import { IReplyModify } from 'types/reply.types';
 import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
+import CommentForm from 'components/Common/Comment/CommentForm';
+import { EComment } from 'lib/enum/comment';
 
 const style = require('./ReplyItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -81,7 +82,8 @@ const ReplyItem = ({
       {
         modifyObject !== null &&
         modifyObject.idx === idx &&
-        <ReplyFormContainer
+        <CommentForm
+          type={EComment.REPLY}
           commentIdx={commentIdx}
           onChangeIsReplyWrite={onChangeIsReplyWrite}
         />

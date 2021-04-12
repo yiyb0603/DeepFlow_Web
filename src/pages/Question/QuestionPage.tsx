@@ -1,12 +1,13 @@
+import { memo } from 'react';
+import Questions from 'components/Questions';
 import PageTemplate from 'components/Template/PageTemplate';
-import QuestionContainer from 'containers/Question';
 
 const QuestionPage = (): JSX.Element => {
   return (
     <PageTemplate>
-      <QuestionContainer />
+      <Questions />
     </PageTemplate>
   );
 }
 
-export default QuestionPage;
+export default memo(QuestionPage);

@@ -3,26 +3,24 @@ import { ClassNamesFn } from 'classnames/types';
 import PageNumberList from 'components/Common/PageNumberList';
 import PageTitle from 'components/Common/PageTitle';
 import ListItem from 'components/Common/Post/ListItem';
-import { IPagination } from 'types/pagination.types';
+import usePosts from 'hooks/post/usePosts';
+import { EPost } from 'lib/enum/post';
 import { IPost } from 'types/post.types';
 import AskButton from './AskButton';
 
 const style = require('./Questions.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface QuestionsProps extends IPagination {
-  questionList: IPost[];
-}
-
-const Questions = ({
-  questionList,
-  currentPageState,
-  handlePrevPage,
-  handleNextPage,
-  numberListPage,
-  splitedNumberList,
-}: QuestionsProps): JSX.Element => {
-  const { currentPage, onChangeCurrentPage } = currentPageState;
+const Questions = (): JSX.Element => {
+  const { 
+    questionList,
+    currentPage,
+    onChangeCurrentPage,
+    handlePrevPage,
+    handleNextPage,
+    numberListPage,
+    splitedNumberList,
+  } = usePosts(EPost.QUESTION);
 
   return (
     <div className={cx('Questions')}>

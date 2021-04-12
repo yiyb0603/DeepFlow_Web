@@ -1,11 +1,11 @@
 import { memo } from 'react';
 import PageTemplate from 'components/Template/PageTemplate';
-import SearchPostsContainer from 'containers/SearchPosts';
+import SearchPosts from 'components/SearchPosts';
 
 const SearchPostsPage = (): JSX.Element => {
   return (
     <PageTemplate>
-      <SearchPostsContainer />
+      <SearchPosts />
     </PageTemplate>
   );
 }

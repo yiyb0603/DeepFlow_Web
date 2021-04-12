@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import usePopularPosts from 'hooks/post/usePopularPosts';
 import { IPost } from 'types/post.types';
 import PopularItem from './PopularItem';
 import PopularTitle from './PopularTitle';
@@ -7,11 +8,9 @@ import PopularTitle from './PopularTitle';
 const style = require('./RightSidebar.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface RightSidebarProps {
-  popularPosts: IPost[];
-}
+const RightSidebar = (): JSX.Element => {
+  const { popularPosts } = usePopularPosts();
 
-const RightSidebar = ({ popularPosts }: RightSidebarProps): JSX.Element => {
   return (
     <div className={cx('RightSidebar')}>
       <PopularTitle />

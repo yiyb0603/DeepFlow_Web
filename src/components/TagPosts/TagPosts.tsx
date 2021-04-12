@@ -1,37 +1,52 @@
+import { useEffect } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import ListItem from 'components/Common/Post/ListItem';
 import { IPost } from 'types/post.types';
-import { ITag } from 'types/tag.types';
 import TagInfo from './TagInfo';
+import { useHistory } from 'react-router-dom';
+import { History } from 'history';
+import useTag from 'hooks/post/useTag';
+import usePosts from 'hooks/post/usePosts';
+import { EPost } from 'lib/enum/post';
 
 const style = require('./TagPosts.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface TagPostsProps {
-  tagInfo: ITag;
-  tagPostList: IPost[];
-}
+const TagPosts = (): JSX.Element => {
+  const history: History = useHistory();
 
-const TagPosts = ({
-  tagInfo,
-  tagPostList,
-}: TagPostsProps): JSX.Element => {
+  const { pageParam, tagInfo } = useTag();
+  const { tagPostList, requestPostsByTag } = usePosts(EPost.QUESTION);
+  
+  useEffect(() => {
+    if (!pageParam.tag) {
+      history.goBack();
+    }
+
+    requestPostsByTag();
+  }, [history, requestPostsByTag, tagInfo, pageParam]);
+
   return (
-    <div className={cx('TagPosts')}>
-      <TagInfo tagInfo={tagInfo} count={tagPostList.length} />
+    <>
+    {
+      tagInfo !== null &&
+      <div className={cx('TagPosts')}>
+        <TagInfo tagInfo={tagInfo} count={tagPostList.length} />
 
-      <div className={cx('TagPosts-List')}>
-        {
-          tagPostList.map((tagPost: IPost) => (
-            <ListItem
-              key={tagPost.idx}
-              {...tagPost}
-            />
-          ))
-        }
+        <div className={cx('TagPosts-List')}>
+          {
+            tagPostList.map((tagPost: IPost) => (
+              <ListItem
+                key={tagPost.idx}
+                {...tagPost}
+              />
+            ))
+          }
+        </div>
       </div>
-    </div>
+    }
+    </>
   );
 };
 

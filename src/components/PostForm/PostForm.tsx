@@ -1,35 +1,53 @@
 import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import MarkdownForm from 'components/Common/Markdown/MarkdownForm';
-import PostFormProps from './PostForm.props';
+import usePostForm from 'hooks/post/usePostForm';
 import TagForm from './TagForm';
 import TitleForm from './TitleForm';
 import TagList from './TagList';
 import FormBottom from './FormBottom';
+import MarkdownForm from 'components/Common/Markdown/MarkdownForm';
+import SubmitModal from 'components/PostForm/SubmitModal';
 
 const style = require('./PostForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-const PostForm = ({
-  titleState,
-  categoryState,
-  tagInputState,
-  postTagState,
-  contentsState,
-  onKeydownTagInput,
-  handleFilterPostTag,
-  handleIsModal,
-  requestOfferPost,
-}: PostFormProps): JSX.Element => {
-  const { title, onChangeTitle } = titleState;
-  const { onChangeCategory } = categoryState;
-  const { contents, onChangeContents } = contentsState;
-  const { postTags } = postTagState;
-  const { tagInput, onChangeTagInput } = tagInputState;
+const PostForm = (): JSX.Element => {
+  const { title,
+    onChangeTitle,
+
+    contents,
+    onChangeContents,
+
+    onChangeCategory,
+
+    introduction,
+    onChangeIntroduction,
+
+    tagInput,
+    onChangeTagInput,
+    onKeydownTagInput,
+
+    postTags,
+    handleFilterPostTag,
+    
+    requestOfferPost,
+    isSubmitModal,
+    handleIsModal,
+  } = usePostForm();
   
   return (
     <div className={cx('PostForm')}>
+      {
+        isSubmitModal &&
+        <SubmitModal
+          title={title}
+          introduction={introduction}
+          onChangeIntroduction={onChangeIntroduction}
+          handleIsModal={handleIsModal}
+          requestOfferPost={requestOfferPost}
+        />
+      }
       <TitleForm title={title} onChangeTitle={onChangeTitle} />
 
       <div className={cx('PostForm-CategoryTagWrapper')}>

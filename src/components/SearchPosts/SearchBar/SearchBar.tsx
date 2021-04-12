@@ -16,22 +16,19 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface SearchBarProps {
   handlePushToSearch: (keyword: string, category: EPost) => void;
   onKeydownKeyword: (e: KeyboardEvent<HTMLInputElement>) => void;
-  keywordState: {
-    keyword: string;
-    onChangeKeyword: (e: ChangeEvent<HTMLInputElement>) => void;
-  };
 
-  categoryState: {
-    category: EPost;
-    onChangeCategory: (category: EPost) => void;
-  };
+  keyword: string;
+  onChangeKeyword: (e: ChangeEvent<HTMLInputElement>) => void;
+
+  onChangeCategory: (category: EPost) => void;
 }
 
 const SearchBar = ({
   handlePushToSearch,
   onKeydownKeyword,
-  keywordState,
-  categoryState,
+  keyword,
+  onChangeKeyword,
+  onChangeCategory,
 }: SearchBarProps): JSX.Element => {
   const searchZoneRef = useRef<HTMLDivElement | null>(null);
   
@@ -63,8 +60,8 @@ const SearchBar = ({
           <input
             type='text'
             className={cx('SearchBar-SearchWrap-Search-Input')}
-            value={keywordState.keyword}
-            onChange={keywordState.onChangeKeyword}
+            value={keyword}
+            onChange={onChangeKeyword}
             onKeyDown={onKeydownKeyword}
             onClick={() => setIsShowHistory(true)}
             placeholder='검색어를 입력하세요'
@@ -90,7 +87,7 @@ const SearchBar = ({
         }
       </div>
       
-      <CategorySelect onChangeCategory={categoryState.onChangeCategory} />
+      <CategorySelect onChangeCategory={onChangeCategory} />
     </div>
   );
 };

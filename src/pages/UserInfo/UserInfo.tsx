@@ -1,15 +1,16 @@
+import { memo } from 'react';
 import PageTemplate from 'components/Template/PageTemplate';
 import UserTemplate from 'components/User';
-import UserContainer from 'containers/User';
+import UserInfo from 'components/User/UserInfo';
 
 const UserInfoPage = (): JSX.Element => {
   return (
     <PageTemplate>
       <UserTemplate>
-        <UserContainer />
+        <UserInfo />
       </UserTemplate>
     </PageTemplate>
   );
 }
 
-export default UserInfoPage;
+export default memo(UserInfoPage);

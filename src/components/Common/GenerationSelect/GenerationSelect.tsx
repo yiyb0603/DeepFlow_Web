@@ -5,14 +5,13 @@ import { generations } from 'lib/models/authOption';
 const { Option } = Select;
 
 interface GenerationSelectProps {
-  generationState: {
-    generation: number;
-    onChangeGeneration: (generation: number) => void;
-  };
+  generation: number;
+  onChangeGeneration: (generation: number) => void;
 }
 
 const GenerationSelect = ({
-  generationState,
+  generation,
+  onChangeGeneration,
 }: GenerationSelectProps): JSX.Element => {
   const selectStyle: CSSProperties = {
     width: '45%',
@@ -21,8 +20,8 @@ const GenerationSelect = ({
   return (
     <Select
       style={selectStyle}
-      value={generationState.generation}
-      onChange={generationState.onChangeGeneration}
+      value={generation}
+      onChange={onChangeGeneration}
     >
       {
         generations.map((_: unknown, idx: number) => (

@@ -6,6 +6,7 @@ import { BsFillGrid3X3GapFill } from 'react-icons/bs';
 import Sample from 'assets/images/sample.png';
 import { EView } from 'lib/enum/theme';
 import { IPost } from 'types/post.types';
+import useRecentPosts from 'hooks/post/useRecentPosts';
 import GridItem from 'components/Common/Post/GridItem';
 import ListItem from 'components/Common/Post/ListItem';
 import NoItems from 'components/Common/NoItems';
@@ -14,11 +15,9 @@ import SectionTitle from '../SectionTitle';
 const style = require('./RecentPost.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface RecentPostProps {
-  recentPosts: IPost[];
-}
-
-const RecentPost = ({ recentPosts }: RecentPostProps): JSX.Element => {
+const RecentPost = (): JSX.Element => {
+  const { recentPosts } = useRecentPosts();
+  
   const { LIST, GRID } = EView;
   const [viewMode, setViewMode] = useState<EView>(GRID);
 

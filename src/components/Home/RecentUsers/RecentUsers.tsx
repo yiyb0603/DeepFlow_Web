@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import useRecentUsers from 'hooks/useRecentUsers';
+import useRecentUsers from 'hooks/user/useRecentUsers';
 import SectionTitle from '../SectionTitle';
 import RecentUserItem from './RecentUserItem';
 

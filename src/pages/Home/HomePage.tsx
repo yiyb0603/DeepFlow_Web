@@ -1,12 +1,13 @@
-import HomeContainer from 'containers/Home';
+import { memo } from 'react';
+import Home from 'components/Home';
 import PageTemplate from 'components/Template/PageTemplate';
 
 const HomePage = (): JSX.Element => {
   return (
     <PageTemplate>
-      <HomeContainer />
+      <Home />
     </PageTemplate>
   );
 };
 
-export default HomePage;
+export default memo(HomePage);

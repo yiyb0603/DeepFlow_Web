@@ -1,9 +1,10 @@
-import PostFormContainer from 'containers/Post/PostForm';
+import { memo } from 'react';
+import PostForm from 'components/PostForm';
 
 const PostFormPage = (): JSX.Element => {
   return (
-    <PostFormContainer />
+    <PostForm />
   );
 };
 
-export default PostFormPage;
+export default memo(PostFormPage);

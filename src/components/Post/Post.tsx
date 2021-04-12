@@ -1,10 +1,11 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import Comment from 'components/Comment';
 import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
-import CommentContainer from 'containers/Comment';
-import LikeContainer from 'containers/Like';
-import { IPost } from 'types/post.types';
+import PageLoading from 'components/Common/PageLoading';
+import usePostByIdx from 'hooks/post/usePostByIdx';
 import { getGithubAddress } from 'util/getGithubAddress';
+import PostLike from './PostLike';
 import PostTags from './PostTags';
 import PostUserInfo from './PostUserInfo';
 import Thumbnail from './Thumbnail';
@@ -13,44 +14,45 @@ import TopInfo from './TopInfo';
 const style = require('./Post.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface PostProps {
-  post: IPost;
-  requestDeletePost: (postIdx: number) => Promise<void>;
-}
-
-const Post = ({ post, requestDeletePost }: PostProps): JSX.Element => {
-  const { idx, title, contents, thumbnail, postTags, createdAt, user } = post;
+const Post = (): JSX.Element => {
+  const { post, requestDeletePost } = usePostByIdx();
 
   return (
-    <div className={cx('Post')}>
-      <div className={cx('Post-Title')}>{title}</div>
+    <>
+    {
+      post === null ? <PageLoading text='글을 불러오는 중입니다 🥴' />
+      :
+      <div className={cx('Post')}>
+        <div className={cx('Post-Title')}>{post.title}</div>
 
-      <TopInfo
-        idx={idx}
-        createdAt={createdAt}
-        user={user}
-        requestDeletePost={requestDeletePost}
-      />
-      <PostTags postTags={postTags} />
-      <Thumbnail thumbnail={thumbnail!} />
+        <TopInfo
+          idx={post.idx}
+          createdAt={post.createdAt}
+          user={post.user}
+          requestDeletePost={requestDeletePost}
+        />
+        <PostTags postTags={post.postTags} />
+        <Thumbnail thumbnail={post.thumbnail!} />
 
-      <div className={cx('Post-Contents')}>
-        <MarkdownRender contents={contents!} />
+        <div className={cx('Post-Contents')}>
+          <MarkdownRender contents={post.contents!} />
+        </div>
+
+        <PostLike />
+
+        <PostUserInfo
+          avatar={post.user.avatar}
+          name={post.user.name}
+          description={post.user.description}
+          blog={post.user.blog}
+          github={getGithubAddress(post.user.githubId)}
+          location={post.user.location}
+        />
+
+        <Comment />
       </div>
-
-      <LikeContainer />
-
-      <PostUserInfo
-        avatar={user.avatar}
-        name={user.name}
-        description={user.description}
-        blog={user.blog}
-        github={getGithubAddress(user.githubId)}
-        location={user.location}
-      />
-
-      <CommentContainer />
-    </div>
+    }
+    </>
   );
 };
 

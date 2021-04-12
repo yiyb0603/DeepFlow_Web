@@ -3,7 +3,7 @@ import { SetterOrUpdater, useRecoilValue, useSetRecoilState } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { commentEmojiListState } from 'atom/comment';
-import useEmoji from 'hooks/useEmoji';
+import useEmoji from 'hooks/comment/useEmoji';
 import { emojies as selectEmojies } from 'lib/models/emojies';
 import { ICommentEmojiInfo } from 'types/commentEmoji.types';
 import { getMyInfo } from 'util/getMyInfo';

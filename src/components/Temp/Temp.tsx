@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { IPost } from 'types/post.types';
@@ -5,24 +6,26 @@ import PageTitle from 'components/Common/PageTitle';
 import ListItem from 'components/Common/Post/ListItem';
 import PageNumberList from 'components/Common/PageNumberList';
 import NoItems from 'components/Common/NoItems';
-import { IPagination } from 'types/pagination.types';
+import usePosts from 'hooks/post/usePosts';
 
 const style = require('./Temp.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface TempProps extends IPagination {
-  tempPosts: IPost[];
-}
+const Temp = (): JSX.Element => {
+  const {
+    tempPosts,
+    currentPage,
+    onChangeCurrentPage,
+    handlePrevPage,
+    handleNextPage,
+    numberListPage,
+    splitedNumberList,
+    requestTempPosts,
+  } = usePosts();
 
-const Temp = ({
-  tempPosts,
-  currentPageState,
-  numberListPage,
-  handlePrevPage,
-  handleNextPage,
-  splitedNumberList,
-}: TempProps): JSX.Element => {
-  const { currentPage, onChangeCurrentPage } = currentPageState;
+  useEffect(() => {
+    requestTempPosts();
+  }, [requestTempPosts]);
 
   return (
     <div className={cx('Temp')}>

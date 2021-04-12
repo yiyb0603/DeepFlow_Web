@@ -9,21 +9,18 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface CommentInputProps {
   type: EComment;
 
-  contentsState: {
-    contents: string;
-    onChangeContents: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  };
+  contents: string;
+  onChangeContents: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 
   commentInputRef: MutableRefObject<HTMLTextAreaElement | null>;
 }
 
 const CommentInput = ({
   type,
-  contentsState,
+  contents,
+  onChangeContents,
   commentInputRef,
 }: CommentInputProps): JSX.Element => {
-  const { contents, onChangeContents } = contentsState;
-
   return (
     <div className={cx('CommentInput')}>
       <textarea

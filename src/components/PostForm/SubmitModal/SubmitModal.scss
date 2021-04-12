@@ -34,6 +34,10 @@
 			padding: 0.625rem;
 
 			&-Title {
+				max-width: 100%;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
 				font-size: var(--font-contents);
 				font-weight: 500;
 				border-bottom: 1px solid var(--lighterBlack);

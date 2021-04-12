@@ -2,17 +2,16 @@ import { ChangeEvent, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import PostButton from 'components/Common/Post/PostButton';
-import SelectThumbnailContainer from 'containers/Post/PostForm/SelectThumbnail';
+import SelectThumbnail from './SelectThumbnail';
 
 const style = require('./SubmitModal.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface SubmitModalProps {
   title: string;
-  introductionState: {
-    introduction: string;
-    onChangeIntroduction: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  };
+
+  introduction: string;
+  onChangeIntroduction: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 
   handleIsModal: (isModal: boolean) => void;
   requestOfferPost: (isTemp: boolean) => Promise<void>;
@@ -20,18 +19,17 @@ interface SubmitModalProps {
 
 const SubmitModal = ({
   title,
-  introductionState,
+  introduction,
+  onChangeIntroduction,
   handleIsModal,
   requestOfferPost,
 }: SubmitModalProps): JSX.Element => {
-  const { introduction, onChangeIntroduction } = introductionState;
-  
   return (
     <>
       <div className={cx('SubmitModal-Overlay')} onClick={() => handleIsModal(false)}></div>
       <div className={cx('SubmitModal')}>
         <div className={cx('SubmitModal-Wrapper')}>
-          <SelectThumbnailContainer />
+          <SelectThumbnail />
           
           <div className={cx('SubmitModal-Wrapper-Contents')}>
             <div className={cx('SubmitModal-Wrapper-Contents-Title')}>

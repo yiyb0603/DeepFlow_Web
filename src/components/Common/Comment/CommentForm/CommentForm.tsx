@@ -1,4 +1,4 @@
-import { ChangeEvent, MutableRefObject } from 'react';
+import { MutableRefObject } from 'react';
 import { useRecoilValue } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
@@ -9,31 +9,30 @@ import { EComment, ECommentTab } from 'lib/enum/comment';
 import CommentPreview from './CommentPreview';
 import CommentSubmit from './CommentSubmit';
 import ReplyCancel from 'components/Reply/ReplyCancel';
+import useComment from 'hooks/comment/useComment';
+import useReply from 'hooks/reply/useReply';
 
 const style = require('./CommentForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface CommentFormProps {
-  contentsState: {
-    contents: string;
-    onChangeContents: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  };
-
-  commentInputRef?: MutableRefObject<HTMLTextAreaElement | null>;
-  requestOfferComment: () => Promise<void>;
-  onChangeIsReplyWrite?: (isReplyWrite: boolean) => void;
+  commentIdx?: number;
   type: EComment;
+  commentInputRef?: MutableRefObject<HTMLTextAreaElement | null>;
+  onChangeIsReplyWrite?: (isReplyWrite: boolean) => void;
 }
 
 const CommentForm = ({
-  contentsState,
-  commentInputRef,
-  requestOfferComment,
-  onChangeIsReplyWrite,
+  commentIdx,
   type,
+  commentInputRef,
+  onChangeIsReplyWrite,
 }: CommentFormProps): JSX.Element => {
   const { WRITE } = ECommentTab;
-  const { REPLY } = EComment;
+  const { COMMENT, REPLY } = EComment;
+
+  const { contents, onChangeContents, requestOfferComment } = useComment();
+  const reply = useReply(commentIdx!);
   const commentTab = useRecoilValue<ECommentTab>(commentTabState);
 
   return (
@@ -43,19 +42,25 @@ const CommentForm = ({
         commentTab === WRITE ?
         <CommentInput
           type={type}
-          contentsState={contentsState}
+          contents={type === COMMENT ? contents : reply.contents}
+          onChangeContents={type === COMMENT ? onChangeContents : reply.onChangeContents}
           commentInputRef={commentInputRef!}
         />
         :
-        <CommentPreview contents={contentsState.contents} />
+        <CommentPreview contents={contents} />
       }
 
       <div className={cx('CommentForm-BottomWrap')}>
         {
           type === REPLY &&
-          <ReplyCancel onChangeIsReplyWrite={() => onChangeIsReplyWrite!(false)} />
+          <ReplyCancel
+            onChangeIsReplyWrite={() => onChangeIsReplyWrite!(false)}
+          />
         }
-        <CommentSubmit requestOfferComment={requestOfferComment} />
+
+        <CommentSubmit
+          requestOfferComment={type === COMMENT ? requestOfferComment : reply.requestOfferReply}
+        />
       </div>
     </div>
   );

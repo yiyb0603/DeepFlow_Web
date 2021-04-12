@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import useTagList from 'hooks/post/useTagList';
 import { ITag } from 'types/tag.types';
 import TagsItem from './TagsItem';
 import TagsTap from './TagsTap';
@@ -7,13 +8,8 @@ import TagsTap from './TagsTap';
 const style = require('./Tags.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface TagsProps {
-  tagList: ITag[];
-}
-
-const Tags = ({
-  tagList,
-}: TagsProps): JSX.Element => {
+const Tags = (): JSX.Element => {
+  const { tagList } = useTagList();
 
   return (
     <div className={cx('Tags')}>

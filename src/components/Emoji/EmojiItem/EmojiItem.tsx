@@ -1,8 +1,8 @@
+import { useCallback, useMemo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import useEmoji from 'hooks/useEmoji';
+import useEmoji from 'hooks/comment/useEmoji';
 import { errorToast } from 'lib/Toast';
-import { useCallback, useMemo } from 'react';
 import { ICommentEmojiInfo } from 'types/commentEmoji.types';
 import { IToken } from 'types/user.types';
 import { getMyInfo } from 'util/getMyInfo';

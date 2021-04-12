@@ -1,31 +1,42 @@
-import { MutableRefObject } from 'react';
+import { useCallback, useRef } from 'react';
+import { useSetRecoilState } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import CommentFormContainer from 'containers/Comment/CommentForm';
-import { IComment } from 'types/comment.types';
+import useComment from 'hooks/comment/useComment';
+import { IComment, ICommentModify } from 'types/comment.types';
 import CommentItem from '../Common/Comment/CommentItem';
+import { commentContentsState, modifyState } from 'atom/comment';
+import CommentForm from 'components/Common/Comment/CommentForm';
+import { EComment } from 'lib/enum/comment';
 
 const style = require('./Comment.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface CommentProps {
-  commentList: IComment[];
-  commentInputRef: MutableRefObject<HTMLTextAreaElement | null>;
-  onModifyClick: (idx: number, contents: string) => void;
-  requestDeleteComment: (commentIdx: number) => Promise<void>;
-}
+const Comment = (): JSX.Element => {
+  const { commentList, requestDeleteComment } = useComment();
+  
+  const commentInputRef = useRef<HTMLTextAreaElement | null>(null);
+  const setModifyState = useSetRecoilState<ICommentModify | null>(modifyState);
+  const setContents = useSetRecoilState<string>(commentContentsState);
 
-const Comment = ({
-  commentList,
-  commentInputRef,
-  onModifyClick,
-  requestDeleteComment,
-}: CommentProps): JSX.Element => {
+  const onModifyClick = useCallback((idx: number, contents: string): void => {
+    setModifyState({
+      idx,
+      contents,
+    });
+    setContents(contents);
+    
+    if (commentInputRef.current) {
+      commentInputRef.current.focus();
+    }
+  }, [setContents, setModifyState]);
+
   return (
     <div className={cx('Comment')}>
       <h3>{commentList.length}개의 댓글</h3>
 
-      <CommentFormContainer
+      <CommentForm
+        type={EComment.COMMENT}
         commentInputRef={commentInputRef}
       />
 

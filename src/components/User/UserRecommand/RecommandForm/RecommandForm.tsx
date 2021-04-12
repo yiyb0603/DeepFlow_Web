@@ -1,24 +1,13 @@
-import { ChangeEvent, memo } from 'react';
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import useRecommand from 'hooks/user/useRecommand';
 
 const style = require('./RecommandForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface RecommandFormProps {
-  reasonState: {
-    reason: string;
-    onChangeReason: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  };
-
-  requestCreateRecommand: () => Promise<void>;
-}
-
-const RecommandForm = ({
-  reasonState,
-  requestCreateRecommand,
-}: RecommandFormProps): JSX.Element => {
-  const { reason, onChangeReason } = reasonState;
+const RecommandForm = (): JSX.Element => {
+  const { reason, onChangeReason, requestCreateRecommand } = useRecommand();
 
   return (
     <div className={cx('RecommandForm')}>

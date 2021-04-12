@@ -8,26 +8,40 @@ import { BiBuilding } from 'react-icons/bi';
 import InfoInput from 'components/Common/InfoInput';
 import Modal from 'components/Common/Modal';
 import GenerationSelect from 'components/Common/GenerationSelect';
-import ModifyInfoProps from './ModifyInfo.props';
 import MajorSelect from 'components/Common/MajorSelect';
 import ModifySubmit from '../ModifySubmit';
+import useModifyInfo from 'hooks/user/useModifyInfo';
 
 const style = require('./ModifyInfoModal.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-const ModifyInfoModal = ({
-  avatar,
-  nameState,
-  emailState,
-  descriptionState,
-  locationState,
-  blogState,
-  positionState,
-  generationState,
-  majorState,
-  onChangeIsModifyModal,
-  requestModifyInfo,
-}: ModifyInfoProps): JSX.Element => {
+const ModifyInfoModal = (): JSX.Element => {
+  const {
+    modifyInfo,
+    onChangeIsModifyModal,
+    onChangeName,
+    onChangeEmail,
+    onChangeDescription,
+    onChangeLocation,
+    onChangeBlog,
+    onChangePosition,
+    onChangeGeneration,
+    onChangeMajor,
+    requestModifyInfo,
+  } = useModifyInfo();
+
+  const {
+    avatar,
+    name,
+    email,
+    location,
+    position,
+    description,
+    major,
+    blog,
+    generation,
+  } = modifyInfo;
+
   return (
     <Modal
       width='30%'
@@ -51,29 +65,29 @@ const ModifyInfoModal = ({
             </div>
 
             <InfoInput
-              value={nameState.name}
-              onChange={nameState.onChangeName}
+              value={name}
+              onChange={onChangeName}
               placeholder='이름을 입력하세요'
               icon={<VscSymbolNamespace />}
             />
             
             <InfoInput
-              value={descriptionState.description}
-              onChange={descriptionState.onChangeDescription}
+              value={description}
+              onChange={onChangeDescription}
               placeholder='한줄소개를 입력하세요'
               icon={<CgHello />}
             />
 
             <InfoInput
-              value={positionState.position}
-              onChange={positionState.onChangePosition}
+              value={position}
+              onChange={onChangePosition}
               placeholder='개발 포지션을 입력하세요'
               icon={<HiCode />}
             />
             
             <InfoInput
-              value={locationState.location}
-              onChange={locationState.onChangeLocation}
+              value={location}
+              onChange={onChangeLocation}
               placeholder='직장을 입력하세요'
               icon={<BiBuilding />}
             />
@@ -83,24 +97,31 @@ const ModifyInfoModal = ({
         <div className={cx('ModifyInfoModal-BottomInputs')}>
           <InfoInput
             width='100%'
-            value={emailState.email}
-            onChange={emailState.onChangeEmail}
+            value={email}
+            onChange={onChangeEmail}
             placeholder='이메일을 입력하세요'
             icon={<AiOutlineMail />}
           />
 
           <InfoInput
             width='100%'
-            value={blogState.blog}
-            onChange={blogState.onChangeBlog}
+            value={blog}
+            onChange={onChangeBlog}
             placeholder='개인 링크를 입력하세요.'
             icon={<AiOutlineLink />}
           />
         </div>
 
         <div className={cx('ModifyInfoModal-BottomSelect')}>
-          <GenerationSelect generationState={generationState} />
-          <MajorSelect majorState={majorState} />
+          <GenerationSelect
+            generation={generation}
+            onChangeGeneration={onChangeGeneration}
+          />
+
+          <MajorSelect
+            major={major}
+            onChangeMajor={onChangeMajor}
+          />
         </div>
 
         <ModifySubmit requestModifyInfo={requestModifyInfo} />

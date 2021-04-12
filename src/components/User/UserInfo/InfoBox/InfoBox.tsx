@@ -13,8 +13,8 @@ import { IToken } from 'types/user.types';
 import { getGithubAddress } from 'util/getGithubAddress';
 import { ERank } from 'lib/enum/rank';
 import ModifyButton from './ModifyButton';
-import ModifyInfoContainer from 'containers/ModifyInfo';
 import RankProfile from 'components/Common/User/RankProfile';
+import ModifyInfoModal from './ModifyInfoModal';
 
 const style = require('./InfoBox.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -102,7 +102,7 @@ const InfoBox = ({
 
       {
         isModifyModal &&
-        <ModifyInfoContainer />
+        <ModifyInfoModal />
       }
     </div>
   );

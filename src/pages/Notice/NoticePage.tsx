@@ -1,12 +1,13 @@
+import { memo } from 'react';
+import Notice from 'components/Notice';
 import PageTemplate from 'components/Template/PageTemplate';
-import NoticeContainer from 'containers/Notice';
 
 const NoticePage = (): JSX.Element => {
   return (
     <PageTemplate>
-      <NoticeContainer />
+      <Notice />
     </PageTemplate>
   );
 };
 
-export default NoticePage;
+export default memo(NoticePage);

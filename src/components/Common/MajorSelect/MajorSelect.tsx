@@ -6,14 +6,13 @@ import { IAuthOption, majors } from 'lib/models/authOption';
 const { Option } = Select;
 
 interface MajorSelectProps {
-  majorState: {
-    major: EMajor;
-    onChangeMajor: (major: EMajor) => void;
-  }
+  major: EMajor;
+  onChangeMajor: (major: EMajor) => void;
 }
 
 const MajorSelect = ({
-  majorState,
+  major,
+  onChangeMajor,
 }: MajorSelectProps): JSX.Element => {
   const selectStyle: CSSProperties = {
     width: '45%',
@@ -22,8 +21,8 @@ const MajorSelect = ({
   return (
     <Select
       style={selectStyle}
-      value={majorState.major}
-      onChange={majorState.onChangeMajor}
+      value={major}
+      onChange={onChangeMajor}
     >
       {
         majors.map(({ text, value }: IAuthOption, idx: number) => (

@@ -5,8 +5,8 @@ import LeftSidebar from 'components/Common/Sidebar/LeftSidebar';
 import ToggleTheme from 'components/Common/ToggleTheme';
 import ScrollToTop from 'components/Common/ScrollToTop';
 import Footer from 'components/Common/Footer';
-import HeaderContainer from 'containers/Header';
-import RightSidebarContainer from 'containers/RightSidebar';
+import Header from 'components/Common/Header';
+import RightSidebar from 'components/Common/Sidebar/RightSidebar';
 
 const style = require('./PageTemplate.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -18,14 +18,14 @@ interface IPageTemplateProps {
 const PageTemplate = ({ children }: IPageTemplateProps): JSX.Element => {
   return (
     <div className={cx('PageTemplate')}>
-      <HeaderContainer />
+      <Header />
 
       <div className={cx('PageTemplate-Contents')}>
         <LeftSidebar />
         <div className={cx('PageTemplate-Contents-Children')}>
           {children}
         </div>
-        <RightSidebarContainer />
+        <RightSidebar />
       </div>
 
       <Footer />
