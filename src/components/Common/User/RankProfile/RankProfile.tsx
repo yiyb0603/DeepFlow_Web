@@ -1,9 +1,9 @@
-import { CSSProperties, useMemo } from 'react';
+import { useMemo, memo, CSSProperties } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import { Tooltip } from 'antd';
 import { ERank } from 'lib/enum/rank';
 import { IRank, rankToStyle } from 'converter/rankToStyle';
-import { Tooltip } from 'antd';
 import { palette } from 'styles/Palette/Palette';
 
 const style = require('./RankProfile.scss');
@@ -47,4 +47,4 @@ const RankProfile = ({
   );
 };
 
-export default RankProfile;
+export default memo(RankProfile);

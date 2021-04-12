@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 
@@ -32,4 +32,4 @@ const SelectTab = ({
   );
 };
 
-export default SelectTab;
+export default memo(SelectTab);

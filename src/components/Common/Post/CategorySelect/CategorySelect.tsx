@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, memo } from 'react';
 import { Select } from 'antd';
 import { EPost } from 'lib/enum/post';
 import './CategorySelect.scss';
@@ -30,4 +30,4 @@ const CategorySelect = ({
   );
 };
 
-export default CategorySelect;
+export default memo(CategorySelect);

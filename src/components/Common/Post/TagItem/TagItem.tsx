@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, memo } from 'react';
 import { useHistory } from 'react-router';
 import { History } from 'history';
 import classNames from 'classnames';
@@ -44,4 +44,4 @@ const TagItem = ({
   );
 };
 
-export default TagItem;
+export default memo(TagItem);

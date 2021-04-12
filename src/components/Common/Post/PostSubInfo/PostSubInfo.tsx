@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { AiOutlineEye, AiOutlineLike } from 'react-icons/ai';
@@ -37,4 +38,4 @@ const PostSubInfo = ({
   );
 };
 
-export default PostSubInfo;
+export default memo(PostSubInfo);

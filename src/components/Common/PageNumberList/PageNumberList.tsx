@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 
@@ -65,4 +65,4 @@ const PageNumberList = ({
   );
 };
 
-export default PageNumberList;
+export default memo(PageNumberList);

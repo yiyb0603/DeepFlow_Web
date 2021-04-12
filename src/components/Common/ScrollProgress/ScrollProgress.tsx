@@ -5,7 +5,7 @@ import { ClassNamesFn } from 'classnames/types';
 const style = require('./ScrollProgress.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-const ScrollProgress = memo((): JSX.Element => {
+const ScrollProgress = (): JSX.Element => {
   const [width, setWidth] = useState<number>(0);
   const progressRef = useRef<HTMLDivElement | null>(null);
 
@@ -53,9 +53,9 @@ const ScrollProgress = memo((): JSX.Element => {
 
   return (
     <div className={cx('ScrollProgress')} ref={progressRef} onClick={handleProgressMove}>
-      <div className={cx('ScrollProgress-Progress')} style={{ width: width + '%' }} ></div>
+      <div className={cx('ScrollProgress-Progress')} style={{ width: width + '%' }}></div>
     </div>
   );
-});
+};
 
-export default ScrollProgress;
+export default memo(ScrollProgress);

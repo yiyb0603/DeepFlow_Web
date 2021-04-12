@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 
@@ -22,4 +22,4 @@ const PostButton = ({ text, color, onClick }: PostButtonProps): JSX.Element => {
   );
 };
 
-export default PostButton;
+export default memo(PostButton);

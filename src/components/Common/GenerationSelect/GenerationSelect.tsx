@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, memo } from 'react';
 import { Select } from 'antd';
 import { generations } from 'lib/models/authOption';
 
@@ -38,4 +38,4 @@ const GenerationSelect = ({
   );
 };
 
-export default GenerationSelect;
+export default memo(GenerationSelect);

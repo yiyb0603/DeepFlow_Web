@@ -1,6 +1,6 @@
+import { ReactNode, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { ReactNode } from 'react';
 
 const style = require('./PageTitle.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -24,4 +24,4 @@ const PageTitle = ({ title, subTitle, children }: PageTitleProps): JSX.Element =
   );
 };
 
-export default PageTitle;
+export default memo(PageTitle);

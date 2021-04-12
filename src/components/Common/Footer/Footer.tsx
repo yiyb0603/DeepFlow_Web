@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 
@@ -14,4 +15,4 @@ const Footer = (): JSX.Element => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

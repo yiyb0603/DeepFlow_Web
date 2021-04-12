@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 
@@ -21,7 +21,10 @@ const InfoInput = ({
   icon,
 }: InfoInputProps): JSX.Element => {
   return (
-    <div className={cx('InfoInput')} style={{ width }}>
+    <div
+      className={cx('InfoInput')}
+      style={{ width }}
+    >
       {icon}
       <input
         type='text'
@@ -34,4 +37,4 @@ const InfoInput = ({
   );
 };
 
-export default InfoInput;
+export default memo(InfoInput);

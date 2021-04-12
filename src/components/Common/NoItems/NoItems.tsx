@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import NoPost from 'assets/images/no-post.svg';
@@ -24,4 +25,4 @@ const NoItems = ({ text, imageWidth = '45%', }: NoItemsProps): JSX.Element => {
   );
 };
 
-export default NoItems;
+export default memo(NoItems);

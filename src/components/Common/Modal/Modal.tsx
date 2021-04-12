@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { VscChromeClose } from 'react-icons/vsc';
@@ -40,4 +40,4 @@ const Modal = ({
   );
 };
 
-export default Modal;
+export default memo(Modal);

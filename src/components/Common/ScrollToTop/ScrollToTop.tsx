@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useState, useCallback, useEffect, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { BsBoxArrowInUp } from 'react-icons/bs';
@@ -11,12 +11,7 @@ const ScrollToTop = (): JSX.Element => {
 
 	const detectingScroll = useCallback((): void => {
 		const { scrollTop } = document.documentElement;
-
-		if (scrollTop > 0) {
-			setIsTop(false);
-		} else {
-			setIsTop(true);
-		}
+		setIsTop(!(scrollTop > 0));
 	}, []);
 
 	const scrollToTop = useCallback((): void => {
@@ -41,4 +36,4 @@ const ScrollToTop = (): JSX.Element => {
 	);
 };
 
-export default ScrollToTop;
+export default memo(ScrollToTop);

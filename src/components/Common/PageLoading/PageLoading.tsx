@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { ScaleLoader } from 'react-spinners';
@@ -19,4 +20,4 @@ const PageLoading = ({ text }: PageLoadingProps) => {
   );
 };
 
-export default PageLoading;
+export default memo(PageLoading);

@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { createRandomColor } from 'util/createRandomColor';
@@ -25,4 +25,4 @@ const TimeSticker = ({ createdAt, updatedAt }: TimeStickerProps): JSX.Element =>
   );
 };
 
-export default TimeSticker;
+export default memo(TimeSticker);

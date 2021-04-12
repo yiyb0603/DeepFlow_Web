@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styled from 'styled-components';
@@ -41,4 +42,4 @@ const ImageBanner = styled.img`
   object-fit: cover;
 `;
 
-export default Carousel;
+export default memo(Carousel);

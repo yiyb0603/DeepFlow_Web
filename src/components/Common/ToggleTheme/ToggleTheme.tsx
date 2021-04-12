@@ -1,11 +1,11 @@
-import React, { useCallback } from 'react';
-import { IoMdSunny } from 'react-icons/io';
-import { FaMoon } from 'react-icons/fa';
+import { useCallback, memo } from 'react';
+import { useRecoilState } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { useRecoilState } from 'recoil';
-import { ETheme } from 'lib/enum/theme';
+import { IoMdSunny } from 'react-icons/io';
+import { FaMoon } from 'react-icons/fa';
 import { themeState } from 'atom/theme';
+import { ETheme } from 'lib/enum/theme';
 import { setCookie } from 'lib/Cookie';
 
 const style = require('./ToggleTheme.scss');
@@ -35,4 +35,4 @@ const ToggleTheme = (): JSX.Element => {
   );
 };
 
-export default ToggleTheme;
+export default memo(ToggleTheme);
