@@ -4,6 +4,7 @@
 	display: flex;
 	display: -webkit-flex;
 	flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
 	align-items: center;
 	background-color: rgba(232, 232, 232, 0.8);
 	overflow-x: hidden;

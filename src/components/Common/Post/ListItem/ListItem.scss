@@ -2,8 +2,7 @@ $height: 145px;
 
 .ListItem {
 	width: 100%;
-	height: $height;
-	max-height: $height;
+	min-height: $height;
 	display: flex;
 	display: -webkit-flex;
 	flex-direction: column;
@@ -15,16 +14,20 @@ $height: 145px;
 	&-Contents {
 		display: flex;
 		display: -webkit-flex;
+		flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
 
 		&-ImageWrap {
 			width: 160px;
-			height: $height;
-			max-height: $height;
 			user-select: none;
 			-webkit-user-drag: none;
 			position: relative;
 			display: flex;
 			z-index: 0;
+
+			@media screen and (max-width: 430px) {
+				width: 100%;
+			}
 
 			&-Thumbnail {
 				width: 100%;
@@ -43,6 +46,8 @@ $height: 145px;
 			&-Top {
 				display: flex;
 				display: -webkit-flex;
+				flex-wrap: wrap;
+				-ms-flex-wrap: wrap;
 				justify-content: space-between;
 				align-items: center;
 

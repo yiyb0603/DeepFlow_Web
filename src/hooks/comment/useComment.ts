@@ -9,6 +9,7 @@ import { ICommentDto } from 'lib/api/comment/comment.dto';
 import { getMyInfo } from 'util/getMyInfo';
 import { IToken } from 'types/user.types';
 import { errorToast } from 'lib/Toast';
+import { validateComment } from 'validation/comment.validation';
 
 const useComment = () => {
   const postIdx: number = usePageParam();
@@ -38,6 +39,10 @@ const useComment = () => {
     try {
       if (!myInfo) {
         errorToast('로그인 후 작성해주세요');
+        return;
+      }
+
+      if (!validateComment(contents)) {
         return;
       }
 

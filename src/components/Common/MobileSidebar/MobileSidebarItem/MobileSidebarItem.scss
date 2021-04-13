@@ -4,16 +4,16 @@
 	justify-content: flex-start;
 	align-items: center;
 	padding: 0.8rem 1.6rem;
-	border-bottom: 1px solid var(--lighterGray);
+	border-bottom: 1px solid var(--lighterBlack);
 	transition: 0.15s ease-in-out;
 	cursor: pointer;
 	font-size: var(--font-small);
-	color: var(--white);
+	color: var(--black);
 
 	&-Current {
-		background-color: var(--lighterGray);
 		border-right: 2px solid var(--main);
-		color: var(--black);
+		background-color: var(--main);
+		color: var(--white);
 	}
 
 	&-Icon {

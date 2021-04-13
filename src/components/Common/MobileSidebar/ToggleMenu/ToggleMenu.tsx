@@ -29,7 +29,10 @@ const ToggleMenu = ({
       document.body.style.overflow = 'hidden';
       document.addEventListener('click', handleClickOut, true);
 
-      return () => document.removeEventListener('click', handleClickOut, true);
+      return () => {
+        document.body.style.overflow = 'visible';
+        document.removeEventListener('click', handleClickOut, true);
+      }
     }
   }, [handleClickOut, isSideShow]);
 

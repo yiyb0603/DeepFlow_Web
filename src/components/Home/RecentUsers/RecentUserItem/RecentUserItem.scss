@@ -1,9 +1,7 @@
 .RecentUserItem {
-	width: 32.5%;
-	height: 92px;
-	max-height: 92px;
 	display: flex;
 	display: -webkit-flex;
+	flex: 1;
 	justify-content: space-between;
 	align-items: center;
 	border: 1px solid var(--lighterGray);
@@ -14,6 +12,8 @@
 	&-Left {
 		display: flex;
 		display: -webkit-flex;
+		flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
 		align-items: center;
 
 		&-Avatar {
@@ -38,7 +38,7 @@
 	}
 
 	&-Recommand {
-		font-size: var(--font-bigger);
+		font-size: var(--font-biggest);
 		color: var(--gray);
 		cursor: pointer;
 	}

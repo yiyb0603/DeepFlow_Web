@@ -1,5 +1,5 @@
 .LeftSidebar {
-	width: 170px;
+	width: 150px;
 	border-right: 1px solid var(--bd-sidebar);
 
 	&-Menus {
@@ -11,7 +11,7 @@
 		}
 	}
 
-	@media screen and (max-width: 768px) {
+	@media screen and (max-width: 1150px) {
 		display: none;
 	}
 }
