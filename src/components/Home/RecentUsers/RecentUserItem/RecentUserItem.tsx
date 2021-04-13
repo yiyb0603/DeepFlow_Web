@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useHistory } from 'react-router';
+import { Link, useHistory } from 'react-router-dom';
 import { History } from 'history';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
@@ -35,10 +35,10 @@ const RecentUserItem = ({
           alt='avatar'
         />
 
-        <div className={cx('RecentUserItem-Left-Info')}>
+        <Link to={`/user/${idx}`} className={cx('RecentUserItem-Left-Info')}>
           <div className={cx('RecentUserItem-Left-Info-Name')}>{name}</div>
           <div className={cx('RecentUserItem-Left-Info-Position')}>{position}</div>
-        </div>
+        </Link>
       </div>
 
       <AiOutlineLike

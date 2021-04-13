@@ -5,10 +5,10 @@
 	align-items: center;
 	padding: 0.8rem 1.6rem;
 	border-bottom: 1px solid var(--lighterGray);
+	font-size: var(--font-smallest);
+	color: var(--contrast);
 	transition: 0.15s ease-in-out;
 	cursor: pointer;
-	font-size: var(--font-small);
-	color: var(--contrast);
 
 	&-Current {
 		background-color: var(--lighterGray);
