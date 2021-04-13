@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import NoItems from 'components/Common/NoItems';
 import PageNumberList from 'components/Common/PageNumberList';
 import PageTitle from 'components/Common/PageTitle';
 import ListItem from 'components/Common/Post/ListItem';
@@ -30,14 +31,14 @@ const Questions = (): JSX.Element => {
 
       <div className={cx('Questions-List')}>
         {
-          questionList.map((question: IPost) => {
+          questionList.length > 0 ? questionList.map((question: IPost) => {
             return (
               <ListItem
                 key={question.idx}
                 {...question}
               />
             );
-          })
+          }) : <NoItems text='작성된 글이 없습니다.' />
         }
       </div>
 

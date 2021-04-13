@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import useRecentUsers from 'hooks/user/useRecentUsers';
-import SectionTitle from '../SectionTitle';
+import HomeSectionTitle from '../HomeSectionTitle';
 import RecentUserItem from './RecentUserItem';
 
 const style = require('./RecentUsers.scss');
@@ -12,7 +12,7 @@ const RecentUsers = (): JSX.Element => {
 
   return (
     <div className={cx('RecentUsers')}>
-      <SectionTitle title='최근 가입한 유저' />
+      <HomeSectionTitle title='최근 가입한 유저' />
 
       <div className={cx('RecentUsers-List')}>
         {

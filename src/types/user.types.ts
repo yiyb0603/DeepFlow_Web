@@ -49,6 +49,7 @@ export interface IUser {
   avatar: string;
   description: string;
   rank: number;
+  recommandCount: number;
   joinedAt: Date | string;
   isAdmin: boolean;
 }

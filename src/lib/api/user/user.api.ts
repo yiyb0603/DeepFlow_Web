@@ -20,3 +20,9 @@ export const getUserList = async (): Promise<IUserListResponse> => {
   const { data } = await customAxios.get(url);
   return data;
 }
+
+export const getPopularUserList = async (count: number): Promise<IUserListResponse> => {
+  const url: string = `/user/popular?count=${count}`;
+  const { data } = await customAxios.get(url);
+  return data;
+}

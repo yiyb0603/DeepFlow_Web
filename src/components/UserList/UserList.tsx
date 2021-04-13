@@ -38,14 +38,6 @@ const UserList = (): JSX.Element => {
             const generation: number = customTrim(keyword).length > 0 ? users[0].generation : idx + 1;
             const isExistGeneration: boolean = users.some((user: IUser) => user.generation === generation);
 
-            const sortByUserName: IUser[] = users.sort((a, b) => {
-              if (a.name > b.name) {
-                return 1;
-              }
-
-              return -1;
-            });
-
             return (
               <div key={idx}>
                 {
@@ -53,7 +45,7 @@ const UserList = (): JSX.Element => {
                   <Generation text={`${generation}기`} />
                 }
                 {
-                  sortByUserName.map((user: IUser) => {
+                  users.map((user: IUser) => {
                     const { idx, avatar, name, description, position, joinedAt } = user;
                     return (
                       <UserItem

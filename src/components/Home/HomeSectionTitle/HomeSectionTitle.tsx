@@ -2,20 +2,20 @@ import { ReactNode } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 
-const style = require('./SectionTitle.scss');
+const style = require('./HomeSectionTitle.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface SectionTitleProps {
+interface HomeSectionTitleProps {
   title: string;
   children?: ReactNode;
 }
 
-const SectionTitle = ({
+const HomeSectionTitle = ({
   title,
   children,
-}: SectionTitleProps) => {
+}: HomeSectionTitleProps) => {
   return (
-    <div className={cx('SectionTitle')}>
+    <div className={cx('HomeSectionTitle')}>
       {title}
 
       {children}
@@ -23,4 +23,4 @@ const SectionTitle = ({
   );
 };
 
-export default SectionTitle;
+export default HomeSectionTitle;

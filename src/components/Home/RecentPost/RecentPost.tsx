@@ -10,7 +10,7 @@ import useRecentPosts from 'hooks/post/useRecentPosts';
 import GridItem from 'components/Common/Post/GridItem';
 import ListItem from 'components/Common/Post/ListItem';
 import NoItems from 'components/Common/NoItems';
-import SectionTitle from '../SectionTitle';
+import HomeSectionTitle from '../HomeSectionTitle';
 
 const style = require('./RecentPost.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -35,7 +35,7 @@ const RecentPost = (): JSX.Element => {
 
   return (
     <div className={cx('RecentPost')}>
-      <SectionTitle title='최근 올라온 질문글'>
+      <HomeSectionTitle title='최근 올라온 질문글'>
         <div className={cx('RecentPost-Select')}>
           <AiOutlineUnorderedList
             className={cx('RecentPost-Select-Item', {
@@ -51,7 +51,7 @@ const RecentPost = (): JSX.Element => {
             onClick={() => onChangeViewMode(GRID)}
           />
         </div>
-      </SectionTitle>
+      </HomeSectionTitle>
 
       <div className={cx('RecentPost-List')} style={flexStyle}>
       {
