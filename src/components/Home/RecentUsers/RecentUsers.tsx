@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import useRecentUsers from 'hooks/user/useRecentUsers';
+import { IUser } from 'types/user.types';
 import HomeSectionTitle from '../HomeSectionTitle';
 import RecentUserItem from './RecentUserItem';
 
@@ -16,7 +17,7 @@ const RecentUsers = (): JSX.Element => {
 
       <div className={cx('RecentUsers-List')}>
         {
-          recentUsers.map((user) => {
+          recentUsers.map((user: IUser) => {
             const { idx, avatar, name, position } = user;
 
             return (

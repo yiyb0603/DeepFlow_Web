@@ -1,7 +1,6 @@
-import { CSSProperties, memo } from 'react';
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { createRandomColor } from 'util/createRandomColor';
 import { calculateTime } from 'lib/TimeCounting';
 
 const style = require('./TimeSticker.scss');
@@ -14,12 +13,12 @@ interface TimeStickerProps {
 
 const TimeSticker = ({ createdAt, updatedAt }: TimeStickerProps): JSX.Element => {
   const stickerText: string = calculateTime(createdAt) + (updatedAt !== null ? ' (수정됨)' : '');
-  const timeBackground: CSSProperties = {
-    backgroundColor: createRandomColor(),
-  };
+  // const timeBackground: CSSProperties = {
+  //   backgroundColor: createRandomColor(),
+  // };
 
   return (
-    <div className={cx('TimeSticker')} style={timeBackground}>
+    <div className={cx('TimeSticker')}>
       <div>{stickerText}</div>
     </div>
   );

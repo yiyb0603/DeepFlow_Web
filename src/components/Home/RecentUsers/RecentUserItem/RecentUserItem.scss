@@ -1,5 +1,5 @@
 .RecentUserItem {
-	width: 32%;
+	width: 32.5%;
 	height: 92px;
 	max-height: 92px;
 	display: flex;
@@ -9,6 +9,7 @@
 	border: 1px solid var(--lighterGray);
 	border-radius: 5px;
 	padding: 0.6rem;
+	margin-right: 0.5rem;
 
 	&-Left {
 		display: flex;
@@ -24,13 +25,14 @@
 
 		&-Info {
 			&-Name {
+				color: var(--contrast);
 				font-size: var(--font-contents);
 				font-weight: 500;
 			}
 
 			&-Position {
-				color: var(--gray);
-				font-weight: 500;
+				color: var(--contratst);
+				font-weight: 400;
 			}
 		}
 	}

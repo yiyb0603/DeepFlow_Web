@@ -27,7 +27,7 @@ const PopularUser = (): JSX.Element => {
                 idx={idx}
                 name={name}
                 position={position}
-                order={order + 1}
+                order={order}
                 recommandCount={recommandCount}
               />
             );
