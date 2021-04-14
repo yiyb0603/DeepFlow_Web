@@ -13,9 +13,9 @@
 	&-Close {
 		position: absolute;
 		top: -0.75rem;
-		left: -0.5rem;
+		left: -0.75rem;
 		color: var(--red);
-		font-size: var(--font-big);
+		font-size: var(--font-regular);
 		cursor: pointer;
 	}
 
@@ -64,6 +64,7 @@
 	}
 
 	&-JoinedAt {
+		color: var(--main);
 		font-size: var(--font-small);
 	}
 }

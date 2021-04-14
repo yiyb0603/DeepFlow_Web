@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import Comment from 'components/Comment';
+import Helmet from 'components/Common/Helmet';
 import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
 import PageLoading from 'components/Common/PageLoading';
 import usePostByIdx from 'hooks/post/usePostByIdx';
@@ -23,6 +24,11 @@ const Post = (): JSX.Element => {
       post === null ? <PageLoading text='글을 불러오는 중입니다 🥴' />
       :
       <div className={cx('Post')}>
+        <Helmet
+          title={post.title}
+          description={post.introduction}
+          favicon={post.thumbnail}
+        />
         <div className={cx('Post-Title')}>{post.title}</div>
 
         <TopInfo

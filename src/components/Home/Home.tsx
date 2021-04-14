@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import useRecentPosts from 'hooks/post/useRecentPosts';
+import Helmet from 'components/Common/Helmet';
 import HomeBanner from './HomeBanner';
 import HomeLoading from './HomeLoading';
 import RecentPost from './RecentPost';
@@ -18,6 +19,7 @@ const Home = (): JSX.Element => {
       isLoading ? <HomeLoading />
       :
       <div className={cx('Home')}>
+        <Helmet />
         <HomeBanner />
         <RecentUsers />
         <RecentPost />

@@ -1,13 +1,14 @@
 import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import useSearchPosts from 'hooks/post/useSearchPosts';
 import { IPost } from 'types/post.types';
 import PageNumberList from 'components/Common/PageNumberList';
 import PageTitle from 'components/Common/PageTitle';
 import ListItem from 'components/Common/Post/ListItem';
-import SearchBar from './SearchBar';
 import NoItems from 'components/Common/NoItems';
-import useSearchPosts from 'hooks/post/useSearchPosts';
+import Helmet from 'components/Common/Helmet';
+import SearchBar from './SearchBar';
 
 const style = require('./SearchPosts.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -30,6 +31,7 @@ const SearchPosts = (): JSX.Element => {
 
   return (
     <div className={cx('SearchPosts')}>
+      <Helmet title='글 목록 검색' />
       <PageTitle
         title='글 목록 검색'
         subTitle='글을 검색하여 조회할 수 있습니다.'

@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import usePosts from 'hooks/post/usePosts';
 import { IPost } from 'types/post.types';
 import PageTitle from 'components/Common/PageTitle';
 import ListItem from 'components/Common/Post/ListItem';
 import PageNumberList from 'components/Common/PageNumberList';
 import NoItems from 'components/Common/NoItems';
-import usePosts from 'hooks/post/usePosts';
+import Helmet from 'components/Common/Helmet';
 
 const style = require('./Temp.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -29,6 +30,7 @@ const Temp = (): JSX.Element => {
 
   return (
     <div className={cx('Temp')}>
+      <Helmet title='임시저장' />
       <PageTitle
         title='임시저장 글 목록'
         subTitle='임시저장 글 목록이 여기에 표시됩니다.'

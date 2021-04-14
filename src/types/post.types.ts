@@ -11,7 +11,7 @@ export interface IPost {
   category: EPost;
   title: string;
   introduction: string;
-  thumbnail: string | null;
+  thumbnail: string;
   contents?: string;
   user: IUser;
   commentCount: number;

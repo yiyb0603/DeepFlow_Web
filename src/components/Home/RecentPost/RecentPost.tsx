@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
 import { BsFillGrid3X3GapFill } from 'react-icons/bs';
-import Sample from 'assets/images/sample.png';
 import { EView } from 'lib/enum/theme';
 import { IPost } from 'types/post.types';
 import useRecentPosts from 'hooks/post/useRecentPosts';
@@ -56,24 +55,18 @@ const RecentPost = (): JSX.Element => {
       <div className={cx('RecentPost-List')} style={flexStyle}>
       {
         recentPosts.length > 0 ? recentPosts.map((post: IPost) => {
-          const { idx, thumbnail } = post;
-          const postProps = {
-            thumbnail: thumbnail || Sample,
-            ...post,
-          }
-
           return (
             <>
               {
                 viewMode === LIST ?
                 <ListItem
-                  key={idx}
-                  {...postProps}
+                  key={post.idx}
+                  {...post}
                 />
                 :
                 <GridItem
-                  key={idx}  
-                  {...postProps}
+                  key={post.idx}  
+                  {...post}
                 />
               }
             </>

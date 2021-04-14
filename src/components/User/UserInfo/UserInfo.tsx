@@ -1,13 +1,14 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import useUserInfo from 'hooks/user/useUserInfo';
 import { IPost } from 'types/post.types';
+import NoItems from 'components/Common/NoItems';
+import ListItem from 'components/Common/Post/ListItem';
+import UserLoading from 'components/UserList/UserLoading';
+import Helmet from 'components/Common/Helmet';
 import InfoBox from './InfoBox';
 import PostPageControl from './PostPageControl';
 import PostTab from './PostTab';
-import NoItems from 'components/Common/NoItems';
-import ListItem from 'components/Common/Post/ListItem';
-import useUserInfo from 'hooks/user/useUserInfo';
-import UserLoading from 'components/UserList/UserLoading';
 
 const style = require('./UserInfo.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -29,6 +30,7 @@ const UserInfo = (): JSX.Element => {
       userInfo === null ? <UserLoading />
       :
       <div className={cx('UserInfo')}>
+        <Helmet title={`${userInfo.name} (${userInfo.githubId})`} />
         <InfoBox
           {...userInfo}
         />

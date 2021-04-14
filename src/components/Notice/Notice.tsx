@@ -6,6 +6,7 @@ import Sample from 'assets/images/sample.png';
 import useNoticeList from 'hooks/notice/useNoticeList';
 import NoItems from 'components/Common/NoItems';
 import PageTitle from 'components/Common/PageTitle';
+import Helmet from 'components/Common/Helmet';
 
 const style = require('./Notice.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -15,6 +16,7 @@ const Notice = (): JSX.Element => {
 
   return (
     <div className={cx('Notice')}>
+      <Helmet title='공지사항' />
       <PageTitle title='공지사항' subTitle='공지사항 목록이 여기에 표시됩니다.' />
       {
         noticeList.length > 0 ? noticeList.map((notice: INotice) => {

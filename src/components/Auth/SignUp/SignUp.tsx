@@ -11,6 +11,7 @@ import RegisterSubmit from '../RegisterSubmit';
 import MajorSelect from 'components/Common/MajorSelect';
 import GenerationSelect from 'components/Common/GenerationSelect';
 import GithubLoading from 'components/Auth/GithubLoading';
+import Helmet from 'components/Common/Helmet';
 
 const style = require('./SignUp.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -29,6 +30,7 @@ const SignUp = (): JSX.Element => {
     onChangeMajor,
     requestRegister,
   } = useRegister();
+
   const {
     avatar,
     githubId,
@@ -48,6 +50,7 @@ const SignUp = (): JSX.Element => {
       request.githubId === '' ? <GithubLoading />
       :
       <div className={cx('SignUp')}>
+        <Helmet title='회원가입' />
         <div className={cx('SignUp-Wrapper')}>
           <div className={cx('SignUp-Top')}>
             <div className={cx('SignUp-Top-Title')}>회원가입 진행</div>

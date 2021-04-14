@@ -9,6 +9,7 @@ import SearchUsers from './SearchUsers';
 import PageTitle from 'components/Common/PageTitle';
 import NoItems from 'components/Common/NoItems';
 import UserLoading from './UserLoading';
+import Helmet from 'components/Common/Helmet';
 
 const style = require('./UserList.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -27,6 +28,7 @@ const UserList = (): JSX.Element => {
       isLoading ? <UserLoading />
       :
       <div className={cx('UserList')}>
+        <Helmet title='유저 목록' />
         <PageTitle title='유저 목록' subTitle='유저 목록이 여기에 표시됩니다.'>
           <SearchUsers
             keyword={keyword}

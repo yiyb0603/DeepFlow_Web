@@ -4,12 +4,13 @@ import { useParams } from 'react-router-dom';
 import { getPostsByCategory, getPostsByTag, getTempPosts } from 'lib/api/post/post.api';
 import { EPost } from 'lib/enum/post';
 import { EResponse } from 'lib/enum/response';
-import { questionListState, tagPostState, tempPostState } from 'atom/post';
+import { postListLoadingState, questionListState, tagPostState, tempPostState } from 'atom/post';
 import { IPost } from 'types/post.types';
 import usePagination from 'hooks/util/usePagination';
 
 const usePosts = (category?: EPost) => {
   const { tag }: { tag: string } = useParams();
+  const [postLoading, setPostLoading] = useRecoilState<boolean>(postListLoadingState);
   const [questionList, setQuestionList] = useRecoilState<IPost[]>(questionListState);
   const [tagPostList, setTagPostList] = useRecoilState<IPost[]>(tagPostState);
   const [tempPosts, setTempPosts] = useRecoilState<IPost[]>(tempPostState);
@@ -27,6 +28,7 @@ const usePosts = (category?: EPost) => {
 
   const requestPostList = useCallback(async () => {
     try {
+      setPostLoading(true);
       const { status, data: { posts, totalPage } } = await getPostsByCategory(category!, currentPage);
 
       if (status === EResponse.OK) {
@@ -35,11 +37,14 @@ const usePosts = (category?: EPost) => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setPostLoading(false);
     }
-  }, [category, currentPage, setQuestionList, setTotalPage]);
+  }, [category, currentPage, setPostLoading, setQuestionList, setTotalPage]);
 
   const requestTempPosts = useCallback(async (): Promise<void> => {
     try {
+      setPostLoading(true);
       const { status, data: { posts } } = await getTempPosts();
 
       if (status === EResponse.OK) {
@@ -47,11 +52,14 @@ const usePosts = (category?: EPost) => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setPostLoading(false);
     }
-  }, [setTempPosts]);
+  }, [setPostLoading, setTempPosts]);
   
   const requestPostsByTag = useCallback(async (): Promise<void> => {
     try {
+      setPostLoading(true);
       const { status, data: { posts, totalPage } } = await getPostsByTag(tag, category!);
 
       if (status === EResponse.OK) {
@@ -60,14 +68,17 @@ const usePosts = (category?: EPost) => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setPostLoading(false);
     }
-  }, [category, setTagPostList, setTotalPage, tag]);
+  }, [category, setPostLoading, setTagPostList, setTotalPage, tag]);
 
   useEffect(() => {
     requestPostList();
   }, [requestPostList, currentPage]);
 
   return {
+    postLoading,
     questionList,
     totalPage,
     currentPage,
