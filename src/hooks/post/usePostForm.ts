@@ -27,39 +27,32 @@ const usePostForm = () => {
 
   const handleIsModal = useCallback((isModal: boolean): void => {
     setIsSubmitModal(isModal);
-
-    if (customTrim(request.introduction).length > 150) {
-      setRequest({
-        ...request,
-        introduction: request.introduction.slice(0, 150),
-      });
-    }
-  }, [request, setRequest]);
+  }, []);
 
   const onChangeTitle = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
 
-    setRequest({
+    setRequest((request) => ({
       ...request,
       title: value,
-    });
-  }, [request, setRequest]);
+    }));
+  }, [setRequest]);
 
   const onChangeIntroduction = useCallback((e: ChangeEvent<HTMLTextAreaElement>): void => {
     const { value } = e.target;
 
-    setRequest({
+    setRequest((request) => ({
       ...request,
       introduction: value,
-    });
-  }, [request, setRequest]);
+    }));
+  }, [setRequest]);
 
   const onChangeCategory = useCallback((category: EPost): void => {
-    setRequest({
+    setRequest((request) => ({
       ...request,
       category,
-    });
-  }, [request, setRequest]);
+    }));
+  }, [setRequest]);
 
   const onChangeTagInput = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
@@ -87,12 +80,12 @@ const usePostForm = () => {
       return;
     }
 
-    setRequest({
+    setRequest((request) => ({
       ...request,
       postTags: [...postTags, tagInput],
-    });
+    }));
     setTagInput('');
-  }, [tagInput, postTags, setRequest, request]);
+  }, [tagInput, postTags, setRequest]);
 
   const onKeydownTagInput = useCallback((e: KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === ',' || e.key === 'Enter') {
@@ -101,13 +94,11 @@ const usePostForm = () => {
   }, [onChangePostTags]);
 
   const handleFilterPostTag = useCallback((tagName: string): void => {
-    const { postTags } = request;
-    
-    setRequest({
+    setRequest((request) => ({
       ...request,
-      postTags: postTags.filter((tag) => tag !== tagName),
-    });
-  }, [request, setRequest]);
+      postTags: request.postTags.filter((tag) => tag !== tagName),
+    }));
+  }, [setRequest]);
 
   const onChangeContents = useCallback((text: string): void => {
     setContents(text);

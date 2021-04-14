@@ -47,6 +47,7 @@ const Post = (): JSX.Element => {
         <PostLike />
 
         <PostUserInfo
+          idx={post.user.idx}
           avatar={post.user.avatar}
           name={post.user.name}
           description={post.user.description}

@@ -1,12 +1,14 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { AiOutlineGithub, AiOutlineLink } from 'react-icons/ai';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import { Link } from 'react-router-dom';
 
 const style = require('./PostUserInfo.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface PostUserInfoProps {
+  idx: number;
   avatar: string;
   name: string;
   description: string;
@@ -16,6 +18,7 @@ interface PostUserInfoProps {
 };
 
 const PostUserInfo = ({
+  idx,
   avatar,
   name,
   description,
@@ -23,6 +26,8 @@ const PostUserInfo = ({
   github,
   location,
 }: PostUserInfoProps): JSX.Element => {
+  const userInfoLink: string = useMemo(() => `/user/${idx}`, [idx]);
+
   const handlePushToAdress = useCallback((address: string): void => {
     window.open(address, '_blank');
   }, []);
@@ -37,7 +42,12 @@ const PostUserInfo = ({
         />
 
         <div className={cx('PostUserInfo-Left-Contents')}>
-          <div className={cx('PostUserInfo-Left-Contents-Name')}>{name}</div>
+          <Link
+            to={userInfoLink}
+            className={cx('PostUserInfo-Left-Contents-Name')}
+          >
+            {name}
+          </Link>
           <div className={cx('PostUserInfo-Left-Contents-Description')}>{description}</div>
           
           <div className={cx('PostUserInfo-Left-Contents-Location')}>🏬 {location}</div>

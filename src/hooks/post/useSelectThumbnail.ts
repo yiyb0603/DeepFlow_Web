@@ -26,11 +26,11 @@ const useSelectThumbnail = () => {
       const formData: FormData = new FormData();
       formData.append('images', thumbnail);
 
-      const { status, data } = await uploadFiles(formData);
+      const { status, data: { files } } = await uploadFiles(formData);
       if (status === EResponse.OK) {
         setRequest((request: IPostDto) => ({
           ...request,
-          thumbnail: data.files[0],
+          thumbnail: files[0],
         }));
       }
     } catch (error) {
