@@ -104,10 +104,9 @@ const usePostForm = () => {
     setContents(text);
     setRequest((request: IPostDto) => ({
       ...request,
-      introduction: contents,
       contents: text,
     }));
-  }, [contents, setRequest]);
+  }, [setRequest]);
 
   const requestOfferPost = useCallback(async (isTemp: boolean): Promise<void> => {
     try {

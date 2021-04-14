@@ -29,7 +29,7 @@ const Questions = (): JSX.Element => {
   return (
     <>
     {
-      postLoading ? <HomeLoading />
+      postLoading && questionList.length <= 0 ? <HomeLoading />
       :
       <div className={cx('Questions')}>
         <Helmet title='질문 모음' />
@@ -39,7 +39,7 @@ const Questions = (): JSX.Element => {
 
         <div className={cx('Questions-List')}>
           {
-            !postLoading && questionList.length > 0 ? questionList.map((question: IPost) => {
+            questionList.length > 0 ? questionList.map((question: IPost) => {
               return (
                 <ListItem
                   key={question.idx}
