@@ -60,7 +60,7 @@ const UserItem = ({
 
               <div className={cx('UserItem-Left-ContentsWrap-NameWrap-Wrap-Position')}>{position}</div>
             </div>
-            <div className={cx('UserItem-Left-ContentsWrap-NameWrap-Description')}>{text}</div>
+            <div className={cx('UserItem-Left-ContentsWrap-NameWrap-Wrap-Description')}>{text}</div>
           </div>
         </div>
       </div>

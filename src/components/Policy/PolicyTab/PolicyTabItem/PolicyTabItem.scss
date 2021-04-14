@@ -1,0 +1,13 @@
+.PolicyTabItem {
+	flex: 1;
+	font-size: var(--font-normal);
+	margin-right: 0.5rem;
+	border-bottom: 1px solid var(--gray);
+	padding-bottom: 0.5rem;
+	cursor: pointer;
+
+	&-Selected {
+		color: var(--main);
+		border-bottom: 1px solid var(--main);
+	}
+}

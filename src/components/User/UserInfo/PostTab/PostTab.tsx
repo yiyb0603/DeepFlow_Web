@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { EUserPost } from 'lib/enum/post';
-import { userPostTabs } from 'lib/models/postTabs';
+import { userPostTabs } from 'lib/models/tabs/postTabs';
 import SelectTab from 'components/Common/SelectTab';
 
 const style = require('./PostTab.scss');

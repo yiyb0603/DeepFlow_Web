@@ -1,7 +1,7 @@
 import { CSSProperties } from 'react';
 import { Select } from 'antd';
 import { EMajor } from 'lib/enum/majors';
-import { IAuthOption, majors } from 'lib/models/authOption';
+import { IAuthOption, majors } from 'lib/models/menu/authOption';
 
 const { Option } = Select;
 

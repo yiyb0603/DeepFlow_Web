@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { tagSortState } from 'atom/tag';
 import { ETagSort } from 'lib/enum/tag';
-import { ITagTap, tagTaps } from 'lib/models/tagTaps';
+import { ITagTap, tagTaps } from 'lib/models/tabs/tagTaps';
 import SelectTab from 'components/Common/SelectTab';
 import Helmet from 'components/Common/Helmet';
 

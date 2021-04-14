@@ -9,7 +9,7 @@ import CommentSubmit from './CommentSubmit';
 import ReplyCancel from 'components/Reply/ReplyCancel';
 import useComment from 'hooks/comment/useComment';
 import useReply from 'hooks/reply/useReply';
-import { commentTabs, ICommentTab } from 'lib/models/commentTabs';
+import { commentTabs, ICommentTab } from 'lib/models/tabs/commentTabs';
 import PreviewTabItem from './PreviewTab/PreviewTabItem';
 
 const style = require('./CommentForm.scss');

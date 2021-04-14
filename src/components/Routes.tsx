@@ -12,6 +12,7 @@ import TagPostsPage from 'pages/TagPosts';
 import TempPage from 'pages/Temp';
 import UserRecommandPage from 'pages/UserRecommand';
 import SearchPostsPage from 'pages/SearchPosts';
+import PolicyPage from 'pages/Policy';
 
 const Routes = (): JSX.Element => {
   return (
@@ -30,6 +31,7 @@ const Routes = (): JSX.Element => {
       <Route exact path='/temp' component={TempPage} />
       <Route exact path='/tags' component={TagsPage} />
       <Route exact path='/tag-posts/:tag' component={TagPostsPage} />
+      <Route exact path={['/policy/personal', '/policy/service']} component={PolicyPage} />
     </Switch>
   );
 }

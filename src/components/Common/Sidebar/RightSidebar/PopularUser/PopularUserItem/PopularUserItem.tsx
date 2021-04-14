@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { Link } from 'react-router-dom';
 import { AiOutlineLike } from 'react-icons/ai';
-import { medals } from 'lib/models/medals';
+import { medals } from 'lib/models/menu/medals';
 
 const style = require('./PopularUserItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);

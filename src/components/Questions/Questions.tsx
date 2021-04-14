@@ -50,14 +50,17 @@ const Questions = (): JSX.Element => {
           }
         </div>
 
-        <PageNumberList
-          currentPage={currentPage}
-          onChangeCurrentPage={onChangeCurrentPage}
-          numberListPage={numberListPage}
-          handlePrevPage={handlePrevPage}
-          handleNextPage={handleNextPage}
-          pageList={splitedNumberList}
-        />
+        {
+          splitedNumberList.length > 1 &&
+          <PageNumberList
+            currentPage={currentPage}
+            onChangeCurrentPage={onChangeCurrentPage}
+            numberListPage={numberListPage}
+            handlePrevPage={handlePrevPage}
+            handleNextPage={handleNextPage}
+            pageList={splitedNumberList}
+          />
+        }
       </div>
     }
     </>

@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import LeftSidebarItem from './LeftSidebarItem';
-import { ISideItemsType, sideItems } from 'lib/models/sideItems';
+import { ISideItemsType, sideItems } from 'lib/models/menu/sideItems';
 import { getMyInfo } from 'util/getMyInfo';
 
 const style = require('./LeftSidebar.scss');

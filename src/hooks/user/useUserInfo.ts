@@ -91,6 +91,12 @@ const useUserInfo = () => {
     renderUserInfo();
   }, [renderUserInfo]);
 
+  useEffect(() => {
+    return () => {
+      setUserInfo(null);
+    }
+  }, [setUserInfo]);
+
   return {
     isLoading,
     userInfo,

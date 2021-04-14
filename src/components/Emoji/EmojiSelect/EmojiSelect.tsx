@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { commentEmojiListState } from 'atom/comment';
 import useEmoji from 'hooks/comment/useEmoji';
-import { emojies as selectEmojies } from 'lib/models/emojies';
+import { emojies as selectEmojies } from 'lib/models/menu/emojies';
 import { ICommentEmojiInfo } from 'types/commentEmoji.types';
 import { getMyInfo } from 'util/getMyInfo';
 import { IToken } from 'types/user.types';

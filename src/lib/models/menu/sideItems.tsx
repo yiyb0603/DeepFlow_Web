@@ -45,9 +45,9 @@ export const sideItems: ISideItemsType[] = [
   },
 
   {
-    menuName: 'About',
+    menuName: '이용약관',
     icon: <IoIosInformationCircleOutline className={ICON_CLASS} />,
-    link: '',
+    link: '/policy/personal' || '/policy/service',
   },
 
   {

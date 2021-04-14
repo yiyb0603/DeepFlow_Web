@@ -1,6 +1,6 @@
 import { CSSProperties, memo } from 'react';
 import { Select } from 'antd';
-import { generations } from 'lib/models/authOption';
+import { generations } from 'lib/models/menu/authOption';
 
 const { Option } = Select;
 
