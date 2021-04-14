@@ -1,6 +1,10 @@
 .Comment {
 	margin-top: 4rem;
 
+	&-Count {
+		color: var(--contrast);
+	}
+
 	&-List {
 		margin-top: 2rem;
 	}

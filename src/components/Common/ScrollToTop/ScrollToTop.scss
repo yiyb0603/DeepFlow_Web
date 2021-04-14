@@ -1,6 +1,6 @@
 .ScrollToTop {
-	width: 65px;
-	height: 65px;
+	width: 60px;
+	height: 60px;
 	background-color: var(--main);
 	border: none;
 	outline: none;
@@ -12,8 +12,8 @@
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
-	-webkit-transition: all 0.15s ease-in-out;
 	transition: all 0.15s ease-in-out;
+	-webkit-transition: all 0.15s ease-in-out;
 
 	&:hover {
 		opacity: 0.8;

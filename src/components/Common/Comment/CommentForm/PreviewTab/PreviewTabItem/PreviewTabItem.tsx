@@ -1,8 +1,6 @@
-import { useCallback } from 'react';
-import { useRecoilState } from 'recoil';
+import { Dispatch, SetStateAction, useCallback } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { commentTabState } from 'atom/comment';
 import { ECommentTab } from 'lib/enum/comment';
 
 const style = require('./PreviewTabItem.scss');
@@ -12,15 +10,17 @@ interface PreviewTabItemProps {
   id: ECommentTab;
   name: string;
   icon: JSX.Element;
+  commentTab: ECommentTab;
+  setCommentTab: Dispatch<SetStateAction<ECommentTab>>;
 }
 
 const PreviewTabItem = ({
   id,
   name,
   icon,
+  commentTab,
+  setCommentTab,
 }: PreviewTabItemProps): JSX.Element => {
-  const [commentTab, setCommentTab] = useRecoilState<ECommentTab>(commentTabState);
-  
   const onChangeCommentTab = useCallback((): void => {
     setCommentTab(id);
   }, [id, setCommentTab]);
