@@ -34,9 +34,9 @@ export const userInfoState = atom<IUser | null>({
   default: null,
 });
 
-export const userListState = atom<(IUser | IUser[])[]>({
+export const userListState = atom<IUser[][]>({
   key: 'userListState',
-  default: [] as (IUser | IUser[])[],
+  default: [] as IUser[][],
 });
 
 export const popularUserListState = atom<IUser[]>({

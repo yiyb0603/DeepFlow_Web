@@ -1,16 +1,16 @@
-import { MutableRefObject } from 'react';
-import { useRecoilValue } from 'recoil';
+import { MutableRefObject, useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import PreviewTab from './PreviewTab';
 import CommentInput from './CommentInput';
-import { commentTabState } from 'atom/comment';
 import { EComment, ECommentTab } from 'lib/enum/comment';
 import CommentPreview from './CommentPreview';
 import CommentSubmit from './CommentSubmit';
 import ReplyCancel from 'components/Reply/ReplyCancel';
 import useComment from 'hooks/comment/useComment';
 import useReply from 'hooks/reply/useReply';
+import { commentTabs, ICommentTab } from 'lib/models/commentTabs';
+import PreviewTabItem from './PreviewTab/PreviewTabItem';
 
 const style = require('./CommentForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -31,13 +31,28 @@ const CommentForm = ({
   const { WRITE } = ECommentTab;
   const { COMMENT, REPLY } = EComment;
 
-  const { contents, onChangeContents, requestOfferComment } = useComment();
   const reply = useReply(commentIdx!);
-  const commentTab = useRecoilValue<ECommentTab>(commentTabState);
+  const { contents, onChangeContents, requestOfferComment } = useComment();
+
+  // TODO: commentTab을 지역상태관리로 변경
+  const [commentTab, setCommentTab] = useState(ECommentTab.WRITE);
 
   return (
     <div className={cx('CommentForm')}>
-      <PreviewTab />
+      <PreviewTab>
+        {
+          commentTabs.map(({ id, name, icon }: ICommentTab) => (
+            <PreviewTabItem
+              key={id}
+              id={id}
+              name={name}
+              icon={icon}
+              commentTab={commentTab}
+              setCommentTab={setCommentTab}
+            />
+          ))
+        }
+      </PreviewTab>
       {
         commentTab === WRITE ?
         <CommentInput
@@ -47,7 +62,7 @@ const CommentForm = ({
           commentInputRef={commentInputRef!}
         />
         :
-        <CommentPreview contents={contents} />
+        <CommentPreview contents={type === COMMENT ? contents : reply.contents} />
       }
 
       <div className={cx('CommentForm-BottomWrap')}>

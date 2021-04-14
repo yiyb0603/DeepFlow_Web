@@ -1,7 +1,7 @@
+import { useState, useCallback, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { getTagByTagName } from 'lib/api/tag/tag.api';
 import { EResponse } from 'lib/enum/response';
-import { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { ITag } from 'types/tag.types';
 
 const useTag = () => {

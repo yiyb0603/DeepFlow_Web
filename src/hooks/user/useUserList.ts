@@ -1,4 +1,6 @@
 import { useState, useCallback, useEffect, useMemo, ChangeEvent } from 'react';
+import { useRecoilState } from 'recoil';
+import { userListState } from 'atom/user';
 import { IUser, IUserListResponse } from 'types/user.types';
 import { getUserList } from 'lib/api/user/user.api';
 import { EResponse } from 'lib/enum/response';
@@ -6,8 +8,9 @@ import { getGenerations } from 'util/getGenerations';
 
 const useUserList = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [userList, setUserList] = useState<IUser[][]>([]);
   const [keyword, setKeyword] = useState<string>('');
+
+  const [userList, setUserList] = useRecoilState<IUser[][]>(userListState);
 
   const onChangeKeyword = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
@@ -60,6 +63,7 @@ const useUserList = () => {
   return {
     keyword,
     onChangeKeyword,
+    userList,
     filteredUsers,
     isLoading,
   };

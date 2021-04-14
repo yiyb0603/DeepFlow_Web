@@ -33,7 +33,7 @@ const Comment = (): JSX.Element => {
 
   return (
     <div className={cx('Comment')}>
-      <h3>{commentList.length}개의 댓글</h3>
+      <h3 className={cx('Comment-Count')}>{commentList.length}개의 댓글</h3>
 
       <CommentForm
         type={EComment.COMMENT}

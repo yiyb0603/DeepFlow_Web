@@ -9,8 +9,10 @@ const cx: ClassNamesFn = classNames.bind(style);
 const RightSidebar = (): JSX.Element => {
   return (
     <div className={cx('RightSidebar')}>
-      <PopularPost />
-      <PopularUser />
+      <div className={cx('RightSidebar-Menus')}>
+        <PopularPost />
+        <PopularUser />
+      </div>
     </div>
   );
 };

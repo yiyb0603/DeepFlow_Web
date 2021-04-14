@@ -26,7 +26,12 @@
 		&-Contents {
 			&-Name {
 				font-size: var(--font-normallest);
-				font-weight: bold;
+				font-weight: 500;
+				cursor: pointer;
+
+				&:hover {
+					color: var(--main);
+				}
 			}
 
 			&-Description {

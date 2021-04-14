@@ -13,7 +13,8 @@ const style = require('./PostForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const PostForm = (): JSX.Element => {
-  const { title,
+  const {
+    title,
     onChangeTitle,
 
     contents,

@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import { useState, useCallback, useEffect, ChangeEvent } from 'react';
 import { useRecoilState } from 'recoil';
 import { userRecommandListState } from 'atom/userRecommand';
 import { createRecommand, deleteRecommand, getRecommandsByUserIdx } from 'lib/api/userRecommand/userRecommand.api';
@@ -7,6 +7,7 @@ import { EResponse } from 'lib/enum/response';
 import { IRecommandDto } from 'lib/api/userRecommand/userRecommand.dto';
 import { validateRecommand } from 'validation/recommand.validation';
 import useUserInfo from './useUserInfo';
+import RecommandError from 'error/RecommandError';
 
 const useRecommand = () => {
   const userIdx: number = usePageParam();
@@ -34,23 +35,22 @@ const useRecommand = () => {
 
   const requestCreateRecommand = useCallback(async (): Promise<void> => {
     try {
-      if (!validateRecommand(reason)) {
-        return;
-      }
-      
       const recommandDto: IRecommandDto = {
         userIdx,
         reason,
       };
 
-      const { status } = await createRecommand(recommandDto);
+      if (!validateRecommand(recommandDto)) {
+        return;
+      }
 
+      const { status } = await createRecommand(recommandDto);
       if (status === EResponse.OK) {
         setReason('');
         await requestRecommandList();
       }
     } catch (error) {
-      console.log(error);
+      new RecommandError(error).createRecommandError();
     }
   }, [reason, requestRecommandList, userIdx]);
 

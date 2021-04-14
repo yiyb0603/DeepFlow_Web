@@ -19,13 +19,14 @@ const UserList = (): JSX.Element => {
     isLoading,
     keyword,
     onChangeKeyword,
+    userList,
     filteredUsers,
   } = useUserList();
 
   return (
     <>
     {
-      isLoading ? <UserLoading />
+      isLoading && userList.length <= 0 ? <UserLoading />
       :
       <div className={cx('UserList')}>
         <Helmet title='유저 목록' />

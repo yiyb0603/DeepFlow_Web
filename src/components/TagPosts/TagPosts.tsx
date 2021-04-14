@@ -6,7 +6,7 @@ import { IPost } from 'types/post.types';
 import TagInfo from './TagInfo';
 import { useHistory } from 'react-router-dom';
 import { History } from 'history';
-import useTag from 'hooks/post/useTag';
+import useTag from 'hooks/tag/useTag';
 import usePosts from 'hooks/post/usePosts';
 import { EPost } from 'lib/enum/post';
 

@@ -10,13 +10,20 @@
 		height: 80px;
 		max-height: 80px;
 		outline: none;
-		border: none;
+		background: none;
+		border: 1px solid var(--contrast);
+		border-radius: 5px;
 		overflow-x: hidden;
 		overflow-y: auto;
 		padding: 0.4rem;
+		color: var(--contrast);
 
 		&:focus {
-			outline: 1px solid var(--main);
+			border: 1px solid var(--main);
+		}
+
+		&::placeholder {
+			color: var(--contrast);
 		}
 	}
 
