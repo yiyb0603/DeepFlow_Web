@@ -19,7 +19,7 @@ const PopularPost = (): JSX.Element => {
       <div className={cx('PopularPost-Posts')}>
         {
           popularPosts.map((post: IPost, order: number) => {
-            const { idx, title, createdAt, viewCount, commentCount, likeCount } = post;
+            const { idx, title, createdAt, viewCount, commentCount, replyCount, likeCount } = post;
 
             return (
               <PopularItem
@@ -29,6 +29,7 @@ const PopularPost = (): JSX.Element => {
                 title={title}
                 viewCount={viewCount}
                 commentCount={commentCount}
+                replyCount={replyCount}
                 likeCount={likeCount}
                 createdAt={createdAt}
               />

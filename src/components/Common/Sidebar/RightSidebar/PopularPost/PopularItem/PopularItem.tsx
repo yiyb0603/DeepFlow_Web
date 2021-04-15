@@ -15,6 +15,7 @@ interface PopularItemProps {
   createdAt: Date | string;
   viewCount: number;
   commentCount: number;
+  replyCount: number;
   likeCount: number;
 }
 
@@ -25,6 +26,7 @@ const PopularItem = ({
   createdAt,
   viewCount,
   commentCount,
+  replyCount,
   likeCount,
 }: PopularItemProps) => {
   const history: History = useHistory();
@@ -41,7 +43,7 @@ const PopularItem = ({
       <div className={cx('PopularItem-SubInfo')}>
         <PostSubInfo
           viewCount={viewCount}
-          commentCount={commentCount}
+          commentCount={commentCount + replyCount}
           likeCount={likeCount}
         />
 

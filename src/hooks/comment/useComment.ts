@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, ChangeEvent } from 'react';
+import { useCallback, useMemo, ChangeEvent } from 'react';
 import { useRecoilState } from 'recoil';
 import { commentContentsState, commentListState, modifyState } from 'atom/comment';
 import usePageParam from '../util/usePageParam';
@@ -77,10 +77,6 @@ const useComment = () => {
       console.log(error);
     }
   }, [postIdx, requestCommentList, setModifyObject]);
-
-  useEffect(() => {
-    requestCommentList();
-  }, [requestCommentList]);
 
   return {
     contents,

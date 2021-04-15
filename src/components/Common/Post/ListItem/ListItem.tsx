@@ -21,6 +21,7 @@ export interface ItemProps {
   viewCount?: number;
   likeCount?: number;
   commentCount?: number;
+  replyCount?: number;
   postTags?: string[];
   user?: IUser;
   isTemp?: boolean;
@@ -36,6 +37,7 @@ const ListItem = ({
   viewCount,
   likeCount,
   commentCount,
+  replyCount,
   postTags,
   user,
   isTemp,
@@ -72,7 +74,7 @@ const ListItem = ({
                 <PostSubInfo
                   viewCount={viewCount!}
                   likeCount={likeCount!}
-                  commentCount={commentCount!}
+                  commentCount={commentCount! + replyCount!}
                 /> : <></>
               }
             </div>

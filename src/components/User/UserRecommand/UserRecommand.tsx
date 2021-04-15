@@ -4,6 +4,7 @@ import UserItem from 'components/Common/User/UserItem';
 import RecommandTitle from './RecommandTitle';
 import useRecommand from 'hooks/user/useRecommand';
 import RecommandForm from './RecommandForm';
+import { IUserRecommand } from 'types/userRecommand.types';
 
 const style = require('./UserRecommand.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -25,17 +26,17 @@ const UserRecommand = (): JSX.Element => {
 
         <div className={cx('UserRecommand-List')}>
           {
-            userRecommands.map((recommand) => {
-              const { idx, reason, recommandAt, user } = recommand;
+            userRecommands.map((recommand: IUserRecommand) => {
+              const { idx, reason, recommandAt, pressedUser } = recommand;
 
               return (
                 <UserItem
                   key={idx}
-                  idx={user.idx}
-                  name={user.name}
-                  avatar={user.avatar}
+                  idx={pressedUser.idx}
+                  name={pressedUser.name}
+                  avatar={pressedUser.avatar}
                   text={reason}
-                  position={user.position}
+                  position={pressedUser.position}
                   date={recommandAt}
                   canDelete={true}
                   onDelete={() => requestDeleteRecommand(idx)}

@@ -15,6 +15,7 @@ export interface IPost {
   contents?: string;
   user: IUser;
   commentCount: number;
+  replyCount: number;
   likeCount: number;
   viewCount: number;
   postTags: string[];

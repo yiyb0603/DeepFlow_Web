@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useMemo } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
 import { useHistory } from 'react-router-dom';
 import { History } from 'history';
@@ -86,16 +86,6 @@ const useUserInfo = () => {
       setIsLoading(false);
     }
   }, [requestUserInfo, requestUserPosts, userIdx]);
-
-  useEffect(() => {
-    renderUserInfo();
-  }, [renderUserInfo]);
-
-  useEffect(() => {
-    return () => {
-      setUserInfo(null);
-    }
-  }, [setUserInfo]);
 
   return {
     isLoading,

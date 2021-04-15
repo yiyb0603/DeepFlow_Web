@@ -5,7 +5,7 @@ export interface IUserRecommand {
   idx: number;
   reason: string;
   recommandAt: Date | string;
-  user: IUser;
+  pressedUser: IUser;
 }
 
 export interface IUserRecommandResponse extends IResponse {

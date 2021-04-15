@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import useUserInfo from 'hooks/user/useUserInfo';
@@ -16,13 +17,23 @@ const cx: ClassNamesFn = classNames.bind(style);
 const UserInfo = (): JSX.Element => {
   const {
     userInfo,
+    setUserInfo,
     onChangeUserPostTab,
     handlePrevPage,
     handleNextPage,
     userPostTab,
     page,
     splitedPostList,
+    renderUserInfo,
   } = useUserInfo();
+
+  useEffect(() => {
+    renderUserInfo();
+
+    return () => {
+      setUserInfo(null);
+    }
+  }, [renderUserInfo, setUserInfo]);
 
   return (
     <>

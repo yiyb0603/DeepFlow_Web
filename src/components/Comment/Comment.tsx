@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
@@ -13,7 +13,7 @@ const style = require('./Comment.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const Comment = (): JSX.Element => {
-  const { commentList, requestDeleteComment } = useComment();
+  const { commentList, requestCommentList, requestDeleteComment } = useComment();
   
   const commentInputRef = useRef<HTMLTextAreaElement | null>(null);
   const setModifyState = useSetRecoilState<ICommentModify | null>(modifyState);
@@ -30,6 +30,10 @@ const Comment = (): JSX.Element => {
       commentInputRef.current.focus();
     }
   }, [setContents, setModifyState]);
+
+  useEffect(() => {
+    requestCommentList();
+  }, [requestCommentList]);
 
   return (
     <div className={cx('Comment')}>

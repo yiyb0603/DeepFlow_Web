@@ -3,13 +3,13 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { calculateTime } from 'lib/TimeCounting';
 import { IToken, IUser } from 'types/user.types';
-import { getMyInfo } from 'util/getMyInfo';
-import ToggleReply from '../../../Comment/ToggleReply';
-import { IReply } from 'types/reply.types';
-import EmojiToggle from 'components/Emoji/EmojiToggle';
 import { ICommentEmoji } from 'types/commentEmoji.types';
+import { IReply } from 'types/reply.types';
+import ToggleReply from '../../../Comment/ToggleReply';
+import EmojiToggle from 'components/Emoji/EmojiToggle';
 import EmojiItem from 'components/Emoji/EmojiItem';
 import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
+import { getMyInfo } from 'util/getMyInfo';
 
 const style = require('./CommentItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -80,14 +80,10 @@ const CommentItem = ({
       </div>
       <div className={cx('CommentItem-Emojies')}>
         {
-          emojies && emojies.map(({
-            count,
-            emoji,
-            users,
-          }: ICommentEmoji, key: number) => (
+          emojies && emojies.map(({ emoji, users }: ICommentEmoji, key: number) => (
             <EmojiItem
               key={key}
-              count={count}
+              count={users.length}
               emoji={emoji}
               users={users}
               commentIdx={idx}

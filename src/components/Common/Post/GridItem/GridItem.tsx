@@ -21,6 +21,7 @@ const GridItem = ({
   updatedAt,
   viewCount,
   commentCount,
+  replyCount,
   likeCount,
   user,
 }: ItemProps): JSX.Element => {
@@ -48,7 +49,7 @@ const GridItem = ({
             <PostSubInfo
               viewCount={viewCount!}
               likeCount={likeCount!}
-              commentCount={commentCount!}
+              commentCount={commentCount! + replyCount!}
             /> : <></>
           }
 
