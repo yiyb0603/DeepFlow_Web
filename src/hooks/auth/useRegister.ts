@@ -2,10 +2,15 @@ import { ChangeEvent, useCallback, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { History } from 'history';
+import firebase from 'firebase/app';
+import '@firebase/messaging';
 import { registerLoading, requestRegisterState } from 'atom/auth';
+import firebaseConfig from 'config/firebase.json';
 import AuthError from 'error/AuthError';
 import { getGithubInfo, handleRegister } from 'lib/api/auth/auth.api';
 import { IGithubCodeDto } from 'lib/api/auth/auth.dto';
+import { setFCMToken } from 'lib/api/user/user.api';
+import { SetFCMDto } from 'lib/api/user/user.dto';
 import { setCookie } from 'lib/Cookie';
 import { EResponse } from 'lib/enum/response';
 import { successToast } from 'lib/Toast';
@@ -87,6 +92,27 @@ const useRegister = () => {
       major,
     }));
   }, [setRequest]);
+
+  const getFCMToken = useCallback(async (): Promise<void> => {
+		if (!firebase.apps.length) {
+			firebase.initializeApp(firebaseConfig);
+		}
+
+		const fcmToken: string = await firebase.messaging().getToken();
+    const setFcmRequest: SetFCMDto = {
+      fcmToken,
+    };
+
+		await setFCMToken(setFcmRequest);
+	}, []);
+
+	const requestNotificationAllow = useCallback(async (): Promise<void> => {
+		await Notification.requestPermission()
+    .then((permission: NotificationPermission) => {
+			if (permission === 'granted') {
+				getFCMToken();
+			}});
+	}, [getFCMToken]);
   
   const requestLoginOrGithubInfo = useCallback(async (): Promise<void> => {
     try {
@@ -98,10 +124,12 @@ const useRegister = () => {
       if (status === EResponse.OK) {
         if (data.accessToken !== undefined) {
           const { accessToken } = data;
-          
+
           setCookie('access_token', accessToken);
           history.push('/');
           successToast('로그인 되었습니다.');
+
+          await requestNotificationAllow();
           return;
         }
 
@@ -114,7 +142,7 @@ const useRegister = () => {
     } catch (error) {
       new AuthError(error).registerError(history);
     }
-  }, [code, history, setRequest]);
+  }, [code, history, requestNotificationAllow, setRequest]);
 
   const requestRegister = useCallback(async (): Promise<void> => {
     try {

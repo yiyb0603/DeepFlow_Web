@@ -11,3 +11,7 @@ export interface IUserModify {
   major: EMajor;
   generation: number;
 }
+
+export interface SetFCMDto {
+  fcmToken: string;
+}

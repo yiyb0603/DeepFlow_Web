@@ -1,7 +1,7 @@
 import { customAxios } from 'lib/CustomAxios';
 import { IResponse } from 'types/Response';
 import { IUserListResponse, IUserResponse } from 'types/user.types';
-import { IUserModify } from './user.dto';
+import { IUserModify, SetFCMDto } from './user.dto';
 
 export const getUserInfo = async (userIdx: number): Promise<IUserResponse> => {
   const url: string = `/user/${userIdx}`;
@@ -24,5 +24,11 @@ export const getUserList = async (): Promise<IUserListResponse> => {
 export const getPopularUserList = async (count: number): Promise<IUserListResponse> => {
   const url: string = `/user/popular?count=${count}`;
   const { data } = await customAxios.get(url);
+  return data;
+}
+
+export const setFCMToken = async (setFCMDto: SetFCMDto): Promise<IResponse> => {
+  const url: string = `/user/fcm`;
+  const { data } = await customAxios.post(url, setFCMDto);
   return data;
 }
