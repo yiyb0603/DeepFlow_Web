@@ -62,7 +62,7 @@ const ListItem = ({
             {
               user &&
               <div className={cx('ListItem-Contents-ContentsWrap-Top-Writer')}>
-                작성자: {user.name}
+                {user.name}
               </div>
             }
 

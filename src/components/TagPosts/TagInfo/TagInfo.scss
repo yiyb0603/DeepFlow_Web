@@ -13,8 +13,15 @@
 		@include tagInfoFontStyle(var(--font-small), 400);
 	}
 
-	&-Count {
+	&-CountWrapper {
+		display: flex;
+		display: -webkit-flex;
+		justify-content: space-between;
+		align-items: center;
 		margin-bottom: 0.5rem;
-		font-size: var(--font-small);
+
+		&-Count {
+			font-size: var(--font-small);
+		}
 	}
 }

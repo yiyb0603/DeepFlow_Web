@@ -5,12 +5,12 @@ import { VscSymbolNamespace } from 'react-icons/vsc';
 import { HiCode } from 'react-icons/hi';
 import { CgHello } from 'react-icons/cg';
 import { BiBuilding } from 'react-icons/bi';
+import useModifyInfo from 'hooks/user/useModifyInfo';
 import InfoInput from 'components/Common/InfoInput';
 import Modal from 'components/Common/Modal';
-import GenerationSelect from 'components/Common/GenerationSelect';
-import MajorSelect from 'components/Common/MajorSelect';
+import GenerationSelect from 'components/Common/Select/GenerationSelect';
+import MajorSelect from 'components/Common/Select/MajorSelect';
 import ModifySubmit from '../ModifySubmit';
-import useModifyInfo from 'hooks/user/useModifyInfo';
 
 const style = require('./ModifyInfoModal.scss');
 const cx: ClassNamesFn = classNames.bind(style);

@@ -1,8 +1,9 @@
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 import { AiOutlineGithub, AiOutlineLink } from 'react-icons/ai';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { Link } from 'react-router-dom';
+import { pushToWindowLink } from 'util/pushToWindowLink';
 
 const style = require('./PostUserInfo.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -28,10 +29,6 @@ const PostUserInfo = ({
 }: PostUserInfoProps): JSX.Element => {
   const userInfoLink: string = useMemo(() => `/user/${idx}`, [idx]);
 
-  const handlePushToAdress = useCallback((address: string): void => {
-    window.open(address, '_blank');
-  }, []);
-
   return (
     <div className={cx('PostUserInfo')}>
       <div className={cx('PostUserInfo-Left')}>
@@ -55,8 +52,12 @@ const PostUserInfo = ({
       </div>
 
       <div className={cx('PostUserInfo-Right')}>
-        <AiOutlineGithub style={{ marginRight: 5, }} onClick={() => handlePushToAdress(github)} />
-        <AiOutlineLink onClick={() => handlePushToAdress(blog)} />
+        <AiOutlineGithub
+          style={{ marginRight: 5, }}
+          onClick={() => pushToWindowLink(github)}
+        />
+
+        <AiOutlineLink onClick={() => pushToWindowLink(blog)} />
       </div>
     </div>
   );

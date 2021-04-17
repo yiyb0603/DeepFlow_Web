@@ -21,3 +21,8 @@
 		}
 	}
 }
+
+.rc-md-editor .editor-container .sec-md .input,
+.sec-html .html-wrap {
+	background-color: var(--theme);
+}

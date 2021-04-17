@@ -6,13 +6,15 @@ import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
+import { IBanner } from 'lib/models/banners';
+import { pushToWindowLink } from 'util/pushToWindowLink';
 
 interface CarouselProps {
-  images: string[];
+  banners: IBanner[];
 }
 
 const Carousel = ({
-  images,
+  banners,
 }: CarouselProps): JSX.Element => {
   SwiperCore.use([Navigation, Pagination, Autoplay]);
   const FOUR_SECONDS: number = 4000;
@@ -33,9 +35,13 @@ const Carousel = ({
       navigation={true}
     >
       {
-        images.map((image: string, idx: number) => (
+        banners.map(({ image, link }, idx: number) => (
           <SwiperSlide key={idx}>
-            <ImageBanner src={image} alt='image1111' />
+            <ImageBanner
+              src={image}
+              alt={image}
+              onClick={() => pushToWindowLink(link)}
+            />
           </SwiperSlide>
         ))
       }
@@ -48,6 +54,7 @@ const ImageBanner = styled.img`
   height: 300px;
   max-height: 300px;
   object-fit: cover;
+  cursor: pointer;
 `;
 
 export default memo(Carousel);

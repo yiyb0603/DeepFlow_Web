@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import useSearchPosts from 'hooks/post/useSearchPosts';
 import { IPost } from 'types/post.types';
-import PageNumberList from 'components/Common/PageNumberList';
+import PageNumberList from 'components/Common/Post/PageNumberList';
 import PageTitle from 'components/Common/PageTitle';
 import ListItem from 'components/Common/Post/ListItem';
 import NoItems from 'components/Common/NoItems';

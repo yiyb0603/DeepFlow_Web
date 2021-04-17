@@ -1,12 +1,12 @@
 import { ReactNode, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import LeftSidebar from 'components/Common/Sidebar/LeftSidebar';
-import ToggleTheme from 'components/Common/ToggleTheme';
-import ScrollToTop from 'components/Common/ScrollToTop';
-import Footer from 'components/Common/Footer';
-import Header from 'components/Common/Header';
-import RightSidebar from 'components/Common/Sidebar/RightSidebar';
+import LeftSidebar from 'components/Common/Base/Sidebar/LeftSidebar';
+import ToggleTheme from 'components/Common/Base/ToggleTheme';
+import ScrollToTop from 'components/Common/Base/ScrollToTop';
+import Footer from 'components/Common/Base/Footer';
+import Header from 'components/Common/Base/Header';
+import RightSidebar from 'components/Common/Base/Sidebar/RightSidebar';
 
 const style = require('./PageTemplate.scss');
 const cx: ClassNamesFn = classNames.bind(style);

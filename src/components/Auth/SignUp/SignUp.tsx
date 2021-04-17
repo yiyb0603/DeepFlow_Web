@@ -8,8 +8,8 @@ import { VscSymbolNamespace } from 'react-icons/vsc';
 import useRegister from 'hooks/auth/useRegister';
 import InfoInput from '../../Common/InfoInput';
 import RegisterSubmit from '../RegisterSubmit';
-import MajorSelect from 'components/Common/MajorSelect';
-import GenerationSelect from 'components/Common/GenerationSelect';
+import MajorSelect from 'components/Common/Select/MajorSelect';
+import GenerationSelect from 'components/Common/Select/GenerationSelect';
 import GithubLoading from 'components/Auth/GithubLoading';
 import Helmet from 'components/Common/Helmet';
 

@@ -5,7 +5,7 @@ import usePosts from 'hooks/post/usePosts';
 import { IPost } from 'types/post.types';
 import PageTitle from 'components/Common/PageTitle';
 import ListItem from 'components/Common/Post/ListItem';
-import PageNumberList from 'components/Common/PageNumberList';
+import PageNumberList from 'components/Common/Post/PageNumberList';
 import NoItems from 'components/Common/NoItems';
 import Helmet from 'components/Common/Helmet';
 

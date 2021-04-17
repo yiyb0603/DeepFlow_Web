@@ -6,7 +6,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { searchKeywordListState, searchKeywordState, showSearchHistoryState } from 'atom/search';
 import { ISearchKeyword } from 'types/search.types';
 import { EPost } from 'lib/enum/post';
-import CategorySelect from 'components/Common/Post/CategorySelect';
+import CategorySelect from 'components/Common/Select/CategorySelect';
 import SearchHistory from '../SearchHistory';
 import HistoryItem from '../SearchHistory/HistoryItem';
 

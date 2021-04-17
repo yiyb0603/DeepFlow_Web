@@ -1,15 +1,19 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import Helmet from 'components/Common/Helmet';
-import NoItems from 'components/Common/NoItems';
-import PageNumberList from 'components/Common/PageNumberList';
-import PageTitle from 'components/Common/PageTitle';
-import ListItem from 'components/Common/Post/ListItem';
-import HomeLoading from 'components/Home/HomeLoading';
 import usePosts from 'hooks/post/usePosts';
 import { EPost } from 'lib/enum/post';
 import { IPost } from 'types/post.types';
+import useViewMode from 'hooks/post/useViewMode';
+import { EView } from 'lib/enum/theme';
+import Helmet from 'components/Common/Helmet';
+import NoItems from 'components/Common/NoItems';
+import PageNumberList from 'components/Common/Post/PageNumberList';
+import PageTitle from 'components/Common/PageTitle';
+import ListItem from 'components/Common/Post/ListItem';
+import HomeLoading from 'components/Home/HomeLoading';
 import AskButton from './AskButton';
+import SelectViewMode from 'components/Common/Post/SelectViewMode';
+import GridItem from 'components/Common/Post/GridItem';
 
 const style = require('./Questions.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -25,6 +29,7 @@ const Questions = (): JSX.Element => {
     numberListPage,
     splitedNumberList,
   } = usePosts(EPost.QUESTION);
+  const { viewMode, onChangeViewMode, flexStyle } = useViewMode();
 
   return (
     <>
@@ -37,14 +42,28 @@ const Questions = (): JSX.Element => {
           <AskButton />
         </PageTitle>
 
-        <div className={cx('Questions-List')}>
+        <SelectViewMode
+          viewMode={viewMode}
+          onChangeViewMode={onChangeViewMode}
+        />
+
+        <div className={cx('Questions-List')} style={flexStyle}>
           {
             questionList.length > 0 ? questionList.map((question: IPost) => {
               return (
-                <ListItem
-                  key={question.idx}
-                  {...question}
-                />
+                <>
+                {
+                  viewMode === EView.LIST ?
+                  <ListItem
+                    key={question.idx}
+                    {...question}
+                  /> :
+                  <GridItem
+                    key={question.idx}
+                    {...question}
+                  />
+                }
+                </>
               );
             }) : <NoItems text='작성된 글이 없습니다.' />
           }

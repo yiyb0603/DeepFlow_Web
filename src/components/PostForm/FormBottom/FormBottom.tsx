@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import PostButton from 'components/Common/Post/PostButton';
 import { EPost } from 'lib/enum/post';
-import CategorySelect from '../../Common/Post/CategorySelect';
+import CategorySelect from '../../Common/Select/CategorySelect';
 
 const style = require('./FormBottom.scss');
 const cx: ClassNamesFn = classNames.bind(style);
