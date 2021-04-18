@@ -1,3 +1,4 @@
+import { MouseEvent, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import UserItem from 'components/Common/User/UserItem';
@@ -39,7 +40,7 @@ const UserRecommand = (): JSX.Element => {
                   position={pressedUser.position}
                   date={recommandAt}
                   canDelete={true}
-                  onDelete={() => requestDeleteRecommand(idx)}
+                  onDelete={(e: MouseEvent<SVGElement>) => requestDeleteRecommand(e, idx)}
                 />
               );
             })
@@ -51,4 +52,4 @@ const UserRecommand = (): JSX.Element => {
   );
 };
 
-export default UserRecommand;
+export default memo(UserRecommand);

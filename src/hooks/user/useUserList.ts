@@ -4,7 +4,7 @@ import { userListState } from 'atom/user';
 import { IUser, IUserListResponse } from 'types/user.types';
 import { getUserList } from 'lib/api/user/user.api';
 import { EResponse } from 'lib/enum/response';
-import { getGenerations } from 'util/getGenerations';
+import { getMaxGeneration } from 'util/getMaxGeneration';
 
 const useUserList = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -41,7 +41,7 @@ const useUserList = () => {
         setUserList([]);
         users.sort((a: IUser, b: IUser) => a.generation - b.generation);
 
-        for (let generation = 1; generation < getGenerations(); generation++) {
+        for (let generation = 1; generation < getMaxGeneration(); generation++) {
           const filteredByGeneration: IUser[] = users.filter((user: IUser) => user.generation === generation);
           
           setUserList((prevList: IUser[][]) => (

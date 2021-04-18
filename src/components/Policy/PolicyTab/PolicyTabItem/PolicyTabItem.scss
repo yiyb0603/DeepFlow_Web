@@ -5,6 +5,8 @@
 	border-bottom: 1px solid var(--gray);
 	padding-bottom: 0.5rem;
 	cursor: pointer;
+	text-align: center;
+	color: var(--contrast);
 
 	&-Selected {
 		color: var(--main);

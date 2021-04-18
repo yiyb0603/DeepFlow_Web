@@ -1,14 +1,9 @@
-import classNames from 'classnames';
-import { ClassNamesFn } from 'classnames/types';
 import useRecentPosts from 'hooks/post/useRecentPosts';
 import Helmet from 'components/Common/Helmet';
 import HomeBanner from './HomeBanner';
 import HomeLoading from './HomeLoading';
 import RecentPost from './RecentPost';
 import RecentUsers from './RecentUsers';
-
-const style = require('./Home.scss');
-const cx: ClassNamesFn = classNames.bind(style);
 
 const Home = (): JSX.Element => {
   const { isLoading } = useRecentPosts();
@@ -18,7 +13,7 @@ const Home = (): JSX.Element => {
     {
       isLoading ? <HomeLoading />
       :
-      <div className={cx('Home')}>
+      <div>
         <Helmet />
         <HomeBanner />
         <RecentUsers />

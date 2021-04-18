@@ -1,10 +1,11 @@
-import { useMemo } from 'react';
+import { MouseEvent, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { VscChromeClose } from 'react-icons/vsc';
 import { calculateTime } from 'lib/TimeCounting';
 import { getMyInfo } from 'util/getMyInfo';
+import { IToken } from 'types/user.types';
 
 const style = require('./UserItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -17,7 +18,7 @@ interface UserItemProps {
   position: string;
   date: Date | string;
   canDelete?: boolean;
-  onDelete?: () => Promise<void>;
+  onDelete?: (e: MouseEvent<SVGElement>) => Promise<void>;
 }
 
 const UserItem = ({
@@ -30,10 +31,10 @@ const UserItem = ({
   canDelete,
   onDelete,
 }: UserItemProps): JSX.Element => {
-  const myInfo = useMemo(() => getMyInfo(), []);
+  const myInfo: IToken = useMemo(() => getMyInfo(), []);
 
   return (
-    <div className={cx('UserItem')}>
+    <Link to={`/user/${idx}`} className={cx('UserItem')}>
       {
         canDelete && (myInfo && myInfo.idx === idx) &&
         <VscChromeClose
@@ -60,13 +61,13 @@ const UserItem = ({
 
               <div className={cx('UserItem-Left-ContentsWrap-NameWrap-Wrap-Position')}>{position}</div>
             </div>
-            <div className={cx('UserItem-Left-ContentsWrap-NameWrap-Wrap-Description')}>{text}</div>
+            <div className={cx('UserItem-Left-ContentsWrap-NameWrap-Wrap-Text')}>{text}</div>
           </div>
         </div>
       </div>
 
       <div className={cx('UserItem-JoinedAt')}>{calculateTime(date)}</div>
-    </div>
+    </Link>
   );
 };
 

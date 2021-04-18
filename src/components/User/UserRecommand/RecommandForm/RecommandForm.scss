@@ -7,15 +7,16 @@
 
 	&-Form {
 		width: 100%;
-		height: 80px;
-		max-height: 80px;
+		height: 100px;
+		max-height: 100px;
 		outline: none;
 		background: none;
 		border: 1px solid var(--contrast);
 		border-radius: 5px;
 		overflow-x: hidden;
 		overflow-y: auto;
-		padding: 0.4rem;
+		padding: 0.7rem;
+		font-size: var(--font-small);
 		color: var(--contrast);
 
 		&:focus {

@@ -1,6 +1,6 @@
-import { useState, useCallback, useEffect, ChangeEvent } from 'react';
+import { useCallback, useEffect, ChangeEvent, MouseEvent } from 'react';
 import { useRecoilState } from 'recoil';
-import { userRecommandListState } from 'atom/userRecommand';
+import { userRecommandListState, userRecommandReasonState } from 'atom/userRecommand';
 import { createRecommand, deleteRecommand, getRecommandsByUserIdx } from 'lib/api/userRecommand/userRecommand.api';
 import usePageParam from '../util/usePageParam';
 import { EResponse } from 'lib/enum/response';
@@ -13,13 +13,13 @@ const useRecommand = () => {
   const userIdx: number = usePageParam();
   const { userInfo, requestUserInfo } = useUserInfo();
 
-  const [reason, setReason] = useState<string>('');
+  const [reason, setReason] = useRecoilState<string>(userRecommandReasonState);
   const [userRecommands, setUserRecommands] = useRecoilState(userRecommandListState);
 
   const onChangeReason = useCallback((e: ChangeEvent<HTMLTextAreaElement>): void => {
     const { value } = e.target;
     setReason(value);
-  }, []);
+  }, [setReason]);
 
   const requestRecommandList = useCallback(async (): Promise<void> => {
     try {
@@ -52,10 +52,16 @@ const useRecommand = () => {
     } catch (error) {
       new RecommandError(error).createRecommandError();
     }
-  }, [reason, requestRecommandList, userIdx]);
+  }, [reason, requestRecommandList, setReason, userIdx]);
 
-  const requestDeleteRecommand = useCallback(async (recommandIdx: number): Promise<void> => {
+  const requestDeleteRecommand = useCallback(async (
+      e: MouseEvent<SVGElement>,
+      recommandIdx: number,
+    ): Promise<void> => {
     try {
+      e.preventDefault();
+      e.stopPropagation();
+
       const { status } = await deleteRecommand(recommandIdx);
       
       if (status === EResponse.OK) {
@@ -67,9 +73,13 @@ const useRecommand = () => {
   }, [requestRecommandList]);
 
   useEffect(() => {
-    requestUserInfo();
-    requestRecommandList();
-  }, [requestRecommandList, requestUserInfo]);
+    if (!userInfo) {
+      requestUserInfo();
+      requestRecommandList();
+    }
+
+    return () => setReason('');
+  }, [requestRecommandList, requestUserInfo, setReason, userInfo]);
 
   return {
     userInfo,

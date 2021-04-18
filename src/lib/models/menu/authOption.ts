@@ -1,11 +1,11 @@
-import { getGenerations } from 'util/getGenerations';
+import { getMaxGeneration } from 'util/getMaxGeneration';
 
 export interface IAuthOption {
   value: number;
   text: string;
 }
 
-export const generations: unknown[] = Array.apply(null, new Array(getGenerations()).map(() => 0));
+export const generations: unknown[] = Array.apply(null, new Array(getMaxGeneration()).map(() => 0));
 
 export const majors: IAuthOption[] = [
   {

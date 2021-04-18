@@ -36,11 +36,13 @@
 			-webkit-line-clamp: 4;
 			margin-top: 0.8rem;
 			font-size: var(--font-smallest);
+			color: var(--contrast);
 		}
 	}
 
 	&-Count {
 		font-weight: 500;
 		font-size: var(--font-smallest);
+		color: var(--contrast);
 	}
 }

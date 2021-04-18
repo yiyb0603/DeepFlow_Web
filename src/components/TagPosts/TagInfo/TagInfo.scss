@@ -1,16 +1,17 @@
-@mixin tagInfoFontStyle($fontSize, $fontWeight) {
+@mixin tagInfoFontStyle($fontSize, $fontWeight, $color) {
 	font-size: $fontSize;
 	font-weight: $fontWeight;
 	margin-bottom: 0.5rem;
+	color: $color;
 }
 
 .TagInfo {
 	&-Title {
-		@include tagInfoFontStyle(var(--font-big), bold);
+		@include tagInfoFontStyle(var(--font-big), bold, var(--main));
 	}
 
 	&-Description {
-		@include tagInfoFontStyle(var(--font-small), 400);
+		@include tagInfoFontStyle(var(--font-small), 400, var(--contrast));
 	}
 
 	&-CountWrapper {
@@ -21,6 +22,7 @@
 		margin-bottom: 0.5rem;
 
 		&-Count {
+			color: var(--contrast);
 			font-size: var(--font-small);
 		}
 	}
