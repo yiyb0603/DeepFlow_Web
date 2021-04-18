@@ -8,8 +8,8 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface SelectTabProps {
   name: string;
   route: string;
-  selectTab: number;
-  onChangeSelectTab: (selectTab: number) => void;
+  selectTab: any;
+  onChangeSelectTab: (selectTab: any) => void;
 }
 
 const SelectTab = ({
@@ -18,12 +18,12 @@ const SelectTab = ({
   selectTab,
   onChangeSelectTab,
 }: SelectTabProps): JSX.Element => {
-  const splitedByRoute: number = useMemo(() => Number(route.split('=')[1]), [route]);
+  const splitedByRoute = useMemo(() => route.split('=')[1], [route]);
 
   return (
     <div
       className={cx('SelectTab', {
-        'SelectTab-Current': selectTab === splitedByRoute,
+        'SelectTab-Current': String(selectTab) === splitedByRoute,
       })}
       onClick={() => onChangeSelectTab(splitedByRoute)}
     >

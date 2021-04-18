@@ -25,6 +25,7 @@
 			display: flex;
 			display: -webkit-flex;
 			align-items: center;
+			color: var(--contrast);
 
 			&-Icon {
 				font-size: var(--font-big);
@@ -37,6 +38,10 @@
 				background: none;
 				border: none;
 				font-size: var(--font-normal);
+
+				&::placeholder {
+					color: var(--contrast);
+				}
 			}
 		}
 	}

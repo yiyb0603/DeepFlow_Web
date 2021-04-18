@@ -6,7 +6,7 @@ import { AiOutlineLink, AiOutlineMail, AiOutlineGithub } from 'react-icons/ai';
 import { HiCode } from 'react-icons/hi';
 import { VscSymbolNamespace } from 'react-icons/vsc';
 import useRegister from 'hooks/auth/useRegister';
-import InfoInput from '../../Common/InfoInput';
+import InfoInput from '../../Common/Input/InfoInput';
 import RegisterSubmit from '../RegisterSubmit';
 import MajorSelect from 'components/Common/Select/MajorSelect';
 import GenerationSelect from 'components/Common/Select/GenerationSelect';

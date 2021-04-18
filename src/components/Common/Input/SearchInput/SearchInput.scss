@@ -1,0 +1,33 @@
+.SearchInput {
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	outline: none;
+	background: none;
+	color: var(--contrast);
+
+	&:focus-within {
+		outline: 1px solid var(--main);
+	}
+
+	&-Border {
+		outline: 1px solid var(--gray);
+	}
+
+	&-Icon {
+		font-size: var(--font-big);
+		margin-right: 0.5rem;
+	}
+
+	&-Input {
+		width: 100%;
+		outline: none;
+		background: none;
+		border: none;
+		font-size: var(--font-contents);
+
+		&::placeholder {
+			color: var(--contrast);
+		}
+	}
+}

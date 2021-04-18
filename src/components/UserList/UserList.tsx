@@ -5,11 +5,11 @@ import useUserList from 'hooks/user/useUserList';
 import { IUser } from 'types/user.types';
 import Generation from './Generation';
 import UserItem from '../Common/User/UserItem';
-import SearchUsers from './SearchUsers';
 import PageTitle from 'components/Common/PageTitle';
 import NoItems from 'components/Common/NoItems';
 import UserLoading from './UserLoading';
 import Helmet from 'components/Common/Helmet';
+import SearchInput from 'components/Common/Input/SearchInput';
 
 const style = require('./UserList.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -31,9 +31,11 @@ const UserList = (): JSX.Element => {
       <div className={cx('UserList')}>
         <Helmet title='유저 목록' />
         <PageTitle title='유저 목록' subTitle='유저 목록이 여기에 표시됩니다.'>
-          <SearchUsers
-            keyword={keyword}
-            onChangeKeyword={onChangeKeyword}
+          <SearchInput
+            value={keyword}
+            onChangeValue={onChangeKeyword}
+            placeholder='유저 이름을 검색하세요'
+            padding={'0.35rem'}
           />
         </PageTitle>
         {

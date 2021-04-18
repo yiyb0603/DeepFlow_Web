@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { IPolicyTab, policyTabs } from 'lib/models/tabs/policyTabs';
 import { EPolicy } from 'lib/enum/policy';
-import PolicyTabItem from './PolicyTabItem';
+import SelectTab from 'components/Common/SelectTab';
 
 const style = require('./PolicyTab.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -19,14 +19,13 @@ const PolicyTab = ({
   return (
     <div className={cx('PolicyTab')}>
       {
-        policyTabs.map(({ key, name, path }: IPolicyTab, idx: number) => (
-          <PolicyTabItem
+        policyTabs.map(({ name, path }: IPolicyTab, idx: number) => (
+          <SelectTab
             key={idx}
-            tabKey={key}
             name={name}
-            path={path}
-            policyTab={policyTab}
-            onChangePolicyTab={onChangePolicyTab}
+            route={path}
+            selectTab={policyTab}
+            onChangeSelectTab={onChangePolicyTab}
           />
         ))
       }

@@ -6,7 +6,7 @@ import { HiCode } from 'react-icons/hi';
 import { CgHello } from 'react-icons/cg';
 import { BiBuilding } from 'react-icons/bi';
 import useModifyInfo from 'hooks/user/useModifyInfo';
-import InfoInput from 'components/Common/InfoInput';
+import InfoInput from 'components/Common/Input/InfoInput';
 import Modal from 'components/Common/Modal';
 import GenerationSelect from 'components/Common/Select/GenerationSelect';
 import MajorSelect from 'components/Common/Select/MajorSelect';

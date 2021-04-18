@@ -10,12 +10,12 @@ export const policyTabs: IPolicyTab[] = [
   {
     key: EPolicy.PERSONAL,
     name: '개인정보처리방침',
-    path: '/policy/personal',
+    path: '/policy?tab=personal',
   },
 
   {
     key: EPolicy.SERVICE,
     name: '이용약관',
-    path: '/policy/service',
+    path: '/policy?tab=service',
   },
 ]

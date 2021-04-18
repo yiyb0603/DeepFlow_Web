@@ -2,11 +2,11 @@ import { useCallback, useEffect, useMemo, memo, useRef, ChangeEvent, KeyboardEve
 import { useRecoilState, useRecoilValue } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { AiOutlineSearch } from 'react-icons/ai';
 import { searchKeywordListState, searchKeywordState, showSearchHistoryState } from 'atom/search';
 import { ISearchKeyword } from 'types/search.types';
 import { EPost } from 'lib/enum/post';
 import CategorySelect from 'components/Common/Select/CategorySelect';
+import SearchInput from 'components/Common/Input/SearchInput';
 import SearchHistory from '../SearchHistory';
 import HistoryItem from '../SearchHistory/HistoryItem';
 
@@ -55,18 +55,14 @@ const SearchBar = ({
   return (
     <div className={cx('SearchBar')}>
       <div className={cx('SearchBar-SearchWrap')} ref={searchZoneRef}>
-        <div className={cx('SearchBar-SearchWrap-Search')} >
-          <AiOutlineSearch className={cx('SearchBar-SearchWrap-Search-Icon')} />
-          <input
-            type='text'
-            className={cx('SearchBar-SearchWrap-Search-Input')}
-            value={keyword}
-            onChange={onChangeKeyword}
-            onKeyDown={onKeydownKeyword}
-            onClick={() => setIsShowHistory(true)}
-            placeholder='검색어를 입력하세요'
-          />
-        </div>
+        <SearchInput
+          value={keyword}
+          onChangeValue={onChangeKeyword}
+          onKeydown={onKeydownKeyword}
+          onClick={() => setIsShowHistory(true)}
+          placeholder='검색어를 입력하세요'
+          isBorder={false}
+        />
 
         {
           isShowHistory &&
