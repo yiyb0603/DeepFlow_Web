@@ -1,53 +1,10 @@
-@font-face {
-	src: url('../assets/fonts/NotoSansKR/NotoSansKR-Black.ttf');
-	font-family: 'Noto Sans KR' !important;
-	font-style: normal;
-}
-
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'Noto Sans KR' !important;
-
-	&:focus {
-		outline: none;
-	}
-}
-
-h1 {
-	margin-bottom: 0;
-}
-
-a {
-	text-decoration: none;
-	color: var(--contrast);
-
-	&:hover {
-		color: var(--contrast);
-	}
-}
-
-textarea {
-	resize: none;
-}
-
-html,
-body,
-#root,
-.light,
-.dark {
-	width: 100%;
-	min-height: 100vh;
-	background-color: var(--theme);
-}
-
-body {
-	line-height: 1.34;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-td {
-	vertical-align: middle;
+@mixin ellipsisLine($lineClamp) {
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-break: break-all;
+	-ms-word-break: break-all;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $lineClamp;
 }

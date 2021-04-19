@@ -1,3 +1,5 @@
+@import 'styles/util.scss';
+
 .TagsItem {
 	width: 230px;
 	max-width: 230px;
@@ -28,12 +30,7 @@
 		}
 
 		&-Description {
-			max-width: 100%;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			display: -webkit-box;
-			-webkit-box-orient: vertical;
-			-webkit-line-clamp: 4;
+			@include ellipsisLine(4);
 			margin-top: 0.8rem;
 			font-size: var(--font-smallest);
 			color: var(--contrast);

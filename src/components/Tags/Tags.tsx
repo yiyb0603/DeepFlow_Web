@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import useTagList from 'hooks/tag/useTagList';
@@ -39,4 +40,4 @@ const Tags = (): JSX.Element => {
   );
 };
 
-export default Tags;
+export default memo(Tags);

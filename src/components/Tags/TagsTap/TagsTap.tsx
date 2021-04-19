@@ -1,10 +1,7 @@
-import { useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { History } from 'history';
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { tagSortState } from 'atom/tag';
+import useTagList from 'hooks/tag/useTagList';
 import { ETagSort } from 'lib/enum/tag';
 import { ITagTap, tagTaps } from 'lib/models/tabs/tagTaps';
 import SelectTab from 'components/Common/SelectTab';
@@ -14,13 +11,7 @@ const style = require('./TagsTap.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const TagsTap = (): JSX.Element => {
-  const history: History = useHistory();
-  const [sortRule, setSortRule] = useRecoilState<ETagSort>(tagSortState);
-
-  const onChangeSortRule = useCallback((sortRule: ETagSort): void => {
-    history.push(`?sort=${sortRule}`);
-    setSortRule(sortRule);
-  }, [history, setSortRule]);
+  const { sortRule, onChangeSortRule } = useTagList();
 
   return (
     <div className={cx('TagsTap')}>
@@ -40,4 +31,4 @@ const TagsTap = (): JSX.Element => {
   );
 };
 
-export default TagsTap;
+export default memo(TagsTap);

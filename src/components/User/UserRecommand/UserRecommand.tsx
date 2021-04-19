@@ -1,11 +1,11 @@
 import { MouseEvent, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import useRecommand from 'hooks/user/useRecommand';
+import { IUserRecommand } from 'types/userRecommand.types';
 import UserItem from 'components/Common/User/UserItem';
 import RecommandTitle from './RecommandTitle';
-import useRecommand from 'hooks/user/useRecommand';
 import RecommandForm from './RecommandForm';
-import { IUserRecommand } from 'types/userRecommand.types';
 
 const style = require('./UserRecommand.scss');
 const cx: ClassNamesFn = classNames.bind(style);

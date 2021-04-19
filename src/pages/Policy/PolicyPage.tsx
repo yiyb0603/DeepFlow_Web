@@ -2,7 +2,7 @@ import { memo } from 'react';
 import PageTemplate from 'components/Template/PageTemplate';
 import Policy from 'components/Policy';
 
-const PolicyPage = () => {
+const PolicyPage = (): JSX.Element => {
   return (
     <PageTemplate>
       <Policy />

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import FadeLoader from 'react-spinners/FadeLoader';
@@ -18,4 +19,4 @@ const GithubLoading = (): JSX.Element => {
   );
 };
 
-export default GithubLoading;
+export default memo(GithubLoading);

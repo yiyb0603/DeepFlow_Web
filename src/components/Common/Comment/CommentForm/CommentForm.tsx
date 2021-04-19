@@ -33,9 +33,7 @@ const CommentForm = ({
 
   const reply = useReply(commentIdx!);
   const { contents, onChangeContents, requestOfferComment } = useComment();
-
-  // TODO: commentTab을 지역상태관리로 변경
-  const [commentTab, setCommentTab] = useState(ECommentTab.WRITE);
+  const [commentTab, setCommentTab] = useState<ECommentTab>(ECommentTab.WRITE);
 
   return (
     <div className={cx('CommentForm')}>

@@ -11,7 +11,10 @@ interface RegisterSubmitProps {
   onClick: () => Promise<void>;
 }
 
-const RegisterSubmit = ({ isLoading, onClick }: RegisterSubmitProps): JSX.Element => {
+const RegisterSubmit = ({
+  isLoading,
+  onClick,
+}: RegisterSubmitProps): JSX.Element => {
   const handleSubmit = useCallback((): void => {
     if (isLoading) {
       return;

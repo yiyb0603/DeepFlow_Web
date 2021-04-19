@@ -1,15 +1,17 @@
 import { useCallback, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { tagListState, tagLoadingState, tagSortState } from 'atom/tag';
+import { tagListState, tagLoadingState } from 'atom/tag';
 import { getTagList } from 'lib/api/tag/tag.api';
 import { ETagSort } from 'lib/enum/tag';
-import { ITag } from 'types/tag.types';
 import { EResponse } from 'lib/enum/response';
+import useTabState from 'hooks/util/useTabState';
+import { ITag } from 'types/tag.types';
 
 const useTagList = () => {
   const [tagLoading, setTagLoading] = useRecoilState<boolean>(tagLoadingState);
-  const [sortRule, setSortRule] = useRecoilState<ETagSort>(tagSortState);
   const [tagList, setTagList] = useRecoilState<ITag[]>(tagListState);
+  
+  const [sortRule, onChangeSortRule] = useTabState('sort', ETagSort.POPULAR);
 
   const requestTagList = useCallback(async (): Promise<void> => {
     try {
@@ -33,7 +35,7 @@ const useTagList = () => {
   return {
     tagLoading,
     sortRule,
-    setSortRule,
+    onChangeSortRule,
     tagList,
   };
 }

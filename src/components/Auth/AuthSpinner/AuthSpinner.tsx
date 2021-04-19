@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Spinner } from '@class101/ui';
 import { palette } from 'styles/Palette/Palette';
 
@@ -11,4 +12,4 @@ const AuthSpinner = (): JSX.Element => {
   );
 };
 
-export default AuthSpinner;
+export default memo(AuthSpinner);
