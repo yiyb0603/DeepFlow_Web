@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, MouseEvent, memo } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { History } from 'history';
 import classNames from 'classnames';
@@ -22,31 +22,37 @@ const RecentUserItem = ({
   position,
 }: RecentUserItemProps): JSX.Element => {
   const history: History = useHistory();
-  const handlePushToRecommand = useCallback((): void => {
+  const handlePushToRecommand = useCallback((e: MouseEvent<SVGElement>): void => {
+    e.preventDefault();
+    e.stopPropagation();
+
     history.push(`/user-recommand/${idx}`)
   }, [history, idx]);
 
   return (
-    <div className={cx('RecentUserItem')}>
+    <Link
+      to={`/user/${idx}`}
+      className={cx('RecentUserItem')}
+    >
       <div className={cx('RecentUserItem-Left')}>
         <img
           src={avatar}
           className={cx('RecentUserItem-Left-Avatar')}
-          alt='avatar'
+          alt={avatar}
         />
 
-        <Link to={`/user/${idx}`} className={cx('RecentUserItem-Left-Info')}>
+        <div className={cx('RecentUserItem-Left-Info')}>
           <div className={cx('RecentUserItem-Left-Info-Name')}>{name}</div>
           <div className={cx('RecentUserItem-Left-Info-Position')}>{position}</div>
-        </Link>
+        </div>
       </div>
 
       <AiOutlineLike
         className={cx('RecentUserItem-Recommand')}
         onClick={handlePushToRecommand}
       />
-    </div>
+    </Link>
   );
 };
 
-export default RecentUserItem;
+export default memo(RecentUserItem);

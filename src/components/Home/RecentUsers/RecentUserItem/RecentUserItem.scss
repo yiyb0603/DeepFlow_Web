@@ -10,6 +10,11 @@ $width: 307px;
 	border-radius: 5px;
 	padding: 0.6rem;
 	margin-right: 0.5rem;
+	transition: all 0.15s ease-in-out;
+
+	&:hover {
+		transform: scale(1.01);
+	}
 
 	&-Left {
 		display: flex;
@@ -26,15 +31,15 @@ $width: 307px;
 		}
 
 		&-Info {
+			color: var(--contrast);
+
 			&-Name {
-				color: var(--contrast);
 				font-size: var(--font-contents);
 				font-weight: 500;
 			}
 
 			&-Position {
-				color: var(--contratst);
-				font-weight: 400;
+				margin-top: 0.15rem;
 			}
 		}
 	}

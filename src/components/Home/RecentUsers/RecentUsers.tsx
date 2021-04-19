@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import useRecentUsers from 'hooks/user/useRecentUsers';
@@ -36,4 +37,4 @@ const RecentUsers = (): JSX.Element => {
   );
 };
 
-export default RecentUsers;
+export default memo(RecentUsers);

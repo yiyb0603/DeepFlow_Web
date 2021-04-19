@@ -52,7 +52,7 @@
 				padding: 6px 10px;
 				background-color: var(--contrast);
 				margin: 0 0.625rem;
-				color: var(--theme);
+				color: var(--theme) !important;
 				cursor: pointer;
 
 				&-Icon {
