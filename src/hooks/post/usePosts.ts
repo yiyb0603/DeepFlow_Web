@@ -1,12 +1,12 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import { useParams } from 'react-router-dom';
+import { postListLoadingState, questionListState, tagPostState, tempPostState } from 'atom/post';
+import usePagination from 'hooks/util/usePagination';
 import { getPostsByCategory, getPostsByTag, getTempPosts } from 'lib/api/post/post.api';
 import { EPost } from 'lib/enum/post';
 import { EResponse } from 'lib/enum/response';
-import { postListLoadingState, questionListState, tagPostState, tempPostState } from 'atom/post';
 import { IPost } from 'types/post.types';
-import usePagination from 'hooks/util/usePagination';
 
 const usePosts = (category?: EPost) => {
   const { tag }: { tag: string } = useParams();
@@ -73,10 +73,6 @@ const usePosts = (category?: EPost) => {
     }
   }, [category, setPostLoading, setTagPostList, setTotalPage, tag]);
 
-  useEffect(() => {
-    requestPostList();
-  }, [requestPostList, currentPage]);
-
   return {
     postLoading,
     questionList,
@@ -88,6 +84,8 @@ const usePosts = (category?: EPost) => {
 
     numberListPage,
     splitedNumberList,
+
+    requestPostList,
 
     tagPostList,
     requestPostsByTag,

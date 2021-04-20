@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { APP_NAME } from 'constants/util';
@@ -41,4 +42,4 @@ const PopularPost = (): JSX.Element => {
   );
 };
 
-export default PopularPost;
+export default memo(PopularPost);

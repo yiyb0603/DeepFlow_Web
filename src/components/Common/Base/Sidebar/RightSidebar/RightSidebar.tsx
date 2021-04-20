@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import PopularPost from './PopularPost';
@@ -17,4 +18,4 @@ const RightSidebar = (): JSX.Element => {
   );
 };
 
-export default RightSidebar;
+export default memo(RightSidebar);

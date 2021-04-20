@@ -110,7 +110,7 @@ const usePostForm = () => {
 
   const requestOfferPost = useCallback(async (isTemp: boolean): Promise<void> => {
     try {
-      if (!validatePost(request)) {
+      if (!validatePost(request, isTemp)) {
         return;
       }
 
@@ -134,16 +134,16 @@ const usePostForm = () => {
 
         successToast('글 작성을 성공하였습니다.');
         history.push('/');
-      }
 
-      setRequest({
-        title: '',
-        introduction: '',
-        thumbnail: '',
-        category: EPost.QUESTION,
-        contents: '',
-        postTags: [],
-      });
+        setRequest({
+          title: '',
+          introduction: '',
+          thumbnail: '',
+          category: EPost.QUESTION,
+          contents: '',
+          postTags: [],
+        });
+      }
     } catch (error) {
       console.log(error);
     }

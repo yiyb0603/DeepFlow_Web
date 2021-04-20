@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { useHistory } from 'react-router';
@@ -17,14 +16,11 @@ interface LeftSidebarItemProps {
 const LeftSidebarItem = ({ icon, menuName, link }: LeftSidebarItemProps): JSX.Element => {
   const history: History = useHistory();
   const pathname: string = usePathName();
-  const lastPathName: string = useMemo(() => pathname.split('/')[1], [pathname]);
 
   return (
     <div
       className={cx('LeftSidebarItem', {
-        'LeftSidebarItem-Current': pathname === link || (
-          pathname !== '/' && link.includes(lastPathName)
-        ),
+        'LeftSidebarItem-Current': pathname === link,
       })}
       onClick={() => history.push(link)}
     >

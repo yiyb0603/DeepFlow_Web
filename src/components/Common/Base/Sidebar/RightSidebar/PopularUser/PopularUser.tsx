@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { APP_NAME } from 'constants/util';
@@ -38,4 +39,4 @@ const PopularUser = (): JSX.Element => {
   );
 };
 
-export default PopularUser;
+export default memo(PopularUser);

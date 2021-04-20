@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 
@@ -16,4 +17,4 @@ const SectionTitle = ({
   );
 };
 
-export default SectionTitle;
+export default memo(SectionTitle);

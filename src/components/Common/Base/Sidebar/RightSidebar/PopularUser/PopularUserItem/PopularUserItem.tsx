@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { Link } from 'react-router-dom';
@@ -51,4 +52,4 @@ const PopularUserItem = ({
   );
 };
 
-export default PopularUserItem;
+export default memo(PopularUserItem);

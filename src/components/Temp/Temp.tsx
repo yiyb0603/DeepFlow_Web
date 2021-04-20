@@ -8,6 +8,7 @@ import ListItem from 'components/Common/Post/ListItem';
 import PageNumberList from 'components/Common/Post/PageNumberList';
 import NoItems from 'components/Common/NoItems';
 import Helmet from 'components/Common/Helmet';
+import usePostByIdx from 'hooks/post/usePostByIdx';
 
 const style = require('./Temp.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -23,6 +24,7 @@ const Temp = (): JSX.Element => {
     splitedNumberList,
     requestTempPosts,
   } = usePosts();
+  const { requestDeletePost } = usePostByIdx();
 
   useEffect(() => {
     requestTempPosts();
@@ -42,6 +44,7 @@ const Temp = (): JSX.Element => {
             <ListItem
               key={post.idx}
               {...post}
+              requestDeletePost={requestDeletePost}
             />
           )) : <NoItems text='임시저장글이 없습니다.' />
         }

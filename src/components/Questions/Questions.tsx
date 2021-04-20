@@ -14,6 +14,7 @@ import HomeLoading from 'components/Home/HomeLoading';
 import AskButton from './AskButton';
 import SelectViewMode from 'components/Common/Post/SelectViewMode';
 import GridItem from 'components/Common/Post/GridItem';
+import { useEffect } from 'react';
 
 const style = require('./Questions.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -28,8 +29,13 @@ const Questions = (): JSX.Element => {
     handleNextPage,
     numberListPage,
     splitedNumberList,
+    requestPostList,
   } = usePosts(EPost.QUESTION);
   const { viewMode, onChangeViewMode, flexStyle } = useViewMode();
+
+  useEffect(() => {
+    requestPostList();
+  }, [requestPostList, currentPage]);
 
   return (
     <>

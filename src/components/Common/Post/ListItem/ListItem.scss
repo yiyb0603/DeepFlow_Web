@@ -71,12 +71,25 @@ $height: 145px;
 				}
 			}
 
-			&-Title {
-				font-weight: 500;
-				color: var(--contrast);
-				font-size: var(--font-contents);
+			&-TitleWrap {
+				display: flex;
+				display: -webkit-flex;
+				justify-content: space-between;
+				align-items: center;
 				border-bottom: 1px solid var(--lighterGray);
 				padding-bottom: 0.5rem;
+
+				&-Title {
+					font-weight: 500;
+					color: var(--contrast);
+					font-size: var(--font-contents);
+				}
+
+				&-Delete {
+					color: var(--red);
+					cursor: pointer;
+					font-size: var(--font-smallest);
+				}
 			}
 
 			&-Introduction {

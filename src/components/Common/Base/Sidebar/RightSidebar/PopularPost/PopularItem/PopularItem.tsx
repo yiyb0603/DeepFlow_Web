@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { History } from 'history';
 import PostSubInfo from 'components/Common/Post/PostSubInfo';
 import { calculateTime } from 'lib/TimeCounting';
@@ -53,4 +54,4 @@ const PopularItem = ({
   );
 };
 
-export default PopularItem;
+export default memo(PopularItem);

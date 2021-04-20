@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react';
+import { memo, MouseEvent, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
@@ -7,6 +7,7 @@ import { IUser } from 'types/user.types';
 import TimeSticker from '../TimeSticker';
 import PostSubInfo from '../PostSubInfo';
 import Sample from 'assets/images/sample.png';
+import usePosts from 'hooks/post/usePosts';
 
 const style = require('./ListItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -25,6 +26,7 @@ export interface ItemProps {
   postTags?: string[];
   user?: IUser;
   isTemp?: boolean;
+  requestDeletePost?: (postIdx: number, isDetail?: boolean) => Promise<void>;
 }
 
 const ListItem = ({
@@ -41,8 +43,18 @@ const ListItem = ({
   postTags,
   user,
   isTemp,
+  requestDeletePost,
 }: ItemProps): JSX.Element => {
+  const { requestTempPosts } = usePosts();
   const postLink: string = useMemo(() => isTemp ? `/post-form/${idx}` : `/post/${idx}`, [idx, isTemp]);
+  
+  const onDelete = useCallback(async (e: MouseEvent<HTMLDivElement>): Promise<void> => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    await requestDeletePost!(idx, false);
+    await requestTempPosts!();
+  }, [idx, requestDeletePost, requestTempPosts]);
 
   return (
     <Link to={postLink} className={cx('ListItem')}>
@@ -80,8 +92,20 @@ const ListItem = ({
             </div>
           </div>
 
-          <div className={cx('ListItem-Contents-ContentsWrap-Title')}>
-            제목: {title}
+          <div className={cx('ListItem-Contents-ContentsWrap-TitleWrap')}>
+            <div className={cx('ListItem-Contents-ContentsWrap-TitleWrap-Title')}>
+              제목: {title}
+            </div>
+            
+            {
+              isTemp &&
+              <div
+                className={cx('ListItem-Contents-ContentsWrap-TitleWrap-Delete')}
+                onClick={onDelete}
+              >
+                삭제
+              </div>
+            }
           </div>
 
           <div className={cx('ListItem-Contents-ContentsWrap-Introduction')}>

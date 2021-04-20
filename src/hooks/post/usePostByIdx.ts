@@ -28,13 +28,16 @@ const usePostByIdx = () => {
     }
   }, [history, postIdx, setPost]);
 
-  const requestDeletePost = useCallback(async (postIdx: number): Promise<void> => {
+  const requestDeletePost = useCallback(async (postIdx: number, isDetail: boolean = true): Promise<void> => {
     try {
       const { status }: IResponse = await deletePost(postIdx);
 
       if (status === EResponse.OK) {
         successToast('글을 삭제하였습니다.');
-        history.goBack();
+        
+        if (isDetail) {
+          history.goBack();
+        }
       }
     } catch (error) {
       console.log(error);
