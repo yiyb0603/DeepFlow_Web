@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { EView } from 'lib/enum/theme';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
-import { BsFillGrid3X3GapFill } from 'react-icons/bs';
+import { CgMenuGridO } from 'react-icons/cg';
+import { EView } from 'lib/enum/theme';
 
 const style = require('./SelectViewMode.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -27,7 +27,7 @@ const SelectViewMode = ({
         onClick={() => onChangeViewMode(LIST)}
       />
       
-      <BsFillGrid3X3GapFill
+      <CgMenuGridO
         className={cx('SelectViewMode-Item', {
           'SelectViewMode-Item-Current': viewMode === GRID,
         })}

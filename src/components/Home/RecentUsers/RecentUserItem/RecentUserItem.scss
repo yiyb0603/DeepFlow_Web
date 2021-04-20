@@ -12,6 +12,14 @@ $width: 307px;
 	margin-right: 0.5rem;
 	transition: all 0.15s ease-in-out;
 
+	@media screen and (max-width: 1500px) {
+		margin-bottom: 0.2rem;
+	}
+
+	@media screen and (max-width: 1024px) {
+		width: 100%;
+	}
+
 	&:hover {
 		transform: scale(1.01);
 	}

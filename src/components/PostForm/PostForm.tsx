@@ -8,6 +8,7 @@ import TagList from './TagList';
 import FormBottom from './FormBottom';
 import MarkdownForm from 'components/Common/Markdown/MarkdownForm';
 import SubmitModal from 'components/PostForm/SubmitModal';
+import Helmet from 'components/Common/Helmet';
 
 const style = require('./PostForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -39,6 +40,7 @@ const PostForm = (): JSX.Element => {
   
   return (
     <div className={cx('PostForm')}>
+      <Helmet title={'질문 글 작성'} />
       {
         isSubmitModal &&
         <SubmitModal

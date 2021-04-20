@@ -19,7 +19,7 @@ interface ButtonProps {
 }
 
 const Button = ({
-  width = '100%',
+  width,
   height = '35px',
   color,
   fontColor = palette.white,

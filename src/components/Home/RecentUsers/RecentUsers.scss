@@ -1,11 +1,10 @@
 .RecentUsers {
-	margin-bottom: 2rem;
-
 	&-List {
 		display: flex;
 		display: -webkit-flex;
 		flex-wrap: wrap;
 		-ms-flex-wrap: wrap;
 		align-items: center;
+		margin-bottom: 1rem;
 	}
 }

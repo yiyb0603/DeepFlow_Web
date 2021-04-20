@@ -66,7 +66,7 @@
 
 				&:hover {
 					background-color: var(--theme);
-					color: var(--contrast);
+					color: var(--contrast) !important;
 				}
 			}
 

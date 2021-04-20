@@ -10,6 +10,7 @@ const ModifyButton = ({
 }: ModifyButtonProps): JSX.Element => {
   return (
     <Button
+      width={'100%'}
       color={palette.main}
       onClick={onClick}
     >
