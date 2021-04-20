@@ -1,5 +1,7 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import Button from 'components/Common/Button';
+import { palette } from 'styles/Palette/Palette';
 
 const style = require('./PostPageControl.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -19,6 +21,13 @@ const PostPageControl = ({
 }: PostPageControlProps): JSX.Element => {
   return (
     <div className={cx('PostPageControl')}>
+      <Button
+        color={palette.main}
+        onClick={handlePrevPage}
+        padding={'1rem 2rem'}
+      >
+        이전
+      </Button>
       <button
         onClick={handlePrevPage}
         className={cx('PostPageControl-Button')}
@@ -32,12 +41,13 @@ const PostPageControl = ({
         }
       </div>
       
-      <button
+      <Button
+        color={palette.main}
         onClick={handleNextPage}
-        className={cx('PostPageControl-Button')}
+        padding={'1rem 2rem'}
       >
-        다음
-      </button>
+        이전
+      </Button>
     </div>
   );
 };

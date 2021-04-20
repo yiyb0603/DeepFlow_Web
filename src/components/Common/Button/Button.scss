@@ -1,10 +1,9 @@
-.AskButton {
-	width: 100px;
-	height: 38px;
+.Button {
 	outline: none;
 	border: none;
+	background: none;
 	border-radius: 5px;
+	font-size: var(--font-smallest);
 	color: var(--white);
-	background-color: var(--main);
 	cursor: pointer;
 }

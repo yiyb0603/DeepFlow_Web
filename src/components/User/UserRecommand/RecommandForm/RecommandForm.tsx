@@ -2,6 +2,8 @@ import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import useRecommand from 'hooks/user/useRecommand';
+import Button from 'components/Common/Button';
+import { palette } from 'styles/Palette/Palette';
 
 const style = require('./RecommandForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -18,12 +20,15 @@ const RecommandForm = (): JSX.Element => {
         onChange={onChangeReason}
       ></textarea>
 
-      <button
-        className={cx('RecommandForm-Submit')}
+
+      <Button
+        width={'65px'}
+        color={palette.main}
         onClick={requestCreateRecommand}
+        margin={'0.5rem 0 0 0'}
       >
         추천
-      </button>
+      </Button>
     </div>
   );
 };

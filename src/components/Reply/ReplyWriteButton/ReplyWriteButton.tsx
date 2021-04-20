@@ -1,8 +1,6 @@
-import classNames from 'classnames';
-import { ClassNamesFn } from 'classnames/types';
-
-const style = require('./ReplyWriteButton.scss');
-const cx: ClassNamesFn = classNames.bind(style);
+import { CSSProperties } from 'react';
+import Button from 'components/Common/Button';
+import { palette } from 'styles/Palette/Palette';
 
 interface ReplyWriteButtonProps {
   onChangeIsReplyWrite: (isReplyWrite: boolean) => void;
@@ -11,13 +9,22 @@ interface ReplyWriteButtonProps {
 const ReplyWriteButton = ({
   onChangeIsReplyWrite,
 }: ReplyWriteButtonProps): JSX.Element => {
+  const customButtonStyle: CSSProperties = {
+    fontSize: '1.2rem',
+    border: `1px solid ${palette.main}`,
+  };
+
   return (
-    <button
-      className={cx('ReplyWriteButton')}
+    <Button
+      width={'100%'}
+      height={'45px'}
+      customStyle={customButtonStyle}
+      color={palette.white}
+      fontColor={palette.black}
       onClick={() => onChangeIsReplyWrite(true)}
     >
       답글 작성
-    </button>
+    </Button>
   );
 };
 

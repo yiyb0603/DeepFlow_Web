@@ -1,8 +1,5 @@
-import classNames from 'classnames';
-import { ClassNamesFn } from 'classnames/types';
-
-const style = require('./ReplyCancel.scss');
-const cx: ClassNamesFn = classNames.bind(style);
+import Button from 'components/Common/Button';
+import { palette } from 'styles/Palette/Palette';
 
 interface ReplyCancelProps {
   onChangeIsReplyWrite: () => void;
@@ -12,12 +9,14 @@ const ReplyCancel = ({
   onChangeIsReplyWrite,
 }: ReplyCancelProps): JSX.Element => {
   return (
-    <button
-      className={cx('ReplyCancel')}
+    <Button
+      width={'50px'}
+      height={'35px'}
       onClick={onChangeIsReplyWrite}
+      color={palette.lighterBlack}
     >
       취소
-    </button>
+    </Button>
   );
 };
 

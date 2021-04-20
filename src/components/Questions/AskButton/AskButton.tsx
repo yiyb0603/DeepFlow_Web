@@ -1,13 +1,10 @@
 import { useCallback } from 'react';
 import { useHistory } from 'react-router';
 import { History } from 'history';
-import classNames from 'classnames';
-import { ClassNamesFn } from 'classnames/types';
 import { getMyInfo } from 'util/getMyInfo';
 import { errorToast } from 'lib/Toast';
-
-const style = require('./AskButton.scss');
-const cx: ClassNamesFn = classNames.bind(style);
+import Button from 'components/Common/Button';
+import { palette } from 'styles/Palette/Palette';
 
 const AskButton = (): JSX.Element => {
   const history: History = useHistory();
@@ -21,12 +18,14 @@ const AskButton = (): JSX.Element => {
   }, [history]);
 
   return (
-    <button
-      className={cx('AskButton')}
+    <Button
+      width={'100px'}
+      height={'35px'}
+      color={palette.main}
       onClick={handlePushToForm}
     >
       질문하기
-    </button>
+    </Button>
   );
 };
 

@@ -1,6 +1,8 @@
 import { CSSProperties, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import Button from 'components/Common/Button';
+import { palette } from 'styles/Palette/Palette';
 
 const style = require('./PageNumberList.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -29,13 +31,14 @@ const PageNumberList = ({
 
   return (
     <div className={cx('PageNumberList')}>
-      <button
-        className={cx('PageNumberList-Button')}
-        style={visibilityStyle}
+      <Button
+        color={palette.main}
+        customStyle={visibilityStyle}
         onClick={handlePrevPage}
+        padding={'1rem'}
       >
         이전
-      </button>
+      </Button>
       
       <div className={cx('PageNumberList-Pages')}>
         {
@@ -54,13 +57,14 @@ const PageNumberList = ({
         }
       </div>
       
-      <button
-        className={cx('PageNumberList-Button')}
-        style={visibilityStyle}
+      <Button
+        color={palette.main}
+        customStyle={visibilityStyle}
         onClick={handleNextPage}
+        padding={'1rem'}
       >
-        다음
-      </button>
+        이전
+      </Button>
     </div>
   );
 };

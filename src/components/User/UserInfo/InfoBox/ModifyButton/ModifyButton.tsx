@@ -1,8 +1,5 @@
-import classNames from 'classnames';
-import { ClassNamesFn } from 'classnames/types';
-
-const style = require('./ModifyButton.scss');
-const cx: ClassNamesFn = classNames.bind(style);
+import Button from 'components/Common/Button';
+import { palette } from 'styles/Palette/Palette';
 
 interface ModifyButtonProps {
   onClick: () => void;
@@ -12,12 +9,12 @@ const ModifyButton = ({
   onClick,
 }: ModifyButtonProps): JSX.Element => {
   return (
-    <button
-      className={cx('ModifyButton')}
+    <Button
+      color={palette.main}
       onClick={onClick}
     >
       수정하기
-    </button>
+    </Button>
   );
 };
 

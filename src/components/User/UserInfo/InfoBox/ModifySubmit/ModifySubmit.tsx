@@ -1,8 +1,5 @@
-import classNames from 'classnames';
-import { ClassNamesFn } from 'classnames/types';
-
-const style = require('./ModifySubmit.scss');
-const cx: ClassNamesFn = classNames.bind(style);
+import Button from 'components/Common/Button';
+import { palette } from 'styles/Palette/Palette';
 
 interface ModifySubmitProps {
   requestModifyInfo: () => void;
@@ -12,12 +9,13 @@ const ModifySubmit = ({
   requestModifyInfo,
 }: ModifySubmitProps): JSX.Element => {
   return (
-    <button
-      className={cx('ModifySubmit')}
+    <Button
+      height={'45px'}
+      color={palette.main}
       onClick={requestModifyInfo}
     >
       수정하기
-    </button>
+    </Button>
   );
 };
 

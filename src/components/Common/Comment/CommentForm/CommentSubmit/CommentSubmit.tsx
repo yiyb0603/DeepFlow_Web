@@ -5,6 +5,8 @@ import { commentContentsState, modifyState } from 'atom/comment';
 import { MdClose } from 'react-icons/md';
 import { useCallback } from 'react';
 import { stringEllipsis } from 'converter/stringEllipsis';
+import Button from 'components/Common/Button';
+import { palette } from 'styles/Palette/Palette';
 
 const style = require('./CommentSubmit.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -41,12 +43,14 @@ const CommentSubmit = ({
         }
       </div>
 
-      <button
-        className={cx('CommentSubmit-Button')}
+      <Button
+        width={'85px'}
+        height={'35px'}
         onClick={requestOfferComment}
+        color={palette.green}
       >
         Comment
-      </button>
+      </Button>
     </div>
   );
 };

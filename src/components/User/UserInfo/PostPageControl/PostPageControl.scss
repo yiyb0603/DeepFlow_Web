@@ -4,16 +4,6 @@
 	justify-content: center;
 	align-items: center;
 
-	&-Button {
-		outline: none;
-		border: none;
-		border-radius: 5px;
-		padding: 1rem 2rem;
-		background-color: var(--main);
-		color: var(--white);
-		cursor: pointer;
-	}
-
 	&-Page {
 		margin: 0 1rem;
 		font-size: var(--font-normal);

@@ -1,9 +1,5 @@
 import { memo } from 'react';
-import classNames from 'classnames';
-import { ClassNamesFn } from 'classnames/types';
-
-const style = require('./PostButton.scss');
-const cx: ClassNamesFn = classNames.bind(style);
+import Button from 'components/Common/Button';
 
 interface PostButtonProps {
   text: string;
@@ -11,14 +7,21 @@ interface PostButtonProps {
   onClick: () => void;
 }
 
-const PostButton = ({ text, color, onClick }: PostButtonProps): JSX.Element => {
+const PostButton = ({
+  text,
+  color,
+  onClick,
+}: PostButtonProps): JSX.Element => {
   return (
-    <button
-      className={cx('PostButton', `PostButton-${color}`)}
+    <Button
+      color={color}
       onClick={onClick}
+      height={'40px'}
+      margin={'0 5px 0 0'}
+      padding={'0 1.4rem'}
     >
       {text}
-    </button>
+    </Button>
   );
 };
 

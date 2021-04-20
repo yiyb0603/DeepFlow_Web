@@ -27,17 +27,4 @@
 			color: var(--contrast);
 		}
 	}
-
-	&-Submit {
-		width: 60px;
-		height: 35px;
-		outline: none;
-		border: none;
-		border-radius: 5px;
-		color: var(--white);
-		background-color: var(--main);
-		margin-top: 0.5rem;
-		font-size: var(--font-small);
-		cursor: pointer;
-	}
 }
