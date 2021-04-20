@@ -1,3 +1,4 @@
+import FadeIn from 'react-fade-in';
 import useRecentPosts from 'hooks/post/useRecentPosts';
 import Helmet from 'components/Common/Helmet';
 import HomeBanner from './HomeBanner';
@@ -13,12 +14,12 @@ const Home = (): JSX.Element => {
     {
       isLoading ? <HomeLoading />
       :
-      <div>
+      <FadeIn>
         <Helmet />
         <HomeBanner />
         <RecentUsers />
         <RecentPost />
-      </div>
+      </FadeIn>
     }
     </>
   );

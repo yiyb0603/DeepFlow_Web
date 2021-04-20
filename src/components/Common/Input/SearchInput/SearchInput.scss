@@ -6,12 +6,12 @@
 	background: none;
 	color: var(--contrast);
 
-	&:focus-within {
-		outline: 1px solid var(--main);
-	}
-
 	&-Border {
 		outline: 1px solid var(--gray);
+
+		&:focus-within {
+			outline: 1px solid var(--main);
+		}
 	}
 
 	&-Icon {

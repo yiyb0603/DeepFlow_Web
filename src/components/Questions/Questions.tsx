@@ -1,10 +1,9 @@
-import classNames from 'classnames';
-import { ClassNamesFn } from 'classnames/types';
+import { useEffect } from 'react';
 import usePosts from 'hooks/post/usePosts';
-import { EPost } from 'lib/enum/post';
-import { IPost } from 'types/post.types';
 import useViewMode from 'hooks/post/useViewMode';
+import { EPost } from 'lib/enum/post';
 import { EView } from 'lib/enum/theme';
+import { IPost } from 'types/post.types';
 import Helmet from 'components/Common/Helmet';
 import NoItems from 'components/Common/NoItems';
 import PageNumberList from 'components/Common/Post/PageNumberList';
@@ -14,10 +13,7 @@ import HomeLoading from 'components/Home/HomeLoading';
 import AskButton from './AskButton';
 import SelectViewMode from 'components/Common/Post/SelectViewMode';
 import GridItem from 'components/Common/Post/GridItem';
-import { useEffect } from 'react';
-
-const style = require('./Questions.scss');
-const cx: ClassNamesFn = classNames.bind(style);
+import FadeIn from 'react-fade-in';
 
 const Questions = (): JSX.Element => {
   const {
@@ -42,7 +38,7 @@ const Questions = (): JSX.Element => {
     {
       postLoading && questionList.length <= 0 ? <HomeLoading />
       :
-      <div className={cx('Questions')}>
+      <FadeIn>
         <Helmet title='질문 모음' />
         <PageTitle title='질문 모음' subTitle='질문 목록들이 여기에 표시됩니다.'>
           <AskButton />
@@ -53,7 +49,7 @@ const Questions = (): JSX.Element => {
           onChangeViewMode={onChangeViewMode}
         />
 
-        <div className={cx('Questions-List')} style={flexStyle}>
+        <div style={flexStyle}>
           {
             questionList.length > 0 ? questionList.map((question: IPost) => {
               return (
@@ -86,7 +82,7 @@ const Questions = (): JSX.Element => {
             pageList={splitedNumberList}
           />
         }
-      </div>
+      </FadeIn>
     }
     </>
   );

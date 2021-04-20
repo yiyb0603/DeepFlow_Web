@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import FadeIn from 'react-fade-in';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import SelectNavbar from './SelectNavbar';
@@ -14,10 +15,12 @@ const UserTemplate = ({
   children,
 }: UserTemplateProps): JSX.Element => {
   return (
-    <div className={cx('UserTemplate')}>
-      <SelectNavbar />
-      {children}
-    </div>
+    <FadeIn>
+      <div className={cx('UserTemplate')}>
+        <SelectNavbar />
+        {children}
+      </div>
+    </FadeIn>
   );
 }
 

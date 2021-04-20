@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { useHistory, useLocation } from 'react-router-dom';
 import { History } from 'history';
+import { IUserNavbar, userNavbar } from 'lib/models/tabs/userNavbar';
 
 const style = require('./SelectNavbar.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -17,23 +18,19 @@ const SelectNavbar = (): JSX.Element => {
 
   return (
     <div className={cx('SelectNavbar')}>
-      <div
-        className={cx('SelectNavbar-Item', {
-          'SelectNavbar-Item-Current': userPath === 'user',
-        })}
-        onClick={() => history.push(`/user/${userIdx}`)}
-      >
-        <div>프로필</div>
-      </div>
-      
-      <div
-        className={cx('SelectNavbar-Item', {
-          'SelectNavbar-Item-Current': userPath === 'user-recommand',
-        })}
-        onClick={() => history.push(`/user-recommand/${userIdx}`)}
-      >
-        <div>추천 목록</div>
-      </div>
+      {
+        userNavbar.map(({ name, pathName }: IUserNavbar, idx: number) => (
+          <div
+            key={idx}
+            className={cx('SelectNavbar-Item', {
+              'SelectNavbar-Item-Current': userPath === pathName,
+            })}
+            onClick={() => history.push(`/${pathName}/${userIdx}`)}
+          >
+            <div>{name}</div>
+          </div>
+        ))
+      }
     </div>
   );
 };
