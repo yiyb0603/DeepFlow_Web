@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { History } from 'history';
 import { getMyInfo } from 'util/getMyInfo';
 import { errorToast } from 'lib/Toast';

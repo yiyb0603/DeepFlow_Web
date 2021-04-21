@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { History } from 'history';
 import usePathName from 'hooks/util/usePathName';
 

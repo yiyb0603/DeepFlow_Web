@@ -11,6 +11,8 @@ const cx: ClassNamesFn = classNames.bind(style);
 const SelectNavbar = (): JSX.Element => {
   const { pathname } = useLocation();
   const history: History = useHistory();
+  // TODO: history와 history.push를 Custom hooks로 함수화 하기.
+
   const splitedPath: string[] = useMemo(() => pathname.split('/'), [pathname]);
 
   const userIdx: number = useMemo(() => Number(splitedPath[2]), [splitedPath]);
