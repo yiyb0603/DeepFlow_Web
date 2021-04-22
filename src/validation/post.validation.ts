@@ -5,8 +5,6 @@ import { isEmpty } from 'util/isEmpty';
 import { isNullOrUndefined } from 'util/isNullOrUndefined';
 
 export const validatePost = (request: IPostDto, isTemp: boolean): boolean => {
-  console.log(request);
-  console.log(isTemp);
   const { title, thumbnail, introduction, contents, postTags } = request;
 
   if (isEmpty(title) || (isEmpty(introduction) && !isTemp) || isEmpty(contents)) {
@@ -22,7 +20,7 @@ export const validatePost = (request: IPostDto, isTemp: boolean): boolean => {
   }
 
   if (title.length > MAX_TITLE_LENGTH) {
-    errorToast('제목은 최대 50자까지 가능합니다.');
+    errorToast('제목은 최대 100자까지 가능합니다.');
     return false;
   }
 

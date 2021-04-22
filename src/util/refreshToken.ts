@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
-import { customAxios } from 'lib/CustomAxios';
+import { getRefreshToken } from 'lib/api/token/token.api';
 import { decodeToken, getToken } from 'lib/Token';
+import { ITokenResponse } from 'types/token.types';
 import { IToken } from 'types/user.types';
 
 export const refreshToken = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
@@ -11,8 +12,9 @@ export const refreshToken = async (config: AxiosRequestConfig): Promise<AxiosReq
     const nowDate: number = Date.now() / 1000;
     
     if (decode.exp < nowDate) {
-      const { data } = await customAxios.post('/token', { accessToken });
-      const { refreshToken } = data.data;
+      const response: ITokenResponse = await getRefreshToken(accessToken);
+
+      const { refreshToken } = response.data;
       accessToken = refreshToken;
     }
     

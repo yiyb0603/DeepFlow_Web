@@ -29,7 +29,7 @@ const usePostForm = () => {
     setIsSubmitModal(isModal);
   }, []);
 
-  const onChangeTitle = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
+  const onChangeTitle = useCallback((e: ChangeEvent<HTMLTextAreaElement>): void => {
     const { value } = e.target;
 
     setRequest((request) => ({

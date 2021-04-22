@@ -94,7 +94,7 @@ const ListItem = ({
 
           <div className={cx('ListItem-Contents-ContentsWrap-TitleWrap')}>
             <div className={cx('ListItem-Contents-ContentsWrap-TitleWrap-Title')}>
-              제목: {title}
+              {title}
             </div>
             
             {

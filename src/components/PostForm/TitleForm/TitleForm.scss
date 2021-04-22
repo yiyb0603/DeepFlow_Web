@@ -22,14 +22,4 @@
 			color: var(--lighterBlack);
 		}
 	}
-
-	&-Title {
-		max-width: 100%;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		outline: none;
-		border: none;
-		background: none;
-		font-weight: bold;
-	}
 }

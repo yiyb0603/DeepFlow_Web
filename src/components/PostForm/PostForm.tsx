@@ -51,7 +51,10 @@ const PostForm = (): JSX.Element => {
           requestOfferPost={requestOfferPost}
         />
       }
-      <TitleForm title={title} onChangeTitle={onChangeTitle} />
+      <TitleForm
+        title={title}
+        onChangeTitle={onChangeTitle}
+      />
 
       <div className={cx('PostForm-CategoryTagWrapper')}>
         <div className={cx('PostForm-CategoryTagWrapper-Left')}>
