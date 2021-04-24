@@ -2,10 +2,9 @@ import { ChangeEvent, KeyboardEvent, useCallback, useEffect, useState } from 're
 import { SetterOrUpdater, useRecoilState, useSetRecoilState } from 'recoil';
 import { useHistory } from 'react-router-dom';
 import { History } from 'history';
-import { searchCategoryState, searchKeywordListState, searchKeywordState, showSearchHistoryState } from 'atom/search';
+import { searchKeywordListState, searchKeywordState, showSearchHistoryState } from 'atom/search';
 import { customTrim } from 'converter/customTrim';
 import { getPostsBySearch } from 'lib/api/post/post.api';
-import { EPost } from 'lib/enum/post';
 import { EResponse } from 'lib/enum/response';
 import { setStorage } from 'lib/Storage';
 import { IPost } from 'types/post.types';
@@ -27,14 +26,12 @@ const useSearchPosts = () => {
   const [searchPosts, setSearchPosts] = useState<IPost[]>([]);
 
   const [keyword, setKeyword] = useRecoilState<string>(searchKeywordState);
-  const [category, setCategory] = useRecoilState<EPost>(searchCategoryState);
   const setShowHistory: SetterOrUpdater<boolean> = useSetRecoilState<boolean>(showSearchHistoryState);
   const [searchKeywords, setSearchKeywords] = useRecoilState<ISearchKeyword[]>(searchKeywordListState);
 
-  const handleSaveKeywords = useCallback((keyword: string, category: EPost): void => {
+  const handleSaveKeywords = useCallback((keyword: string): void => {
     const nextData: ISearchKeyword = {
       idx: searchKeywords.length > 0 ? searchKeywords[searchKeywords.length - 1].idx + 1 : 0,
-      category,
       keyword,
     };
 
@@ -44,15 +41,15 @@ const useSearchPosts = () => {
     setStorage('keywords', JSON.stringify(concatData));
   }, [searchKeywords, setSearchKeywords]);
 
-  const requestSearchPosts = useCallback(async (keyword: string, category: EPost): Promise<void> => {
+  const requestSearchPosts = useCallback(async (keyword: string): Promise<void> => {
     try {
       if (!customTrim(keyword)) {
         return;
       }
 
-      handleSaveKeywords(keyword, category);
+      handleSaveKeywords(keyword);
 
-      const { status, data: { totalPage, posts } } = await getPostsBySearch(keyword, category);
+      const { status, data: { totalPage, posts } } = await getPostsBySearch(keyword);
 
       if (status === EResponse.OK) {
         setShowHistory(false);
@@ -64,12 +61,11 @@ const useSearchPosts = () => {
     }
   }, [handleSaveKeywords, setShowHistory, setTotalPage]);
 
-  const handlePushToSearch = useCallback((keyword: string, category: EPost): void => {
-    history.push(`?keyword=${keyword}&category=${category}`);
+  const handlePushToSearch = useCallback((keyword: string): void => {
+    history.push(`?keyword=${keyword}`);
     setKeyword(keyword);
-    setCategory(category);
-    requestSearchPosts(keyword, category);
-  }, [history, requestSearchPosts, setCategory, setKeyword]);
+    requestSearchPosts(keyword);
+  }, [history, requestSearchPosts, setKeyword]);
 
   const onChangeKeyword = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
@@ -79,20 +75,15 @@ const useSearchPosts = () => {
   const onKeydownKeyword = useCallback((e: KeyboardEvent<HTMLInputElement>): void => {
     const { key } = e;
     if (key === 'Enter') {
-      handlePushToSearch(keyword, category);
+      handlePushToSearch(keyword);
     }
-  }, [category, keyword, handlePushToSearch]);
-
-  const onChangeCategory = useCallback((category: EPost): void => {
-    setCategory(category);
-  }, [setCategory]);
+  }, [keyword, handlePushToSearch]);
 
   useEffect(() => {
-    requestSearchPosts(keyword, category);
+    requestSearchPosts(keyword);
 
     return () => {
       setKeyword('');
-      setCategory(EPost.QUESTION);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -101,9 +92,6 @@ const useSearchPosts = () => {
     keyword,
     onChangeKeyword,
     onKeydownKeyword,
-
-    category,
-    onChangeCategory,
 
     handlePushToSearch,
 

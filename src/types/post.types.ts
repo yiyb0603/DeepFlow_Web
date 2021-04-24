@@ -1,4 +1,3 @@
-import { EPost } from 'lib/enum/post';
 import { IResponse } from './Response';
 import { IUser } from './user.types';
 
@@ -8,7 +7,6 @@ export interface IPageParam {
 
 export interface IPost {
   idx: number;
-  category: EPost;
   title: string;
   introduction: string;
   thumbnail: string;

@@ -6,11 +6,11 @@ export interface ITagTap {
 export const tagTaps: ITagTap[] = [
   {
     name: '인기순',
-    route: '?sort=0',
+    route: '?sort=popular',
   },
 
   {
     name: '이름순',
-    route: '?sort=1',
+    route: '?sort=alphabetical',
   },
 ];

@@ -3,7 +3,7 @@ import Button from 'components/Common/Button';
 
 interface PostButtonProps {
   text: string;
-  color: 'Blue' | 'Gray';
+  color: string;
   onClick: () => void;
 }
 

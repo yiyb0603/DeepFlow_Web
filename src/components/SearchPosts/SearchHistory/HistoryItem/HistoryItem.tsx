@@ -6,7 +6,6 @@ import { VscChromeClose } from 'react-icons/vsc';
 import { searchKeywordListState } from 'atom/search';
 import { setStorage } from 'lib/Storage';
 import { ISearchKeyword } from 'types/search.types';
-import { EPost } from 'lib/enum/post';
 
 const style = require('./HistoryItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -14,14 +13,12 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface HistoryItemProps {
   idx: number;
   keyword: string;
-  category: EPost;
-  handlePushToSearch: (keyword: string, category: EPost) => void;
+  handlePushToSearch: (keyword: string) => void;
 }
 
 const HistoryItem = ({
   idx,
   keyword,
-  category,
   handlePushToSearch,
 }: HistoryItemProps): JSX.Element => {
   const [searchKeywords, setSearchKeywords] = useRecoilState<ISearchKeyword[]>(searchKeywordListState);
@@ -37,7 +34,7 @@ const HistoryItem = ({
   return (
     <div
       className={cx('HistoryItem')}
-      onClick={() => handlePushToSearch(keyword, category)}
+      onClick={() => handlePushToSearch(keyword)}
     >
       <div className={cx('HistoryItem-Keyword')}>{keyword}</div>
       <VscChromeClose

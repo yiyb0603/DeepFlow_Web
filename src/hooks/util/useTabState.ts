@@ -3,12 +3,12 @@ import { useHistory } from 'react-router-dom';
 import { History } from 'history';
 import useQueryString from './useQueryString';
 
-const useTabState = (queryKey: string, defaultValue: any) => {
+const useTabState = <T>(queryKey: string, defaultValue: any) => {
   const query = useQueryString();
   const history: History = useHistory();
-  const [selectTab, setSelectTab] = useState(query[queryKey] || defaultValue);
+  const [selectTab, setSelectTab] = useState<T>(query[queryKey] || defaultValue);
 
-  const onChangeSelectTab = useCallback((selectTab): void => {
+  const onChangeSelectTab = useCallback((selectTab: T): void => {
     history.push(`?${queryKey}=${selectTab}`);
     setSelectTab(selectTab);
   }, [history, queryKey]);
@@ -16,7 +16,7 @@ const useTabState = (queryKey: string, defaultValue: any) => {
   return [
     selectTab,
     onChangeSelectTab,
-  ];
+  ] as const;
 }
 
 export default useTabState;

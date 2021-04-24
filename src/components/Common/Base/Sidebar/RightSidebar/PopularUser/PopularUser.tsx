@@ -6,6 +6,7 @@ import usePopularUsers from 'hooks/user/usePopularUsers';
 import { IUser } from 'types/user.types';
 import SectionTitle from '../SectionTitle';
 import PopularUserItem from './PopularUserItem';
+import NoPopularItems from '../NoPopularItems';
 
 const style = require('./PopularUser.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -19,7 +20,7 @@ const PopularUser = (): JSX.Element => {
     
       <div className={cx('PopularUser-Users')}>
         {
-          popularUsers.map((user: IUser, order: number) => {
+          popularUsers.length > 0 ? popularUsers.map((user: IUser, order: number) => {
             const { idx, name, position, recommandCount } = user;
 
             return (
@@ -32,7 +33,7 @@ const PopularUser = (): JSX.Element => {
                 recommandCount={recommandCount}
               />
             );
-          })
+          }) : <NoPopularItems title='현재 인기유저가 없습니다.' />
         }
       </div>
     </div>

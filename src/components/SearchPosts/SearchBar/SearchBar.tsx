@@ -4,8 +4,6 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { searchKeywordListState, searchKeywordState, showSearchHistoryState } from 'atom/search';
 import { ISearchKeyword } from 'types/search.types';
-import { EPost } from 'lib/enum/post';
-import CategorySelect from 'components/Common/Select/CategorySelect';
 import SearchInput from 'components/Common/Input/SearchInput';
 import SearchHistory from '../SearchHistory';
 import HistoryItem from '../SearchHistory/HistoryItem';
@@ -14,13 +12,11 @@ const style = require('./SearchBar.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface SearchBarProps {
-  handlePushToSearch: (keyword: string, category: EPost) => void;
+  handlePushToSearch: (keyword: string) => void;
   onKeydownKeyword: (e: KeyboardEvent<HTMLInputElement>) => void;
 
   keyword: string;
   onChangeKeyword: (e: ChangeEvent<HTMLInputElement>) => void;
-
-  onChangeCategory: (category: EPost) => void;
 }
 
 const SearchBar = ({
@@ -28,7 +24,6 @@ const SearchBar = ({
   onKeydownKeyword,
   keyword,
   onChangeKeyword,
-  onChangeCategory,
 }: SearchBarProps): JSX.Element => {
   const searchZoneRef = useRef<HTMLDivElement | null>(null);
   
@@ -69,12 +64,11 @@ const SearchBar = ({
           filterKeywords.length > 0 &&
           <SearchHistory>
             {
-              filterKeywords.map(({ idx, keyword, category }) => (
+              filterKeywords.map(({ idx, keyword }) => (
                 <HistoryItem
                   key={idx}
                   idx={idx}
                   keyword={keyword}
-                  category={category}
                   handlePushToSearch={handlePushToSearch}
                 />
               ))
@@ -82,8 +76,6 @@ const SearchBar = ({
           </SearchHistory>
         }
       </div>
-      
-      <CategorySelect onChangeCategory={onChangeCategory} />
     </div>
   );
 };

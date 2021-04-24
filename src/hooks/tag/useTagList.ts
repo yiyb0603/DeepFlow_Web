@@ -11,7 +11,7 @@ const useTagList = () => {
   const [tagLoading, setTagLoading] = useRecoilState<boolean>(tagLoadingState);
   const [tagList, setTagList] = useRecoilState<ITag[]>(tagListState);
   
-  const [sortRule, onChangeSortRule] = useTabState('sort', ETagSort.POPULAR);
+  const [sortRule, onChangeSortRule] = useTabState<ETagSort>('sort', ETagSort.POPULAR);
 
   const requestTagList = useCallback(async (): Promise<void> => {
     try {

@@ -9,6 +9,8 @@
 	&-TitleWrap {
 		display: flex;
 		display: -webkit-flex;
+		flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
 		align-items: flex-end;
 
 		&-Title {

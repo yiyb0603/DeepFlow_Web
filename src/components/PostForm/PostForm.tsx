@@ -21,8 +21,6 @@ const PostForm = (): JSX.Element => {
     contents,
     onChangeContents,
 
-    onChangeCategory,
-
     introduction,
     onChangeIntroduction,
 
@@ -56,8 +54,8 @@ const PostForm = (): JSX.Element => {
         onChangeTitle={onChangeTitle}
       />
 
-      <div className={cx('PostForm-CategoryTagWrapper')}>
-        <div className={cx('PostForm-CategoryTagWrapper-Left')}>
+      <div className={cx('PostForm-TagWrapper')}>
+        <div className={cx('PostForm-TagWrapper-Left')}>
           <TagForm
             postTags={postTags}
             tagInput={tagInput}
@@ -78,7 +76,6 @@ const PostForm = (): JSX.Element => {
 
       <FormBottom
         handleIsModal={handleIsModal}
-        onChangeCategory={onChangeCategory}
         requestOfferPost={requestOfferPost}
       />
     </div>

@@ -1,4 +1,3 @@
-import { EPost } from 'lib/enum/post';
 import { getStorage } from 'lib/Storage';
 import { atom } from 'recoil';
 import { ISearchKeyword } from 'types/search.types';
@@ -12,11 +11,6 @@ export const showSearchHistoryState = atom<boolean>({
 export const searchKeywordState = atom<string>({
   key: 'searchKeywordState',
   default: query.get('keyword') || '',
-});
-
-export const searchCategoryState = atom<EPost>({
-  key: 'searchCategoryState',
-  default: Number(query.get('category')) || EPost.QUESTION,
 });
 
 export const searchKeywordListState = atom<ISearchKeyword[]>({

@@ -18,7 +18,6 @@ const SearchPosts = (): JSX.Element => {
     keyword,
     onChangeKeyword,
     onKeydownKeyword,
-    onChangeCategory,
     handlePushToSearch,
     searchPosts,
     currentPage,
@@ -42,7 +41,6 @@ const SearchPosts = (): JSX.Element => {
         onKeydownKeyword={onKeydownKeyword}
         keyword={keyword}
         onChangeKeyword={onChangeKeyword}
-        onChangeCategory={onChangeCategory}
       />
 
       <div className={cx('SearchPosts')}>

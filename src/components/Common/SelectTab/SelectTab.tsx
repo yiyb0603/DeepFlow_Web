@@ -1,4 +1,4 @@
-import { useMemo, memo } from 'react';
+import { useMemo, memo, CSSProperties } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 
@@ -10,6 +10,7 @@ interface SelectTabProps {
   route: string;
   selectTab: any;
   onChangeSelectTab: (selectTab: any) => void;
+  customStyle?: CSSProperties;
 }
 
 const SelectTab = ({
@@ -17,6 +18,7 @@ const SelectTab = ({
   route,
   selectTab,
   onChangeSelectTab,
+  customStyle,
 }: SelectTabProps): JSX.Element => {
   const splitedByRoute = useMemo(() => route.split('=')[1], [route]);
 
@@ -26,6 +28,7 @@ const SelectTab = ({
         'SelectTab-Current': String(selectTab) === splitedByRoute,
       })}
       onClick={() => onChangeSelectTab(splitedByRoute)}
+      style={customStyle}
     >
       {name}
     </div>

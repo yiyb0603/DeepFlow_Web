@@ -14,7 +14,7 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 const Policy = (): JSX.Element => {
   const { PERSONAL } = EPolicy;
-  const [policyTab, onChangePolicyTab] = useTabState('tab', PERSONAL);
+  const [policyTab, onChangePolicyTab] = useTabState<EPolicy>('tab', PERSONAL);
 
   return (
     <FadeIn>

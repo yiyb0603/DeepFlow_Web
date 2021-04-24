@@ -7,7 +7,6 @@ import { MAX_TAG_LENGTH } from 'constants/post';
 import { customTrim } from 'converter/customTrim';
 import { createPost, modifyPost } from 'lib/api/post/post.api';
 import { IPostDto } from 'lib/api/post/post.dto';
-import { EPost } from 'lib/enum/post';
 import { errorToast, successToast } from 'lib/Toast';
 import { isEmpty } from 'util/isEmpty';
 import { validatePost } from 'validation/post.validation';
@@ -23,7 +22,7 @@ const usePostForm = () => {
   const [contents, setContents] = useState<string>('');
 
   const [request, setRequest] = useRecoilState<IPostDto>(requestPostState);
-  const { category, title, introduction, postTags } = request;
+  const { title, introduction, postTags } = request;
 
   const handleIsModal = useCallback((isModal: boolean): void => {
     setIsSubmitModal(isModal);
@@ -44,13 +43,6 @@ const usePostForm = () => {
     setRequest((request) => ({
       ...request,
       introduction: value,
-    }));
-  }, [setRequest]);
-
-  const onChangeCategory = useCallback((category: EPost): void => {
-    setRequest((request) => ({
-      ...request,
-      category,
     }));
   }, [setRequest]);
 
@@ -139,7 +131,6 @@ const usePostForm = () => {
           title: '',
           introduction: '',
           thumbnail: '',
-          category: EPost.QUESTION,
           contents: '',
           postTags: [],
         });
@@ -150,13 +141,12 @@ const usePostForm = () => {
   }, [handleIsModal, history, postIdx, request, setRequest]);
 
   const handleSetProperties = useCallback(async (): Promise<void> => {
-    const { idx, title, category, thumbnail, introduction, contents, postTags } = post!;
+    const { idx, title, thumbnail, introduction, contents, postTags } = post!;
     setPostIdx(idx);
     setContents(contents!);
     setRequest({
       title,
       introduction,
-      category,
       thumbnail: thumbnail!,
       contents: contents!,
       postTags,
@@ -193,9 +183,6 @@ const usePostForm = () => {
 
     contents,
     onChangeContents,
-
-    category,
-    onChangeCategory,
 
     introduction,
     onChangeIntroduction,

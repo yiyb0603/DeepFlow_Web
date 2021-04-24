@@ -1,5 +1,5 @@
 import { customAxios } from 'lib/CustomAxios';
-import { EPost, EUserPost } from 'lib/enum/post';
+import { EPostSort, EUserPost } from 'lib/enum/post';
 import {
   IPopularPostListResponse,
   IPostListResponse,
@@ -10,8 +10,8 @@ import {
 import { IResponse } from 'types/Response';
 import { IPostDto } from './post.dto';
 
-export const getPostsByCategory = async (category: EPost, page: number): Promise<IPostListResponse> => {
-  const url: string = `/posts?category=${category}&page=${page}`;
+export const getPostsBySort = async (sort: EPostSort, page: number): Promise<IPostListResponse> => {
+  const url: string = `/posts?page=${page}&sort=${sort}`;
   const { data } = await customAxios.get(url);
   return data;
 }
@@ -52,8 +52,8 @@ export const getUserPosts = async (userIdx: number, type: EUserPost): Promise<IP
   return data;
 }
 
-export const getPostsBySearch = async (keyword: string, category: EPost): Promise<IPostListResponse> => {
-  const url: string = `/posts/search?keyword=${keyword}&category=${category}`;
+export const getPostsBySearch = async (keyword: string): Promise<IPostListResponse> => {
+  const url: string = `/posts/search?keyword=${keyword}`;
   const { data } = await customAxios.get(url);
   return data;
 }
@@ -76,8 +76,8 @@ export const getTempPosts = async (): Promise<IPostListResponse> => {
   return data;
 }
 
-export const getPostsByTag = async (tagName: string, category: EPost): Promise<IPostListResponse> => {
-  const url: string = `/posts/tag?category=${category}&tagName=${tagName}`;
+export const getPostsByTag = async (tagName: string): Promise<IPostListResponse> => {
+  const url: string = `/posts/tag?tagName=${tagName}`;
   const { data } = await customAxios.get(url);
   return data;
 }

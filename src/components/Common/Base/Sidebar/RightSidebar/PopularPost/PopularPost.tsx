@@ -6,6 +6,7 @@ import usePopularPosts from 'hooks/post/usePopularPosts';
 import { IPost } from 'types/post.types';
 import SectionTitle from '../SectionTitle';
 import PopularItem from './PopularItem';
+import NoPopularItems from '../NoPopularItems';
 
 const style = require('./PopularPost.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -19,7 +20,7 @@ const PopularPost = (): JSX.Element => {
 
       <div className={cx('PopularPost-Posts')}>
         {
-          popularPosts.map((post: IPost, order: number) => {
+          popularPosts.length > 0 ? popularPosts.map((post: IPost, order: number) => {
             const { idx, title, createdAt, viewCount, commentCount, replyCount, likeCount } = post;
 
             return (
@@ -35,7 +36,7 @@ const PopularPost = (): JSX.Element => {
                 createdAt={createdAt}
               />
             );
-          })
+          }) : <NoPopularItems title='현재 인기글이 없습니다.' />
         }
       </div>
     </div>

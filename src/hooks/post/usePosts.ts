@@ -3,13 +3,16 @@ import { useRecoilState } from 'recoil';
 import { useParams } from 'react-router-dom';
 import { postListLoadingState, questionListState, tagPostState, tempPostState } from 'atom/post';
 import usePagination from 'hooks/util/usePagination';
-import { getPostsByCategory, getPostsByTag, getTempPosts } from 'lib/api/post/post.api';
-import { EPost } from 'lib/enum/post';
+import { getPostsBySort, getPostsByTag, getTempPosts } from 'lib/api/post/post.api';
 import { EResponse } from 'lib/enum/response';
+import { EPostSort } from 'lib/enum/post';
 import { IPost } from 'types/post.types';
+import useTabState from 'hooks/util/useTabState';
 
-const usePosts = (category?: EPost) => {
+const usePosts = () => {
   const { tag }: { tag: string } = useParams();
+  const [sortTab, onChangeSortTab] = useTabState<EPostSort>('sort', EPostSort.RECENT);
+
   const [postLoading, setPostLoading] = useRecoilState<boolean>(postListLoadingState);
   const [questionList, setQuestionList] = useRecoilState<IPost[]>(questionListState);
   const [tagPostList, setTagPostList] = useRecoilState<IPost[]>(tagPostState);
@@ -29,7 +32,7 @@ const usePosts = (category?: EPost) => {
   const requestPostList = useCallback(async () => {
     try {
       setPostLoading(true);
-      const { status, data: { posts, totalPage } } = await getPostsByCategory(category!, currentPage);
+      const { status, data: { posts, totalPage } } = await getPostsBySort(sortTab, currentPage);
 
       if (status === EResponse.OK) {
         setQuestionList(posts);
@@ -40,7 +43,7 @@ const usePosts = (category?: EPost) => {
     } finally {
       setPostLoading(false);
     }
-  }, [category, currentPage, setPostLoading, setQuestionList, setTotalPage]);
+  }, [currentPage, setPostLoading, setQuestionList, setTotalPage, sortTab]);
 
   const requestTempPosts = useCallback(async (): Promise<void> => {
     try {
@@ -60,7 +63,7 @@ const usePosts = (category?: EPost) => {
   const requestPostsByTag = useCallback(async (): Promise<void> => {
     try {
       setPostLoading(true);
-      const { status, data: { posts, totalPage } } = await getPostsByTag(tag, category!);
+      const { status, data: { posts, totalPage } } = await getPostsByTag(tag);
 
       if (status === EResponse.OK) {
         setTagPostList(posts);
@@ -71,7 +74,7 @@ const usePosts = (category?: EPost) => {
     } finally {
       setPostLoading(false);
     }
-  }, [category, setPostLoading, setTagPostList, setTotalPage, tag]);
+  }, [setPostLoading, setTagPostList, setTotalPage, tag]);
 
   return {
     postLoading,
@@ -84,6 +87,9 @@ const usePosts = (category?: EPost) => {
 
     numberListPage,
     splitedNumberList,
+
+    sortTab,
+    onChangeSortTab,
 
     requestPostList,
 

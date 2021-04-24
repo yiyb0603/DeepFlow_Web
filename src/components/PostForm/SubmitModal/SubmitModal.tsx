@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import PostButton from 'components/Common/Post/PostButton';
 import SelectThumbnail from './SelectThumbnail';
+import { palette } from 'styles/Palette/Palette';
 
 const style = require('./SubmitModal.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -45,13 +46,13 @@ const SubmitModal = ({
             <div className={cx('SubmitModal-Wrapper-Contents-Buttons')}>
               <PostButton
                 text='취소'
-                color='Gray'
+                color={palette.gray}
                 onClick={() => handleIsModal(false)}
               />
               
               <PostButton
                 text='작성'
-                color='Blue'
+                color={palette.main}
                 onClick={() => requestOfferPost(false)}
               />
             </div>

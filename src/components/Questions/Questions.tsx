@@ -1,8 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo, CSSProperties } from 'react';
+import classNames from 'classnames';
+import FadeIn from 'react-fade-in';
 import usePosts from 'hooks/post/usePosts';
 import useViewMode from 'hooks/post/useViewMode';
-import { EPost } from 'lib/enum/post';
 import { EView } from 'lib/enum/theme';
+import { IPostTab, sortPostTabs } from 'lib/models/tabs/postTabs';
 import { IPost } from 'types/post.types';
 import Helmet from 'components/Common/Helmet';
 import NoItems from 'components/Common/NoItems';
@@ -10,31 +12,51 @@ import PageNumberList from 'components/Common/Post/PageNumberList';
 import PageTitle from 'components/Common/PageTitle';
 import ListItem from 'components/Common/Post/ListItem';
 import HomeLoading from 'components/Home/HomeLoading';
-import AskButton from './AskButton';
 import SelectViewMode from 'components/Common/Post/SelectViewMode';
 import GridItem from 'components/Common/Post/GridItem';
-import FadeIn from 'react-fade-in';
+import SelectTab from 'components/Common/SelectTab';
+import AskButton from './AskButton';
+import { ClassNamesFn } from 'classnames/types';
+
+const style = require('./Questions.scss');
+const cx: ClassNamesFn = classNames.bind(style);
 
 const Questions = (): JSX.Element => {
   const {
     postLoading,
     questionList,
+    
     currentPage,
     onChangeCurrentPage,
     handlePrevPage,
     handleNextPage,
+
     numberListPage,
     splitedNumberList,
+
+    sortTab,
+    onChangeSortTab,
+
     requestPostList,
-  } = usePosts(EPost.QUESTION);
+  } = usePosts();
+
   const { viewMode, onChangeViewMode, flexStyle } = useViewMode();
+
+  const customTabStyle = useMemo(() => {
+    return {
+      width: '4rem',
+      border: 'none',
+      textAlign: 'start',
+      marginRight: '0.5rem',
+    };
+  }, []);
 
   useEffect(() => {
     requestPostList();
-  }, [requestPostList, currentPage]);
+  }, [requestPostList, sortTab, currentPage]);
 
   return (
-    <>
+    <div className={cx('Questions')}>
     {
       postLoading && questionList.length <= 0 ? <HomeLoading />
       :
@@ -44,10 +66,27 @@ const Questions = (): JSX.Element => {
           <AskButton />
         </PageTitle>
 
-        <SelectViewMode
-          viewMode={viewMode}
-          onChangeViewMode={onChangeViewMode}
-        />
+        <div className={cx('Questions-TabViewWrapper')}>
+          <div className={cx('Questions-TabViewWrapper-Tab')}>
+            {
+              sortPostTabs.map(({ name, route }: IPostTab, idx: number) => (
+                <SelectTab
+                  key={idx}
+                  name={name}
+                  route={route}
+                  selectTab={sortTab}
+                  onChangeSelectTab={onChangeSortTab}
+                  customStyle={customTabStyle as CSSProperties}
+                />
+              ))
+            }
+          </div>
+
+          <SelectViewMode
+            viewMode={viewMode}
+            onChangeViewMode={onChangeViewMode}
+          />
+        </div>
 
         <div style={flexStyle}>
           {
@@ -84,7 +123,7 @@ const Questions = (): JSX.Element => {
         }
       </FadeIn>
     }
-    </>
+    </div>
   );
 };
 

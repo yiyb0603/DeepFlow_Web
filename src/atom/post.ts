@@ -1,5 +1,4 @@
 import { IPostDto } from 'lib/api/post/post.dto';
-import { EPost } from 'lib/enum/post';
 import { atom } from 'recoil';
 import { IPost } from 'types/post.types';
 
@@ -49,7 +48,6 @@ export const requestPostState = atom<IPostDto>({
     title: '',
     introduction: '',
     thumbnail: '',
-    category: EPost.QUESTION,
     contents: '',
     postTags: [],
   },

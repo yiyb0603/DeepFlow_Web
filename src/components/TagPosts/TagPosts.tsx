@@ -7,7 +7,6 @@ import { useHistory } from 'react-router-dom';
 import { History } from 'history';
 import useTag from 'hooks/tag/useTag';
 import usePosts from 'hooks/post/usePosts';
-import { EPost } from 'lib/enum/post';
 import useViewMode from 'hooks/post/useViewMode';
 import { EView } from 'lib/enum/theme';
 import PageLoading from 'components/Common/PageLoading';
@@ -21,7 +20,7 @@ const TagPosts = (): JSX.Element => {
   const history: History = useHistory();
 
   const { pageParam, tagInfo } = useTag();
-  const { tagPostList, requestPostsByTag } = usePosts(EPost.QUESTION);
+  const { tagPostList, requestPostsByTag } = usePosts();
   const { viewMode, onChangeViewMode, flexStyle } = useViewMode();
   
   useEffect(() => {
