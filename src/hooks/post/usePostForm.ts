@@ -9,7 +9,7 @@ import { createPost, modifyPost } from 'lib/api/post/post.api';
 import { IPostDto } from 'lib/api/post/post.dto';
 import { errorToast, successToast } from 'lib/Toast';
 import { isEmpty } from 'util/isEmpty';
-import { validatePost } from 'validation/post.validation';
+import { validateBeforeModal, validatePost } from 'validation/post.validation';
 import usePostByIdx from './usePostByIdx';
 
 const usePostForm = () => {
@@ -25,8 +25,12 @@ const usePostForm = () => {
   const { title, introduction, postTags } = request;
 
   const handleIsModal = useCallback((isModal: boolean): void => {
+    if (!validateBeforeModal(request)) {
+      return;
+    }
+
     setIsSubmitModal(isModal);
-  }, []);
+  }, [request]);
 
   const onChangeTitle = useCallback((e: ChangeEvent<HTMLTextAreaElement>): void => {
     const { value } = e.target;

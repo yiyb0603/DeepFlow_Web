@@ -1,17 +1,17 @@
 import { useEffect } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { IPost } from 'types/post.types';
-import TagInfo from './TagInfo';
 import { useHistory } from 'react-router-dom';
 import { History } from 'history';
 import useTag from 'hooks/tag/useTag';
-import usePosts from 'hooks/post/usePosts';
 import useViewMode from 'hooks/post/useViewMode';
+import useTagPosts from 'hooks/post/useTagPosts';
 import { EView } from 'lib/enum/theme';
 import PageLoading from 'components/Common/PageLoading';
+import { IPost } from 'types/post.types';
 import ListItem from 'components/Common/Post/ListItem';
 import GridItem from 'components/Common/Post/GridItem';
+import TagInfo from './TagInfo';
 
 const style = require('./TagPosts.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -20,7 +20,7 @@ const TagPosts = (): JSX.Element => {
   const history: History = useHistory();
 
   const { pageParam, tagInfo } = useTag();
-  const { tagPostList, requestPostsByTag } = usePosts();
+  const { tagPostList, requestPostsByTag } = useTagPosts();
   const { viewMode, onChangeViewMode, flexStyle } = useViewMode();
   
   useEffect(() => {

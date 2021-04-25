@@ -2,12 +2,12 @@ import { memo, MouseEvent, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import Sample from 'assets/images/sample.png';
 import { isNullOrUndefined } from 'util/isNullOrUndefined';
 import { IUser } from 'types/user.types';
 import TimeSticker from '../TimeSticker';
 import PostSubInfo from '../PostSubInfo';
-import Sample from 'assets/images/sample.png';
-import usePosts from 'hooks/post/usePosts';
+import useTempPosts from 'hooks/post/useTempPosts';
 
 const style = require('./ListItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -45,7 +45,7 @@ const ListItem = ({
   isTemp,
   requestDeletePost,
 }: ItemProps): JSX.Element => {
-  const { requestTempPosts } = usePosts();
+  const { requestTempPosts } = useTempPosts();
   const postLink: string = useMemo(() => isTemp ? `/post-form/${idx}` : `/post/${idx}`, [idx, isTemp]);
   
   const onDelete = useCallback(async (e: MouseEvent<HTMLDivElement>): Promise<void> => {
