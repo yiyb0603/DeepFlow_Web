@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import Button from 'components/Common/Button';
 import { palette } from 'styles/Palette/Palette';
+import PageNumberItem from './PageNumberItem';
 
 const style = require('./PageNumberList.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -35,7 +36,7 @@ const PageNumberList = ({
         color={palette.main}
         customStyle={visibilityStyle}
         onClick={handlePrevPage}
-        padding={'1rem'}
+        padding={'0 1rem'}
       >
         이전
       </Button>
@@ -44,15 +45,12 @@ const PageNumberList = ({
         {
           pageList[numberListPage - 1] &&
           pageList[numberListPage - 1].map((page: number, idx: number) => (
-            <div
+            <PageNumberItem
               key={idx}
-              className={cx('PageNumberList-Pages-Page', {
-                'PageNumberList-Pages-Page-Current': page === currentPage,
-              })}
-              onClick={() => onChangeCurrentPage(page)}
-            >
-              {page}
-            </div>
+              page={page}
+              currentPage={currentPage}
+              onChangeCurrentPage={onChangeCurrentPage}
+            />
           ))
         }
       </div>
@@ -61,9 +59,9 @@ const PageNumberList = ({
         color={palette.main}
         customStyle={visibilityStyle}
         onClick={handleNextPage}
-        padding={'1rem'}
+        padding={'0 1rem'}
       >
-        이전
+        다음
       </Button>
     </div>
   );

@@ -1,0 +1,10 @@
+.PageNumberItem {
+	font-size: var(--font-normallest);
+	margin: 0 0.4rem;
+	cursor: pointer;
+	color: var(--contrast);
+
+	&-Current {
+		color: var(--main);
+	}
+}

@@ -1,5 +1,5 @@
 import { MAX_BLOG_LENGTH, MAX_DESCRIPTION_LENGTH, MAX_LOCATION_LENGTH, MAX_POSITION_LENGTH } from 'constants/user';
-import { EMAIL_REGULAR } from 'constants/util';
+import { EMAIL_REGULAR } from 'constants/regExp';
 import { IUserModify } from 'lib/api/user/user.dto';
 import { errorToast } from 'lib/Toast';
 import { isEmpty } from 'util/isEmpty';

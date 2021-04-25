@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
 import { userInfoState, userPostState } from 'atom/user';
-import { CHUNK_COUNT } from 'constants/user';
+import { CHUNK_POST_COUNT } from 'constants/util';
 import { getUserInfo } from 'lib/api/user/user.api';
 import { EResponse } from 'lib/enum/response';
 import { getUserPosts } from 'lib/api/post/post.api';
@@ -11,9 +11,20 @@ import { IPost } from 'types/post.types';
 import usePageParam from '../util/usePageParam';
 import { chunkArray } from 'util/chunkArray';
 import useTabState from 'hooks/util/useTabState';
+import usePagination from 'hooks/util/usePagination';
 
 const useUserInfo = () => {
   const userIdx: number = usePageParam();
+
+  const {
+    setTotalPage,
+    currentPage,
+    onChangeCurrentPage,
+    handlePrevPage,
+    handleNextPage,
+    numberListPage,
+    splitedNumberList,
+  } = usePagination();
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [userPostTab, setUserPostTab] = useTabState<EUserPost>('tab', EUserPost.WRITED);
@@ -21,33 +32,14 @@ const useUserInfo = () => {
   const [userPostList, setUserPostList] = useRecoilState<IPost[]>(userPostState);
   const [userInfo, setUserInfo] = useRecoilState<IUser | null>(userInfoState);
 
-  const [page, setPage] = useState<number>(1);
   const splitedPostList: IPost[][] = useMemo(() => {
-    return chunkArray(userPostList, CHUNK_COUNT);
+    return chunkArray(userPostList, CHUNK_POST_COUNT);
   }, [userPostList]);
 
   const onChangeUserPostTab = useCallback((userPostTab: EUserPost): void => {
     setUserPostTab(userPostTab);
-    setPage(1);
-  }, [setUserPostTab]);
-
-  const handlePrevPage = useCallback((): void => {
-    if (page === 1) {
-      setPage(splitedPostList.length);
-      return;
-    }
-
-    setPage((prevPage: number) => prevPage - 1);
-  }, [page, splitedPostList.length]);
-
-  const handleNextPage = useCallback((): void => {
-    if (page === splitedPostList.length) {
-      setPage(1);
-      return;
-    }
-
-    setPage((prevPage: number) => prevPage + 1);
-  }, [page, splitedPostList]);
+    onChangeCurrentPage(1);
+  }, [onChangeCurrentPage, setUserPostTab]);
 
   const requestUserInfo = useCallback(async (): Promise<void> => {
     try {
@@ -67,11 +59,12 @@ const useUserInfo = () => {
 
       if (status === EResponse.OK) {
         setUserPostList(posts);
+        setTotalPage(posts.length / CHUNK_POST_COUNT);
       }
     } catch (error) {
       console.log(error);
     }
-  }, [setUserPostList, userIdx, userPostTab]);
+  }, [setTotalPage, setUserPostList, userIdx, userPostTab]);
 
   const renderUserInfo = useCallback(async (): Promise<void> => {
     if (Number.isInteger(userIdx)) {
@@ -88,16 +81,17 @@ const useUserInfo = () => {
     isLoading,
     userInfo,
     setUserInfo,
-    userPostList,
     onChangeUserPostTab,
+    userPostTab,
+    renderUserInfo,
+    requestUserInfo,
+    splitedPostList,
+    currentPage,
+    onChangeCurrentPage,
     handlePrevPage,
     handleNextPage,
-    userPostTab,
-    setUserPostTab,
-    requestUserInfo,
-    renderUserInfo,
-    page,
-    splitedPostList,
+    numberListPage,
+    splitedNumberList,
   };
 }
 

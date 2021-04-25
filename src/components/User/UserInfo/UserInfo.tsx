@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import useUserInfo from 'hooks/user/useUserInfo';
@@ -8,8 +8,8 @@ import ListItem from 'components/Common/Post/ListItem';
 import UserLoading from 'components/UserList/UserLoading';
 import Helmet from 'components/Common/Helmet';
 import InfoBox from './InfoBox';
-import PostPageControl from './PostPageControl';
 import PostTab from './PostTab';
+import PageNumberList from 'components/Common/Post/PageNumberList';
 
 const style = require('./UserInfo.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -19,12 +19,15 @@ const UserInfo = (): JSX.Element => {
     userInfo,
     setUserInfo,
     onChangeUserPostTab,
+    userPostTab,
+    renderUserInfo,
+    splitedPostList,
+    currentPage,
+    onChangeCurrentPage,
     handlePrevPage,
     handleNextPage,
-    userPostTab,
-    page,
-    splitedPostList,
-    renderUserInfo,
+    numberListPage,
+    splitedNumberList,
   } = useUserInfo();
 
   useEffect(() => {
@@ -53,25 +56,28 @@ const UserInfo = (): JSX.Element => {
 
         <div className={cx('UserInfo-PostList')}>
         {
-          splitedPostList.length > 0 ?
-          splitedPostList[page - 1].map((post: IPost) => {
-            return (
-              <ListItem
-                key={post.idx}
-                {...post}
-              />
-            );
-          }) : <NoItems text='작성한 글 목록이 없습니다.' />
+          splitedPostList.length > 0 ? (
+            splitedPostList[currentPage - 1] &&
+            splitedPostList[currentPage - 1].map((post: IPost) => {
+              return (
+                <ListItem
+                  key={post.idx}
+                  {...post}
+                />
+              );
+            })
+          ) : <NoItems text='작성한 글 목록이 없습니다.' />
         }
         </div>
 
         {
-          splitedPostList.length > 1 &&
-          <PostPageControl
-            page={page}
-            postLength={splitedPostList.length}
+          <PageNumberList
+            currentPage={currentPage}
+            onChangeCurrentPage={onChangeCurrentPage}
+            numberListPage={numberListPage}
             handlePrevPage={handlePrevPage}
             handleNextPage={handleNextPage}
+            pageList={splitedNumberList}
           />
         }
       </div>
@@ -80,4 +86,4 @@ const UserInfo = (): JSX.Element => {
   );
 };
 
-export default UserInfo;
+export default memo(UserInfo);
