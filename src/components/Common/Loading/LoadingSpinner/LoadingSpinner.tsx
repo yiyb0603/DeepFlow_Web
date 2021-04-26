@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { Spinner } from '@class101/ui';
 import { palette } from 'styles/Palette/Palette';
 
-const AuthSpinner = (): JSX.Element => {
+const LoadingSpinner = (): JSX.Element => {
   return (
     <Spinner
       backgroundColor={palette.main}
@@ -12,4 +12,4 @@ const AuthSpinner = (): JSX.Element => {
   );
 };
 
-export default memo(AuthSpinner);
+export default memo(LoadingSpinner);

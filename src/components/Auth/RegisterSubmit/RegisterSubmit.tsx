@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import AuthSpinner from '../AuthSpinner';
+import LoadingSpinner from '../../Common/Loading/LoadingSpinner';
 
 const style = require('./RegisterSubmit.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -27,7 +27,7 @@ const RegisterSubmit = ({
     <div className={cx('RegisterSubmit')} onClick={handleSubmit}>
       <div className={cx('RegisterSubmit-Text')}>
         {
-          isLoading ? <AuthSpinner /> : '회원가입'
+          isLoading ? <LoadingSpinner /> : '회원가입'
         }
       </div>
     </div>

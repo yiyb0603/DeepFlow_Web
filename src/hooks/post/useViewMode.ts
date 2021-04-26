@@ -8,6 +8,7 @@ const useViewMode = () => {
   const flexStyle: CSSProperties = {
     display: 'flex',
     flexDirection: viewMode === LIST ? 'column' : 'row',
+    flexWrap: 'wrap',
   };
 
   const onChangeViewMode = useCallback((type: EView) => {

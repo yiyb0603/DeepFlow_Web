@@ -18,13 +18,13 @@ const FormBottom = ({
   return (
     <div className={cx('FormBottom')}>
       <PostButton
-        text='임시저장'
+        contents='임시저장'
         color={palette.gray}
         onClick={() => requestOfferPost(true)}
       />
       
       <PostButton
-        text='작성하기'
+        contents='작성하기'
         color={palette.main}
         onClick={() => handleIsModal(true)}
       />

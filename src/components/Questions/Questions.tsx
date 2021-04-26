@@ -110,17 +110,14 @@ const Questions = (): JSX.Element => {
           }
         </div>
 
-        {
-          splitedNumberList.length > 1 &&
-          <PageNumberList
-            currentPage={currentPage}
-            onChangeCurrentPage={onChangeCurrentPage}
-            numberListPage={numberListPage}
-            handlePrevPage={handlePrevPage}
-            handleNextPage={handleNextPage}
-            pageList={splitedNumberList}
-          />
-        }
+        <PageNumberList
+          currentPage={currentPage}
+          onChangeCurrentPage={onChangeCurrentPage}
+          numberListPage={numberListPage}
+          handlePrevPage={handlePrevPage}
+          handleNextPage={handleNextPage}
+          pageList={splitedNumberList}
+        />
       </FadeIn>
     }
     </div>

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import useTagList from 'hooks/tag/useTagList';
 import { ITag } from 'types/tag.types';
-import PageLoading from 'components/Common/PageLoading';
+import PageLoading from 'components/Common/Loading/PageLoading';
 import NoItems from 'components/Common/NoItems';
 import TagsItem from './TagsItem';
 import TagsTap from './TagsTap';

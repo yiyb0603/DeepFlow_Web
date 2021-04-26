@@ -1,9 +1,10 @@
 import { ChangeEvent, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import PostButton from 'components/Common/Post/PostButton';
-import SelectThumbnail from './SelectThumbnail';
 import { palette } from 'styles/Palette/Palette';
+import PostButton from 'components/Common/Post/PostButton';
+import LoadingSpinner from 'components/Common/Loading/LoadingSpinner';
+import SelectThumbnail from './SelectThumbnail';
 
 const style = require('./SubmitModal.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -15,6 +16,7 @@ interface SubmitModalProps {
   onChangeIntroduction: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 
   handleIsModal: (isModal: boolean) => void;
+  isLoading: boolean;
   requestOfferPost: (isTemp: boolean) => Promise<void>;
 }
 
@@ -23,6 +25,7 @@ const SubmitModal = ({
   introduction,
   onChangeIntroduction,
   handleIsModal,
+  isLoading,
   requestOfferPost,
 }: SubmitModalProps): JSX.Element => {
   return (
@@ -45,13 +48,13 @@ const SubmitModal = ({
 
             <div className={cx('SubmitModal-Wrapper-Contents-Buttons')}>
               <PostButton
-                text='취소'
+                contents='취소'
                 color={palette.gray}
                 onClick={() => handleIsModal(false)}
               />
               
               <PostButton
-                text='작성'
+                contents={isLoading ? <LoadingSpinner /> : '작성'}
                 color={palette.main}
                 onClick={() => requestOfferPost(false)}
               />

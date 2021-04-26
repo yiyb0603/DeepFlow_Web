@@ -15,7 +15,9 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 const PostForm = (): JSX.Element => {
   const {
-    onChangeIsFocus,
+    isLoading,
+
+    onChangeIsContentsFocus,
 
     title,
     onChangeTitle,
@@ -48,6 +50,7 @@ const PostForm = (): JSX.Element => {
           introduction={introduction}
           onChangeIntroduction={onChangeIntroduction}
           handleIsModal={handleIsModal}
+          isLoading={isLoading}
           requestOfferPost={requestOfferPost}
         />
       }
@@ -74,7 +77,7 @@ const PostForm = (): JSX.Element => {
         title={title}
         contents={contents}
         onChangeContents={onChangeContents}
-        onChangeIsFocus={onChangeIsFocus}
+        onChangeIsFocus={onChangeIsContentsFocus}
       />
 
       <FormBottom

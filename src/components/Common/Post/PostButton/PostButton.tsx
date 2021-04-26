@@ -2,13 +2,13 @@ import { memo } from 'react';
 import Button from 'components/Common/Button';
 
 interface PostButtonProps {
-  text: string;
+  contents: string | JSX.Element;
   color: string;
   onClick: () => void;
 }
 
 const PostButton = ({
-  text,
+  contents,
   color,
   onClick,
 }: PostButtonProps): JSX.Element => {
@@ -20,7 +20,7 @@ const PostButton = ({
       margin={'0 5px 0 0'}
       padding={'0 1.4rem'}
     >
-      {text}
+      {contents}
     </Button>
   );
 };

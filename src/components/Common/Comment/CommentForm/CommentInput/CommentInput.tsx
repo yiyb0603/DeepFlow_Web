@@ -21,7 +21,7 @@ const CommentInput = ({
   onChangeContents,
   commentInputRef,
 }: CommentInputProps): JSX.Element => {
-  const [isFocus, setIsFocus] = useState(false);
+  const [isFocus, setIsFocus] = useState<boolean>(false);
 
   const onChangeIsFocus = useCallback((): void => {
     setIsFocus((prevIsFocus) => !prevIsFocus);

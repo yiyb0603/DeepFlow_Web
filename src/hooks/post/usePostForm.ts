@@ -16,7 +16,8 @@ const usePostForm = () => {
   const history: History = useHistory();
   const { post } = usePostByIdx();
 
-  const [isFocus, setIsFocus] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isContentsFocus, setIsContentsFocus] = useState<boolean>(false);
 
   const [tagInput, setTagInput] = useState<string>('');
   const [postIdx, setPostIdx] = useState<number | null>(null);
@@ -34,14 +35,14 @@ const usePostForm = () => {
     setIsSubmitModal(isModal);
   }, [request]);
 
-  const onChangeIsFocus = useCallback(() => {
-    setIsFocus((prevFocus) => !prevFocus);
+  const onChangeIsContentsFocus = useCallback(() => {
+    setIsContentsFocus((prevFocus) => !prevFocus);
   }, []);
 
   const onChangeTitle = useCallback((e: ChangeEvent<HTMLTextAreaElement>): void => {
     const { value } = e.target;
 
-    setRequest((request) => ({
+    setRequest((request: IPostDto) => ({
       ...request,
       title: value,
     }));
@@ -50,7 +51,7 @@ const usePostForm = () => {
   const onChangeIntroduction = useCallback((e: ChangeEvent<HTMLTextAreaElement>): void => {
     const { value } = e.target;
 
-    setRequest((request) => ({
+    setRequest((request: IPostDto) => ({
       ...request,
       introduction: value,
     }));
@@ -82,7 +83,7 @@ const usePostForm = () => {
       return;
     }
 
-    setRequest((request) => ({
+    setRequest((request: IPostDto) => ({
       ...request,
       postTags: [...postTags, tagInput],
     }));
@@ -96,7 +97,7 @@ const usePostForm = () => {
   }, [onChangePostTags]);
 
   const handleFilterPostTag = useCallback((tagName: string): void => {
-    setRequest((request) => ({
+    setRequest((request: IPostDto) => ({
       ...request,
       postTags: request.postTags.filter((tag) => tag !== tagName),
     }));
@@ -116,8 +117,6 @@ const usePostForm = () => {
         return;
       }
 
-      handleIsModal(false);
-
       if (isTemp) {
         if (postIdx === null) {
           const { idx } = await createPost(request, isTemp);
@@ -128,12 +127,15 @@ const usePostForm = () => {
         
         successToast('글 임시저장을 성공하였습니다.');
       } else {
+        setIsLoading(true);
         if (postIdx === null) {
           await createPost(request, isTemp);
         } else {
           await modifyPost(postIdx, request, isTemp);
         }
 
+        setIsLoading(false);
+        handleIsModal(false);
         successToast('글 작성을 성공하였습니다.');
         history.push('/');
 
@@ -147,6 +149,8 @@ const usePostForm = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   }, [handleIsModal, history, postIdx, request, setRequest]);
 
@@ -182,17 +186,19 @@ const usePostForm = () => {
   }, [handleSetProperties, post]);
 
   useEffect(() => {
-    if (isFocus) {
+    if (isContentsFocus) {
       document.addEventListener('keydown', handleKeyEvents, true);
 
       return () => {
         document.removeEventListener('keydown', handleKeyEvents, true);
       };
     }
-  }, [handleKeyEvents, isFocus]);
+  }, [handleKeyEvents, isContentsFocus]);
 
   return {
-    onChangeIsFocus,
+    isLoading,
+
+    onChangeIsContentsFocus,
 
     title,
     onChangeTitle,

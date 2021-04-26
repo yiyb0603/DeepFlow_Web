@@ -6,7 +6,7 @@ import { getGithubAddress } from 'util/getGithubAddress';
 import Comment from 'components/Comment';
 import Helmet from 'components/Common/Helmet';
 import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
-import PageLoading from 'components/Common/PageLoading';
+import PageLoading from 'components/Common/Loading/PageLoading';
 import PostLike from './PostLike';
 import PostTags from './PostTags';
 import PostUserInfo from './PostUserInfo';

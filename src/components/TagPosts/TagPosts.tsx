@@ -8,11 +8,11 @@ import useViewMode from 'hooks/post/useViewMode';
 import useTagPosts from 'hooks/post/useTagPosts';
 import { EView } from 'lib/enum/theme';
 import { IPost } from 'types/post.types';
-import PageLoading from 'components/Common/PageLoading';
+import PageLoading from 'components/Common/Loading/PageLoading';
 import ListItem from 'components/Common/Post/ListItem';
 import GridItem from 'components/Common/Post/GridItem';
-import TagInfo from './TagInfo';
 import PageNumberList from 'components/Common/Post/PageNumberList';
+import TagInfo from './TagInfo';
 
 const style = require('./TagPosts.scss');
 const cx: ClassNamesFn = classNames.bind(style);
