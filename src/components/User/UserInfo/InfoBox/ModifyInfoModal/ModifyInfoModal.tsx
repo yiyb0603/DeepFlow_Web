@@ -19,12 +19,7 @@ const ModifyInfoModal = (): JSX.Element => {
   const {
     modifyInfo,
     onChangeIsModifyModal,
-    onChangeName,
-    onChangeEmail,
-    onChangeDescription,
-    onChangeLocation,
-    onChangeBlog,
-    onChangePosition,
+    onChangeInput,
     onChangeGeneration,
     onChangeMajor,
     requestModifyInfo,
@@ -65,29 +60,33 @@ const ModifyInfoModal = (): JSX.Element => {
             </div>
 
             <InfoInput
+              name='name'
               value={name}
-              onChange={onChangeName}
+              onChange={onChangeInput}
               placeholder='이름을 입력하세요'
               icon={<VscSymbolNamespace />}
             />
             
             <InfoInput
+              name='description'
               value={description}
-              onChange={onChangeDescription}
+              onChange={onChangeInput}
               placeholder='한줄소개를 입력하세요'
               icon={<CgHello />}
             />
 
             <InfoInput
+              name='position'
               value={position}
-              onChange={onChangePosition}
+              onChange={onChangeInput}
               placeholder='개발 포지션을 입력하세요'
               icon={<HiCode />}
             />
             
             <InfoInput
+              name='location'
               value={location}
-              onChange={onChangeLocation}
+              onChange={onChangeInput}
               placeholder='직장을 입력하세요'
               icon={<BiBuilding />}
             />
@@ -97,16 +96,18 @@ const ModifyInfoModal = (): JSX.Element => {
         <div className={cx('ModifyInfoModal-BottomInputs')}>
           <InfoInput
             width='100%'
+            name='email'
             value={email}
-            onChange={onChangeEmail}
+            onChange={onChangeInput}
             placeholder='이메일을 입력하세요'
             icon={<AiOutlineMail />}
           />
 
           <InfoInput
             width='100%'
+            name='blog'
             value={blog}
-            onChange={onChangeBlog}
+            onChange={onChangeInput}
             placeholder='개인 링크를 입력하세요.'
             icon={<AiOutlineLink />}
           />

@@ -16,6 +16,8 @@ const usePostForm = () => {
   const history: History = useHistory();
   const { post } = usePostByIdx();
 
+  const [isFocus, setIsFocus] = useState<boolean>(false);
+
   const [tagInput, setTagInput] = useState<string>('');
   const [postIdx, setPostIdx] = useState<number | null>(null);
   const [isSubmitModal, setIsSubmitModal] = useState<boolean>(false);
@@ -31,6 +33,10 @@ const usePostForm = () => {
 
     setIsSubmitModal(isModal);
   }, [request]);
+
+  const onChangeIsFocus = useCallback(() => {
+    setIsFocus((prevFocus) => !prevFocus);
+  }, []);
 
   const onChangeTitle = useCallback((e: ChangeEvent<HTMLTextAreaElement>): void => {
     const { value } = e.target;
@@ -176,12 +182,18 @@ const usePostForm = () => {
   }, [handleSetProperties, post]);
 
   useEffect(() => {
-    document.addEventListener('keydown', handleKeyEvents, true);
+    if (isFocus) {
+      document.addEventListener('keydown', handleKeyEvents, true);
 
-    return () => document.removeEventListener('keydown', handleKeyEvents, true);
-  }, [handleKeyEvents]);
+      return () => {
+        document.removeEventListener('keydown', handleKeyEvents, true);
+      };
+    }
+  }, [handleKeyEvents, isFocus]);
 
   return {
+    onChangeIsFocus,
+
     title,
     onChangeTitle,
 

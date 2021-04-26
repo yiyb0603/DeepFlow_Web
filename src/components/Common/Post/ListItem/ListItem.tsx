@@ -2,12 +2,12 @@ import { memo, MouseEvent, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import Sample from 'assets/images/sample.png';
 import { isNullOrUndefined } from 'util/isNullOrUndefined';
 import { IUser } from 'types/user.types';
 import TimeSticker from '../TimeSticker';
 import PostSubInfo from '../PostSubInfo';
 import useTempPosts from 'hooks/post/useTempPosts';
+import { APP_LOGO } from 'constants/util';
 
 const style = require('./ListItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -61,7 +61,7 @@ const ListItem = ({
       <div className={cx('ListItem-Contents')}>
         <div className={cx('ListItem-Contents-ImageWrap')}>
           <img
-            src={thumbnail || Sample}
+            src={thumbnail || APP_LOGO}
             className={cx('ListItem-Contents-ImageWrap-Thumbnail')}
             alt='thumbnail'
           />

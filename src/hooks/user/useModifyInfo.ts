@@ -4,10 +4,10 @@ import { modifyInfoState, modifyModalState } from 'atom/user';
 import { modifyUserInfo } from 'lib/api/user/user.api';
 import { IUserModify } from 'lib/api/user/user.dto';
 import { EResponse } from 'lib/enum/response';
-import useMyInfo from './useMyInfo';
 import { successToast } from 'lib/Toast';
-import useUserInfo from './useUserInfo';
 import { validateModifyInfo } from 'validation/modifyInfo.validation';
+import useMyInfo from './useMyInfo';
+import useUserInfo from './useUserInfo';
 
 const useModifyInfo = () => {
   const { myInfo } = useMyInfo();
@@ -20,57 +20,12 @@ const useModifyInfo = () => {
     setIsModifyModal((prevIsModifyModal: boolean) => !prevIsModifyModal);
   }, [setIsModifyModal]);
 
-  const onChangeName = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
+  const onChangeInput = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target;
 
     setModifyInfo((request: IUserModify) => ({
       ...request,
-      name: value,
-    }));
-  }, [setModifyInfo]);
-
-  const onChangeEmail = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
-
-    setModifyInfo((request: IUserModify) => ({
-      ...request,
-      email: value,
-    }));
-  }, [setModifyInfo]);
-
-  const onChangeDescription = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
-    
-    setModifyInfo((request: IUserModify) => ({
-      ...request,
-      description: value,
-    }));
-  }, [setModifyInfo]);
-
-  const onChangeLocation = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
-    
-    setModifyInfo((request: IUserModify) => ({
-      ...request,
-      location: value,
-    }));
-  }, [setModifyInfo]);
-
-  const onChangeBlog = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
-    
-    setModifyInfo((request: IUserModify) => ({
-      ...request,
-      blog: value,
-    }));
-  }, [setModifyInfo]);
-
-  const onChangePosition = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
-    
-    setModifyInfo((request: IUserModify) => ({
-      ...request,
-      position: value,
+      [name]: value,
     }));
   }, [setModifyInfo]);
 
@@ -128,16 +83,11 @@ const useModifyInfo = () => {
   return {
     modifyInfo,
     onChangeIsModifyModal,
-    onChangeName,
-    onChangeEmail,
-    onChangeDescription,
-    onChangeLocation,
-    onChangeBlog,
-    onChangePosition,
+    onChangeInput,
     onChangeGeneration,
     onChangeMajor,
     requestModifyInfo,
-  }
+  };
 }
 
 export default useModifyInfo;

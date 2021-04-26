@@ -25,57 +25,12 @@ const useRegister = () => {
   const [request, setRequest] = useRecoilState<IRegisterRequest>(requestRegisterState);
   const [isLoading, setIsLoading] = useRecoilState<boolean>(registerLoading);
 
-  const onChangeName = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
+  const onChangeInput = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target;
 
     setRequest((request: IRegisterRequest) => ({
       ...request,
-      name: value,
-    }));
-  }, [setRequest]);
-
-  const onChangeEmail = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
-
-    setRequest((request: IRegisterRequest) => ({
-      ...request,
-      email: value,
-    }));
-  }, [setRequest]);
-
-  const onChangeDescription = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
-    
-    setRequest((request: IRegisterRequest) => ({
-      ...request,
-      description: value,
-    }));
-  }, [setRequest]);
-
-  const onChangeLocation = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
-    
-    setRequest((request: IRegisterRequest) => ({
-      ...request,
-      location: value,
-    }));
-  }, [setRequest]);
-
-  const onChangeBlog = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
-    
-    setRequest((request: IRegisterRequest) => ({
-      ...request,
-      blog: value,
-    }));
-  }, [setRequest]);
-
-  const onChangePosition = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
-    
-    setRequest((request: IRegisterRequest) => ({
-      ...request,
-      position: value,
+      [name]: value,
     }));
   }, [setRequest]);
 
@@ -172,12 +127,7 @@ const useRegister = () => {
   return {
     isLoading,
     request,
-    onChangeName,
-    onChangeEmail,
-    onChangeDescription,
-    onChangeLocation,
-    onChangeBlog,
-    onChangePosition,
+    onChangeInput,
     onChangeGeneration,
     onChangeMajor,
     requestRegister,

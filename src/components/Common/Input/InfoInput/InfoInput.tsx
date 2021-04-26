@@ -7,6 +7,7 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 interface InfoInputProps {
   width?: string;
+  name?: string;
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
@@ -15,6 +16,7 @@ interface InfoInputProps {
 
 const InfoInput = ({
   width = '300px',
+  name,
   value,
   onChange,
   placeholder,
@@ -30,6 +32,7 @@ const InfoInput = ({
         type='text'
         placeholder={placeholder}
         className={cx('InfoInput-Input')}
+        name={name}
         value={value}
         onChange={onChange}
       />

@@ -15,6 +15,8 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 const PostForm = (): JSX.Element => {
   const {
+    onChangeIsFocus,
+
     title,
     onChangeTitle,
 
@@ -72,6 +74,7 @@ const PostForm = (): JSX.Element => {
         title={title}
         contents={contents}
         onChangeContents={onChangeContents}
+        onChangeIsFocus={onChangeIsFocus}
       />
 
       <FormBottom

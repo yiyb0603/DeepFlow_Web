@@ -15,6 +15,7 @@ interface MarkdownFormProps {
 	title: string;
 	contents: string;
 	onChangeContents: (text: string) => void;
+	onChangeIsFocus?: () => void;
 }
 
 const mdParser: MarkdownIt = new MarkdownIt({
@@ -37,6 +38,7 @@ const MarkdownForm = ({
 	title,
 	contents,
 	onChangeContents,
+	onChangeIsFocus,
 }: MarkdownFormProps): JSX.Element => {
 	const handleImageUpload = (file: File): Promise<string> => {
 		return new Promise(resolve => {
@@ -61,6 +63,8 @@ const MarkdownForm = ({
 				renderHTML={(text: string) => mdParser.render(text)}
 				placeholder="내용을 입력하세요..."
 				onImageUpload={handleImageUpload}
+				onFocus={onChangeIsFocus}
+				onBlur={onChangeIsFocus}
 			>
 				{title}
 			</MdEditor>
