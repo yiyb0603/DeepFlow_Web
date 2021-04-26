@@ -1,14 +1,20 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import * as styles from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { dracula } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
-interface ICodeBlockProps {
+interface CodeBlockProps {
 	language: string;
 	value: string;
 }
 
-const CodeBlock = ({ language, value }: ICodeBlockProps): JSX.Element => {
+const CodeBlock = ({
+	language,
+	value,
+}: CodeBlockProps): JSX.Element => {
 	return (
-		<SyntaxHighlighter language={language} style={styles.prism}>
+		<SyntaxHighlighter
+			language={language}
+			style={dracula}
+		>
 			{value || ''}
 		</SyntaxHighlighter>
 	);

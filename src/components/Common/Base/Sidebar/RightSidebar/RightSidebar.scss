@@ -20,9 +20,10 @@
 		}
 	}
 
-	@media screen and (max-width: 768px) {
+	@media screen and (max-width: 900px) {
 		width: 100%;
 		max-width: 100%;
 		padding: 0 2rem;
+		border: none;
 	}
 }

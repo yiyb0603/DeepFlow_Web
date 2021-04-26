@@ -1,4 +1,4 @@
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import HomePage from 'pages/Home';
 import NoticePage from 'pages/Notice';
 import PostPage from 'pages/Post';
@@ -13,6 +13,7 @@ import TempPage from 'pages/Temp';
 import UserRecommandPage from 'pages/UserRecommand';
 import SearchPostsPage from 'pages/SearchPosts';
 import PolicyPage from 'pages/Policy';
+import NotFoundPage from 'pages/NotFound';
 
 const Routes = (): JSX.Element => {
   return (
@@ -32,6 +33,9 @@ const Routes = (): JSX.Element => {
       <Route exact path='/tags' component={TagsPage} />
       <Route exact path='/tag-posts/:tag' component={TagPostsPage} />
       <Route exact path='/policy' component={PolicyPage} />
+      <Route exact path='/not-found' component={NotFoundPage} />
+
+      <Redirect to='/not-found' />
     </Switch>
   );
 }

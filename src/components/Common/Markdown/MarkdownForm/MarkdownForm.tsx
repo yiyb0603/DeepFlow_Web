@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import MarkdownIt from 'markdown-it';
@@ -40,7 +40,7 @@ const MarkdownForm = ({
 	onChangeContents,
 	onChangeIsFocus,
 }: MarkdownFormProps): JSX.Element => {
-	const handleImageUpload = (file: File): Promise<string> => {
+	const handleImageUpload = useCallback((file: File): Promise<string> => {
 		return new Promise(resolve => {
 			const reader: FileReader = new FileReader();
 			reader.onload = async () => {
@@ -52,7 +52,7 @@ const MarkdownForm = ({
 			
 			reader.readAsDataURL(file);
 		});
-	}
+	}, []);
 
 	return (
 		<div className={cx('MarkdownForm')}>

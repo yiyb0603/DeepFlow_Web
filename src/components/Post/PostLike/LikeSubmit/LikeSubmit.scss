@@ -18,5 +18,9 @@
 
 	&-Text {
 		font-size: var(--font-small);
+		
+		&-Pressed {
+			color: var(--main);
+		}
 	}
 }

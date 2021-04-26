@@ -1,0 +1,39 @@
+.NotFound {
+	min-height: 100vh;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: center;
+
+	&-ContentsWrap {
+		display: flex;
+		display: -webkit-flex;
+		flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		margin: auto;
+
+		&-Image {
+			width: 50%;
+		}
+
+		&-Contents {
+			text-align: center;
+
+			@media screen and (max-width: 520px) {
+				width: 70%;
+				margin-top: 0.5rem;
+			}
+
+			&-Title {
+				font-size: var(--font-bigger);
+				font-weight: bold;
+			}
+
+			&-SubTitle {
+				font-size: var(--font-smallest);
+				margin: 0.5rem 0 1rem 0;
+			}
+		}
+	}
+}

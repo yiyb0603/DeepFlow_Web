@@ -24,7 +24,12 @@ const LikeSubmit = ({
         })}
         onClick={handlePressLike}
       />
-      <span className={cx('LikeSubmit-Text')}>{likeCount}개</span>
+
+      <span className={cx('LikeSubmit-Text', {
+        'LikeSubmit-Text-Pressed': isPressed,
+      })}>
+        {likeCount}개
+      </span>
     </div>
   );
 };
