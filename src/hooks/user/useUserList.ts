@@ -17,13 +17,13 @@ const useUserList = () => {
     setKeyword(value);
   }, []);
 
-  const filteredUsersByKeyword = useMemo(() => {
+  const filteredUsersByKeyword: IUser[][] = useMemo(() => {
     return userList.map((users) => {
       return users.filter((user) => user.name.includes(keyword));
     }
   )}, [keyword, userList]);
 
-  const filteredUsers: (IUser[])[] = useMemo(() => {
+  const filteredUsers: IUser[][] = useMemo(() => {
     if (keyword.length > 0) {
       return filteredUsersByKeyword.filter((users) => users!.length > 0).map((user) => user!);
     } else {

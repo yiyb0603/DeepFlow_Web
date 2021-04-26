@@ -10,7 +10,7 @@ import { ITag } from 'types/tag.types';
 const useTagList = () => {
   const [tagLoading, setTagLoading] = useRecoilState<boolean>(tagLoadingState);
   const [tagList, setTagList] = useRecoilState<ITag[]>(tagListState);
-  
+
   const [sortRule, onChangeSortRule] = useTabState<ETagSort>('sort', ETagSort.POPULAR);
 
   const requestTagList = useCallback(async (): Promise<void> => {

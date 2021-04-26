@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, MouseEvent } from 'react';
+import { useCallback, MouseEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import { History } from 'history';
 import { removeCookie } from 'lib/Cookie';
@@ -8,9 +8,6 @@ import useMyInfo from 'hooks/user/useMyInfo';
 const useHeader = () => {
   const history: History = useHistory();
   const { myInfo, setMyInfo } = useMyInfo();
-  
-  const [isScrollToTop, setIsScrollToTop] = useState<boolean>(true);
-  const [currentScrollY, setCurrentScrollY] = useState<number>(0);
 
   const handleLogout = useCallback((e: MouseEvent<HTMLHyperlinkElementUtils>): void => {
     if (myInfo) {
@@ -23,24 +20,9 @@ const useHeader = () => {
     }
   }, [history, myInfo, setMyInfo]);
 
-  const handleScrollToggle = useCallback((e) => {
-    const { scrollY } = e.currentTarget;
-
-    setIsScrollToTop(currentScrollY >= scrollY);
-    setCurrentScrollY(scrollY);
-  }, [currentScrollY]);
-
-  useEffect(() => {
-    setCurrentScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScrollToggle, true);
-
-    return () => window.removeEventListener('scroll', handleScrollToggle, true);
-  }, [handleScrollToggle]);
-
   return {
     myInfo,
     handleLogout,
-    isScrollToTop,
   };
 }
 

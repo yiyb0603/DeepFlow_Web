@@ -36,7 +36,9 @@ const NotFound = (): JSX.Element => {
             Page Not Found
           </div>
 
-          <div className={cx('NotFound-ContentsWrap-Contents-SubTitle')}>요청한 URL 페이지를 찾을 수 없어요.</div>
+          <div className={cx('NotFound-ContentsWrap-Contents-SubTitle')}>
+            요청한 URL 페이지를 찾을 수 없어요.
+          </div>
 
           <Button
             width={'120px'}

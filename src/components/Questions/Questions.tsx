@@ -42,7 +42,7 @@ const Questions = (): JSX.Element => {
 
   const { viewMode, onChangeViewMode, flexStyle } = useViewMode();
 
-  const customTabStyle = useMemo(() => {
+  const customTabStyle: CSSProperties = useMemo(() => {
     return {
       width: '4rem',
       border: 'none',
@@ -76,7 +76,7 @@ const Questions = (): JSX.Element => {
                   route={route}
                   selectTab={sortTab}
                   onChangeSelectTab={onChangeSortTab}
-                  customStyle={customTabStyle as CSSProperties}
+                  customStyle={customTabStyle}
                 />
               ))
             }

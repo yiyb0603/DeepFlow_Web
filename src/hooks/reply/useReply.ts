@@ -13,8 +13,8 @@ const useReply = (commentIdx: number) => {
   const { requestCommentList } = useComment();
   const postIdx: number = usePageParam();
 
-  const [contents, setContents] = useRecoilState<string>(replyContents);
   const setIsShowReply = useSetRecoilState<boolean>(isShowReplyState);
+  const [contents, setContents] = useRecoilState<string>(replyContents);
   const [modifyObject, setModifyObject] = useRecoilState<IReplyModify | null>(modifyReplyState);
 
   const onChangeContents = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {

@@ -20,7 +20,7 @@ const SelectTab = ({
   onChangeSelectTab,
   customStyle,
 }: SelectTabProps): JSX.Element => {
-  const splitedByRoute = useMemo(() => route.split('=')[1], [route]);
+  const splitedByRoute: string = useMemo(() => route.split('=')[1], [route]);
 
   return (
     <div

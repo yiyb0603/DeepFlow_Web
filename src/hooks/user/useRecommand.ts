@@ -2,19 +2,20 @@ import { useCallback, useEffect, ChangeEvent, MouseEvent } from 'react';
 import { useRecoilState } from 'recoil';
 import { userRecommandListState, userRecommandReasonState } from 'atom/userRecommand';
 import { createRecommand, deleteRecommand, getRecommandsByUserIdx } from 'lib/api/userRecommand/userRecommand.api';
-import usePageParam from '../util/usePageParam';
 import { EResponse } from 'lib/enum/response';
 import { IRecommandDto } from 'lib/api/userRecommand/userRecommand.dto';
 import { validateRecommand } from 'validation/recommand.validation';
-import useUserInfo from './useUserInfo';
 import RecommandError from 'error/RecommandError';
+import { IUserRecommand } from 'types/userRecommand.types';
+import usePageParam from '../util/usePageParam';
+import useUserInfo from './useUserInfo';
 
 const useRecommand = () => {
   const userIdx: number = usePageParam();
   const { userInfo, requestUserInfo } = useUserInfo();
 
   const [reason, setReason] = useRecoilState<string>(userRecommandReasonState);
-  const [userRecommands, setUserRecommands] = useRecoilState(userRecommandListState);
+  const [userRecommands, setUserRecommands] = useRecoilState<IUserRecommand[]>(userRecommandListState);
 
   const onChangeReason = useCallback((e: ChangeEvent<HTMLTextAreaElement>): void => {
     const { value } = e.target;

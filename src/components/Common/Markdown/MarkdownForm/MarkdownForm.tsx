@@ -1,12 +1,12 @@
 import { memo, useCallback } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import imageUpload from 'util/imageUpload';
 import MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js';
 import MdEditor from 'react-markdown-editor-lite';
 import 'highlight.js/styles/rainbow.css';
 import 'react-markdown-editor-lite/lib/index.css';
-import imageUpload from 'util/imageUpload';
 
 const style = require('./MarkdownForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -41,7 +41,7 @@ const MarkdownForm = ({
 	onChangeIsFocus,
 }: MarkdownFormProps): JSX.Element => {
 	const handleImageUpload = useCallback((file: File): Promise<string> => {
-		return new Promise(resolve => {
+		return new Promise((resolve) => {
 			const reader: FileReader = new FileReader();
 			reader.onload = async () => {
 				await imageUpload(file)
