@@ -89,8 +89,8 @@ const usePostForm = () => {
     setTagInput('');
   }, [tagInput, postTags, setRequest]);
 
-  const onKeydownTagInput = useCallback((e: KeyboardEvent<HTMLInputElement>): void => {
-    if (e.key === ',' || e.key === 'Enter') {
+  const onKeydownTagInput = useCallback(({ key }: KeyboardEvent<HTMLInputElement>): void => {
+    if (key === ',' || key === 'Enter') {
       onChangePostTags();
     }
   }, [onChangePostTags]);

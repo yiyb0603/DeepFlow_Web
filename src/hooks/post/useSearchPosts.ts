@@ -72,8 +72,7 @@ const useSearchPosts = () => {
     setKeyword(value);
   }, [setKeyword]);
 
-  const onKeydownKeyword = useCallback((e: KeyboardEvent<HTMLInputElement>): void => {
-    const { key } = e;
+  const onKeydownKeyword = useCallback(({ key }: KeyboardEvent<HTMLInputElement>): void => {
     if (key === 'Enter') {
       handlePushToSearch(keyword);
     }

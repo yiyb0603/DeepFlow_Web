@@ -1,4 +1,4 @@
-import { ChangeEvent, MutableRefObject } from 'react';
+import { ChangeEvent, MutableRefObject, useCallback, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { EComment } from 'lib/enum/comment';
@@ -21,6 +21,27 @@ const CommentInput = ({
   onChangeContents,
   commentInputRef,
 }: CommentInputProps): JSX.Element => {
+  const [isFocus, setIsFocus] = useState(false);
+
+  const onChangeIsFocus = useCallback((): void => {
+    setIsFocus((prevIsFocus) => !prevIsFocus);
+  }, []);
+
+  const handleKeyEvent = useCallback((e: globalThis.KeyboardEvent): void => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      document.execCommand('insertText', false, '\t');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isFocus) {
+      document.addEventListener('keydown', handleKeyEvent, true);
+
+      return () => document.removeEventListener('keydown', handleKeyEvent, true);
+    }
+  }, [handleKeyEvent, isFocus]);
+
   return (
     <div className={cx('CommentInput')}>
       <textarea
@@ -29,6 +50,8 @@ const CommentInput = ({
         className={cx('CommentInput-Input')}
         value={contents}
         onChange={onChangeContents}
+        onFocus={onChangeIsFocus}
+        onBlur={onChangeIsFocus}
       ></textarea>
     </div>
   );
