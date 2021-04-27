@@ -1,4 +1,4 @@
-import { CSSProperties, memo } from 'react';
+import { CSSProperties, memo, useMemo } from 'react';
 import { Select } from 'antd';
 import { generations } from 'lib/models/menu/authOption';
 
@@ -13,9 +13,11 @@ const GenerationSelect = ({
   generation,
   onChangeGeneration,
 }: GenerationSelectProps): JSX.Element => {
-  const selectStyle: CSSProperties = {
-    width: '45%',
-  };
+  const selectStyle: CSSProperties = useMemo(() => {
+    return {
+      width: '45%',
+    };
+  }, []);
 
   return (
     <Select

@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, useMemo } from 'react';
 import { Select } from 'antd';
 import { EMajor } from 'lib/enum/majors';
 import { IAuthOption, majors } from 'lib/models/menu/authOption';
@@ -14,9 +14,11 @@ const MajorSelect = ({
   major,
   onChangeMajor,
 }: MajorSelectProps): JSX.Element => {
-  const selectStyle: CSSProperties = {
-    width: '45%',
-  };
+  const selectStyle: CSSProperties = useMemo(() => {
+    return {
+      width: '45%',
+    };
+  }, []);
 
   return (
     <Select
@@ -26,7 +28,12 @@ const MajorSelect = ({
     >
       {
         majors.map(({ text, value }: IAuthOption, idx: number) => (
-          <Option key={idx} value={value}>{text}</Option>
+          <Option
+            key={idx}
+            value={value}
+          >
+            {text}
+          </Option>
         ))
       }
     </Select>

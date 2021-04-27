@@ -9,7 +9,9 @@ interface BlockQuoteProps {
 	children: ReactNode;
 }
 
-const BlockQuote = ({ children }: BlockQuoteProps): JSX.Element => {
+const BlockQuote = ({
+	children,
+}: BlockQuoteProps): JSX.Element => {
 	return (
 		<div className={cx('BlockQuote')}>
 			{children}

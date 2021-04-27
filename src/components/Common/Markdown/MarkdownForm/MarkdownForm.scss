@@ -8,8 +8,21 @@
 			padding: 2px 5px;
 		}
 
+		img {
+			margin: 0.5rem 0;
+		}
+
 		h2 {
 			margin-bottom: 0.23rem !important;
+		}
+
+		blockquote {
+			background-color: var(--bg-codeBlock);
+			color: var(--black);
+			border-left: 4px solid var(--main);
+			border-radius: 5px;
+			padding: 10px;
+			margin: 2rem 0;
 		}
 	}
 
