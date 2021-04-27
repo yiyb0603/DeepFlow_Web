@@ -1,6 +1,6 @@
 import { useCallback, useMemo, ChangeEvent } from 'react';
-import { useRecoilState } from 'recoil';
-import { commentContentsState, commentListState, modifyState } from 'atom/comment';
+import { SetterOrUpdater, useRecoilState, useSetRecoilState } from 'recoil';
+import { commentContentsState, commentFormLoadingState, commentListState, modifyState } from 'atom/comment';
 import usePageParam from '../util/usePageParam';
 import { createComment, deleteComment, getCommentsByPostIdx, modifyComment } from 'lib/api/comment/comment.api';
 import { EResponse } from 'lib/enum/response';
@@ -13,10 +13,12 @@ import { validateComment } from 'validation/comment.validation';
 
 const useComment = () => {
   const postIdx: number = usePageParam();
+  const myInfo: IToken = useMemo(() => getMyInfo(), []);
+
+  const setIsLoading: SetterOrUpdater<boolean> = useSetRecoilState<boolean>(commentFormLoadingState);
   const [commentList, setCommentList] = useRecoilState<IComment[]>(commentListState);
   const [contents, setContents] = useRecoilState<string>(commentContentsState);
   const [modifyObject, setModifyObject] = useRecoilState<ICommentModify | null>(modifyState);
-  const myInfo: IToken = useMemo(() => getMyInfo(), []);
 
   const onChangeContents = useCallback((e: ChangeEvent<HTMLTextAreaElement>): void => {
     const { value } = e.target;
@@ -46,6 +48,7 @@ const useComment = () => {
         return;
       }
 
+      setIsLoading(true);
       const commentDto: ICommentDto = {
         postIdx,
         contents,
@@ -62,8 +65,10 @@ const useComment = () => {
       await requestCommentList();
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
-  }, [contents, modifyObject, myInfo, postIdx, requestCommentList, setContents, setModifyObject]);
+  }, [contents, modifyObject, myInfo, postIdx, requestCommentList, setContents, setIsLoading, setModifyObject]);
 
   const requestDeleteComment = useCallback(async (commentIdx: number): Promise<void> => {
     try {

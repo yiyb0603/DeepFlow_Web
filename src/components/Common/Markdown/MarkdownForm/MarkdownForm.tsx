@@ -5,7 +5,7 @@ import imageUpload from 'util/imageUpload';
 import MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js';
 import MdEditor from 'react-markdown-editor-lite';
-import 'highlight.js/styles/rainbow.css';
+import 'highlight.js/styles/xcode.css';
 import 'react-markdown-editor-lite/lib/index.css';
 
 const style = require('./MarkdownForm.scss');

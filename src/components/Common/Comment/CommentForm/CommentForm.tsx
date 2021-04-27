@@ -33,6 +33,7 @@ const CommentForm = ({
 
   const reply = useReply(commentIdx!);
   const { contents, onChangeContents, requestOfferComment } = useComment();
+
   const [commentTab, setCommentTab] = useState<ECommentTab>(ECommentTab.WRITE);
 
   return (

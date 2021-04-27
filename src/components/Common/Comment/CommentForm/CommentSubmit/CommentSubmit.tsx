@@ -1,12 +1,14 @@
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useCallback } from 'react';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { commentContentsState, modifyState } from 'atom/comment';
 import { MdClose } from 'react-icons/md';
-import { useCallback } from 'react';
+import { commentContentsState, commentFormLoadingState, modifyState } from 'atom/comment';
 import { stringEllipsis } from 'converter/stringEllipsis';
-import Button from 'components/Common/Button';
 import { palette } from 'styles/Palette/Palette';
+import Button from 'components/Common/Button';
+import { ICommentModify } from 'types/comment.types';
+import LoadingSpinner from 'components/Common/Loading/LoadingSpinner';
 
 const style = require('./CommentSubmit.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -18,8 +20,9 @@ interface CommentSubmitProps {
 const CommentSubmit = ({
   requestOfferComment,
 }: CommentSubmitProps) => {
+  const isLoading: boolean = useRecoilValue<boolean>(commentFormLoadingState);
   const setContents = useSetRecoilState<string>(commentContentsState);
-  const [modifyObject, setModifyObject] = useRecoilState(modifyState);
+  const [modifyObject, setModifyObject] = useRecoilState<ICommentModify | null>(modifyState);
 
   const setModifyNull = useCallback((): void => {
     setContents('');
@@ -33,7 +36,7 @@ const CommentSubmit = ({
           modifyObject !== null &&
           <>
             <div className={cx('CommentSubmit-Cancel-Text')}>
-            {stringEllipsis(modifyObject.contents, 30)} 댓글 수정하기
+              {stringEllipsis(modifyObject.contents, 30)} 댓글 수정하기
             </div>
             <MdClose
               className={cx('CommentSubmit-Cancel-Icon')}
@@ -47,9 +50,11 @@ const CommentSubmit = ({
         width={'85px'}
         height={'35px'}
         onClick={requestOfferComment}
-        color={palette.green}
+        color={palette.main}
       >
-        Comment
+        {
+          isLoading ? <LoadingSpinner /> : (modifyObject !== null ? '수정' : '작성')
+        }
       </Button>
     </div>
   );

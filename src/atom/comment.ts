@@ -7,6 +7,11 @@ export const commentContentsState = atom<string>({
   default: '',
 });
 
+export const commentFormLoadingState = atom<boolean>({
+  key: 'commentFormLoadingState',
+  default: false,
+});
+
 export const modifyState = atom<ICommentModify | null>({
   key: 'modifyState',
   default: null,

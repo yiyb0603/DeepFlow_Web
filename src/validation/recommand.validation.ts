@@ -5,8 +5,9 @@ import { IToken } from 'types/user.types';
 import { getMyInfo } from 'util/getMyInfo';
 import { isEmpty } from 'util/isEmpty';
 
-export const validateRecommand = ({ reason, userIdx }: IRecommandDto): boolean => {
+export const validateRecommand = (request: IRecommandDto): boolean => {
   const myInfo: IToken = getMyInfo();
+  const { reason, userIdx } = request;
 
   if (isEmpty(reason)) {
     errorToast('빈칸없이 입력해주세요.');

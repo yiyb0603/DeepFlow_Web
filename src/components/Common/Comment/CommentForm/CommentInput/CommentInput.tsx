@@ -24,7 +24,7 @@ const CommentInput = ({
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
   const onChangeIsFocus = useCallback((): void => {
-    setIsFocus((prevIsFocus) => !prevIsFocus);
+    setIsFocus((prevIsFocus: boolean) => !prevIsFocus);
   }, []);
 
   const handleKeyEvent = useCallback((e: globalThis.KeyboardEvent): void => {
