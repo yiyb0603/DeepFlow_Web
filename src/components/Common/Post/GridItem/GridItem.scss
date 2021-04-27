@@ -1,4 +1,4 @@
-@import 'styles/util.scss';
+@import 'styles/lib.scss';
 
 @mixin sectionStyle() {
 	padding: 5px;
@@ -42,10 +42,7 @@ $maxHeight: 345px;
 		color: var(--contrast);
 
 		&-Title {
-			max-width: 100%;
-			overflow-x: hidden;
-			white-space: nowrap;
-			text-overflow: ellipsis;
+			@include ellipsisLine(1);
 			@include sectionStyle();
 			font-weight: 500;
 			font-size: var(--font-contents);

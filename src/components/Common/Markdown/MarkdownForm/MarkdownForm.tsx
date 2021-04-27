@@ -1,10 +1,10 @@
 import { memo, useCallback } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import imageUpload from 'util/imageUpload';
 import MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js';
 import MdEditor from 'react-markdown-editor-lite';
+import imageUpload from 'util/imageUpload';
 import 'highlight.js/styles/xcode.css';
 import 'react-markdown-editor-lite/lib/index.css';
 

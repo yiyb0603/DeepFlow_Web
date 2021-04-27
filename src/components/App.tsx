@@ -5,7 +5,7 @@ import Routes from './Routes';
 
 import 'antd/dist/antd.css';
 import 'semantic-ui-css/semantic.min.css';
-import 'styles/default.scss';
+import 'styles/util.scss';
 import 'styles/font.scss';
 import 'styles/Palette/Palette.scss';
 

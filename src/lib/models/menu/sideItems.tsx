@@ -2,7 +2,7 @@ import { VscHome, VscSaveAs } from 'react-icons/vsc';
 import { FaStackOverflow } from 'react-icons/fa';
 import { MdCardMembership } from 'react-icons/md';
 import { HiOutlineSpeakerphone } from 'react-icons/hi';
-import { IoIosInformationCircleOutline } from 'react-icons/io';
+import { VscInfo } from 'react-icons/vsc';
 import { AiOutlineTags } from 'react-icons/ai';
 
 export interface ISideItemsType {
@@ -46,7 +46,7 @@ export const sideItems: ISideItemsType[] = [
 
   {
     menuName: '이용약관',
-    icon: <IoIosInformationCircleOutline className={ICON_CLASS} />,
+    icon: <VscInfo className={ICON_CLASS} />,
     link: '/policy'
   },
 
