@@ -42,13 +42,15 @@ export const tagPostState = atom<IPost[]>({
   default: [] as IPost[],
 });
 
+export const initialRequestPostState = {
+  title: '',
+  introduction: '',
+  thumbnail: '',
+  contents: '',
+  postTags: [],
+};
+
 export const requestPostState = atom<IPostDto>({
   key: 'requestPostState',
-  default: {
-    title: '',
-    introduction: '',
-    thumbnail: '',
-    contents: '',
-    postTags: [],
-  },
+  default: initialRequestPostState,
 });

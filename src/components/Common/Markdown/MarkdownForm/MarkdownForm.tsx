@@ -22,10 +22,15 @@ const mdParser: MarkdownIt = new MarkdownIt({
 	html: true,
 	linkify: true,
 	typographer: true,
-	highlight: (str: string, lang: string) => {
-		if (lang && hljs.getLanguage(lang)) {
+	highlight: (str: string, language: string) => {
+		if (language && hljs.getLanguage(language)) {
 			try {
-				return hljs.highlight(lang, str).value;
+				return hljs.highlight(str,
+					{
+						language,
+						ignoreIllegals: true,
+					}
+				).value;
 			} catch (error) {
 				throw new Error(error);
 			}
