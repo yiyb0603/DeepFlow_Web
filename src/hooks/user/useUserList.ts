@@ -1,21 +1,24 @@
 import { useState, useCallback, useEffect, useMemo, ChangeEvent } from 'react';
 import { useRecoilState } from 'recoil';
-import { userListState } from 'atom/user';
+import { userListState, userSearchKeywordState } from 'atom/user';
 import { IUser, IUserListResponse } from 'types/user.types';
 import { getUserList } from 'lib/api/user/user.api';
 import { EResponse } from 'lib/enum/response';
 import { getMaxGeneration } from 'util/getMaxGeneration';
+import useTabState from 'hooks/util/useTabState';
+import { EUserSort } from 'lib/enum/user';
 
 const useUserList = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [keyword, setKeyword] = useState<string>('');
+  const [keyword, setKeyword] = useRecoilState<string>(userSearchKeywordState);
 
+  const [sortTab, onChangeSortTab] = useTabState<EUserSort>('sort', EUserSort.GENERATION);
   const [userList, setUserList] = useRecoilState<IUser[][]>(userListState);
 
   const onChangeKeyword = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
     setKeyword(value);
-  }, []);
+  }, [setKeyword]);
 
   const filteredUsersByKeyword: IUser[][] = useMemo(() => {
     return userList.map((users) => {
@@ -34,7 +37,7 @@ const useUserList = () => {
   const requestUserList = useCallback(async (): Promise<void> => {
     try {
       setIsLoading(true);
-      const { status, data }: IUserListResponse = await getUserList();
+      const { status, data }: IUserListResponse = await getUserList(sortTab);
       const { users } = data;
 
       if (status === EResponse.OK) {
@@ -54,15 +57,18 @@ const useUserList = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [setUserList]);
+  }, [setUserList, sortTab]);
 
   useEffect(() => {
     requestUserList();
-  }, [requestUserList]);
+  }, [requestUserList, sortTab]);
 
   return {
     keyword,
     onChangeKeyword,
+    sortTab,
+    onChangeSortTab,
+
     userList,
     filteredUsers,
     isLoading,

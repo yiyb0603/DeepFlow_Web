@@ -11,6 +11,7 @@ interface SelectTabProps {
   selectTab: any;
   onChangeSelectTab: (selectTab: any) => void;
   customStyle?: CSSProperties;
+  type?: 'Long' | 'Short';
 }
 
 const SelectTab = ({
@@ -19,16 +20,22 @@ const SelectTab = ({
   selectTab,
   onChangeSelectTab,
   customStyle,
+  type = 'Long',
 }: SelectTabProps): JSX.Element => {
   const splitedByRoute: string = useMemo(() => route.split('=')[1], [route]);
 
   return (
     <div
       className={cx('SelectTab', {
+        'SelectTab-Long': type === 'Long',
+        'SelectTab-Short': type === 'Short',
         'SelectTab-Current': String(selectTab) === splitedByRoute,
       })}
       onClick={() => onChangeSelectTab(splitedByRoute)}
-      style={customStyle}
+      style={{
+        ...customStyle,
+        border: type === 'Short' ? 'none' : '',
+      }}
     >
       {name}
     </div>

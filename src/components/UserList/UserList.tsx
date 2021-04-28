@@ -1,15 +1,16 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { customTrim } from 'converter/customTrim';
 import useUserList from 'hooks/user/useUserList';
-import { IUser } from 'types/user.types';
-import Generation from './Generation';
-import UserItem from '../Common/User/UserItem';
+import { ISortTab } from 'lib/models/tabs/sortTabs';
+import { userSortTabs } from 'lib/models/tabs/userSortTabs';
+import { EUserSort } from 'lib/enum/user';
 import PageTitle from 'components/Common/PageTitle';
-import NoItems from 'components/Common/NoItems';
-import UserLoading from './UserLoading';
 import Helmet from 'components/Common/Helmet';
 import SearchInput from 'components/Common/Input/SearchInput';
+import SelectTab from 'components/Common/SelectTab';
+import UserLoading from './UserLoading';
+import GenerationUserList from './GenerationUserList';
+import PopularUserList from './PopularUserList';
 
 const style = require('./UserList.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -19,6 +20,8 @@ const UserList = (): JSX.Element => {
     isLoading,
     keyword,
     onChangeKeyword,
+    sortTab,
+    onChangeSortTab,
     userList,
     filteredUsers,
   } = useUserList();
@@ -38,36 +41,29 @@ const UserList = (): JSX.Element => {
             padding={'0.35rem'}
           />
         </PageTitle>
-        {
-          filteredUsers.length > 0 ? filteredUsers.map((users: IUser[], idx: number) => {
-            const generation: number = customTrim(keyword).length > 0 ? users[0].generation : idx + 1;
-            const isExistGeneration: boolean = users.some((user: IUser) => user.generation === generation);
 
-            return (
-              <div key={idx}>
-                {
-                  isExistGeneration &&
-                  <Generation text={`${generation}기`} />
-                }
-                {
-                  users.map((user: IUser) => {
-                    const { idx, avatar, name, description, position, joinedAt } = user;
-                    return (
-                      <UserItem
-                        key={idx}
-                        idx={idx}
-                        avatar={avatar}
-                        name={name}
-                        text={description}
-                        position={position}
-                        date={joinedAt}
-                      />
-                    );
-                  })
-                }
-              </div>
-            );
-          }) : <NoItems text='검색한 유저가 없습니다.' />
+        <div className={cx('UserList-TabWrapper')}>
+        {
+          userSortTabs.map(({ name, route }: ISortTab, idx: number) => (
+            <SelectTab
+              key={idx}
+              name={name}
+              route={route}
+              selectTab={sortTab}
+              onChangeSelectTab={onChangeSortTab}
+              type='Short'
+            />
+          ))
+        }
+        </div>
+
+        {
+          sortTab === EUserSort.GENERATION ? (
+            <GenerationUserList
+              filteredUsers={filteredUsers}
+              keyword={keyword}
+            />
+          ) : <PopularUserList />
         }
       </div>
     }

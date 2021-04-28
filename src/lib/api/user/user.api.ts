@@ -1,4 +1,5 @@
 import { customAxios } from 'lib/CustomAxios';
+import { EUserSort } from 'lib/enum/user';
 import { IResponse } from 'types/Response';
 import { IUserListResponse, IUserResponse } from 'types/user.types';
 import { IUserModify, SetFCMDto } from './user.dto';
@@ -15,14 +16,8 @@ export const modifyUserInfo = async (modifyInfo: IUserModify): Promise<IResponse
   return data;
 }
 
-export const getUserList = async (): Promise<IUserListResponse> => {
-  const url: string = '/user/list';
-  const { data } = await customAxios.get(url);
-  return data;
-}
-
-export const getPopularUserList = async (count: number): Promise<IUserListResponse> => {
-  const url: string = `/user/popular?count=${count}`;
+export const getUserList = async (sort: EUserSort): Promise<IUserListResponse> => {
+  const url: string = `/user/list?sort=${sort}`;
   const { data } = await customAxios.get(url);
   return data;
 }

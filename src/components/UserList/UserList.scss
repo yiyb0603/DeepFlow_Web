@@ -1,2 +1,8 @@
 .UserList {
+	&-TabWrapper {
+		display: flex;
+		display: -webkit-flex;
+		align-items: center;
+		margin-bottom: 1rem;
+	}
 }

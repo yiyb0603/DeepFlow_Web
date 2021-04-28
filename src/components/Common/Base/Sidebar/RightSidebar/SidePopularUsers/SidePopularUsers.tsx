@@ -2,29 +2,31 @@ import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { APP_NAME } from 'constants/util';
-import usePopularUsers from 'hooks/user/usePopularUsers';
 import { IUser } from 'types/user.types';
+import { SIDE_POPULAR_USER_COUNT } from 'constants/user';
+import usePopularUsers from 'hooks/user/usePopularUsers';
 import SectionTitle from '../SectionTitle';
-import PopularUserItem from './PopularUserItem';
 import NoPopularItems from '../NoPopularItems';
+import SidePopularUserItem from './SidePopularUserItem';
 
-const style = require('./PopularUser.scss');
+const style = require('./SidePopularUsers.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-const PopularUser = (): JSX.Element => {
+const SidePopularUsers = (): JSX.Element => {
   const { popularUsers } = usePopularUsers();
 
   return (
-    <div className={cx('PopularUser')}>
+    <div className={cx('SidePopularUsers')}>
       <SectionTitle title={`${APP_NAME}의 인기 유저목록`} />
     
-      <div className={cx('PopularUser-Users')}>
+      <div className={cx('SidePopularUsers-Users')}>
         {
-          popularUsers.length > 0 ? popularUsers.map((user: IUser, order: number) => {
+          popularUsers.length > 0 ?
+          popularUsers.slice(0, SIDE_POPULAR_USER_COUNT).map((user: IUser, order: number) => {
             const { idx, name, position, recommandCount } = user;
 
             return (
-              <PopularUserItem
+              <SidePopularUserItem
                 key={idx}
                 idx={idx}
                 name={name}
@@ -40,4 +42,4 @@ const PopularUser = (): JSX.Element => {
   );
 };
 
-export default memo(PopularUser);
+export default memo(SidePopularUsers);

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import useTagList from 'hooks/tag/useTagList';
 import { ETagSort } from 'lib/enum/tag';
-import { ITagTap, tagTaps } from 'lib/models/tabs/tagTaps';
+import { ISortTab, sortTabs } from 'lib/models/tabs/sortTabs';
 import SelectTab from 'components/Common/SelectTab';
 import Helmet from 'components/Common/Helmet';
 
@@ -17,7 +17,7 @@ const TagsTap = (): JSX.Element => {
     <div className={cx('TagsTap')}>
       <Helmet title={`태그 (${sortRule === ETagSort.POPULAR ? '인기순' : '이름순'})`} />
       {
-        tagTaps.map(({ name, route }: ITagTap, idx: number) => (
+        sortTabs.map(({ name, route }: ISortTab, idx: number) => (
           <SelectTab
             key={idx}
             name={name}

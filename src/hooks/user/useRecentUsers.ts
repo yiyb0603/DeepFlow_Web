@@ -1,5 +1,6 @@
 import { getUserList } from 'lib/api/user/user.api';
 import { EResponse } from 'lib/enum/response';
+import { EUserSort } from 'lib/enum/user';
 import { useCallback, useEffect, useState } from 'react';
 import { IUser } from 'types/user.types';
 
@@ -8,7 +9,7 @@ const useRecentUsers = () => {
 
   const requestRecentUsers = useCallback(async (): Promise<void> => {
     try {
-      const { status, data: { users } } = await getUserList();
+      const { status, data: { users } } = await getUserList(EUserSort.GENERATION);
 
       if (status === EResponse.OK) {
         const sortedByJoinedAt: IUser[] = users.sort((a, b) => {

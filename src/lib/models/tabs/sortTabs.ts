@@ -1,9 +1,9 @@
-export interface ITagTap {
+export interface ISortTab {
   name: string;
   route: string;
 }
 
-export const tagTaps: ITagTap[] = [
+export const sortTabs: ISortTab[] = [
   {
     name: '인기순',
     route: '?sort=popular',

@@ -77,6 +77,7 @@ const Questions = (): JSX.Element => {
                   selectTab={sortTab}
                   onChangeSelectTab={onChangeSortTab}
                   customStyle={customTabStyle}
+                  type='Short'
                 />
               ))
             }

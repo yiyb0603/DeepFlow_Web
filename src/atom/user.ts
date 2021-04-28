@@ -44,6 +44,11 @@ export const popularUserListState = atom<IUser[]>({
   default: [] as IUser[],
 });
 
+export const userSearchKeywordState = atom<string>({
+  key: 'userSearchKeywordState',
+  default: '',
+});
+
 export const userLoading = atom<boolean>({
   key: 'userLoading',
   default: true,
