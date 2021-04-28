@@ -11,7 +11,7 @@ export const refreshToken = async (config: AxiosRequestConfig): Promise<AxiosReq
   if (accessToken) {
     const decode: IToken = decodeToken();
     const nowDate: number = Date.now() / 1000;
-    
+
     if (decode.exp < nowDate) {
       const response: ITokenResponse = await getRefreshToken(accessToken);
 

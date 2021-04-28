@@ -9,7 +9,9 @@ interface GenerationTitleProps {
   text: string;
 }
 
-const GenerationTitle = ({ text }: GenerationTitleProps): JSX.Element => {
+const GenerationTitle = ({
+  text,
+}: GenerationTitleProps): JSX.Element => {
   return (
     <div className={cx('GenerationTitle')}>{text}</div>
   );

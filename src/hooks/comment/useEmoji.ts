@@ -1,15 +1,13 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { SetterOrUpdater, useSetRecoilState } from 'recoil';
 import { commentEmojiListState } from 'atom/comment';
 import { toggleEmojiState } from 'atom/commentEmoji';
 import { ICommentEmojiDto } from 'lib/api/commentEmoji/commentEmoji.dto';
 import { createCommentEmoji, deleteCommentEmoji } from 'lib/api/commentEmoji/commentEmoji.api';
 import { EResponse } from 'lib/enum/response';
-import useComment from './useComment';
 import { ICommentEmojiInfo } from 'types/commentEmoji.types';
-import { getMyInfo } from 'util/getMyInfo';
-import { IToken } from 'types/user.types';
-import { errorToast } from 'lib/Toast';
+import { checkLoggedIn } from 'util/checkLoggedIn';
+import useComment from './useComment';
 
 const useEmoji = () => {
   const { requestCommentList } = useComment();
@@ -17,8 +15,6 @@ const useEmoji = () => {
 
   const setIsToggle: SetterOrUpdater<boolean> = useSetRecoilState<boolean>(toggleEmojiState);
   const setUserEmojies = useSetRecoilState<ICommentEmojiInfo[]>(commentEmojiListState);
-  
-  const myInfo: IToken = useMemo(() => getMyInfo(), []);
 
   const requestCreateEmoji = useCallback(async (emoji: string, commentIdx: number): Promise<void> => {
     try {
@@ -56,18 +52,18 @@ const useEmoji = () => {
   }, [requestCommentList, setUserEmojies]);
 
   const onChangeEmoji = useCallback((emoji: string, commentIdx: number, existEmoji?: ICommentEmojiInfo | undefined): void => {
-    if (myInfo) {
-      setEmoji(emoji);
-
-      if (existEmoji === undefined) {
-        requestCreateEmoji(emoji, commentIdx);
-      } else {
-        requestDeleteEmoji(existEmoji!.idx, commentIdx, emoji);
-      }
-    } else {
-      errorToast('로그인 후 가능합니다.');
+    if (!checkLoggedIn()) {
+      return;
     }
-  }, [myInfo, requestCreateEmoji, requestDeleteEmoji]);
+
+    setEmoji(emoji);
+
+    if (existEmoji === undefined) {
+      requestCreateEmoji(emoji, commentIdx);
+    } else {
+      requestDeleteEmoji(existEmoji!.idx, commentIdx, emoji);
+    }
+  }, [requestCreateEmoji, requestDeleteEmoji]);
 
   return {
     emoji,

@@ -1,19 +1,16 @@
-import { useCallback, useMemo, ChangeEvent } from 'react';
+import { useCallback, ChangeEvent } from 'react';
 import { SetterOrUpdater, useRecoilState, useSetRecoilState } from 'recoil';
 import { commentContentsState, commentFormLoadingState, commentListState, modifyState } from 'atom/comment';
 import usePageParam from '../util/usePageParam';
 import { createComment, deleteComment, getCommentsByPostIdx, modifyComment } from 'lib/api/comment/comment.api';
 import { EResponse } from 'lib/enum/response';
-import { IComment, ICommentModify } from 'types/comment.types';
 import { ICommentDto } from 'lib/api/comment/comment.dto';
-import { getMyInfo } from 'util/getMyInfo';
-import { IToken } from 'types/user.types';
-import { errorToast } from 'lib/Toast';
+import { IComment, ICommentModify } from 'types/comment.types';
 import { validateComment } from 'validation/comment.validation';
+import { checkLoggedIn } from 'util/checkLoggedIn';
 
 const useComment = () => {
   const postIdx: number = usePageParam();
-  const myInfo: IToken = useMemo(() => getMyInfo(), []);
 
   const setIsLoading: SetterOrUpdater<boolean> = useSetRecoilState<boolean>(commentFormLoadingState);
   const [commentList, setCommentList] = useRecoilState<IComment[]>(commentListState);
@@ -39,12 +36,7 @@ const useComment = () => {
 
   const requestOfferComment = useCallback(async (): Promise<void> => {
     try {
-      if (!myInfo) {
-        errorToast('로그인 후 작성해주세요');
-        return;
-      }
-
-      if (!validateComment(contents)) {
+      if (!checkLoggedIn() || !validateComment(contents)) {
         return;
       }
 
@@ -68,7 +60,7 @@ const useComment = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [contents, modifyObject, myInfo, postIdx, requestCommentList, setContents, setIsLoading, setModifyObject]);
+  }, [contents, modifyObject, postIdx, requestCommentList, setContents, setIsLoading, setModifyObject]);
 
   const requestDeleteComment = useCallback(async (commentIdx: number): Promise<void> => {
     try {

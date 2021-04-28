@@ -2,10 +2,10 @@ import { useCallback, useMemo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import useEmoji from 'hooks/comment/useEmoji';
-import { errorToast } from 'lib/Toast';
 import { ICommentEmojiInfo } from 'types/commentEmoji.types';
 import { IToken } from 'types/user.types';
 import { getMyInfo } from 'util/getMyInfo';
+import { checkLoggedIn } from 'util/checkLoggedIn';
 
 const style = require('./EmojiItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -31,16 +31,16 @@ const EmojiItem = ({
   }, [myInfo, users]);
 
   const onClickEmojiItem = useCallback((): void => {
-    if (myInfo) {
-      if (existEmoji === undefined) {
-        requestCreateEmoji(emoji, commentIdx);
-      } else {
-        requestDeleteEmoji(existEmoji!.idx, commentIdx, emoji);
-      }
-    } else {
-      errorToast('로그인 후 가능합니다.');
+    if (!checkLoggedIn()) {
+      return;
     }
-  }, [commentIdx, emoji, existEmoji, myInfo, requestCreateEmoji, requestDeleteEmoji]);
+
+    if (existEmoji === undefined) {
+      requestCreateEmoji(emoji, commentIdx);
+    } else {
+      requestDeleteEmoji(existEmoji!.idx, commentIdx, emoji);
+    }
+  }, [commentIdx, emoji, existEmoji, requestCreateEmoji, requestDeleteEmoji]);
 
   return (
     <div className={cx('EmojiItem')} onClick={onClickEmojiItem}>

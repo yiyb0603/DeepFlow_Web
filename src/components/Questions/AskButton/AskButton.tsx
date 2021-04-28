@@ -1,16 +1,14 @@
 import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { History } from 'history';
-import { getMyInfo } from 'util/getMyInfo';
-import { errorToast } from 'lib/Toast';
-import Button from 'components/Common/Button';
+import { checkLoggedIn } from 'util/checkLoggedIn';
 import { palette } from 'styles/Palette/Palette';
+import Button from 'components/Common/Button';
 
 const AskButton = (): JSX.Element => {
   const history: History = useHistory();
   const handlePushToForm = useCallback((): void => {
-    if (!getMyInfo()) {
-      errorToast('로그인 후 이용가능합니다.');
+    if (!checkLoggedIn()) {
       return;
     }
 

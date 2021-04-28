@@ -2,13 +2,14 @@ import { useCallback, useEffect, ChangeEvent, MouseEvent } from 'react';
 import { useRecoilState } from 'recoil';
 import { userRecommandListState, userRecommandReasonState } from 'atom/userRecommand';
 import { createRecommand, deleteRecommand, getRecommandsByUserIdx } from 'lib/api/userRecommand/userRecommand.api';
-import { EResponse } from 'lib/enum/response';
 import { IRecommandDto } from 'lib/api/userRecommand/userRecommand.dto';
+import { EResponse } from 'lib/enum/response';
 import { validateRecommand } from 'validation/recommand.validation';
 import RecommandError from 'error/RecommandError';
 import { IUserRecommand } from 'types/userRecommand.types';
 import usePageParam from '../util/usePageParam';
 import useUserInfo from './useUserInfo';
+import { checkLoggedIn } from 'util/checkLoggedIn';
 
 const useRecommand = () => {
   const userIdx: number = usePageParam();
@@ -35,6 +36,10 @@ const useRecommand = () => {
   }, [setUserRecommands, userIdx]);
 
   const requestCreateRecommand = useCallback(async (): Promise<void> => {
+    if (!checkLoggedIn()) {
+      return;
+    }
+
     try {
       const recommandDto: IRecommandDto = {
         userIdx,
