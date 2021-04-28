@@ -6,6 +6,7 @@ import { VscChromeClose } from 'react-icons/vsc';
 import { calculateTime } from 'lib/TimeCounting';
 import { getMyInfo } from 'util/getMyInfo';
 import { IToken } from 'types/user.types';
+import UserRank from './UserRank';
 
 const style = require('./UserItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -19,6 +20,8 @@ interface UserItemProps {
   date: Date | string;
   canDelete?: boolean;
   onDelete?: (e: MouseEvent<SVGElement>) => Promise<void>;
+  rankIndex?: number;
+  showRank?: boolean;
 }
 
 const UserItem = ({
@@ -30,6 +33,8 @@ const UserItem = ({
   date,
   canDelete,
   onDelete,
+  rankIndex,
+  showRank = false,
 }: UserItemProps): JSX.Element => {
   const myInfo: IToken = useMemo(() => getMyInfo(), []);
 
@@ -41,6 +46,11 @@ const UserItem = ({
           className={cx('UserItem-Close')}
           onClick={onDelete}
         />
+      }
+
+      {
+        (showRank && rankIndex) &&
+        <UserRank rankIndex={rankIndex} />
       }
       <div className={cx('UserItem-Left')}>
         <div className={cx('UserItem-Left-ContentsWrap')}>

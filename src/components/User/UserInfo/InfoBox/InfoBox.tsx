@@ -65,16 +65,16 @@ const InfoBox = ({
             <div className={cx('InfoBox-Left-Contents-NameId-Id')}>({githubId})</div>
           </div>
           <div className={cx('InfoBox-Left-Contents-Info')}>
-            <CgComment />
-            <div>{description}</div>
+            <CgComment className={cx('InfoBox-Left-Contents-Info-Icon')} />
+            <div className={cx('InfoBox-Left-Contents-Info-Text')}>{description}</div>
           </div>
           <div className={cx('InfoBox-Left-Contents-Info')}>
-            <HiCode />
-            <div>{position}</div>
+            <HiCode className={cx('InfoBox-Left-Contents-Info-Icon')} />
+            <div className={cx('InfoBox-Left-Contents-Info-Text')}>{position}</div>
           </div>
           <div className={cx('InfoBox-Left-Contents-Info')}>
-            <ImLocation2 />
-            <div>{location}</div>
+            <ImLocation2 className={cx('InfoBox-Left-Contents-Info-Icon')} />
+            <div className={cx('InfoBox-Left-Contents-Info-Text')}>{location}</div>
           </div>
         </div>
       </div>

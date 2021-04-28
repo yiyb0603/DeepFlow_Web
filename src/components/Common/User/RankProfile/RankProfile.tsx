@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { Tooltip } from 'antd';
 import { ERank } from 'lib/enum/rank';
-import { IRank, rankToStyle } from 'converter/rankToStyle';
+import { IRank, rankToProfileStyle } from 'converter/rankToStyle';
 import { palette } from 'styles/Palette/Palette';
 
 const style = require('./RankProfile.scss');
@@ -18,7 +18,7 @@ const RankProfile = ({
   avatar,
   rank,
 }: RankProfileProps): JSX.Element => {
-  const rankInfo: IRank = useMemo(() => rankToStyle(rank), [rank]);
+  const rankInfo: IRank = useMemo(() => rankToProfileStyle(rank), [rank]);
   const rankStyle: CSSProperties = {
     backgroundColor: rankInfo.color,
   };

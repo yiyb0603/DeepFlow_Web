@@ -27,6 +27,7 @@
 				flex-wrap: wrap;
 				-ms-flex-wrap: wrap;
 				align-items: center;
+				margin-bottom: 0.25rem;
 
 				&-Name {
 					font-size: var(--font-regular);
@@ -43,10 +44,14 @@
 				display: flex;
 				display: -webkit-flex;
 				align-items: center;
-				font-size: var(--font-small);
 
-				& > *:first-child {
+				&-Icon {
+					font-size: var(--font-normallest);
 					margin-right: 0.2rem;
+				}
+
+				&-Text {
+					font-size: var(--font-small);
 				}
 			}
 		}

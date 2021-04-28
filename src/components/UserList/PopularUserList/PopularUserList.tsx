@@ -8,7 +8,7 @@ const PopularUserList = (): JSX.Element => {
   return (
     <>
       {
-        filteredUsers.map((user: IUser) => {
+        filteredUsers.map((user: IUser, index: number) => {
           const { idx, avatar, name, description, position, joinedAt } = user;
           
           return (
@@ -20,6 +20,8 @@ const PopularUserList = (): JSX.Element => {
               text={description}
               position={position}
               date={joinedAt}
+              rankIndex={index + 1}
+              showRank={true}
             />
           );
         })

@@ -1,5 +1,6 @@
 import { ERank } from 'lib/enum/rank';
 import { palette } from 'styles/Palette/Palette';
+import { createRandomColor } from 'util/createRandomColor';
 
 export interface IRank {
   rank: string;
@@ -7,7 +8,23 @@ export interface IRank {
   color: string;
 }
 
-export const rankToStyle = (rank: ERank): IRank => {
+export const rankToBackgroundColor = (rankIndex: number): string => {
+  switch (rankIndex) {
+    case 1:
+      return palette.yellow;
+    
+    case 2:
+      return palette.silver;
+
+    case 3:
+      return palette.bronze;
+
+    default:
+      return createRandomColor();
+  }
+}
+
+export const rankToProfileStyle = (rank: ERank): IRank => {
   switch (rank) {
     case ERank.BRONZE:
       return {
