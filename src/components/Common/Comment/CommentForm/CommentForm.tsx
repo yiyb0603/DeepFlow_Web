@@ -38,7 +38,8 @@ const CommentForm = ({
 
   return (
     <div className={cx('CommentForm')}>
-      <PreviewTab>
+      <div className={cx('CommentForm-ContentsWrap')}>
+        <PreviewTab>
         {
           commentTabs.map(({ id, name, icon }: ICommentTab) => (
             <PreviewTabItem
@@ -51,18 +52,19 @@ const CommentForm = ({
             />
           ))
         }
-      </PreviewTab>
-      {
-        commentTab === WRITE ?
-        <CommentInput
-          type={type}
-          contents={type === COMMENT ? contents : reply.contents}
-          onChangeContents={type === COMMENT ? onChangeContents : reply.onChangeContents}
-          commentInputRef={commentInputRef!}
-        />
-        :
-        <CommentPreview contents={type === COMMENT ? contents : reply.contents} />
-      }
+        </PreviewTab>
+        {
+          commentTab === WRITE ?
+          <CommentInput
+            type={type}
+            contents={type === COMMENT ? contents : reply.contents}
+            onChangeContents={type === COMMENT ? onChangeContents : reply.onChangeContents}
+            commentInputRef={commentInputRef!}
+          />
+          :
+          <CommentPreview contents={type === COMMENT ? contents : reply.contents} />
+        }
+      </div>
 
       <div className={cx('CommentForm-BottomWrap')}>
         {

@@ -1,13 +1,16 @@
 .CommentForm {
 	width: 100%;
 
+	&-ContentsWrap {
+		border: 1px solid var(--lighterGray);
+	}
+
 	&-BottomWrap {
 		display: flex;
 		display: -webkit-flex;
 		justify-content: flex-end;
 		align-items: center;
 		background-color: var(--white);
-		border-top: 1px solid var(--lighterGray);
-		padding: 0.5rem;
+		margin-top: 0.5rem;
 	}
 }
