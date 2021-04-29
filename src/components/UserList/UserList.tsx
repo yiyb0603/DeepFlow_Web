@@ -39,6 +39,7 @@ const UserList = (): JSX.Element => {
             onChangeValue={onChangeKeyword}
             placeholder='유저 이름을 검색하세요'
             padding={'0.35rem'}
+            fontSize={'1.2rem'}
           />
         </PageTitle>
 

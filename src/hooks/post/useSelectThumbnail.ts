@@ -1,16 +1,20 @@
-import { useRef, useState, useCallback, ChangeEvent, useEffect } from 'react';
+import { useCallback, ChangeEvent, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { requestPostState } from 'atom/post';
 import { IPostDto } from 'lib/api/post/post.dto';
 import { uploadFiles } from 'lib/api/uploads/uploads.api';
 import { EResponse } from 'lib/enum/response';
+import useDragDrop from 'hooks/util/useDragDrop';
 
 const useSelectThumbnail = () => {
-  const dragRef = useRef<HTMLDivElement | null>(null);
+  const {
+    dragRef,
+    isDragging,
+    setIsDragging,
+    handleDrop,
+  } = useDragDrop();
 
-  const [isDragging, setIsDragging] = useState<boolean>(false);
   const [request, setRequest] = useRecoilState<IPostDto>(requestPostState);
-
   const { thumbnail } = request;
 
   const onChangeThumbnail = useCallback(async (e: ChangeEvent<HTMLInputElement> | DragEvent): Promise<void> => {
@@ -38,62 +42,11 @@ const useSelectThumbnail = () => {
     }
   }, [setRequest]);
 
-  const handleDragIn = useCallback((e: DragEvent): void => {
-    e.preventDefault();
-    e.stopPropagation();
-  }, []);
-
-  const handleDragOut = useCallback((e: DragEvent): void => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    setIsDragging(false);
-  }, []);
-
-  const handleDragOver = useCallback((e: DragEvent): void => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (e.dataTransfer!.files) {
-      setIsDragging(true);
-    }
-  }, []);
-
-  const handleDrop = useCallback(async (e: DragEvent): Promise<void> => {
-    try {
-      e.preventDefault();
-      e.stopPropagation();
-      onChangeThumbnail(e);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsDragging(false);
-    }
-  }, [onChangeThumbnail]);
-
-  const initDragEvents = useCallback((): void => {
-    if (dragRef.current !== null) {
-      dragRef.current.addEventListener('dragenter', handleDragIn);
-      dragRef.current.addEventListener('dragleave', handleDragOut);
-      dragRef.current.addEventListener('dragover', handleDragOver);
-      dragRef.current.addEventListener('drop', handleDrop);
-    }
-  }, [handleDragIn, handleDragOut, handleDragOver, handleDrop]);
-
-  const resetDragEvents = useCallback((): void => {
-    if (dragRef.current !== null) {
-      dragRef.current.removeEventListener('dragenter', handleDragIn);
-      dragRef.current.removeEventListener('dragleave', handleDragOut);
-      dragRef.current.removeEventListener('dragover', handleDragOver);
-      dragRef.current.removeEventListener('drop', handleDrop);
-    }
-  }, [handleDragIn, handleDragOut, handleDragOver, handleDrop]);
-
   useEffect(() => {
-    initDragEvents();
-
-    return () => resetDragEvents();
-  }, [initDragEvents, resetDragEvents]);
+    if (dragRef.current !== null) {
+      dragRef.current.addEventListener('drop', (e) => handleDrop(e, onChangeThumbnail));
+    }
+  }, [dragRef, handleDrop, onChangeThumbnail]);
 
   return {
     dragRef,

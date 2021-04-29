@@ -51,7 +51,11 @@ const useEmoji = () => {
     }
   }, [requestCommentList, setUserEmojies]);
 
-  const onChangeEmoji = useCallback((emoji: string, commentIdx: number, existEmoji?: ICommentEmojiInfo | undefined): void => {
+  const onChangeEmoji = useCallback((
+    emoji: string, 
+    commentIdx: number,
+    existEmoji?: ICommentEmojiInfo | undefined
+  ): void => {
     if (!checkLoggedIn()) {
       return;
     }

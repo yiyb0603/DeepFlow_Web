@@ -1,4 +1,4 @@
-import { memo, MouseEvent, useCallback, useMemo } from 'react';
+import { useCallback, useMemo, memo, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';

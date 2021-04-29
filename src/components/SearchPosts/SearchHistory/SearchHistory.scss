@@ -1,10 +1,11 @@
 .SearchHistory {
-	background-color: var(--white);
 	position: absolute;
 	left: 0;
 	right: 0;
-	top: 3.27rem;
+	top: 3.1rem;
 	max-height: 250px;
+	background-color: var(--white);
+	border: 1px solid var(--lighterGray);
 	overflow-x: hidden;
 	overflow-y: auto;
 }

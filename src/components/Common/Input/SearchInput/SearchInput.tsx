@@ -1,4 +1,4 @@
-import { ChangeEvent, CSSProperties, KeyboardEvent } from 'react';
+import { ChangeEvent, CSSProperties, KeyboardEvent, useMemo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { AiOutlineSearch } from 'react-icons/ai';
@@ -14,6 +14,7 @@ interface SearchInputProps {
   onClick?: () => void;
   isBorder?: boolean;
   padding?: string;
+  fontSize?: string;
 }
 
 const SearchInput = ({
@@ -24,16 +25,22 @@ const SearchInput = ({
   onClick,
   isBorder = true,
   padding,
+  fontSize,
 }: SearchInputProps): JSX.Element => {
-  const searchPadding: CSSProperties = {
-    padding,
-  };
+  const searchStyle: CSSProperties = useMemo(() => {
+    return {
+      padding,
+      fontSize,
+    };
+  }, [fontSize, padding]);
   
   return (
     <div className={cx('SearchInput', {
       'SearchInput-Border': isBorder,
-    })} style={searchPadding}>
-      <AiOutlineSearch className={cx('SearchInput-Icon')} />
+    })} style={searchStyle}>
+      <AiOutlineSearch
+        className={cx('SearchInput-Icon')}
+      />
       <input
         type='text'
         className={cx('SearchInput-Input')}

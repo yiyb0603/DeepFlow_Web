@@ -3,10 +3,6 @@
 .PopularItem {
 	margin-bottom: 1rem;
 
-	&:last-child {
-		margin-bottom: 0;
-	}
-
 	&-Title {
 		@include ellipsisLine(1);
 		font-size: var(--font-smallest);

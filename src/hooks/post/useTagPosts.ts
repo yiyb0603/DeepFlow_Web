@@ -24,8 +24,8 @@ const useTagPosts = () => {
   const [postLoading, setPostLoading] = useRecoilState<boolean>(postListLoadingState);
   const [tagPostList, setTagPostList] = useRecoilState<IPost[]>(tagPostState);
 
-  const splitedTempPosts = useMemo(() => {
-    return chunkArray(tagPostList, CHUNK_POST_COUNT);
+  const splitedTempPosts: IPost[][] = useMemo(() => {
+    return chunkArray(tagPostList, CHUNK_POST_COUNT) as IPost[][];
   }, [tagPostList]);
 
   const requestPostsByTag = useCallback(async (): Promise<void> => {

@@ -81,11 +81,11 @@ const InfoBox = ({
 
       <div className={cx('InfoBox-Right')}>
         <div className={cx('InfoBox-Right-Icons')}>
-          <a href={getGithubAddress(githubId)} target='_blank' rel="noopener noreferrer">
+          <a href={getGithubAddress(githubId)} target='_blank' rel='noopener noreferrer'>
             <AiOutlineGithub />
           </a>
 
-          <a href={blog} target='_blank' rel="noopener noreferrer">
+          <a href={blog} target='_blank' rel='noopener noreferrer'>
             <AiOutlineHome />
           </a>
 
