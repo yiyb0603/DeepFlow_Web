@@ -1,19 +1,21 @@
+import { lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import HomePage from 'pages/Home';
-import NoticePage from 'pages/Notice';
-import PostPage from 'pages/Post';
-import PostFormPage from 'pages/PostForm';
-import SignPage from 'pages/Sign';
-import UserInfoPage from 'pages/UserInfo';
-import UserListPage from 'pages/UserList';
-import QuestionPage from 'pages/Question';
-import TagsPage from 'pages/Tags';
-import TagPostsPage from 'pages/TagPosts';
-import TempPage from 'pages/Temp';
-import UserRecommandPage from 'pages/UserRecommand';
-import SearchPostsPage from 'pages/SearchPosts';
-import PolicyPage from 'pages/Policy';
-import NotFoundPage from 'pages/NotFound';
+
+const HomePage = lazy(() => import('pages/Home'));
+const NoticePage = lazy(() => import('pages/Notice'));
+const PostPage = lazy(() => import('pages/Post'));
+const PostFormPage = lazy(() => import('pages/PostForm'));
+const SignPage = lazy(() => import('pages/Sign'));
+const UserInfoPage = lazy(() => import('pages/UserInfo'));
+const UserListPage = lazy(() => import('pages/UserList'));
+const QuestionPage = lazy(() => import('pages/Question'));
+const TagsPage = lazy(() => import('pages/Tags'));
+const TagPostsPage = lazy(() => import('pages/TagPosts'));
+const TempPage = lazy(() => import('pages/Temp'));
+const UserRecommandPage = lazy(() => import('pages/UserRecommand'));
+const SearchPostsPage = lazy(() => import('pages/SearchPosts'));
+const PolicyPage = lazy(() => import('pages/Policy'));
+const NotFoundPage = lazy(() => import('pages/NotFound'));
 
 const Routes = (): JSX.Element => {
   return (

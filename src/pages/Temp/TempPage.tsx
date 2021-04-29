@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import Temp from 'components/Temp';
 import PageTemplate from 'components/Template/PageTemplate';
 
@@ -10,4 +9,4 @@ const TempPage = (): JSX.Element => {
   );
 }
 
-export default memo(TempPage);
+export default TempPage;

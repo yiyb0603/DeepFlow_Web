@@ -1,5 +1,6 @@
 import { CSSProperties, useMemo } from 'react';
 import { Select } from 'antd';
+import 'antd/dist/antd.css';
 import { EMajor } from 'lib/enum/majors';
 import { IAuthOption, majors } from 'lib/models/menu/authOption';
 

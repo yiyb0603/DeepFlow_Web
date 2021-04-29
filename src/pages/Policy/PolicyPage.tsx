@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import PageTemplate from 'components/Template/PageTemplate';
 import Policy from 'components/Policy';
 
@@ -10,4 +9,4 @@ const PolicyPage = (): JSX.Element => {
   )
 }
 
-export default memo(PolicyPage);
+export default PolicyPage;

@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { Spinner } from '@class101/ui';
 import { palette } from 'styles/Palette/Palette';
 
@@ -12,4 +11,4 @@ const LoadingSpinner = (): JSX.Element => {
   );
 };
 
-export default memo(LoadingSpinner);
+export default LoadingSpinner;

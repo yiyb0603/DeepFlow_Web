@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import Home from 'components/Home';
 import PageTemplate from 'components/Template/PageTemplate';
 
@@ -10,4 +9,4 @@ const HomePage = (): JSX.Element => {
   );
 };
 
-export default memo(HomePage);
+export default HomePage;

@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import PageTemplate from 'components/Template/PageTemplate';
 import UserTemplate from 'components/User';
 import UserRecommand from 'components/User/UserRecommand';
@@ -13,4 +12,4 @@ const UserRecommandPage = (): JSX.Element => {
   );
 }
 
-export default memo(UserRecommandPage);
+export default UserRecommandPage;

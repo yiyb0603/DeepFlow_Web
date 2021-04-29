@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import PageTemplate from 'components/Template/PageTemplate';
 import SignUp from 'components/Auth/SignUp';
 
@@ -10,4 +9,4 @@ const SignPage = (): JSX.Element => {
   );
 };
 
-export default memo(SignPage);
+export default SignPage;

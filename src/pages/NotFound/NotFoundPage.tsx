@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import NotFound from 'components/NotFound';
 
 const NotFoundPage = (): JSX.Element => {
@@ -7,4 +6,4 @@ const NotFoundPage = (): JSX.Element => {
   );
 };
 
-export default memo(NotFoundPage);
+export default NotFoundPage;

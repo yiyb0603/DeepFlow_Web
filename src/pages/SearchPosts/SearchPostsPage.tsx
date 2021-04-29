@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import PageTemplate from 'components/Template/PageTemplate';
 import SearchPosts from 'components/SearchPosts';
 
@@ -10,4 +9,4 @@ const SearchPostsPage = (): JSX.Element => {
   );
 }
 
-export default memo(SearchPostsPage);
+export default SearchPostsPage;

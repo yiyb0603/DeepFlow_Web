@@ -2,6 +2,7 @@ import { useMemo, memo, CSSProperties } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { Tooltip } from 'antd';
+import 'antd/dist/antd.css';
 import { ERank } from 'lib/enum/rank';
 import { IRank, rankToProfileStyle } from 'converter/rankToStyle';
 import { palette } from 'styles/Palette/Palette';

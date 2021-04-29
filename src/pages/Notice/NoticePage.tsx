@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import Notice from 'components/Notice';
 import PageTemplate from 'components/Template/PageTemplate';
 
@@ -10,4 +9,4 @@ const NoticePage = (): JSX.Element => {
   );
 };
 
-export default memo(NoticePage);
+export default NoticePage;

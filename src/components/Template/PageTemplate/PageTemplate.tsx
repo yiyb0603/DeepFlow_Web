@@ -1,4 +1,4 @@
-import { ReactNode, memo } from 'react';
+import { ReactNode } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import LeftSidebar from 'components/Common/Base/Sidebar/LeftSidebar';
@@ -37,4 +37,4 @@ const PageTemplate = ({ children }: IPageTemplateProps): JSX.Element => {
   );
 };
 
-export default memo(PageTemplate);
+export default PageTemplate;

@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import PageTemplate from 'components/Template/PageTemplate';
 import UserList from 'components/UserList';
 
@@ -10,4 +9,4 @@ const UserListPage = (): JSX.Element => {
   );
 };
 
-export default memo(UserListPage);
+export default UserListPage;

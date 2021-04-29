@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import PostForm from 'components/PostForm';
 
 const PostFormPage = (): JSX.Element => {
@@ -7,4 +6,4 @@ const PostFormPage = (): JSX.Element => {
   );
 };
 
-export default memo(PostFormPage);
+export default PostFormPage;

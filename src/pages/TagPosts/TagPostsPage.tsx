@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import TagPosts from 'components/TagPosts';
 import PageTemplate from 'components/Template/PageTemplate';
 
@@ -10,4 +9,4 @@ const TagPostsPage = (): JSX.Element => {
   );
 }
 
-export default memo(TagPostsPage);
+export default TagPostsPage;
