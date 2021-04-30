@@ -1,4 +1,4 @@
-$width: 307px;
+$width: 300px;
 
 .RecentUserItem {
 	width: $width;
@@ -42,18 +42,18 @@ $width: 307px;
 			color: var(--contrast);
 
 			&-Name {
-				font-size: var(--font-contents);
+				font-size: var(--font-small);
 				font-weight: 500;
 			}
 
 			&-Position {
-				margin-top: 0.15rem;
+				font-size: var(--font-default);
 			}
 		}
 	}
 
 	&-Recommand {
-		font-size: var(--font-biggest);
+		font-size: var(--font-big);
 		color: var(--gray);
 		cursor: pointer;
 	}

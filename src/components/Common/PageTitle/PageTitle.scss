@@ -14,14 +14,14 @@
 		align-items: flex-end;
 
 		&-Title {
-			font-size: var(--font-normallest);
+			font-size: var(--font-normal);
 			font-weight: 500;
 			margin-right: 0.5rem;
 		}
 
 		&-SubTitle {
-			font-size: var(--font-smallest);
 			margin-bottom: 4px;
+			font-size: var(--font-default);
 		}
 	}
 }

@@ -31,12 +31,12 @@
 			margin-bottom: 0.5rem;
 
 			&-Title {
-				font-size: var(--font-contents);
+				font-size: var(--font-small);
 				font-weight: 500;
 			}
 
 			&-Close {
-				font-size: var(--font-normallest);
+				font-size: var(--font-normal);
 				cursor: pointer;
 				transition: 0.15s ease-in-out;
 

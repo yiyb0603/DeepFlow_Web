@@ -19,13 +19,13 @@
 		align-items: center;
 
 		&-SubText {
-			font-size: var(--font-normal);
+			font-size: var(--font-contents);
 		}
 	}
 
 	&-Right {
 		&-List {
-			font-size: var(--font-bigger);
+			font-size: var(--font-big);
 			cursor: pointer;
 		}
 	}

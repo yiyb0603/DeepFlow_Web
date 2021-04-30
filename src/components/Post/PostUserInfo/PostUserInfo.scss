@@ -25,7 +25,7 @@
 
 		&-Contents {
 			&-Name {
-				font-size: var(--font-normallest);
+				font-size: var(--font-normal);
 				font-weight: 500;
 				cursor: pointer;
 
@@ -35,20 +35,20 @@
 			}
 
 			&-Description {
-				font-size: var(--font-small);
+				font-size: var(--font-smallest);
 				color: var(--gray);
 				font-weight: 400;
 				margin-bottom: 0.35rem;
 			}
 
 			&-Location {
-				font-size: var(--font-small);
+				font-size: var(--font-smallest);
 			}
 		}
 	}
 
 	&-Right {
-		font-size: var(--font-large);
+		font-size: var(--font-biggest);
 
 		& > * {
 			opacity: 0.5;

@@ -37,7 +37,7 @@ const SidePopularUserItem = ({
           className={cx('SidePopularUserItem-Left-ContentsWrap')}
         >
           <div className={cx('SidePopularUserItem-Left-ContentsWrap-Name')}>{name}</div>
-          <div>{position}</div>
+          <div className={cx('SidePopularUserItem-Left-ContentsWrap-Position')}>{position}</div>
         </Link>
       </div>
 

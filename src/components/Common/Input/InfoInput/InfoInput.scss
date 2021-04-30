@@ -2,14 +2,14 @@
 	display: flex;
 	display: -webkit-flex;
 	align-items: center;
-	font-size: var(--font-small);
+	font-size: var(--font-smallest);
 	border-bottom: 1px solid var(--gray);
-	padding-bottom: 0.35rem;
+	padding-bottom: 0.2rem;
 	margin: 0.4rem 0;
 	color: var(--contrast);
 
 	& > *:first-child {
-		font-size: var(--font-normal);
+		font-size: var(--font-contents);
 	}
 
 	&-Input {

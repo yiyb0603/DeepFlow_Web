@@ -10,7 +10,7 @@ const ReplyWriteButton = ({
   onChangeIsReplyWrite,
 }: ReplyWriteButtonProps): JSX.Element => {
   const customButtonStyle: CSSProperties = {
-    fontSize: '1.2rem',
+    fontSize: '1.1rem',
     border: `1px solid ${palette.main}`,
   };
 

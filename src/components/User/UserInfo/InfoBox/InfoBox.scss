@@ -30,13 +30,13 @@
 				margin-bottom: 0.25rem;
 
 				&-Name {
-					font-size: var(--font-regular);
+					font-size: var(--font-normallest);
 					font-weight: bold;
 					margin-right: 0.25rem;
 				}
 
 				&-Id {
-					font-size: var(--font-contents);
+					font-size: var(--font-small);
 				}
 			}
 
@@ -46,12 +46,12 @@
 				align-items: center;
 
 				&-Icon {
-					font-size: var(--font-normallest);
+					font-size: var(--font-normal);
 					margin-right: 0.2rem;
 				}
 
 				&-Text {
-					font-size: var(--font-small);
+					font-size: var(--font-smallest);
 				}
 			}
 		}
@@ -67,7 +67,7 @@
 
 			& > * {
 				color: var(--contrast);
-				font-size: var(--font-biggest);
+				font-size: var(--font-bigger);
 				cursor: pointer;
 
 				&:hover {

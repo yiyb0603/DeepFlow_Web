@@ -1,5 +1,5 @@
 @mixin defaultTabStyle() {
-	font-size: var(--font-contents);
+	font-size: var(--font-small);
 	color: var(--contrast);
 	cursor: pointer;
 }
@@ -18,7 +18,6 @@
 		width: 4rem;
 		border: none;
 		text-align: start;
-		margin-right: 0.5rem;
 	}
 
 	&-Current {

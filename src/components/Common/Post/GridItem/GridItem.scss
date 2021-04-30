@@ -1,14 +1,14 @@
 @import 'styles/lib.scss';
 
 @mixin sectionStyle() {
-	padding: 5px;
+	padding: 3px 5px;
 	border-bottom: 1px solid var(--lighterGray);
 }
 
-$maxHeight: 345px;
+$maxHeight: 337px;
 
 .GridItem {
-	width: 300px;
+	width: 295px;
 	height: $maxHeight;
 	max-height: $maxHeight;
 	margin-right: 0.75rem;
@@ -45,7 +45,7 @@ $maxHeight: 345px;
 			@include ellipsisLine(1);
 			@include sectionStyle();
 			font-weight: 500;
-			font-size: var(--font-contents);
+			font-size: var(--font-smallest);
 		}
 
 		&-Introduction {
@@ -68,7 +68,6 @@ $maxHeight: 345px;
 			margin-top: 2px;
 
 			&-UserInfo {
-				font-size: var(--font-smallest);
 				font-weight: 500;
 			}
 		}

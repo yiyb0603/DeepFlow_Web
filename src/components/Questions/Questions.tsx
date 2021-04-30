@@ -1,5 +1,6 @@
-import { useEffect, useMemo, CSSProperties } from 'react';
+import { useEffect } from 'react';
 import classNames from 'classnames';
+import { ClassNamesFn } from 'classnames/types';
 import FadeIn from 'react-fade-in';
 import usePosts from 'hooks/post/usePosts';
 import useViewMode from 'hooks/post/useViewMode';
@@ -16,7 +17,6 @@ import SelectViewMode from 'components/Common/Post/SelectViewMode';
 import GridItem from 'components/Common/Post/GridItem';
 import SelectTab from 'components/Common/SelectTab';
 import AskButton from './AskButton';
-import { ClassNamesFn } from 'classnames/types';
 
 const style = require('./Questions.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -41,15 +41,6 @@ const Questions = (): JSX.Element => {
   } = usePosts();
 
   const { viewMode, onChangeViewMode, flexStyle } = useViewMode();
-
-  const customTabStyle: CSSProperties = useMemo(() => {
-    return {
-      width: '4rem',
-      border: 'none',
-      textAlign: 'start',
-      marginRight: '0.5rem',
-    };
-  }, []);
 
   useEffect(() => {
     requestPostList();
@@ -76,7 +67,6 @@ const Questions = (): JSX.Element => {
                   route={route}
                   selectTab={sortTab}
                   onChangeSelectTab={onChangeSortTab}
-                  customStyle={customTabStyle}
                   type='Short'
                 />
               ))

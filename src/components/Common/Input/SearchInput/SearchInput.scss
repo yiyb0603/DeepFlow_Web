@@ -15,7 +15,7 @@
 	}
 
 	&-Icon {
-		font-size: var(--font-regular);
+		font-size: var(--font-normallest);
 		margin-right: 0.5rem;
 	}
 
@@ -24,6 +24,7 @@
 		outline: none;
 		background: none;
 		border: none;
+		font-size: var(--font-smallest);
 
 		&::placeholder {
 			color: var(--contrast);

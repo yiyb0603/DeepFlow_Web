@@ -23,7 +23,7 @@
 			}
 
 			&-UserTime {
-				font-size: var(--font-contents);
+				font-size: var(--font-small);
 
 				&-User {
 					font-weight: 500;
@@ -38,10 +38,10 @@
 		&-Right {
 			display: flex;
 			display: -webkit-flex;
-			font-size: var(--font-contents);
 
 			& > * {
 				cursor: pointer;
+				font-size: var(--font-small);
 			}
 
 			&-Delete {
@@ -52,7 +52,7 @@
 	}
 
 	&-Contents {
-		font-size: var(--font-contents);
+		font-size: var(--font-small);
 		word-break: break-all;
 		white-space: pre-wrap;
 	}

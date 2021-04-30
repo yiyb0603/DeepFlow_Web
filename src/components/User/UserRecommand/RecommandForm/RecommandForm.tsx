@@ -25,7 +25,6 @@ const RecommandForm = (): JSX.Element => {
         width={'65px'}
         color={palette.main}
         onClick={requestCreateRecommand}
-        margin={'0.5rem 0 0 0'}
       >
         추천
       </Button>

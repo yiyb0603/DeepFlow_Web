@@ -3,7 +3,7 @@
 		div,
 		p,
 		code {
-			font-size: var(--font-contents);
+			font-size: var(--font-smallest);
 			white-space: pre-wrap;
 			padding: 2px 5px;
 		}
@@ -27,7 +27,7 @@
 	}
 
 	.rc-md-editor .editor-container .sec-md .input {
-		font-size: var(--font-contents);
+		font-size: var(--font-smallest);
 	}
 
 	.custom-html-style code,

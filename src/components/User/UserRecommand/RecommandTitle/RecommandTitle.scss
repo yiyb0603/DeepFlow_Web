@@ -6,7 +6,7 @@
 	margin-bottom: 0.5rem;
 
 	&-Left {
-		font-size: var(--font-normal);
+		font-size: var(--font-contents);
 		color: var(--gray);
 
 		&-UserName {
@@ -16,7 +16,7 @@
 	}
 
 	&-Length {
-		font-size: var(--font-contents);
+		font-size: var(--font-small);
 
 		&-Hidden {
 			visibility: hidden;

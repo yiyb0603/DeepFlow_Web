@@ -25,8 +25,8 @@ const Button = ({
   fontColor = palette.white,
   children,
   onClick,
-  padding = '0.5rem',
-  margin = '0 0 0 0',
+  padding = '0',
+  margin = '0',
   customStyle,
 }: ButtonProps) => {
   const buttonStyle: CSSProperties = {

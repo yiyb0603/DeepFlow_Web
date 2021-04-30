@@ -5,10 +5,9 @@
 	flex-direction: column;
 	-ms-flex-direction: column;
 	align-items: center;
-	margin-right: 0.5rem;
 
 	&-Like {
-		font-size: var(--font-bigger);
+		font-size: var(--font-big);
 		cursor: pointer;
 
 		&-Pressed {
@@ -17,8 +16,8 @@
 	}
 
 	&-Text {
-		font-size: var(--font-small);
-		
+		font-size: var(--font-default);
+
 		&-Pressed {
 			color: var(--main);
 		}

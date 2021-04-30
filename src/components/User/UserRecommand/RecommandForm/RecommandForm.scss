@@ -15,8 +15,9 @@
 		border-radius: 5px;
 		overflow-x: hidden;
 		overflow-y: auto;
-		padding: 0.7rem;
-		font-size: var(--font-small);
+		padding: 0.5rem;
+		margin-bottom: 0.5rem;
+		font-size: var(--font-smallest);
 		color: var(--contrast);
 
 		&:focus {

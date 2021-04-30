@@ -7,13 +7,13 @@
 		display: flex;
 		display: -webkit-flex;
 		align-items: center;
-		margin-right: 0.625rem;
+		margin-right: 0.6rem;
 		color: var(--contrast);
-		font-size: var(--font-small);
+		font-size: var(--font-smallest);
 
 		&-Icon {
 			margin-top: 2px;
-			margin-right: 2px;
+			margin-right: 1px;
 		}
 	}
 }
