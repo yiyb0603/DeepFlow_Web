@@ -103,10 +103,6 @@
 					display: -webkit-flex;
 					flex-flow: column wrap;
 				}
-
-				&-Description,
-				&-Location {
-				}
 			}
 		}
 
@@ -115,6 +111,10 @@
 			display: -webkit-flex;
 			justify-content: space-between;
 			margin-top: 0.65rem;
+
+			& > *:first-child {
+				margin-right: 0.5rem;
+			}
 		}
 
 		&-Submit {

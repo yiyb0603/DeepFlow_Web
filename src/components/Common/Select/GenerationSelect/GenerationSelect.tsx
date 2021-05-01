@@ -1,39 +1,29 @@
-import { CSSProperties, memo, useMemo } from 'react';
-import { Select } from 'antd';
-import 'antd/dist/antd.css';
+import { ChangeEvent, memo } from 'react';
+import { Select } from '@chakra-ui/react';
 import { generations } from 'lib/models/menu/authOption';
-
-const { Option } = Select;
 
 interface GenerationSelectProps {
   generation: number;
-  onChangeGeneration: (generation: number) => void;
+  onChangeGeneration: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const GenerationSelect = ({
   generation,
   onChangeGeneration,
 }: GenerationSelectProps): JSX.Element => {
-  const selectStyle: CSSProperties = useMemo(() => {
-    return {
-      width: '45%',
-    };
-  }, []);
-
   return (
     <Select
-      style={selectStyle}
       value={generation}
       onChange={onChangeGeneration}
     >
       {
         generations.map((_: unknown, idx: number) => (
-          <Option
+          <option
             key={idx}
             value={idx + 1}
           >
             {idx + 1}기
-          </Option>
+          </option>
         ))
       }
     </Select>

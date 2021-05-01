@@ -7,9 +7,9 @@ import NoItems from 'components/Common/NoItems';
 import ListItem from 'components/Common/Post/ListItem';
 import UserLoading from 'components/UserList/UserLoading';
 import Helmet from 'components/Common/Helmet';
+import PageNumberList from 'components/Common/Post/PageNumberList';
 import InfoBox from './InfoBox';
 import PostTab from './PostTab';
-import PageNumberList from 'components/Common/Post/PageNumberList';
 
 const style = require('./UserInfo.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -69,17 +69,15 @@ const UserInfo = (): JSX.Element => {
           ) : <NoItems text='작성한 글 목록이 없습니다.' />
         }
         </div>
-
-        {
-          <PageNumberList
-            currentPage={currentPage}
-            onChangeCurrentPage={onChangeCurrentPage}
-            numberListPage={numberListPage}
-            handlePrevPage={handlePrevPage}
-            handleNextPage={handleNextPage}
-            pageList={splitedNumberList}
-          />
-        }
+        
+        <PageNumberList
+          currentPage={currentPage}
+          onChangeCurrentPage={onChangeCurrentPage}
+          numberListPage={numberListPage}
+          handlePrevPage={handlePrevPage}
+          handleNextPage={handleNextPage}
+          pageList={splitedNumberList}
+        />
       </div>
     }
     </>

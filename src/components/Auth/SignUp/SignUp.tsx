@@ -20,9 +20,7 @@ const SignUp = (): JSX.Element => {
   const {
     request,
     isLoading,
-    onChangeInput,
-    onChangeGeneration,
-    onChangeMajor,
+    onChangeRequest,
     requestRegister,
   } = useRegister();
 
@@ -70,7 +68,7 @@ const SignUp = (): JSX.Element => {
                     <InfoInput
                       name='name'
                       value={name}
-                      onChange={onChangeInput}
+                      onChange={onChangeRequest}
                       placeholder='이름을 입력하세요.'
                       icon={<VscSymbolNamespace />}
                     />
@@ -78,7 +76,7 @@ const SignUp = (): JSX.Element => {
                     <InfoInput
                       name='email'
                       value={email}
-                      onChange={onChangeInput}
+                      onChange={onChangeRequest}
                       placeholder='이메일을 입력하세요.'
                       icon={<AiOutlineMail />}
                     />
@@ -86,7 +84,7 @@ const SignUp = (): JSX.Element => {
                     <InfoInput
                       name='description'
                       value={description}
-                      onChange={onChangeInput}
+                      onChange={onChangeRequest}
                       placeholder='소개를 입력하세요.'
                       icon={<CgHello />}
                     />
@@ -94,7 +92,7 @@ const SignUp = (): JSX.Element => {
                     <InfoInput
                       name='location'
                       value={location}
-                      onChange={onChangeInput}  
+                      onChange={onChangeRequest}  
                       placeholder='거주지 또는 직장을 입력하세요.'
                       icon={<BiBuilding />}
                     />
@@ -102,7 +100,7 @@ const SignUp = (): JSX.Element => {
                     <InfoInput
                       name='blog'
                       value={blog}
-                      onChange={onChangeInput}
+                      onChange={onChangeRequest}
                       placeholder='개인 링크를 입력하세요.'
                       icon={<AiOutlineLink />}
                     />
@@ -110,7 +108,7 @@ const SignUp = (): JSX.Element => {
                     <InfoInput
                       name='position'
                       value={position}
-                      onChange={onChangeInput}
+                      onChange={onChangeRequest}
                       placeholder='개발 포지션 (예: 프론트엔드 개발자)'
                       icon={<HiCode />}
                     />
@@ -121,12 +119,12 @@ const SignUp = (): JSX.Element => {
               <div className={cx('SignUp-Contents-Bottom')}>
                 <GenerationSelect
                   generation={generation}
-                  onChangeGeneration={onChangeGeneration}
+                  onChangeGeneration={onChangeRequest}
                 />
 
                 <MajorSelect
                   major={major}
-                  onChangeMajor={onChangeMajor}
+                  onChangeMajor={onChangeRequest}
                 />
               </div>
               

@@ -9,7 +9,9 @@ interface PostTagsProps {
   postTags: string[];
 }
 
-const PostTags = ({ postTags }: PostTagsProps): JSX.Element => {
+const PostTags = ({
+  postTags,
+}: PostTagsProps): JSX.Element => {
   return (
     <div className={cx('PostTags')}>
       {

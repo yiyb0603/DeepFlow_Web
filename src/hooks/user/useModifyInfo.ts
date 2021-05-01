@@ -20,26 +20,14 @@ const useModifyInfo = () => {
     setIsModifyModal((prevIsModifyModal: boolean) => !prevIsModifyModal);
   }, [setIsModifyModal]);
 
-  const onChangeInput = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
+  const onChangeRequest = useCallback((
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ): void => {
     const { name, value } = e.target;
 
     setModifyInfo((request: IUserModify) => ({
       ...request,
       [name]: value,
-    }));
-  }, [setModifyInfo]);
-
-  const onChangeGeneration = useCallback((generation: number): void => {
-    setModifyInfo((request: IUserModify) => ({
-      ...request,
-      generation,
-    }));
-  }, [setModifyInfo]);
-
-  const onChangeMajor = useCallback((major: number): void => {
-    setModifyInfo((request: IUserModify) => ({
-      ...request,
-      major,
     }));
   }, [setModifyInfo]);
 
@@ -83,9 +71,7 @@ const useModifyInfo = () => {
   return {
     modifyInfo,
     onChangeIsModifyModal,
-    onChangeInput,
-    onChangeGeneration,
-    onChangeMajor,
+    onChangeRequest,
     requestModifyInfo,
   };
 }

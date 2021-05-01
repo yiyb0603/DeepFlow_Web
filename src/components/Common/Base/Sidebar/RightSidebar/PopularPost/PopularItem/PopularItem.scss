@@ -1,7 +1,7 @@
 @import 'styles/lib.scss';
 
 .PopularItem {
-	margin-bottom: 1rem;
+	margin-bottom: 1.4rem;
 
 	&-Title {
 		@include ellipsisLine(1);
@@ -18,6 +18,10 @@
 		display: -webkit-flex;
 		justify-content: space-between;
 		align-items: center;
-		padding-right: 0.8rem;
+		padding-right: 0.5rem;
+
+		&-CreatedAt {
+			font-size: var(--font-default);
+		}
 	}
 }

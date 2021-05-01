@@ -25,26 +25,14 @@ const useRegister = () => {
   const [request, setRequest] = useRecoilState<IRegisterRequest>(requestRegisterState);
   const [isLoading, setIsLoading] = useRecoilState<boolean>(registerLoading);
 
-  const onChangeInput = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
+  const onChangeRequest = useCallback((
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ): void => {
     const { name, value } = e.target;
 
     setRequest((request: IRegisterRequest) => ({
       ...request,
       [name]: value,
-    }));
-  }, [setRequest]);
-
-  const onChangeGeneration = useCallback((generation: number): void => {
-    setRequest((request: IRegisterRequest) => ({
-      ...request,
-      generation,
-    }));
-  }, [setRequest]);
-
-  const onChangeMajor = useCallback((major: number): void => {
-    setRequest((request: IRegisterRequest) => ({
-      ...request,
-      major,
     }));
   }, [setRequest]);
 
@@ -127,9 +115,7 @@ const useRegister = () => {
   return {
     isLoading,
     request,
-    onChangeInput,
-    onChangeGeneration,
-    onChangeMajor,
+    onChangeRequest,
     requestRegister,
   };
 }; 

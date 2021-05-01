@@ -1,5 +1,7 @@
 .ToggleReply {
-	display: inline-block;
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
 	color: var(--main);
 	margin: 0.5rem 0;
 

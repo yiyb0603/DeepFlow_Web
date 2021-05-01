@@ -48,7 +48,7 @@ const PopularItem = ({
           likeCount={likeCount}
         />
 
-        <div>{calculateTime(createdAt)}</div>
+        <div className={cx('PopularItem-SubInfo-CreatedAt')}>{calculateTime(createdAt)}</div>
       </div>
     </div>
   );

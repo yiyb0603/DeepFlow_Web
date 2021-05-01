@@ -9,13 +9,13 @@
 	}
 
 	&-Rank {
-		padding: 0.4rem 0.8rem;
+		padding: 0.3rem 0.6rem;
 		border-radius: 50%;
 		position: absolute;
 		bottom: 10%;
 		right: 10%;
 		transform: translate(5%, 5%);
-		font-size: var(--font-small);
+		font-size: var(--font-smallest);
 		font-weight: bold;
 	}
 }

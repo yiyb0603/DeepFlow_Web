@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { Link } from 'react-router-dom';
@@ -21,7 +22,7 @@ const TopInfo = ({
   user,
   requestDeletePost
 }: TopInfoProps): JSX.Element => {
-  const myInfo: IToken = getMyInfo();
+  const myInfo: IToken = useMemo(() => getMyInfo(), []);
 
   return (
     <div className={cx('TopInfo')}>

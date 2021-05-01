@@ -5,6 +5,7 @@
 		word-break: break-all;
 		white-space: pre-wrap;
 		font-size: var(--font-smallest) !important;
+		line-height: 1.7rem;
 	}
 
 	code {
@@ -22,6 +23,8 @@
 	h6 {
 		color: var(--contrast);
 		margin-bottom: 0.25rem;
+		font-weight: bold;
+		margin-top: 0.8rem;
 	}
 
 	h1 {

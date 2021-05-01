@@ -19,9 +19,7 @@ const ModifyInfoModal = (): JSX.Element => {
   const {
     modifyInfo,
     onChangeIsModifyModal,
-    onChangeInput,
-    onChangeGeneration,
-    onChangeMajor,
+    onChangeRequest,
     requestModifyInfo,
   } = useModifyInfo();
 
@@ -62,7 +60,7 @@ const ModifyInfoModal = (): JSX.Element => {
             <InfoInput
               name='name'
               value={name}
-              onChange={onChangeInput}
+              onChange={onChangeRequest}
               placeholder='이름을 입력하세요'
               icon={<VscSymbolNamespace />}
             />
@@ -70,7 +68,7 @@ const ModifyInfoModal = (): JSX.Element => {
             <InfoInput
               name='description'
               value={description}
-              onChange={onChangeInput}
+              onChange={onChangeRequest}
               placeholder='한줄소개를 입력하세요'
               icon={<CgHello />}
             />
@@ -78,7 +76,7 @@ const ModifyInfoModal = (): JSX.Element => {
             <InfoInput
               name='position'
               value={position}
-              onChange={onChangeInput}
+              onChange={onChangeRequest}
               placeholder='개발 포지션을 입력하세요'
               icon={<HiCode />}
             />
@@ -86,7 +84,7 @@ const ModifyInfoModal = (): JSX.Element => {
             <InfoInput
               name='location'
               value={location}
-              onChange={onChangeInput}
+              onChange={onChangeRequest}
               placeholder='직장을 입력하세요'
               icon={<BiBuilding />}
             />
@@ -98,7 +96,7 @@ const ModifyInfoModal = (): JSX.Element => {
             width='100%'
             name='email'
             value={email}
-            onChange={onChangeInput}
+            onChange={onChangeRequest}
             placeholder='이메일을 입력하세요'
             icon={<AiOutlineMail />}
           />
@@ -107,7 +105,7 @@ const ModifyInfoModal = (): JSX.Element => {
             width='100%'
             name='blog'
             value={blog}
-            onChange={onChangeInput}
+            onChange={onChangeRequest}
             placeholder='개인 링크를 입력하세요.'
             icon={<AiOutlineLink />}
           />
@@ -116,12 +114,12 @@ const ModifyInfoModal = (): JSX.Element => {
         <div className={cx('ModifyInfoModal-BottomSelect')}>
           <GenerationSelect
             generation={generation}
-            onChangeGeneration={onChangeGeneration}
+            onChangeGeneration={onChangeRequest}
           />
 
           <MajorSelect
             major={major}
-            onChangeMajor={onChangeMajor}
+            onChangeMajor={onChangeRequest}
           />
         </div>
 

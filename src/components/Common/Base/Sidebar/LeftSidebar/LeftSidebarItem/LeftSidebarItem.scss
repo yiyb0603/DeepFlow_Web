@@ -3,7 +3,7 @@
 	display: -webkit-flex;
 	justify-content: flex-start;
 	align-items: center;
-	padding: 0.7rem 1rem;
+	padding: 0.7rem 1.5rem;
 	border-bottom: 1px solid var(--lighterGray);
 	color: var(--contrast);
 	transition: 0.15s ease-in-out;
@@ -19,7 +19,7 @@
 	}
 
 	&-Icon {
-		margin-right: 0.3rem;
+		margin-right: 0.5rem;
 		font-size: var(--font-contents);
 	}
 

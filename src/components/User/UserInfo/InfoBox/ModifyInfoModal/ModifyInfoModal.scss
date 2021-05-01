@@ -45,5 +45,9 @@
 		display: -webkit-flex;
 		justify-content: space-between;
 		margin-bottom: 1rem;
+
+		& > *:first-child {
+			margin-right: 0.5rem;
+		}
 	}
 }

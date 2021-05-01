@@ -8,11 +8,10 @@
 	& > * {
 		display: flex;
 		display: -webkit-flex;
+		font-size: var(--font-small);
 	}
 
 	&-Left {
-		font-size: var(--font-contents);
-
 		&-CreatedAt {
 			margin-right: 0.4rem;
 			color: var(--main);
@@ -20,8 +19,6 @@
 	}
 
 	&-Right {
-		font-size: var(--font-contents);
-
 		& > * {
 			cursor: pointer;
 		}

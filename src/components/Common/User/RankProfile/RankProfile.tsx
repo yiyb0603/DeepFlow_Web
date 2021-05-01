@@ -1,11 +1,9 @@
 import { useMemo, memo, CSSProperties } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { Tooltip } from 'antd';
-import 'antd/dist/antd.css';
 import { ERank } from 'lib/enum/rank';
 import { IRank, rankToProfileStyle } from 'converter/rankToStyle';
-import { palette } from 'styles/Palette/Palette';
+import Tooltip from 'components/Common/Tooltip';
 
 const style = require('./RankProfile.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -20,9 +18,11 @@ const RankProfile = ({
   rank,
 }: RankProfileProps): JSX.Element => {
   const rankInfo: IRank = useMemo(() => rankToProfileStyle(rank), [rank]);
-  const rankStyle: CSSProperties = {
-    backgroundColor: rankInfo.color,
-  };
+  const rankStyle: CSSProperties = useMemo(() => {
+    return {
+      backgroundColor: rankInfo.color,
+    };
+  }, [rankInfo]);
 
   return (
     <div className={cx('RankProfile')}>
@@ -35,7 +35,6 @@ const RankProfile = ({
       <Tooltip
         title={rankInfo.rankName}
         placement='bottom'
-        color={palette.main}
       >
         <div
           className={cx('RankProfile-Rank')}
