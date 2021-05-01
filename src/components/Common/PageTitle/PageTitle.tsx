@@ -11,7 +11,11 @@ interface PageTitleProps {
   children?: ReactNode;
 }
 
-const PageTitle = ({ title, subTitle, children }: PageTitleProps): JSX.Element => {
+const PageTitle = ({
+  title,
+  subTitle,
+  children,
+}: PageTitleProps): JSX.Element => {
   return (
     <div className={cx('PageTitle')}>
       <div className={cx('PageTitle-TitleWrap')}>

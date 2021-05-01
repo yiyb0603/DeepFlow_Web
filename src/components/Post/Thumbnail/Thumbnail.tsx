@@ -1,4 +1,3 @@
-import React from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 
@@ -9,9 +8,15 @@ interface ThumbnailProps {
   thumbnail: string;
 }
 
-const Thumbnail = ({ thumbnail }: ThumbnailProps) => {
+const Thumbnail = ({
+  thumbnail,
+}: ThumbnailProps) => {
   return (
-    <img src={thumbnail} className={cx('Thumbnail')} alt='thumbnail' />
+    <img
+      src={thumbnail}
+      className={cx('Thumbnail')}
+      alt='thumbnail'
+    />
   );
 };
 

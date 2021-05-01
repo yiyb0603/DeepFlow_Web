@@ -1,0 +1,11 @@
+.RecommandLength {
+	font-size: var(--font-smallest);
+
+	&-Hidden {
+		visibility: hidden;
+	}
+
+	&-Overflow {
+		color: var(--red);
+	}
+}

@@ -1,29 +1,13 @@
 .RecommandTitle {
-	display: flex;
-	display: -webkit-flex;
-	justify-content: space-between;
-	align-items: flex-end;
 	margin-bottom: 0.5rem;
 
 	&-Left {
-		font-size: var(--font-contents);
+		font-size: var(--font-small);
 		color: var(--gray);
 
 		&-UserName {
 			color: var(--contrast);
 			font-weight: bold;
-		}
-	}
-
-	&-Length {
-		font-size: var(--font-small);
-
-		&-Hidden {
-			visibility: hidden;
-		}
-
-		&-Overflow {
-			color: var(--red);
 		}
 	}
 }
