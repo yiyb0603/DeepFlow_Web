@@ -64,6 +64,11 @@
 		background: #f6f8fa;
 	}
 
+	code[class^='language'],
+	code[class*='language'] {
+		padding: 0 !important;
+	}
+
 	.token {
 		background: none !important;
 	}

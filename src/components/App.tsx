@@ -3,10 +3,6 @@ import { themeState } from 'atom/theme';
 import { ETheme } from 'lib/enum/theme';
 import Routes from './Routes';
 
-import 'styles/util.scss';
-import 'styles/font.scss';
-import 'styles/Palette/Palette.scss';
-
 const App = (): JSX.Element => {
   const { LIGHT } = ETheme;
   const theme: ETheme = useRecoilValue<ETheme>(themeState);
