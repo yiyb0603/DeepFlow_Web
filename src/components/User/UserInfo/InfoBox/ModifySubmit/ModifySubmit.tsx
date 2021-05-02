@@ -12,8 +12,8 @@ const ModifySubmit = ({
     <Button
       width={'100%'}
       height={'45px'}
-      color={palette.main}
-      onClick={requestModifyInfo}
+      backgroundColor={palette.main}
+      handleClick={requestModifyInfo}
     >
       수정하기
     </Button>

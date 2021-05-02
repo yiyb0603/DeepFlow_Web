@@ -2,20 +2,23 @@ import { memo } from 'react';
 import Button from 'components/Common/Button';
 
 interface PostButtonProps {
+  isLoading?: boolean;
   contents: string | JSX.Element;
-  color: string;
+  backgroundColor: string;
   onClick: () => void;
 }
 
 const PostButton = ({
+  isLoading = false,
   contents,
-  color,
+  backgroundColor,
   onClick,
 }: PostButtonProps): JSX.Element => {
   return (
     <Button
-      color={color}
-      onClick={onClick}
+      isLoading={isLoading}
+      backgroundColor={backgroundColor}
+      handleClick={onClick}
       height={'40px'}
       margin={'0 5px 0 0'}
       padding={'0 1.4rem'}

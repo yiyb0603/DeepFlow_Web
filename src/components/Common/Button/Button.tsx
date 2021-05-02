@@ -1,7 +1,8 @@
-import { CSSProperties, ReactNode } from 'react';
+import { CSSProperties, ReactNode, useCallback, useMemo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { palette } from 'styles/Palette/Palette';
+import LoadingSpinner from '../Loading/LoadingSpinner';
 
 const style = require('./Button.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -9,10 +10,11 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface ButtonProps {
   width?: string;
   height?: string;
-  color: string;
-  fontColor?: string;
+  backgroundColor: string;
+  color?: string;
   children?: ReactNode;
-  onClick: () => void | Promise<void>;
+  handleClick: () => void | Promise<void>;
+  isLoading?: boolean;
   padding?: string;
   margin?: string;
   customStyle?: CSSProperties;
@@ -21,23 +23,34 @@ interface ButtonProps {
 const Button = ({
   width,
   height = '35px',
-  color,
-  fontColor = palette.white,
+  backgroundColor,
+  color = palette.white,
   children,
-  onClick,
+  handleClick,
+  isLoading = false,
   padding = '0',
   margin = '0',
   customStyle,
 }: ButtonProps) => {
-  const buttonStyle: CSSProperties = {
-    ...customStyle,
-    width,
-    height,
-    color: fontColor,
-    backgroundColor: color,
-    margin,
-    padding,
-  };
+  const buttonStyle: CSSProperties = useMemo(() => {
+    return {
+      ...customStyle,
+      width,
+      height,
+      color,
+      backgroundColor,
+      margin,
+      padding,
+    };
+  }, [backgroundColor, color, customStyle, height, margin, padding, width]);
+
+  const onClick = useCallback((): void => {
+    if (isLoading) {
+      return;
+    }
+
+    handleClick();
+  }, [handleClick, isLoading]);
 
   return (
     <button
@@ -45,7 +58,9 @@ const Button = ({
       style={buttonStyle}
       onClick={onClick}
     >
-      {children && children}
+      {
+        isLoading ? <LoadingSpinner /> : children
+      }
     </button>
   );
 };

@@ -19,8 +19,8 @@ const AskButton = (): JSX.Element => {
     <Button
       width={'100px'}
       height={'35px'}
-      color={palette.main}
-      onClick={handlePushToForm}
+      backgroundColor={palette.main}
+      handleClick={handlePushToForm}
     >
       질문하기
     </Button>

@@ -12,8 +12,8 @@ const ReplyCancel = ({
     <Button
       width={'85px'}
       height={'35px'}
-      onClick={onChangeIsReplyWrite}
-      color={palette.lighterBlack}
+      handleClick={onChangeIsReplyWrite}
+      backgroundColor={palette.lighterBlack}
     >
       취소
     </Button>

@@ -23,8 +23,8 @@ const RecommandForm = (): JSX.Element => {
 
       <Button
         width={'65px'}
-        color={palette.main}
-        onClick={requestCreateRecommand}
+        backgroundColor={palette.main}
+        handleClick={requestCreateRecommand}
       >
         추천
       </Button>

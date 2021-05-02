@@ -33,9 +33,9 @@ const PageNumberList = ({
   return (
     <div className={cx('PageNumberList')}>
       <Button
-        color={palette.main}
+        backgroundColor={palette.main}
         customStyle={visibilityStyle}
-        onClick={handlePrevPage}
+        handleClick={handlePrevPage}
         padding={'0 1rem'}
       >
         이전
@@ -56,9 +56,9 @@ const PageNumberList = ({
       </div>
       
       <Button
-        color={palette.main}
+        backgroundColor={palette.main}
         customStyle={visibilityStyle}
-        onClick={handleNextPage}
+        handleClick={handleNextPage}
         padding={'0 1rem'}
       >
         다음

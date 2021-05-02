@@ -8,7 +8,6 @@ import { stringEllipsis } from 'converter/stringEllipsis';
 import { palette } from 'styles/Palette/Palette';
 import Button from 'components/Common/Button';
 import { ICommentModify } from 'types/comment.types';
-import LoadingSpinner from 'components/Common/Loading/LoadingSpinner';
 
 const style = require('./CommentSubmit.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -49,11 +48,12 @@ const CommentSubmit = ({
       <Button
         width={'85px'}
         height={'35px'}
-        onClick={requestOfferComment}
-        color={palette.main}
+        handleClick={requestOfferComment}
+        backgroundColor={palette.main}
+        isLoading={isLoading}
       >
         {
-          isLoading ? <LoadingSpinner /> : (modifyObject !== null ? '수정' : '작성')
+          (modifyObject !== null ? '수정' : '작성')
         }
       </Button>
     </div>

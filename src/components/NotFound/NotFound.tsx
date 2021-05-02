@@ -43,8 +43,8 @@ const NotFound = (): JSX.Element => {
           <Button
             width={'120px'}
             height={'40px'}
-            color={palette.main}
-            onClick={handlePushToHome}
+            backgroundColor={palette.main}
+            handleClick={handlePushToHome}
           >
             홈으로
           </Button>

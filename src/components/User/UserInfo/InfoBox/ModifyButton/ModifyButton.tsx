@@ -11,8 +11,8 @@ const ModifyButton = ({
   return (
     <Button
       width={'100%'}
-      color={palette.main}
-      onClick={onClick}
+      backgroundColor={palette.main}
+      handleClick={onClick}
       margin={'0.5rem 0 0 0'}
     >
       수정하기
