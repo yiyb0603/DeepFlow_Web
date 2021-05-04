@@ -11,8 +11,14 @@ export interface INotice {
   updatedAt: Date | null;
 }
 
-export interface INoticeResponse extends IResponse {
+export interface INoticeListResponse extends IResponse {
   data: {
     notices: INotice[];
+  },
+}
+
+export interface INoticeResponse extends IResponse {
+  data: {
+    notice: INotice;
   },
 }

@@ -27,10 +27,8 @@ const usePopularUsers = () => {
   }, [setPopularUsers]);
 
   useEffect(() => {
-    if (popularUsers.length <= 0) {
-      requestPopularUsers();
-    }
-  }, [requestPopularUsers, popularUsers]);
+    requestPopularUsers();
+  }, [requestPopularUsers]);
 
   return {
     popularUsers,

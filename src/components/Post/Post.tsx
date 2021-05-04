@@ -7,6 +7,7 @@ import Comment from 'components/Comment';
 import Helmet from 'components/Common/Helmet';
 import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
 import PageLoading from 'components/Common/Loading/PageLoading';
+import PostTitle from 'components/Common/Post/PostTitle';
 import PostLike from './PostLike';
 import PostTags from './PostTags';
 import PostUserInfo from './PostUserInfo';
@@ -31,7 +32,10 @@ const Post = (): JSX.Element => {
             description={post.introduction}
             favicon={post.thumbnail}
           />
-          <div className={cx('Post-Title')}>{post.title}</div>
+
+          <PostTitle
+            title={post.title}
+          />
 
           <TopInfo
             idx={post.idx}
@@ -39,8 +43,14 @@ const Post = (): JSX.Element => {
             user={post.user}
             requestDeletePost={requestDeletePost}
           />
-          <PostTags postTags={post.postTags} />
-          <Thumbnail thumbnail={post.thumbnail!} />
+
+          <PostTags
+            postTags={post.postTags}
+          />
+          
+          <Thumbnail
+            thumbnail={post.thumbnail!}
+          />
 
           <div className={cx('Post-Contents')}>
             <MarkdownRender contents={post.contents!} />

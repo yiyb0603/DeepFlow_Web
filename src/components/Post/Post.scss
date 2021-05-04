@@ -1,15 +1,10 @@
 .Post {
-	max-width: 870px;
-	padding: 0 0.625rem;
-	margin: 2rem auto;
-	color: var(--contrast);
+  max-width: 870px;
+  padding: 0 0.625rem;
+  margin: 2rem auto;
+  color: var(--contrast);
 
-	&-Title {
-		font-size: var(--font-bigger);
-		font-weight: 500;
-	}
-
-	&-Contents {
-		white-space: pre-wrap;
-	}
+  &-Contents {
+    white-space: pre-wrap;
+  }
 }

@@ -3,12 +3,12 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import usePostForm from 'hooks/post/usePostForm';
 import TagForm from './TagForm';
-import TitleForm from './TitleForm';
 import TagList from './TagList';
-import FormBottom from './FormBottom';
+import FormBottom from '../Common/Form/FormBottom';
 import MarkdownForm from 'components/Common/Markdown/MarkdownForm';
 import SubmitModal from 'components/PostForm/SubmitModal';
 import Helmet from 'components/Common/Helmet';
+import FormTemplate from 'components/Common/Form';
 
 const style = require('./PostForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -41,7 +41,10 @@ const PostForm = (): JSX.Element => {
   } = usePostForm();
   
   return (
-    <div className={cx('PostForm')}>
+    <FormTemplate
+      title={title}
+      onChangeTitle={onChangeTitle}
+    >
       <Helmet title={'질문 글 작성'} />
       {
         isSubmitModal &&
@@ -54,10 +57,6 @@ const PostForm = (): JSX.Element => {
           requestOfferPost={requestOfferPost}
         />
       }
-      <TitleForm
-        title={title}
-        onChangeTitle={onChangeTitle}
-      />
 
       <div className={cx('PostForm-TagWrapper')}>
         <div className={cx('PostForm-TagWrapper-Left')}>
@@ -74,17 +73,16 @@ const PostForm = (): JSX.Element => {
       </div>
 
       <MarkdownForm
-        title={title}
         contents={contents}
         onChangeContents={onChangeContents}
         onChangeIsFocus={onChangeIsContentsFocus}
       />
 
       <FormBottom
-        handleIsModal={handleIsModal}
-        requestOfferPost={requestOfferPost}
+        onSave={() => requestOfferPost(true)}
+        onWrite={() => handleIsModal(true)}
       />
-    </div>
+    </FormTemplate>
   );
 };
 

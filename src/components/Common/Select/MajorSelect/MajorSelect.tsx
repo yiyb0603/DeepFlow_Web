@@ -14,6 +14,7 @@ const MajorSelect = ({
 }: MajorSelectProps): JSX.Element => {
   return (
     <Select
+      name='major'
       value={major}
       onChange={onChangeMajor}
     >

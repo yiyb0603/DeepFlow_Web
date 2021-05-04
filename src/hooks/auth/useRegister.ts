@@ -32,7 +32,7 @@ const useRegister = () => {
 
     setRequest((request: IRegisterRequest) => ({
       ...request,
-      [name]: value,
+      [name]: isNaN(Number(value)) ? value : Number(value),
     }));
   }, [setRequest]);
 

@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 const HomePage = lazy(() => import('pages/Home'));
 const NoticePage = lazy(() => import('pages/Notice'));
+const NoticeFormPage = lazy(() => import('pages/NoticeForm'));
 const PostPage = lazy(() => import('pages/Post'));
 const PostFormPage = lazy(() => import('pages/PostForm'));
 const SignPage = lazy(() => import('pages/Sign'));
@@ -23,9 +24,11 @@ const Routes = (): JSX.Element => {
       <Route exact path='/' component={HomePage} />
       <Route exact path='/github-login' component={SignPage} />
       <Route exact path='/notice' component={NoticePage} />
+      <Route exact path='/notice-form' component={NoticeFormPage} />
+      <Route exact path='/notice-form/:idx' component={NoticeFormPage} />
+      <Route exact path='/post/:idx' component={PostPage} />
       <Route exact path='/post-form' component={PostFormPage} />
       <Route exact path='/post-form/:idx' component={PostFormPage} />
-      <Route exact path='/post/:idx' component={PostPage} />
       <Route exact path='/search-posts' component={SearchPostsPage} />
       <Route exact path='/users' component={UserListPage} />
       <Route exact path='/user/:idx' component={UserInfoPage} />

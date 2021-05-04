@@ -37,7 +37,7 @@
 
 			&-Title {
 				@include ellipsisLine(1);
-				font-size: var(--font-contents);
+				font-size: var(--font-small);
 				font-weight: 500;
 				border-bottom: 1px solid var(--lighterBlack);
 				padding-bottom: 0.4rem;

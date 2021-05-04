@@ -136,7 +136,7 @@ const usePostForm = () => {
 
         setIsLoading(false);
         handleIsModal(false);
-        successToast('글 작성을 성공하였습니다.');
+        successToast(`글 ${postIdx === null ? '작성' : '수정'}을 성공하였습니다.`);
         history.push('/');
 
         setRequest({

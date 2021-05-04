@@ -1,32 +1,35 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import PostButton from 'components/Common/Post/PostButton';
 import { palette } from 'styles/Palette/Palette';
+import PostButton from 'components/Common/Post/PostButton';
 
 const style = require('./FormBottom.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface FormBottomProps {
-  handleIsModal: (isModal: boolean) => void;
-  requestOfferPost: (isTemp: boolean) => Promise<void>;
+  onSave?: () => void;
+  onWrite: () => void;
 }
 
 const FormBottom = ({
-  handleIsModal,
-  requestOfferPost,
+  onSave,
+  onWrite,
 }: FormBottomProps): JSX.Element => {
   return (
     <div className={cx('FormBottom')}>
-      <PostButton
-        contents='임시저장'
-        backgroundColor={palette.gray}
-        onClick={() => requestOfferPost(true)}
-      />
+      {
+        typeof onSave === 'function' &&
+        <PostButton
+          contents='임시저장'
+          backgroundColor={palette.gray}
+          onClick={onSave}
+        />
+      }
       
       <PostButton
         contents='작성하기'
         backgroundColor={palette.main}
-        onClick={() => handleIsModal(true)}
+        onClick={onWrite}
       />
     </div>
   );

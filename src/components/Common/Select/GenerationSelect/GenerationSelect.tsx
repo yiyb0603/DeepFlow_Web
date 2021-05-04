@@ -13,6 +13,7 @@ const GenerationSelect = ({
 }: GenerationSelectProps): JSX.Element => {
   return (
     <Select
+      name='generation'
       value={generation}
       onChange={onChangeGeneration}
     >

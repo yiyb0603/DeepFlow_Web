@@ -11,13 +11,6 @@ import 'react-markdown-editor-lite/lib/index.css';
 const style = require('./MarkdownForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface MarkdownFormProps {
-	title: string;
-	contents: string;
-	onChangeContents: (text: string) => void;
-	onChangeIsFocus?: () => void;
-}
-
 const mdParser: MarkdownIt = new MarkdownIt({
 	html: true,
 	linkify: true,
@@ -39,8 +32,15 @@ const mdParser: MarkdownIt = new MarkdownIt({
 	},
 });
 
+interface MarkdownFormProps {
+	height?: string;
+	contents: string;
+	onChangeContents: (text: string) => void;
+	onChangeIsFocus?: () => void;
+}
+
 const MarkdownForm = ({
-	title,
+	height = '75vh',
 	contents,
 	onChangeContents,
 	onChangeIsFocus,
@@ -62,18 +62,17 @@ const MarkdownForm = ({
 	return (
 		<div className={cx('MarkdownForm')}>
 			<MdEditor
+				name='contents'
 				value={contents}
 				onChange={({ text }) => onChangeContents(text)}
-				style={{ height: '75vh' }}
+				style={{ height }}
 				syncScrollMode={[]}
 				renderHTML={(text: string) => mdParser.render(text)}
 				placeholder="내용을 입력하세요..."
 				onImageUpload={handleImageUpload}
 				onFocus={onChangeIsFocus}
 				onBlur={onChangeIsFocus}
-			>
-				{title}
-			</MdEditor>
+			/>
 		</div>
 	);
 };

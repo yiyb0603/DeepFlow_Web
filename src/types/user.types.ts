@@ -4,6 +4,7 @@ import { IResponse } from './Response';
 export interface IToken {
   idx: number;
   githubId: string;
+  isAdmin: false;
   exp: number;
 }
 

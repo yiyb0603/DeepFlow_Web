@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import Textarea from 'react-autosize-textarea';
@@ -16,6 +16,7 @@ const TitleForm = ({ title, onChangeTitle }: TitleFormProps): JSX.Element => {
   return (
     <div className={cx('TitleForm')}>
       <Textarea
+        name='title'
         className={cx('TitleForm-Input')}
         value={title}
         onChange={onChangeTitle}
@@ -32,4 +33,4 @@ const TitleForm = ({ title, onChangeTitle }: TitleFormProps): JSX.Element => {
   );
 };
 
-export default TitleForm;
+export default memo(TitleForm);
