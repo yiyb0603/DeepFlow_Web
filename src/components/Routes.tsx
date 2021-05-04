@@ -16,10 +16,10 @@ const SignPage = lazy(() => import('pages/Sign'));
 const UserInfoPage = lazy(() => import('pages/UserInfo'));
 const UserListPage = lazy(() => import('pages/UserList'));
 const TagsPage = lazy(() => import('pages/Tags'));
-const TagPostsPage = lazy(() => import('pages/TagPosts'));
+const TagQuestionsPage = lazy(() => import('pages/TagQuestions'));
 const TempPage = lazy(() => import('pages/Temp'));
 const UserRecommandPage = lazy(() => import('pages/UserRecommand'));
-const SearchPostsPage = lazy(() => import('pages/SearchPosts'));
+const SearchQuestionsPage = lazy(() => import('pages/SearchQuestions'));
 const PolicyPage = lazy(() => import('pages/Policy'));
 const NotFoundPage = lazy(() => import('pages/NotFound'));
 
@@ -38,14 +38,14 @@ const Routes = (): JSX.Element => {
       <Route exact path='/question-form' component={QuestionFormPage} />
       <Route exact path='/question-form/:idx' component={QuestionFormPage} />
 
-      <Route exact path='/search-questions' component={SearchPostsPage} />
+      <Route exact path='/search-questions' component={SearchQuestionsPage} />
       <Route exact path='/users' component={UserListPage} />
       <Route exact path='/user/:idx' component={UserInfoPage} />
       <Route exact path='/user-recommand/:idx' component={UserRecommandPage} />
       
       <Route exact path='/temp' component={TempPage} />
       <Route exact path='/tags' component={TagsPage} />
-      <Route exact path='/tag-posts/:tag' component={TagPostsPage} />
+      <Route exact path='/tag-questions/:tag' component={TagQuestionsPage} />
       <Route exact path='/policy' component={PolicyPage} />
       <Route exact path='/not-found' component={NotFoundPage} />
 

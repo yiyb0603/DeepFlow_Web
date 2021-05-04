@@ -2,26 +2,26 @@ import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { EView } from 'lib/enum/theme';
-import { IPost } from 'types/post.types';
+import { IQuestion } from 'types/post.types';
 import useRecentPosts from 'hooks/post/useRecentPosts';
 import useViewMode from 'hooks/post/useViewMode';
 import GridItem from 'components/Common/Post/GridItem';
 import ListItem from 'components/Common/Post/ListItem';
 import NoItems from 'components/Common/NoItems';
-import HomeSectionTitle from '../HomeSectionTitle';
 import SelectViewMode from 'components/Common/Post/SelectViewMode';
+import HomeSectionTitle from '../HomeSectionTitle';
 
-const style = require('./RecentPost.scss');
+const style = require('./RecentQuestion.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-const RecentPost = (): JSX.Element => {
+const RecentQuestion = (): JSX.Element => {
   const { recentPosts } = useRecentPosts();
   const { viewMode, onChangeViewMode, flexStyle } = useViewMode();
   
   const { LIST } = EView;
 
   return (
-    <div className={cx('RecentPost')}>
+    <div className={cx('RecentQuestion')}>
       <HomeSectionTitle title='최근 올라온 질문글'>
         <SelectViewMode
           viewMode={viewMode}
@@ -29,9 +29,9 @@ const RecentPost = (): JSX.Element => {
         />
       </HomeSectionTitle>
 
-      <div className={cx('RecentPost-List')} style={flexStyle}>
+      <div className={cx('RecentQuestion-List')} style={flexStyle}>
       {
-        recentPosts.length > 0 ? recentPosts.map((post: IPost) => {
+        recentPosts.length > 0 ? recentPosts.map((post: IQuestion) => {
           return (
             <>
               {
@@ -55,4 +55,4 @@ const RecentPost = (): JSX.Element => {
   );
 };
 
-export default memo(RecentPost);
+export default memo(RecentQuestion);

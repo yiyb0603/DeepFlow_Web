@@ -4,10 +4,10 @@ import { useHistory } from 'react-router-dom';
 import { History } from 'history';
 import { searchKeywordListState, searchKeywordState, showSearchHistoryState } from 'atom/search';
 import { customTrim } from 'converter/customTrim';
-import { getPostsBySearch } from 'lib/api/post/post.api';
+import { getPostsBySearch } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
 import { setStorage } from 'lib/Storage';
-import { IPost } from 'types/post.types';
+import { IQuestion } from 'types/post.types';
 import { ISearchKeyword } from 'types/search.types';
 import usePagination from '../util/usePagination';
 
@@ -23,7 +23,7 @@ const useSearchPosts = () => {
   } = usePagination();
   const history: History = useHistory();
 
-  const [searchPosts, setSearchPosts] = useState<IPost[]>([]);
+  const [searchPosts, setSearchPosts] = useState<IQuestion[]>([]);
 
   const [keyword, setKeyword] = useRecoilState<string>(searchKeywordState);
   const setShowHistory: SetterOrUpdater<boolean> = useSetRecoilState<boolean>(showSearchHistoryState);

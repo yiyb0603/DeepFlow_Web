@@ -4,7 +4,7 @@ import { ClassNamesFn } from 'classnames/types';
 import usePosts from 'hooks/post/usePosts';
 import usePostByIdx from 'hooks/post/usePostByIdx';
 import useTempPosts from 'hooks/post/useTempPosts';
-import { IPost } from 'types/post.types';
+import { IQuestion } from 'types/post.types';
 import PageTitle from 'components/Common/PageTitle';
 import ListItem from 'components/Common/Post/ListItem';
 import PageNumberList from 'components/Common/Post/PageNumberList';
@@ -24,7 +24,7 @@ const Temp = (): JSX.Element => {
     splitedNumberList,
   } = usePosts();
   const { tempPosts, requestTempPosts } = useTempPosts();
-  const { requestDeletePost } = usePostByIdx();
+  const { requestDeleteQuestion } = usePostByIdx();
 
   useEffect(() => {
     requestTempPosts();
@@ -40,11 +40,11 @@ const Temp = (): JSX.Element => {
 
       <div className={cx('Temp-List')}>
         {
-          tempPosts.length > 0 ? tempPosts.map((post: IPost) => (
+          tempPosts.length > 0 ? tempPosts.map((post: IQuestion) => (
             <ListItem
               key={post.idx}
               {...post}
-              requestDeletePost={requestDeletePost}
+              requestDeletePost={requestDeleteQuestion}
             />
           )) : <NoItems text='임시저장글이 없습니다.' />
         }

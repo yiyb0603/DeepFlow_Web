@@ -1,12 +1,12 @@
 import { useCallback, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { popularPostState } from 'atom/question';
+import { popularQuestionState } from 'atom/question';
 import { POPULAR_COUNT } from 'constants/post';
-import { getPopularPosts } from 'lib/api/post/post.api';
+import { getPopularPosts } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
 
 const usePopularPosts = () => {
-  const [popularPosts, setPopularPosts] = useRecoilState(popularPostState);
+  const [popularPosts, setPopularPosts] = useRecoilState(popularQuestionState);
 
   const requestPopularPosts = useCallback(async (): Promise<void> => {
     try {

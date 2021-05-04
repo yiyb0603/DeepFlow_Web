@@ -1,11 +1,11 @@
 import { useCallback, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { postListLoadingState, tagPostState } from 'atom/question';
+import { questionListLoadingState, tagQuestionState } from 'atom/question';
 import { CHUNK_POST_COUNT } from 'constants/util';
-import { getPostsByTag } from 'lib/api/post/post.api';
+import { getPostsByTag } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
-import { IPost } from 'types/post.types';
+import { IQuestion } from 'types/post.types';
 import usePagination from 'hooks/util/usePagination';
 import { chunkArray } from 'util/chunkArray';
 
@@ -21,11 +21,11 @@ const useTagPosts = () => {
     splitedNumberList,
   } = usePagination();
 
-  const [postLoading, setPostLoading] = useRecoilState<boolean>(postListLoadingState);
-  const [tagPostList, setTagPostList] = useRecoilState<IPost[]>(tagPostState);
+  const [postLoading, setPostLoading] = useRecoilState<boolean>(questionListLoadingState);
+  const [tagPostList, setTagPostList] = useRecoilState<IQuestion[]>(tagQuestionState);
 
-  const splitedTempPosts: IPost[][] = useMemo(() => {
-    return chunkArray(tagPostList, CHUNK_POST_COUNT) as IPost[][];
+  const splitedTempPosts: IQuestion[][] = useMemo(() => {
+    return chunkArray(tagPostList, CHUNK_POST_COUNT) as IQuestion[][];
   }, [tagPostList]);
 
   const requestPostsByTag = useCallback(async (): Promise<void> => {

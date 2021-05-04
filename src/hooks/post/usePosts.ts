@@ -1,18 +1,18 @@
 import { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import { postListLoadingState, questionListState } from 'atom/question';
+import { questionListLoadingState, questionListState } from 'atom/question';
 import usePagination from 'hooks/util/usePagination';
-import { getPostsBySort } from 'lib/api/post/post.api';
+import { getPostsBySort } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
 import { EPostSort } from 'lib/enum/post';
-import { IPost } from 'types/post.types';
+import { IQuestion } from 'types/post.types';
 import useTabState from 'hooks/util/useTabState';
 
 const usePosts = () => {
   const [sortTab, onChangeSortTab] = useTabState<EPostSort>('sort', EPostSort.RECENT);
 
-  const [postLoading, setPostLoading] = useRecoilState<boolean>(postListLoadingState);
-  const [questionList, setQuestionList] = useRecoilState<IPost[]>(questionListState);
+  const [questionLoading, setQuestionLoading] = useRecoilState<boolean>(questionListLoadingState);
+  const [questionList, setQuestionList] = useRecoilState<IQuestion[]>(questionListState);
 
   const {
     totalPage,
@@ -27,7 +27,7 @@ const usePosts = () => {
 
   const requestPostList = useCallback(async () => {
     try {
-      setPostLoading(true);
+      setQuestionLoading(true);
       const { status, data: { posts, totalPage } } = await getPostsBySort(sortTab, currentPage);
 
       if (status === EResponse.OK) {
@@ -37,12 +37,12 @@ const usePosts = () => {
     } catch (error) {
       console.log(error);
     } finally {
-      setPostLoading(false);
+      setQuestionLoading(false);
     }
-  }, [currentPage, setPostLoading, setQuestionList, setTotalPage, sortTab]);
+  }, [currentPage, setQuestionLoading, setQuestionList, setTotalPage, sortTab]);
 
   return {
-    postLoading,
+    questionLoading,
     questionList,
     totalPage,
     currentPage,

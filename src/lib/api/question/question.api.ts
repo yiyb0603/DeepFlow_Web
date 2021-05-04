@@ -2,27 +2,27 @@ import { customAxios } from 'lib/CustomAxios';
 import { EPostSort, EUserPost } from 'lib/enum/post';
 import {
   IPopularPostListResponse,
-  IPostListResponse,
-  IPostResponse,
-  IPostSaveResponse,
+  IQuestionListResponse,
+  IQuestionResponse,
+  IQuestionSaveResponse,
   IRecentPostListResponse
 } from 'types/post.types';
 import { IResponse } from 'types/Response';
-import { IPostDto } from './post.dto';
+import { IQuestionDto } from './question.dto';
 
-export const getPostsBySort = async (sort: EPostSort, page: number): Promise<IPostListResponse> => {
+export const getPostsBySort = async (sort: EPostSort, page: number): Promise<IQuestionListResponse> => {
   const url: string = `/posts?page=${page}&sort=${sort}`;
   const { data } = await customAxios.get(url);
   return data;
 }
 
-export const getPostByIdx = async (postIdx: number): Promise<IPostResponse> => {
+export const getPostByIdx = async (postIdx: number): Promise<IQuestionResponse> => {
   const url: string = `/posts/${postIdx}`;
   const { data } = await customAxios.get(url);
   return data;
 }
 
-export const createPost = async (postDto: IPostDto, isTemp: boolean): Promise<IPostSaveResponse> => {
+export const createPost = async (postDto: IQuestionDto, isTemp: boolean): Promise<IQuestionSaveResponse> => {
   const url: string = '/posts';
   const { data } = await customAxios.post(url, {
     ...postDto,
@@ -31,7 +31,7 @@ export const createPost = async (postDto: IPostDto, isTemp: boolean): Promise<IP
   return data;
 }
 
-export const modifyPost = async (postIdx: number, postDto: IPostDto, isTemp: boolean): Promise<IResponse> => {
+export const modifyPost = async (postIdx: number, postDto: IQuestionDto, isTemp: boolean): Promise<IResponse> => {
   const url: string = `/posts/${postIdx}`;
   const { data } = await customAxios.put(url, {
     ...postDto,
@@ -46,13 +46,13 @@ export const deletePost = async (postIdx: number): Promise<IResponse> => {
   return data;
 }
 
-export const getUserPosts = async (userIdx: number, type: EUserPost): Promise<IPostListResponse> => {
+export const getUserPosts = async (userIdx: number, type: EUserPost): Promise<IQuestionListResponse> => {
   const url: string = `/posts/user/${userIdx}?type=${type}`;
   const { data } = await customAxios.get(url);
   return data;
 }
 
-export const getPostsBySearch = async (keyword: string): Promise<IPostListResponse> => {
+export const getPostsBySearch = async (keyword: string): Promise<IQuestionListResponse> => {
   const url: string = `/posts/search?keyword=${keyword}`;
   const { data } = await customAxios.get(url);
   return data;
@@ -70,13 +70,13 @@ export const getPopularPosts = async (count: number): Promise<IPopularPostListRe
   return data;
 }
 
-export const getTempPosts = async (): Promise<IPostListResponse> => {
+export const getTempPosts = async (): Promise<IQuestionListResponse> => {
   const url: string = `/posts/temp`;
   const { data } = await customAxios.get(url);
   return data;
 }
 
-export const getPostsByTag = async (tagName: string): Promise<IPostListResponse> => {
+export const getPostsByTag = async (tagName: string): Promise<IQuestionListResponse> => {
   const url: string = `/posts/tag?tagName=${tagName}`;
   const { data } = await customAxios.get(url);
   return data;

@@ -1,14 +1,14 @@
 import { useCallback, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { recentPostLoading, recentPostState } from 'atom/question';
-import { getRecentPosts } from 'lib/api/post/post.api';
+import { recentQuestionLoading, recentQuestionState } from 'atom/question';
+import { getRecentPosts } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
 import { IRecentPostListResponse } from 'types/post.types';
 import { RECENT_COUNT } from 'constants/post';
 
 const useRecentPosts = () => {
-  const [isLoading, setIsLoading] = useRecoilState(recentPostLoading);
-  const [recentPosts, setRecentPosts] = useRecoilState(recentPostState);
+  const [isLoading, setIsLoading] = useRecoilState(recentQuestionLoading);
+  const [recentPosts, setRecentPosts] = useRecoilState(recentQuestionState);
 
   const requestRecentPosts = useCallback(async (): Promise<void> => {
     try {

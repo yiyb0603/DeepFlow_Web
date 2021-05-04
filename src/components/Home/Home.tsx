@@ -3,7 +3,7 @@ import useRecentPosts from 'hooks/post/useRecentPosts';
 import Helmet from 'components/Common/Helmet';
 import HomeBanner from './HomeBanner';
 import HomeLoading from './HomeLoading';
-import RecentPost from './RecentPost';
+import RecentQuestion from './RecentQuestion';
 import RecentUsers from './RecentUsers';
 
 const Home = (): JSX.Element => {
@@ -18,7 +18,7 @@ const Home = (): JSX.Element => {
         <Helmet />
         <HomeBanner />
         <RecentUsers />
-        <RecentPost />
+        <RecentQuestion />
       </FadeIn>
     }
     </>

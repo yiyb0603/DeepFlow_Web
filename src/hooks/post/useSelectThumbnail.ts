@@ -1,7 +1,7 @@
 import { useCallback, ChangeEvent, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { requestPostState } from 'atom/question';
-import { IPostDto } from 'lib/api/post/post.dto';
+import { IQuestionDto } from 'lib/api/question/question.dto';
 import { uploadFiles } from 'lib/api/uploads/uploads.api';
 import { EResponse } from 'lib/enum/response';
 import useDragDrop from 'hooks/util/useDragDrop';
@@ -14,7 +14,7 @@ const useSelectThumbnail = () => {
     handleDrop,
   } = useDragDrop();
 
-  const [request, setRequest] = useRecoilState<IPostDto>(requestPostState);
+  const [request, setRequest] = useRecoilState<IQuestionDto>(requestPostState);
   const { thumbnail } = request;
 
   const onChangeThumbnail = useCallback(async (e: ChangeEvent<HTMLInputElement> | DragEvent): Promise<void> => {
@@ -32,7 +32,7 @@ const useSelectThumbnail = () => {
 
       const { status, data: { files } } = await uploadFiles(formData);
       if (status === EResponse.OK) {
-        setRequest((request: IPostDto) => ({
+        setRequest((request: IQuestionDto) => ({
           ...request,
           thumbnail: files[0],
         }));

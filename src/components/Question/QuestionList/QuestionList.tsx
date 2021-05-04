@@ -5,8 +5,8 @@ import FadeIn from 'react-fade-in';
 import usePosts from 'hooks/post/usePosts';
 import useViewMode from 'hooks/post/useViewMode';
 import { EView } from 'lib/enum/theme';
-import { IPostTab, sortPostTabs } from 'lib/models/tabs/postTabs';
-import { IPost } from 'types/post.types';
+import { IQuestionTab, sortPostTabs } from 'lib/models/tabs/postTabs';
+import { IQuestion } from 'types/post.types';
 import Helmet from 'components/Common/Helmet';
 import NoItems from 'components/Common/NoItems';
 import PageNumberList from 'components/Common/Post/PageNumberList';
@@ -23,7 +23,7 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 const QuestionList = (): JSX.Element => {
   const {
-    postLoading,
+    questionLoading,
     questionList,
     
     currentPage,
@@ -49,7 +49,7 @@ const QuestionList = (): JSX.Element => {
   return (
     <div className={cx('QuestionList')}>
     {
-      postLoading && questionList.length <= 0 ? <HomeLoading />
+      questionLoading && questionList.length <= 0 ? <HomeLoading />
       :
       <FadeIn>
         <Helmet title='질문 모음' />
@@ -60,7 +60,7 @@ const QuestionList = (): JSX.Element => {
         <div className={cx('QuestionList-TabViewWrapper')}>
           <div className={cx('QuestionList-TabViewWrapper-Tab')}>
             {
-              sortPostTabs.map(({ name, route }: IPostTab, idx: number) => (
+              sortPostTabs.map(({ name, route }: IQuestionTab, idx: number) => (
                 <SelectTab
                   key={idx}
                   name={name}
@@ -81,7 +81,7 @@ const QuestionList = (): JSX.Element => {
 
         <div style={flexStyle}>
           {
-            questionList.length > 0 ? questionList.map((question: IPost) => {
+            questionList.length > 0 ? questionList.map((question: IQuestion) => {
               return (
                 <>
                 {

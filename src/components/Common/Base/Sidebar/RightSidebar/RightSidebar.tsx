@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import PopularPost from './PopularPost';
+import PopularQuestion from './PopularQuestion';
 import SidePopularUsers from './SidePopularUsers';
 
 const style = require('./RightSidebar.scss');
@@ -11,7 +11,7 @@ const RightSidebar = (): JSX.Element => {
   return (
     <div className={cx('RightSidebar')}>
       <div className={cx('RightSidebar-Menus')}>
-        <PopularPost />
+        <PopularQuestion />
         <SidePopularUsers />
       </div>
     </div>

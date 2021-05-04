@@ -7,17 +7,17 @@ import useTag from 'hooks/tag/useTag';
 import useViewMode from 'hooks/post/useViewMode';
 import useTagPosts from 'hooks/post/useTagPosts';
 import { EView } from 'lib/enum/theme';
-import { IPost } from 'types/post.types';
+import { IQuestion } from 'types/post.types';
 import PageLoading from 'components/Common/Loading/PageLoading';
 import ListItem from 'components/Common/Post/ListItem';
 import GridItem from 'components/Common/Post/GridItem';
 import PageNumberList from 'components/Common/Post/PageNumberList';
 import TagInfo from './TagInfo';
 
-const style = require('./TagPosts.scss');
+const style = require('./TagQuestions.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-const TagPosts = (): JSX.Element => {
+const TagQuestions = (): JSX.Element => {
   const history: History = useHistory();
 
   const { pageParam, tagInfo } = useTag();
@@ -46,7 +46,7 @@ const TagPosts = (): JSX.Element => {
     <>
     {
       tagInfo !== null ?
-      <div className={cx('TagPosts')}>
+      <div className={cx('TagQuestions')}>
         <TagInfo
           tagInfo={tagInfo}
           count={tagPostList.length}
@@ -54,10 +54,10 @@ const TagPosts = (): JSX.Element => {
           onChangeViewMode={onChangeViewMode}
         />
 
-        <div className={cx('TagPosts-List')} style={flexStyle}>
+        <div className={cx('TagQuestions-List')} style={flexStyle}>
           {
             splitedTempPosts[currentPage - 1] &&
-            splitedTempPosts[currentPage - 1].map((tagPost: IPost) => (
+            splitedTempPosts[currentPage - 1].map((tagPost: IQuestion) => (
               <>
               {
                 viewMode === EView.LIST ?
@@ -89,4 +89,4 @@ const TagPosts = (): JSX.Element => {
   );
 };
 
-export default memo(TagPosts);
+export default memo(TagQuestions);

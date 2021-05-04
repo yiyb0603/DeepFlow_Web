@@ -2,7 +2,7 @@ import { useEffect, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import useUserInfo from 'hooks/user/useUserInfo';
-import { IPost } from 'types/post.types';
+import { IQuestion } from 'types/post.types';
 import NoItems from 'components/Common/NoItems';
 import ListItem from 'components/Common/Post/ListItem';
 import UserLoading from 'components/UserList/UserLoading';
@@ -58,7 +58,7 @@ const UserInfo = (): JSX.Element => {
         {
           splitedPostList.length > 0 ? (
             splitedPostList[currentPage - 1] &&
-            splitedPostList[currentPage - 1].map((post: IPost) => {
+            splitedPostList[currentPage - 1].map((post: IQuestion) => {
               return (
                 <ListItem
                   key={post.idx}

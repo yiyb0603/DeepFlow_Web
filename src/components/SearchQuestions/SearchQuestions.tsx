@@ -1,8 +1,6 @@
 import { memo } from 'react';
-import classNames from 'classnames';
-import { ClassNamesFn } from 'classnames/types';
 import useSearchPosts from 'hooks/post/useSearchPosts';
-import { IPost } from 'types/post.types';
+import { IQuestion } from 'types/post.types';
 import PageNumberList from 'components/Common/Post/PageNumberList';
 import PageTitle from 'components/Common/PageTitle';
 import ListItem from 'components/Common/Post/ListItem';
@@ -10,10 +8,7 @@ import NoItems from 'components/Common/NoItems';
 import Helmet from 'components/Common/Helmet';
 import SearchBar from './SearchBar';
 
-const style = require('./SearchPosts.scss');
-const cx: ClassNamesFn = classNames.bind(style);
-
-const SearchPosts = (): JSX.Element => {
+const SearchQuestions = (): JSX.Element => {
   const {
     keyword,
     onChangeKeyword,
@@ -29,7 +24,7 @@ const SearchPosts = (): JSX.Element => {
   } = useSearchPosts();
 
   return (
-    <div className={cx('SearchPosts')}>
+    <div>
       <Helmet title='글 목록 검색' />
       <PageTitle
         title='글 목록 검색'
@@ -43,9 +38,9 @@ const SearchPosts = (): JSX.Element => {
         onChangeKeyword={onChangeKeyword}
       />
 
-      <div className={cx('SearchPosts')}>
+      <div>
         {
-          searchPosts.length > 0 ? searchPosts.map((post: IPost) => (
+          searchPosts.length > 0 ? searchPosts.map((post: IQuestion) => (
             <ListItem
               key={post.idx}
               {...post}
@@ -69,4 +64,4 @@ const SearchPosts = (): JSX.Element => {
   );
 };
 
-export default memo(SearchPosts);
+export default memo(SearchQuestions);

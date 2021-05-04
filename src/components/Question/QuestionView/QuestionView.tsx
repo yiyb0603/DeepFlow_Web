@@ -13,51 +13,51 @@ import Thumbnail from './Thumbnail';
 import PostUserInfo from './PostUserInfo';
 
 const QuestionView = (): JSX.Element => {
-  const { post, requestDeletePost } = usePostByIdx();
+  const { question, requestDeleteQuestion } = usePostByIdx();
 
   return (
     <>
     {
-      post === null ? <PageLoading text='글을 불러오는 중입니다 🥴' />
+      question === null ? <PageLoading text='글을 불러오는 중입니다 🥴' />
       :
       <PostViewTemplate>
         <Helmet
-          title={post.title}
-          description={post.introduction}
-          favicon={post.thumbnail}
+          title={question.title}
+          description={question.introduction}
+          favicon={question.thumbnail}
         />
 
         <PostTitle
-          title={post.title}
+          title={question.title}
         />
 
         <TopInfo
-          idx={post.idx}
-          createdAt={post.createdAt}
-          user={post.user}
-          requestDeletePost={requestDeletePost}
+          idx={question.idx}
+          createdAt={question.createdAt}
+          user={question.user}
+          requestDeletePost={requestDeleteQuestion}
         />
 
         <PostTags
-          postTags={post.postTags}
+          postTags={question.postTags}
         />
         
         <Thumbnail
-          thumbnail={post.thumbnail!}
+          thumbnail={question.thumbnail!}
         />
 
-        <MarkdownRender contents={post.contents!} />
+        <MarkdownRender contents={question.contents!} />
 
         <PostLike />
 
         <PostUserInfo
-          idx={post.user.idx}
-          avatar={post.user.avatar}
-          name={post.user.name}
-          description={post.user.description}
-          blog={post.user.blog}
-          github={getGithubAddress(post.user.githubId)}
-          location={post.user.location}
+          idx={question.user.idx}
+          avatar={question.user.avatar}
+          name={question.user.name}
+          description={question.user.description}
+          blog={question.user.blog}
+          github={getGithubAddress(question.user.githubId)}
+          location={question.user.location}
         />
 
         <Comment />

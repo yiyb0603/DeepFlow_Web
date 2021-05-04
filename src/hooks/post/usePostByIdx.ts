@@ -2,9 +2,9 @@ import { useCallback, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { History } from 'history';
-import { postState } from 'atom/question';
-import { IPost, IPostResponse } from 'types/post.types';
-import { deletePost, getPostByIdx } from 'lib/api/post/post.api';
+import { questionState } from 'atom/question';
+import { IQuestion, IQuestionResponse } from 'types/post.types';
+import { deletePost, getPostByIdx } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
 import PostError from 'error/PostError';
 import usePageParam from '../util/usePageParam';
@@ -14,23 +14,23 @@ import { IResponse } from 'types/Response';
 const usePostByIdx = () => {
   const history: History = useHistory();
   const postIdx: number = usePageParam();
-  const [post, setPost] = useRecoilState<IPost | null>(postState);
+  const [question, setQuestion] = useRecoilState<IQuestion | null>(questionState);
 
   const requestPostByIdx = useCallback(async (): Promise<void> => {
     try {
-      const { status, data }: IPostResponse = await getPostByIdx(postIdx);
+      const { status, data }: IQuestionResponse = await getPostByIdx(postIdx);
       
       if (status === EResponse.OK) {
-        setPost(data.post);
+        setQuestion(data.post);
       }
     } catch (error) {
       new PostError(error).getPostError(history);
     }
-  }, [history, postIdx, setPost]);
+  }, [history, postIdx, setQuestion]);
 
-  const requestDeletePost = useCallback(async (postIdx: number, isDetail: boolean = true): Promise<void> => {
+  const requestDeleteQuestion = useCallback(async (questionIdx: number, isDetail: boolean = true): Promise<void> => {
     try {
-      const { status }: IResponse = await deletePost(postIdx);
+      const { status }: IResponse = await deletePost(questionIdx);
 
       if (status === EResponse.OK) {
         successToast('글을 삭제하였습니다.');
@@ -49,12 +49,12 @@ const usePostByIdx = () => {
       requestPostByIdx();
     }
 
-    return () => setPost(null);
-  }, [postIdx, requestPostByIdx, setPost]);
+    return () => setQuestion(null);
+  }, [postIdx, requestPostByIdx, setQuestion]);
 
   return {
-    post,
-    requestDeletePost,
+    question,
+    requestDeleteQuestion,
   };
 };
 

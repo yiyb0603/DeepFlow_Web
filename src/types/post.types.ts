@@ -5,7 +5,7 @@ export interface IPageParam {
   idx: string | undefined;
 }
 
-export interface IPost {
+export interface IQuestion {
   idx: number;
   title: string;
   introduction: string;
@@ -28,32 +28,32 @@ export interface IAllContents {
   contents: string;
 }
 
-export interface IPostSaveResponse extends IResponse {
+export interface IQuestionSaveResponse extends IResponse {
   idx?: number;
 }
 
 export interface IRecentPostListResponse extends IResponse {
   data: {
-    recentPosts: IPost[];
+    recentPosts: IQuestion[];
   },
 }
 
 export interface IPopularPostListResponse extends IResponse {
   data: {
-    popularPosts: IPost[];
+    popularPosts: IQuestion[];
   },
 }
 
-export interface IPostListResponse extends IResponse {
+export interface IQuestionListResponse extends IResponse {
   data: {
     totalCount?: number;
     totalPage?: number;
-    posts: IPost[];
+    posts: IQuestion[];
   },
 }
 
-export interface IPostResponse extends IResponse {
+export interface IQuestionResponse extends IResponse {
   data: {
-    post: IPost;
+    post: IQuestion;
   },
 }

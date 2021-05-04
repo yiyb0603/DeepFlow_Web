@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
 import { IUserModify } from 'lib/api/user/user.dto';
 import { EMajor } from 'lib/enum/majors';
-import { IPost } from 'types/post.types';
+import { IQuestion } from 'types/post.types';
 import { IUser } from 'types/user.types';
 
 export const myInfoState = atom<IUser | null>({
@@ -54,7 +54,7 @@ export const userLoading = atom<boolean>({
   default: true,
 });
 
-export const userPostState = atom<IPost[]>({
+export const userPostState = atom<IQuestion[]>({
   key: 'userPostState',
-  default: [] as IPost[],
+  default: [] as IQuestion[],
 });

@@ -4,10 +4,10 @@ import { userInfoState, userPostState } from 'atom/user';
 import { CHUNK_POST_COUNT } from 'constants/util';
 import { getUserInfo } from 'lib/api/user/user.api';
 import { EResponse } from 'lib/enum/response';
-import { getUserPosts } from 'lib/api/post/post.api';
+import { getUserPosts } from 'lib/api/question/question.api';
 import { EUserPost } from 'lib/enum/post';
 import { IUser } from 'types/user.types';
-import { IPost } from 'types/post.types';
+import { IQuestion } from 'types/post.types';
 import usePageParam from '../util/usePageParam';
 import { chunkArray } from 'util/chunkArray';
 import useTabState from 'hooks/util/useTabState';
@@ -29,10 +29,10 @@ const useUserInfo = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [userPostTab, setUserPostTab] = useTabState<EUserPost>('tab', EUserPost.WRITED);
 
-  const [userPostList, setUserPostList] = useRecoilState<IPost[]>(userPostState);
+  const [userPostList, setUserPostList] = useRecoilState<IQuestion[]>(userPostState);
   const [userInfo, setUserInfo] = useRecoilState<IUser | null>(userInfoState);
 
-  const splitedPostList: IPost[][] = useMemo(() => {
+  const splitedPostList: IQuestion[][] = useMemo(() => {
     return chunkArray(userPostList, CHUNK_POST_COUNT);
   }, [userPostList]);
 

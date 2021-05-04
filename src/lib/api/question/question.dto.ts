@@ -1,4 +1,4 @@
-export interface IPostDto {
+export interface IQuestionDto {
   introduction: string;
   thumbnail: string;
   title: string;

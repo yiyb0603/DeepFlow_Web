@@ -1,17 +1,17 @@
 import { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import { postListLoadingState, tempPostState } from 'atom/question';
-import { getTempPosts } from 'lib/api/post/post.api';
+import { questionListLoadingState, tempQuestionState } from 'atom/question';
+import { getTempPosts } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
-import { IPost } from 'types/post.types';
+import { IQuestion } from 'types/post.types';
 
 const useTempPosts = () => {
-  const [tempPosts, setTempPosts] = useRecoilState<IPost[]>(tempPostState);
-  const [postLoading, setPostLoading] = useRecoilState<boolean>(postListLoadingState);
+  const [tempPosts, setTempPosts] = useRecoilState<IQuestion[]>(tempQuestionState);
+  const [questionLoading, setQuestionLoading] = useRecoilState<boolean>(questionListLoadingState);
 
   const requestTempPosts = useCallback(async (): Promise<void> => {
     try {
-      setPostLoading(true);
+      setQuestionLoading(true);
       const { status, data: { posts } } = await getTempPosts();
 
       if (status === EResponse.OK) {
@@ -20,15 +20,15 @@ const useTempPosts = () => {
     } catch (error) {
       console.log(error);
     } finally {
-      setPostLoading(false);
+      setQuestionLoading(false);
     }
-  }, [setPostLoading, setTempPosts]);
+  }, [setQuestionLoading, setTempPosts]);
 
   return {
     tempPosts,
-    postLoading,
+    questionLoading,
     requestTempPosts,
-  }
+  };
 };
 
 export default useTempPosts;

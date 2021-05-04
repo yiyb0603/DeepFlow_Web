@@ -2,11 +2,11 @@ import { useCallback, useEffect, useState, ChangeEvent, KeyboardEvent } from 're
 import { useHistory } from 'react-router-dom';
 import { History } from 'history';
 import { useRecoilState } from 'recoil';
-import { initialRequestPostState, requestPostState } from 'atom/question';
+import { initialRequestQuestionState, requestPostState } from 'atom/question';
 import { MAX_TAG_LENGTH } from 'constants/post';
 import { customTrim } from 'converter/customTrim';
-import { createPost, modifyPost } from 'lib/api/post/post.api';
-import { IPostDto } from 'lib/api/post/post.dto';
+import { createPost, modifyPost } from 'lib/api/question/question.api';
+import { IQuestionDto } from 'lib/api/question/question.dto';
 import { errorToast, successToast } from 'lib/Toast';
 import { isEmpty } from 'util/isEmpty';
 import { validateBeforeModal, validatePost } from 'validation/post.validation';
@@ -14,7 +14,7 @@ import usePostByIdx from './usePostByIdx';
 
 const usePostForm = () => {
   const history: History = useHistory();
-  const { post } = usePostByIdx();
+  const { question } = usePostByIdx();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isContentsFocus, setIsContentsFocus] = useState<boolean>(false);
@@ -24,7 +24,7 @@ const usePostForm = () => {
   const [isSubmitModal, setIsSubmitModal] = useState<boolean>(false);
   const [contents, setContents] = useState<string>('');
 
-  const [request, setRequest] = useRecoilState<IPostDto>(requestPostState);
+  const [request, setRequest] = useRecoilState<IQuestionDto>(requestPostState);
   const { title, introduction, postTags } = request;
 
   const handleIsModal = useCallback((isModal: boolean): void => {
@@ -42,7 +42,7 @@ const usePostForm = () => {
   const onChangeTitle = useCallback((e: ChangeEvent<HTMLTextAreaElement>): void => {
     const { value } = e.target;
 
-    setRequest((request: IPostDto) => ({
+    setRequest((request: IQuestionDto) => ({
       ...request,
       title: value,
     }));
@@ -51,7 +51,7 @@ const usePostForm = () => {
   const onChangeIntroduction = useCallback((e: ChangeEvent<HTMLTextAreaElement>): void => {
     const { value } = e.target;
 
-    setRequest((request: IPostDto) => ({
+    setRequest((request: IQuestionDto) => ({
       ...request,
       introduction: value,
     }));
@@ -83,7 +83,7 @@ const usePostForm = () => {
       return;
     }
 
-    setRequest((request: IPostDto) => ({
+    setRequest((request: IQuestionDto) => ({
       ...request,
       postTags: [...postTags, tagInput],
     }));
@@ -97,7 +97,7 @@ const usePostForm = () => {
   }, [onChangePostTags]);
 
   const handleFilterPostTag = useCallback((tagName: string): void => {
-    setRequest((request: IPostDto) => ({
+    setRequest((request: IQuestionDto) => ({
       ...request,
       postTags: request.postTags.filter((tag) => tag !== tagName),
     }));
@@ -105,7 +105,7 @@ const usePostForm = () => {
 
   const onChangeContents = useCallback((text: string): void => {
     setContents(text);
-    setRequest((request: IPostDto) => ({
+    setRequest((request: IQuestionDto) => ({
       ...request,
       contents: text,
     }));
@@ -155,7 +155,7 @@ const usePostForm = () => {
   }, [handleIsModal, history, postIdx, request, setRequest]);
 
   const handleSetProperties = useCallback(async (): Promise<void> => {
-    const { idx, title, thumbnail, introduction, contents, postTags } = post!;
+    const { idx, title, thumbnail, introduction, contents, postTags } = question!;
     setPostIdx(idx);
     setContents(contents!);
     setRequest({
@@ -165,7 +165,7 @@ const usePostForm = () => {
       contents: contents!,
       postTags,
     });
-  }, [post, setRequest]);
+  }, [question, setRequest]);
 
   const handleKeyEvents = useCallback((e: globalThis.KeyboardEvent): void => {
     if (e.key === 'Tab') {
@@ -180,12 +180,12 @@ const usePostForm = () => {
   }, [requestOfferPost]);
 
   useEffect(() => {
-    if (post !== null) {
+    if (question !== null) {
       handleSetProperties();
     }
 
-    return () => setRequest(initialRequestPostState);
-  }, [handleSetProperties, post, setRequest]);
+    return () => setRequest(initialRequestQuestionState);
+  }, [handleSetProperties, question, setRequest]);
 
   useEffect(() => {
     if (isContentsFocus) {

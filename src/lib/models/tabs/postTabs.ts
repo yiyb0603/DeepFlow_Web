@@ -1,9 +1,9 @@
-export interface IPostTab {
+export interface IQuestionTab {
   name: string;
   route: string;
 }
 
-export const userPostTabs: IPostTab[] = [
+export const userPostTabs: IQuestionTab[] = [
   {
     name: '작성한 글',
     route: '?tab=writed',
@@ -15,7 +15,7 @@ export const userPostTabs: IPostTab[] = [
   },
 ];
 
-export const sortPostTabs: IPostTab[] = [
+export const sortPostTabs: IQuestionTab[] = [
   {
     name: '최신순',
     route: '?sort=recent',

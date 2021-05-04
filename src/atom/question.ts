@@ -1,48 +1,48 @@
-import { IPostDto } from 'lib/api/post/post.dto';
+import { IQuestionDto } from 'lib/api/question/question.dto';
 import { atom } from 'recoil';
-import { IPost } from 'types/post.types';
+import { IQuestion } from 'types/post.types';
 
-export const postListLoadingState = atom<boolean>({
+export const questionListLoadingState = atom<boolean>({
   key: 'postListLoadingState',
   default: true,
 });
 
-export const recentPostLoading = atom<boolean>({
+export const recentQuestionLoading = atom<boolean>({
   key: 'recentPostLoading',
   default: true,
 });
 
-export const postState = atom<IPost | null>({
+export const questionState = atom<IQuestion | null>({
   key: 'postState',
   default: null,
 });
 
-export const questionListState = atom<IPost[]>({
+export const questionListState = atom<IQuestion[]>({
   key: 'questionListState',
-  default: [] as IPost[],
+  default: [] as IQuestion[],
 });
 
-export const recentPostState = atom<IPost[]>({
+export const recentQuestionState = atom<IQuestion[]>({
   key: 'recentPostState',
-  default: [] as IPost[],
+  default: [] as IQuestion[],
 });
 
-export const popularPostState = atom<IPost[]>({
+export const popularQuestionState = atom<IQuestion[]>({
   key: 'popularPostState',
-  default: [] as IPost[],
+  default: [] as IQuestion[],
 });
 
-export const tempPostState = atom<IPost[]>({
+export const tempQuestionState = atom<IQuestion[]>({
   key: 'tempPostState',
-  default: [] as IPost[],
+  default: [] as IQuestion[],
 });
 
-export const tagPostState = atom<IPost[]>({
+export const tagQuestionState = atom<IQuestion[]>({
   key: 'tagPostState',
-  default: [] as IPost[],
+  default: [] as IQuestion[],
 });
 
-export const initialRequestPostState = {
+export const initialRequestQuestionState = {
   title: '',
   introduction: '',
   thumbnail: '',
@@ -50,7 +50,7 @@ export const initialRequestPostState = {
   postTags: [],
 };
 
-export const requestPostState = atom<IPostDto>({
+export const requestPostState = atom<IQuestionDto>({
   key: 'requestPostState',
-  default: initialRequestPostState,
+  default: initialRequestQuestionState,
 });

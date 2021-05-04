@@ -3,26 +3,26 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { APP_NAME } from 'constants/util';
 import usePopularPosts from 'hooks/post/usePopularPosts';
-import { IPost } from 'types/post.types';
+import { IQuestion } from 'types/post.types';
 import SectionTitle from '../SectionTitle';
 import PopularItem from './PopularItem';
 import NoPopularItems from '../NoPopularItems';
 import ViewMore from '../ViewMore';
 
-const style = require('./PopularPost.scss');
+const style = require('./PopularQuestion.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-const PopularPost = (): JSX.Element => {
+const PopularQuestion = (): JSX.Element => {
   const { popularPosts } = usePopularPosts();
 
   return (
-    <div className={cx('PopularPost')}>
+    <div className={cx('PopularQuestion')}>
       <SectionTitle title={`${APP_NAME}의 인기 질문글`} />
 
-      <div className={cx('PopularPost-ContentsWrap')}>
-        <div className={cx('PopularPost-ContentsWrap-Posts')}>
+      <div className={cx('PopularQuestion-ContentsWrap')}>
+        <div className={cx('PopularQuestion-ContentsWrap-Questions')}>
           {
-            popularPosts.length > 0 ? popularPosts.map((post: IPost, order: number) => {
+            popularPosts.length > 0 ? popularPosts.map((post: IQuestion, order: number) => {
               const { idx, title, createdAt, viewCount, commentCount, replyCount, likeCount } = post;
 
               return (
@@ -48,4 +48,4 @@ const PopularPost = (): JSX.Element => {
   );
 };
 
-export default memo(PopularPost);
+export default memo(PopularQuestion);
