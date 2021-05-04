@@ -2,7 +2,7 @@ import { useEffect, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import useUserInfo from 'hooks/user/useUserInfo';
-import { IQuestion } from 'types/post.types';
+import { IQuestion } from 'types/question.types';
 import NoItems from 'components/Common/NoItems';
 import ListItem from 'components/Common/Post/ListItem';
 import UserLoading from 'components/UserList/UserLoading';

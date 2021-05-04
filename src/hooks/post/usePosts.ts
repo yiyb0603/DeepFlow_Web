@@ -5,7 +5,7 @@ import usePagination from 'hooks/util/usePagination';
 import { getPostsBySort } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
 import { EPostSort } from 'lib/enum/post';
-import { IQuestion } from 'types/post.types';
+import { IQuestion } from 'types/question.types';
 import useTabState from 'hooks/util/useTabState';
 
 const usePosts = () => {

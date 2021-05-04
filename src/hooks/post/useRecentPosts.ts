@@ -3,8 +3,8 @@ import { useRecoilState } from 'recoil';
 import { recentQuestionLoading, recentQuestionState } from 'atom/question';
 import { getRecentPosts } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
-import { IRecentPostListResponse } from 'types/post.types';
-import { RECENT_COUNT } from 'constants/post';
+import { IRecentPostListResponse } from 'types/question.types';
+import { RECENT_COUNT } from 'constants/question';
 
 const useRecentPosts = () => {
   const [isLoading, setIsLoading] = useRecoilState(recentQuestionLoading);

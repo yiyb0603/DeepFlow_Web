@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import { questionListLoadingState, tempQuestionState } from 'atom/question';
 import { getTempPosts } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
-import { IQuestion } from 'types/post.types';
+import { IQuestion } from 'types/question.types';
 
 const useTempPosts = () => {
   const [tempPosts, setTempPosts] = useRecoilState<IQuestion[]>(tempQuestionState);

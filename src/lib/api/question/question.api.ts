@@ -1,12 +1,12 @@
 import { customAxios } from 'lib/CustomAxios';
 import { EPostSort, EUserPost } from 'lib/enum/post';
 import {
-  IPopularPostListResponse,
+  IPopularQuestionListResponse,
   IQuestionListResponse,
   IQuestionResponse,
   IQuestionSaveResponse,
   IRecentPostListResponse
-} from 'types/post.types';
+} from 'types/question.types';
 import { IResponse } from 'types/Response';
 import { IQuestionDto } from './question.dto';
 
@@ -64,7 +64,7 @@ export const getRecentPosts = async (count: number): Promise<IRecentPostListResp
   return data;
 }
 
-export const getPopularPosts = async (count: number): Promise<IPopularPostListResponse> => {
+export const getPopularPosts = async (count: number): Promise<IPopularQuestionListResponse> => {
   const url: string = `/posts/popular?count=${count}`;
   const { data } = await customAxios.get(url);
   return data;

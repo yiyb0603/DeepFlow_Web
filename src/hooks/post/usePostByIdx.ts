@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { History } from 'history';
 import { questionState } from 'atom/question';
-import { IQuestion, IQuestionResponse } from 'types/post.types';
+import { IQuestion, IQuestionResponse } from 'types/question.types';
 import { deletePost, getPostByIdx } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
 import PostError from 'error/PostError';

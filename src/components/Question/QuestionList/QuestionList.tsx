@@ -6,7 +6,7 @@ import usePosts from 'hooks/post/usePosts';
 import useViewMode from 'hooks/post/useViewMode';
 import { EView } from 'lib/enum/theme';
 import { IQuestionTab, sortPostTabs } from 'lib/models/tabs/postTabs';
-import { IQuestion } from 'types/post.types';
+import { IQuestion } from 'types/question.types';
 import Helmet from 'components/Common/Helmet';
 import NoItems from 'components/Common/NoItems';
 import PageNumberList from 'components/Common/Post/PageNumberList';

@@ -1,6 +1,6 @@
 import { IQuestionDto } from 'lib/api/question/question.dto';
 import { atom } from 'recoil';
-import { IQuestion } from 'types/post.types';
+import { IQuestion } from 'types/question.types';
 
 export const questionListLoadingState = atom<boolean>({
   key: 'postListLoadingState',

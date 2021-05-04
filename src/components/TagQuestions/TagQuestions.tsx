@@ -7,7 +7,7 @@ import useTag from 'hooks/tag/useTag';
 import useViewMode from 'hooks/post/useViewMode';
 import useTagPosts from 'hooks/post/useTagPosts';
 import { EView } from 'lib/enum/theme';
-import { IQuestion } from 'types/post.types';
+import { IQuestion } from 'types/question.types';
 import PageLoading from 'components/Common/Loading/PageLoading';
 import ListItem from 'components/Common/Post/ListItem';
 import GridItem from 'components/Common/Post/GridItem';

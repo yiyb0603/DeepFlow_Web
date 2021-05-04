@@ -2,8 +2,8 @@ import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { APP_NAME } from 'constants/util';
-import usePopularPosts from 'hooks/post/usePopularPosts';
-import { IQuestion } from 'types/post.types';
+import usePopularQuestions from 'hooks/post/usePopularQuestions';
+import { IQuestion } from 'types/question.types';
 import SectionTitle from '../SectionTitle';
 import PopularItem from './PopularItem';
 import NoPopularItems from '../NoPopularItems';
@@ -13,7 +13,7 @@ const style = require('./PopularQuestion.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const PopularQuestion = (): JSX.Element => {
-  const { popularPosts } = usePopularPosts();
+  const { popularQuestions } = usePopularQuestions();
 
   return (
     <div className={cx('PopularQuestion')}>
@@ -22,8 +22,16 @@ const PopularQuestion = (): JSX.Element => {
       <div className={cx('PopularQuestion-ContentsWrap')}>
         <div className={cx('PopularQuestion-ContentsWrap-Questions')}>
           {
-            popularPosts.length > 0 ? popularPosts.map((post: IQuestion, order: number) => {
-              const { idx, title, createdAt, viewCount, commentCount, replyCount, likeCount } = post;
+            popularQuestions.length > 0 ? popularQuestions.map((question: IQuestion, order: number) => {
+              const {
+                idx,
+                title,
+                createdAt,
+                viewCount,
+                commentCount,
+                replyCount,
+                likeCount,
+              } = question;
 
               return (
                 <PopularItem

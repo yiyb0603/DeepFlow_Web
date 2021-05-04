@@ -2,7 +2,7 @@ import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { EView } from 'lib/enum/theme';
-import { IQuestion } from 'types/post.types';
+import { IQuestion } from 'types/question.types';
 import useRecentPosts from 'hooks/post/useRecentPosts';
 import useViewMode from 'hooks/post/useViewMode';
 import GridItem from 'components/Common/Post/GridItem';

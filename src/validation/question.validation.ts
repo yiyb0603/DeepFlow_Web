@@ -1,6 +1,6 @@
 import { IQuestionDto } from 'lib/api/question/question.dto';
 import { errorToast } from 'lib/Toast';
-import { MAX_INTRODUCTION_LENGTH, MAX_TAG_LENGTH, MAX_TITLE_LENGTH } from 'constants/post';
+import { MAX_INTRODUCTION_LENGTH, MAX_TAG_LENGTH, MAX_TITLE_LENGTH } from 'constants/question';
 import { isEmpty } from 'util/isEmpty';
 import { isNullOrUndefined } from 'util/isNullOrUndefined';
 
@@ -30,7 +30,7 @@ export const validateBeforeModal = (request: IQuestionDto): boolean => {
   return true;
 }
 
-export const validatePost = (request: IQuestionDto, isTemp: boolean): boolean => {
+export const validateQuestion = (request: IQuestionDto, isTemp: boolean): boolean => {
   const { title, thumbnail, introduction, contents, postTags } = request;
 
   if (isEmpty(title) || (isEmpty(introduction) && !isTemp) || isEmpty(contents)) {

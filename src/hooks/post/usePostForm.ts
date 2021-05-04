@@ -3,13 +3,13 @@ import { useHistory } from 'react-router-dom';
 import { History } from 'history';
 import { useRecoilState } from 'recoil';
 import { initialRequestQuestionState, requestPostState } from 'atom/question';
-import { MAX_TAG_LENGTH } from 'constants/post';
+import { MAX_TAG_LENGTH } from 'constants/question';
 import { customTrim } from 'converter/customTrim';
 import { createPost, modifyPost } from 'lib/api/question/question.api';
 import { IQuestionDto } from 'lib/api/question/question.dto';
 import { errorToast, successToast } from 'lib/Toast';
 import { isEmpty } from 'util/isEmpty';
-import { validateBeforeModal, validatePost } from 'validation/post.validation';
+import { validateBeforeModal, validateQuestion } from 'validation/question.validation';
 import usePostByIdx from './usePostByIdx';
 
 const usePostForm = () => {
@@ -113,7 +113,7 @@ const usePostForm = () => {
 
   const requestOfferPost = useCallback(async (isTemp: boolean): Promise<void> => {
     try {
-      if (!validatePost(request, isTemp)) {
+      if (!validateQuestion(request, isTemp)) {
         return;
       }
 

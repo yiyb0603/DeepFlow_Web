@@ -4,7 +4,7 @@ import { ClassNamesFn } from 'classnames/types';
 import usePosts from 'hooks/post/usePosts';
 import usePostByIdx from 'hooks/post/usePostByIdx';
 import useTempPosts from 'hooks/post/useTempPosts';
-import { IQuestion } from 'types/post.types';
+import { IQuestion } from 'types/question.types';
 import PageTitle from 'components/Common/PageTitle';
 import ListItem from 'components/Common/Post/ListItem';
 import PageNumberList from 'components/Common/Post/PageNumberList';

@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
 import { IUserModify } from 'lib/api/user/user.dto';
 import { EMajor } from 'lib/enum/majors';
-import { IQuestion } from 'types/post.types';
+import { IQuestion } from 'types/question.types';
 import { IUser } from 'types/user.types';
 
 export const myInfoState = atom<IUser | null>({

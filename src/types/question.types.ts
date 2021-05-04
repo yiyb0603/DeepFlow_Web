@@ -38,9 +38,9 @@ export interface IRecentPostListResponse extends IResponse {
   },
 }
 
-export interface IPopularPostListResponse extends IResponse {
+export interface IPopularQuestionListResponse extends IResponse {
   data: {
-    popularPosts: IQuestion[];
+    popularQuestions: IQuestion[];
   },
 }
 

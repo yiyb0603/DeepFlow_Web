@@ -7,7 +7,7 @@ import { customTrim } from 'converter/customTrim';
 import { getPostsBySearch } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
 import { setStorage } from 'lib/Storage';
-import { IQuestion } from 'types/post.types';
+import { IQuestion } from 'types/question.types';
 import { ISearchKeyword } from 'types/search.types';
 import usePagination from '../util/usePagination';
 

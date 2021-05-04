@@ -7,7 +7,7 @@ import { EResponse } from 'lib/enum/response';
 import { getUserPosts } from 'lib/api/question/question.api';
 import { EUserPost } from 'lib/enum/post';
 import { IUser } from 'types/user.types';
-import { IQuestion } from 'types/post.types';
+import { IQuestion } from 'types/question.types';
 import usePageParam from '../util/usePageParam';
 import { chunkArray } from 'util/chunkArray';
 import useTabState from 'hooks/util/useTabState';

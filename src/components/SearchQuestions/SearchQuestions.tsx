@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import useSearchPosts from 'hooks/post/useSearchPosts';
-import { IQuestion } from 'types/post.types';
+import { IQuestion } from 'types/question.types';
 import PageNumberList from 'components/Common/Post/PageNumberList';
 import PageTitle from 'components/Common/PageTitle';
 import ListItem from 'components/Common/Post/ListItem';
