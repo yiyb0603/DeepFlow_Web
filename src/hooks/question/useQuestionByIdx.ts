@@ -11,22 +11,22 @@ import usePageParam from '../util/usePageParam';
 import { successToast } from 'lib/Toast';
 import { IResponse } from 'types/Response';
 
-const usePostByIdx = () => {
+const useQuestionByIdx = () => {
   const history: History = useHistory();
-  const postIdx: number = usePageParam();
+  const questionIdx: number = usePageParam();
   const [question, setQuestion] = useRecoilState<IQuestion | null>(questionState);
 
-  const requestPostByIdx = useCallback(async (): Promise<void> => {
+  const requestQuestionByIdx = useCallback(async (): Promise<void> => {
     try {
-      const { status, data }: IQuestionResponse = await getPostByIdx(postIdx);
-      
+      const { status, data }: IQuestionResponse = await getPostByIdx(questionIdx);
+
       if (status === EResponse.OK) {
         setQuestion(data.post);
       }
     } catch (error) {
       new PostError(error).getPostError(history);
     }
-  }, [history, postIdx, setQuestion]);
+  }, [history, questionIdx, setQuestion]);
 
   const requestDeleteQuestion = useCallback(async (questionIdx: number, isDetail: boolean = true): Promise<void> => {
     try {
@@ -45,12 +45,12 @@ const usePostByIdx = () => {
   }, [history]);
 
   useEffect(() => {
-    if (Number.isInteger(postIdx)) {
-      requestPostByIdx();
+    if (Number.isInteger(questionIdx)) {
+      requestQuestionByIdx();
     }
 
     return () => setQuestion(null);
-  }, [postIdx, requestPostByIdx, setQuestion]);
+  }, [questionIdx, requestQuestionByIdx, setQuestion]);
 
   return {
     question,
@@ -58,4 +58,4 @@ const usePostByIdx = () => {
   };
 };
 
-export default usePostByIdx;
+export default useQuestionByIdx;

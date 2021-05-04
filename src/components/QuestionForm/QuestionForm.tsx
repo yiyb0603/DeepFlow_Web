@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import usePostForm from 'hooks/post/usePostForm';
+import useQuestionForm from 'hooks/question/useQuestionForm';
 import TagForm from './TagForm';
 import TagList from './TagList';
 import FormBottom from '../Common/Form/FormBottom';
@@ -38,7 +38,7 @@ const QuestionForm = (): JSX.Element => {
     requestOfferPost,
     isSubmitModal,
     handleIsModal,
-  } = usePostForm();
+  } = useQuestionForm();
   
   return (
     <FormTemplate

@@ -11,10 +11,10 @@ const usePopularQuestions = () => {
 
   const requestPopularQuestions = useCallback(async (): Promise<void> => {
     try {
-      const { status, data: { popularQuestions } } = await getPopularPosts(POPULAR_COUNT);
+      const { status, data: { popularPosts } } = await getPopularPosts(POPULAR_COUNT);
 
       if (status === EResponse.OK) {
-        setPopularQuestions(popularQuestions);
+        setPopularQuestions(popularPosts);
       }
     } catch (error) {
       console.log(error);

@@ -54,7 +54,7 @@ export const userLoading = atom<boolean>({
   default: true,
 });
 
-export const userPostState = atom<IQuestion[]>({
-  key: 'userPostState',
+export const userQuestionState = atom<IQuestion[]>({
+  key: 'userQuestionState',
   default: [] as IQuestion[],
 });

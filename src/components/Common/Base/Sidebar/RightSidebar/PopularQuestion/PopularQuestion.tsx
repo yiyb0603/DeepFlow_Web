@@ -2,7 +2,7 @@ import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { APP_NAME } from 'constants/util';
-import usePopularQuestions from 'hooks/post/usePopularQuestions';
+import usePopularQuestions from 'hooks/question/usePopularQuestions';
 import { IQuestion } from 'types/question.types';
 import SectionTitle from '../SectionTitle';
 import PopularItem from './PopularItem';

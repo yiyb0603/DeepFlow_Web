@@ -3,17 +3,17 @@ import { atom } from 'recoil';
 import { IQuestion } from 'types/question.types';
 
 export const questionListLoadingState = atom<boolean>({
-  key: 'postListLoadingState',
+  key: 'questionListLoadingState',
   default: true,
 });
 
 export const recentQuestionLoading = atom<boolean>({
-  key: 'recentPostLoading',
+  key: 'recentQuestionLoading',
   default: true,
 });
 
 export const questionState = atom<IQuestion | null>({
-  key: 'postState',
+  key: 'questionState',
   default: null,
 });
 
@@ -23,22 +23,22 @@ export const questionListState = atom<IQuestion[]>({
 });
 
 export const recentQuestionState = atom<IQuestion[]>({
-  key: 'recentPostState',
+  key: 'recentQuestionState',
   default: [] as IQuestion[],
 });
 
 export const popularQuestionState = atom<IQuestion[]>({
-  key: 'popularPostState',
+  key: 'popularQuestionState',
   default: [] as IQuestion[],
 });
 
 export const tempQuestionState = atom<IQuestion[]>({
-  key: 'tempPostState',
+  key: 'tempQuestionState',
   default: [] as IQuestion[],
 });
 
 export const tagQuestionState = atom<IQuestion[]>({
-  key: 'tagPostState',
+  key: 'tagQuestionState',
   default: [] as IQuestion[],
 });
 
@@ -50,7 +50,7 @@ export const initialRequestQuestionState = {
   postTags: [],
 };
 
-export const requestPostState = atom<IQuestionDto>({
-  key: 'requestPostState',
+export const requestQuestionState = atom<IQuestionDto>({
+  key: 'requestQuestionState',
   default: initialRequestQuestionState,
 });

@@ -3,8 +3,8 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { EView } from 'lib/enum/theme';
 import { IQuestion } from 'types/question.types';
-import useRecentPosts from 'hooks/post/useRecentPosts';
-import useViewMode from 'hooks/post/useViewMode';
+import useRecentQuestions from 'hooks/question/useRecentQuestions';
+import useViewMode from 'hooks/question/useViewMode';
 import GridItem from 'components/Common/Post/GridItem';
 import ListItem from 'components/Common/Post/ListItem';
 import NoItems from 'components/Common/NoItems';
@@ -15,7 +15,7 @@ const style = require('./RecentQuestion.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const RecentQuestion = (): JSX.Element => {
-  const { recentPosts } = useRecentPosts();
+  const { recentQuestions } = useRecentQuestions();
   const { viewMode, onChangeViewMode, flexStyle } = useViewMode();
   
   const { LIST } = EView;
@@ -31,19 +31,20 @@ const RecentQuestion = (): JSX.Element => {
 
       <div className={cx('RecentQuestion-List')} style={flexStyle}>
       {
-        recentPosts.length > 0 ? recentPosts.map((post: IQuestion) => {
+        recentQuestions.length > 0 ?
+        recentQuestions.map((question: IQuestion) => {
           return (
             <>
               {
                 viewMode === LIST ?
                 <ListItem
-                  key={post.idx}
-                  {...post}
+                  key={question.idx}
+                  {...question}
                 />
                 :
                 <GridItem
-                  key={post.idx}  
-                  {...post}
+                  key={question.idx}  
+                  {...question}
                 />
               }
             </>

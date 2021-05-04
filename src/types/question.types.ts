@@ -40,7 +40,7 @@ export interface IRecentPostListResponse extends IResponse {
 
 export interface IPopularQuestionListResponse extends IResponse {
   data: {
-    popularQuestions: IQuestion[];
+    popularPosts: IQuestion[];
   },
 }
 

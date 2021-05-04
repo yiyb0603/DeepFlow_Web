@@ -5,30 +5,30 @@ import { getTempPosts } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
 import { IQuestion } from 'types/question.types';
 
-const useTempPosts = () => {
-  const [tempPosts, setTempPosts] = useRecoilState<IQuestion[]>(tempQuestionState);
+const useTempQuestions = () => {
+  const [tempQuestions, setTempQuestions] = useRecoilState<IQuestion[]>(tempQuestionState);
   const [questionLoading, setQuestionLoading] = useRecoilState<boolean>(questionListLoadingState);
 
-  const requestTempPosts = useCallback(async (): Promise<void> => {
+  const requestTempQuestions = useCallback(async (): Promise<void> => {
     try {
       setQuestionLoading(true);
       const { status, data: { posts } } = await getTempPosts();
 
       if (status === EResponse.OK) {
-        setTempPosts(posts);
+        setTempQuestions(posts);
       }
     } catch (error) {
       console.log(error);
     } finally {
       setQuestionLoading(false);
     }
-  }, [setQuestionLoading, setTempPosts]);
+  }, [setQuestionLoading, setTempQuestions]);
 
   return {
-    tempPosts,
+    tempQuestions,
     questionLoading,
-    requestTempPosts,
+    requestTempQuestions,
   };
 };
 
-export default useTempPosts;
+export default useTempQuestions;

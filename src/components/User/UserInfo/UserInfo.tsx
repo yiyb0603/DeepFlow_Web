@@ -21,7 +21,7 @@ const UserInfo = (): JSX.Element => {
     onChangeUserPostTab,
     userPostTab,
     renderUserInfo,
-    splitedPostList,
+    splitedQuestionList,
     currentPage,
     onChangeCurrentPage,
     handlePrevPage,
@@ -56,13 +56,13 @@ const UserInfo = (): JSX.Element => {
 
         <div className={cx('UserInfo-PostList')}>
         {
-          splitedPostList.length > 0 ? (
-            splitedPostList[currentPage - 1] &&
-            splitedPostList[currentPage - 1].map((post: IQuestion) => {
+          splitedQuestionList.length > 0 ? (
+            splitedQuestionList[currentPage - 1] &&
+            splitedQuestionList[currentPage - 1].map((question: IQuestion) => {
               return (
                 <ListItem
-                  key={post.idx}
-                  {...post}
+                  key={question.idx}
+                  {...question}
                 />
               );
             })

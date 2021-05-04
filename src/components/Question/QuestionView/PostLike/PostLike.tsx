@@ -5,7 +5,7 @@ import { CgUserList } from 'react-icons/cg';
 import { infoToast } from 'lib/Toast';
 import LikeSubmit from './LikeSubmit';
 import LikeList from './LikeList';
-import useLike from 'hooks/post/useLike';
+import useLike from 'hooks/question/useLike';
 
 const style = require('./PostLike.scss');
 const cx: ClassNamesFn = classNames.bind(style);

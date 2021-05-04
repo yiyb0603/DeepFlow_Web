@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import useSearchPosts from 'hooks/post/useSearchPosts';
+import useSearchPosts from 'hooks/question/useSearchQuestions';
 import { IQuestion } from 'types/question.types';
 import PageNumberList from 'components/Common/Post/PageNumberList';
 import PageTitle from 'components/Common/PageTitle';
@@ -14,7 +14,7 @@ const SearchQuestions = (): JSX.Element => {
     onChangeKeyword,
     onKeydownKeyword,
     handlePushToSearch,
-    searchPosts,
+    searchQuestions,
     currentPage,
     onChangeCurrentPage,
     handlePrevPage,
@@ -40,17 +40,18 @@ const SearchQuestions = (): JSX.Element => {
 
       <div>
         {
-          searchPosts.length > 0 ? searchPosts.map((post: IQuestion) => (
+          searchQuestions.length > 0 ?
+          searchQuestions.map((question: IQuestion) => (
             <ListItem
-              key={post.idx}
-              {...post}
+              key={question.idx}
+              {...question}
             />
           )) : <NoItems text='검색한 글이 없습니다.' />
         }
       </div>
 
       {
-        searchPosts.length > 0 &&
+        searchQuestions.length > 0 &&
         <PageNumberList
           currentPage={currentPage}
           onChangeCurrentPage={onChangeCurrentPage}

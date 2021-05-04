@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState, ChangeEvent, KeyboardEvent } from 're
 import { useHistory } from 'react-router-dom';
 import { History } from 'history';
 import { useRecoilState } from 'recoil';
-import { initialRequestQuestionState, requestPostState } from 'atom/question';
+import { initialRequestQuestionState, requestQuestionState } from 'atom/question';
 import { MAX_TAG_LENGTH } from 'constants/question';
 import { customTrim } from 'converter/customTrim';
 import { createPost, modifyPost } from 'lib/api/question/question.api';
@@ -10,21 +10,21 @@ import { IQuestionDto } from 'lib/api/question/question.dto';
 import { errorToast, successToast } from 'lib/Toast';
 import { isEmpty } from 'util/isEmpty';
 import { validateBeforeModal, validateQuestion } from 'validation/question.validation';
-import usePostByIdx from './usePostByIdx';
+import useQuestionByIdx from './useQuestionByIdx';
 
-const usePostForm = () => {
+const useQuestionForm = () => {
   const history: History = useHistory();
-  const { question } = usePostByIdx();
+  const { question } = useQuestionByIdx();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isContentsFocus, setIsContentsFocus] = useState<boolean>(false);
 
   const [tagInput, setTagInput] = useState<string>('');
-  const [postIdx, setPostIdx] = useState<number | null>(null);
+  const [questionIdx, setQuestionIdx] = useState<number | null>(null);
   const [isSubmitModal, setIsSubmitModal] = useState<boolean>(false);
   const [contents, setContents] = useState<string>('');
 
-  const [request, setRequest] = useRecoilState<IQuestionDto>(requestPostState);
+  const [request, setRequest] = useRecoilState<IQuestionDto>(requestQuestionState);
   const { title, introduction, postTags } = request;
 
   const handleIsModal = useCallback((isModal: boolean): void => {
@@ -118,25 +118,25 @@ const usePostForm = () => {
       }
 
       if (isTemp) {
-        if (postIdx === null) {
+        if (questionIdx === null) {
           const { idx } = await createPost(request, isTemp);
-          setPostIdx(idx!);
+          setQuestionIdx(idx!);
         } else {
-          await modifyPost(postIdx, request, isTemp);
+          await modifyPost(questionIdx, request, isTemp);
         }
         
         successToast('글 임시저장을 성공하였습니다.');
       } else {
         setIsLoading(true);
-        if (postIdx === null) {
+        if (questionIdx === null) {
           await createPost(request, isTemp);
         } else {
-          await modifyPost(postIdx, request, isTemp);
+          await modifyPost(questionIdx, request, isTemp);
         }
 
         setIsLoading(false);
         handleIsModal(false);
-        successToast(`글 ${postIdx === null ? '작성' : '수정'}을 성공하였습니다.`);
+        successToast(`글 ${questionIdx === null ? '작성' : '수정'}을 성공하였습니다.`);
         history.push('/');
 
         setRequest({
@@ -152,11 +152,11 @@ const usePostForm = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [handleIsModal, history, postIdx, request, setRequest]);
+  }, [handleIsModal, history, questionIdx, request, setRequest]);
 
   const handleSetProperties = useCallback(async (): Promise<void> => {
     const { idx, title, thumbnail, introduction, contents, postTags } = question!;
-    setPostIdx(idx);
+    setQuestionIdx(idx);
     setContents(contents!);
     setRequest({
       title,
@@ -225,4 +225,4 @@ const usePostForm = () => {
   };
 }
 
-export default usePostForm;
+export default useQuestionForm;

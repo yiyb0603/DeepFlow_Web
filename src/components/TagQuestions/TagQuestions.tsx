@@ -4,8 +4,8 @@ import { ClassNamesFn } from 'classnames/types';
 import { useHistory } from 'react-router-dom';
 import { History } from 'history';
 import useTag from 'hooks/tag/useTag';
-import useViewMode from 'hooks/post/useViewMode';
-import useTagPosts from 'hooks/post/useTagPosts';
+import useViewMode from 'hooks/question/useViewMode';
+import useTagQuestions from 'hooks/question/useTagQuestions';
 import { EView } from 'lib/enum/theme';
 import { IQuestion } from 'types/question.types';
 import PageLoading from 'components/Common/Loading/PageLoading';
@@ -22,16 +22,16 @@ const TagQuestions = (): JSX.Element => {
 
   const { pageParam, tagInfo } = useTag();
   const {
-    tagPostList,
+    tagQuestionList,
     requestPostsByTag,
     currentPage,
     onChangeCurrentPage,
     handlePrevPage,
     handleNextPage,
     numberListPage,
-    splitedTempPosts,
+    splitedQuestionList,
     splitedNumberList,
-  } = useTagPosts();
+  } = useTagQuestions();
   const { viewMode, onChangeViewMode, flexStyle } = useViewMode();
   
   useEffect(() => {
@@ -49,25 +49,25 @@ const TagQuestions = (): JSX.Element => {
       <div className={cx('TagQuestions')}>
         <TagInfo
           tagInfo={tagInfo}
-          count={tagPostList.length}
+          count={tagQuestionList.length}
           viewMode={viewMode}
           onChangeViewMode={onChangeViewMode}
         />
 
         <div className={cx('TagQuestions-List')} style={flexStyle}>
           {
-            splitedTempPosts[currentPage - 1] &&
-            splitedTempPosts[currentPage - 1].map((tagPost: IQuestion) => (
+            splitedQuestionList[currentPage - 1] &&
+            splitedQuestionList[currentPage - 1].map((tagQuestoin: IQuestion) => (
               <>
               {
                 viewMode === EView.LIST ?
                 <ListItem
-                  key={tagPost.idx}
-                  {...tagPost}
+                  key={tagQuestoin.idx}
+                  {...tagQuestoin}
                 /> :
                 <GridItem
-                  key={tagPost.idx}
-                  {...tagPost}
+                  key={tagQuestoin.idx}
+                  {...tagQuestoin}
                 />
               }
               </>

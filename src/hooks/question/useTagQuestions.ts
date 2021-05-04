@@ -9,7 +9,7 @@ import { IQuestion } from 'types/question.types';
 import usePagination from 'hooks/util/usePagination';
 import { chunkArray } from 'util/chunkArray';
 
-const useTagPosts = () => {
+const useTagQuestions = () => {
   const { tag }: { tag: string } = useParams();
   const {
     setTotalPage,
@@ -21,28 +21,28 @@ const useTagPosts = () => {
     splitedNumberList,
   } = usePagination();
 
-  const [postLoading, setPostLoading] = useRecoilState<boolean>(questionListLoadingState);
-  const [tagPostList, setTagPostList] = useRecoilState<IQuestion[]>(tagQuestionState);
+  const [questionLoading, setQuestionState] = useRecoilState<boolean>(questionListLoadingState);
+  const [tagQuestionList, setTagQuestionList] = useRecoilState<IQuestion[]>(tagQuestionState);
 
-  const splitedTempPosts: IQuestion[][] = useMemo(() => {
-    return chunkArray(tagPostList, CHUNK_POST_COUNT) as IQuestion[][];
-  }, [tagPostList]);
+  const splitedQuestionList: IQuestion[][] = useMemo(() => {
+    return chunkArray(tagQuestionList, CHUNK_POST_COUNT) as IQuestion[][];
+  }, [tagQuestionList]);
 
   const requestPostsByTag = useCallback(async (): Promise<void> => {
     try {
-      setPostLoading(true);
+      setQuestionState(true);
       const { status, data: { posts } } = await getPostsByTag(tag);
 
       if (status === EResponse.OK) {
-        setTagPostList(posts);
+        setTagQuestionList(posts);
         setTotalPage(Math.ceil(posts.length / CHUNK_POST_COUNT));
       }
     } catch (error) {
       console.log(error);
     } finally {
-      setPostLoading(false);
+      setQuestionState(false);
     }
-  }, [setPostLoading, setTagPostList, setTotalPage, tag]);
+  }, [setQuestionState, setTagQuestionList, setTotalPage, tag]);
 
   return {
     currentPage,
@@ -51,12 +51,12 @@ const useTagPosts = () => {
     handleNextPage,
     numberListPage,
     splitedNumberList,
-    splitedTempPosts,
+    splitedQuestionList,
 
-    postLoading,
-    tagPostList,
+    questionLoading,
+    tagQuestionList,
     requestPostsByTag,
   };
 }
 
-export default useTagPosts;
+export default useTagQuestions;

@@ -3,35 +3,35 @@ import { useRecoilState } from 'recoil';
 import { recentQuestionLoading, recentQuestionState } from 'atom/question';
 import { getRecentPosts } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
-import { IRecentPostListResponse } from 'types/question.types';
+import { IQuestion, IRecentPostListResponse } from 'types/question.types';
 import { RECENT_COUNT } from 'constants/question';
 
-const useRecentPosts = () => {
-  const [isLoading, setIsLoading] = useRecoilState(recentQuestionLoading);
-  const [recentPosts, setRecentPosts] = useRecoilState(recentQuestionState);
+const useRecentQuestions = () => {
+  const [isLoading, setIsLoading] = useRecoilState<boolean>(recentQuestionLoading);
+  const [recentQuestions, setRecentQuestions] = useRecoilState<IQuestion[]>(recentQuestionState);
 
-  const requestRecentPosts = useCallback(async (): Promise<void> => {
+  const requestRecentQuestions = useCallback(async (): Promise<void> => {
     try {
       const { status, data: { recentPosts } }: IRecentPostListResponse = await getRecentPosts(RECENT_COUNT);
       
       if (status === EResponse.OK) {
-        setRecentPosts(recentPosts);
+        setRecentQuestions(recentPosts);
       }
     } catch (error) {
       console.log(error);
     } finally {
       setIsLoading(false);
     }
-  }, [setIsLoading, setRecentPosts]);
+  }, [setIsLoading, setRecentQuestions]);
 
   useEffect(() => {
-    requestRecentPosts();
-  }, [requestRecentPosts]);
+    requestRecentQuestions();
+  }, [requestRecentQuestions]);
 
   return {
     isLoading,
-    recentPosts,
+    recentQuestions,
   };
 };
 
-export default useRecentPosts;
+export default useRecentQuestions;

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { ImFolderUpload } from 'react-icons/im';
 import NoSelected from 'assets/images/select-thumbnail.png';
-import useSelectThumbnail from 'hooks/post/useSelectThumbnail';
+import useSelectThumbnail from 'hooks/question/useSelectThumbnail';
 
 const style = require('./SelectThumbnail.scss');
 const cx: ClassNamesFn = classNames.bind(style);

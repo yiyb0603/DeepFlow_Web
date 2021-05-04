@@ -2,7 +2,7 @@ import { useCallback, useMemo, memo, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import useTempPosts from 'hooks/post/useTempPosts';
+import useTempQuestions from 'hooks/question/useTempQuestions';
 import { APP_LOGO } from 'constants/util';
 import { isNullOrUndefined } from 'util/isNullOrUndefined';
 import { IUser } from 'types/user.types';
@@ -26,7 +26,7 @@ export interface ItemProps {
   postTags?: string[];
   user?: IUser;
   isTemp?: boolean;
-  requestDeletePost?: (postIdx: number, isDetail?: boolean) => Promise<void>;
+  requestDeleteQuestion?: (postIdx: number, isDetail?: boolean) => Promise<void>;
 }
 
 const ListItem = ({
@@ -43,21 +43,23 @@ const ListItem = ({
   postTags,
   user,
   isTemp,
-  requestDeletePost,
+  requestDeleteQuestion,
 }: ItemProps): JSX.Element => {
-  const { requestTempPosts } = useTempPosts();
-  const postLink: string = useMemo(() => isTemp ? `/question-form/${idx}` : `/question/${idx}`, [idx, isTemp]);
+  const { requestTempQuestions } = useTempQuestions();
+  const questionLink: string = useMemo(() => {
+    return isTemp ? `/question-form/${idx}` : `/question/${idx}`;
+  }, [idx, isTemp]);
   
   const onDelete = useCallback(async (e: MouseEvent<HTMLDivElement>): Promise<void> => {
     e.preventDefault();
     e.stopPropagation();
 
-    await requestDeletePost!(idx, false);
-    await requestTempPosts!();
-  }, [idx, requestDeletePost, requestTempPosts]);
+    await requestDeleteQuestion!(idx, false);
+    await requestTempQuestions!();
+  }, [idx, requestDeleteQuestion, requestTempQuestions]);
 
   return (
-    <Link to={postLink} className={cx('ListItem')}>
+    <Link to={questionLink} className={cx('ListItem')}>
       <div className={cx('ListItem-Contents')}>
         <div className={cx('ListItem-Contents-ImageWrap')}>
           <img

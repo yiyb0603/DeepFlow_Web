@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
-import { userInfoState, userPostState } from 'atom/user';
+import { userInfoState, userQuestionState } from 'atom/user';
 import { CHUNK_POST_COUNT } from 'constants/util';
 import { getUserInfo } from 'lib/api/user/user.api';
 import { EResponse } from 'lib/enum/response';
@@ -29,12 +29,12 @@ const useUserInfo = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [userPostTab, setUserPostTab] = useTabState<EUserPost>('tab', EUserPost.WRITED);
 
-  const [userPostList, setUserPostList] = useRecoilState<IQuestion[]>(userPostState);
+  const [userQuestionList, setUserQuestionList] = useRecoilState<IQuestion[]>(userQuestionState);
   const [userInfo, setUserInfo] = useRecoilState<IUser | null>(userInfoState);
 
-  const splitedPostList: IQuestion[][] = useMemo(() => {
-    return chunkArray(userPostList, CHUNK_POST_COUNT);
-  }, [userPostList]);
+  const splitedQuestionList: IQuestion[][] = useMemo(() => {
+    return chunkArray(userQuestionList, CHUNK_POST_COUNT);
+  }, [userQuestionList]);
 
   const onChangeUserPostTab = useCallback((userPostTab: EUserPost): void => {
     setUserPostTab(userPostTab);
@@ -58,13 +58,13 @@ const useUserInfo = () => {
       const { status, data: { posts } } = await getUserPosts(userIdx, userPostTab);
 
       if (status === EResponse.OK) {
-        setUserPostList(posts);
+        setUserQuestionList(posts);
         setTotalPage(posts.length / CHUNK_POST_COUNT);
       }
     } catch (error) {
       console.log(error);
     }
-  }, [setTotalPage, setUserPostList, userIdx, userPostTab]);
+  }, [setTotalPage, setUserQuestionList, userIdx, userPostTab]);
 
   const renderUserInfo = useCallback(async (): Promise<void> => {
     if (Number.isInteger(userIdx)) {
@@ -85,7 +85,7 @@ const useUserInfo = () => {
     userPostTab,
     renderUserInfo,
     requestUserInfo,
-    splitedPostList,
+    splitedQuestionList,
     currentPage,
     onChangeCurrentPage,
     handlePrevPage,

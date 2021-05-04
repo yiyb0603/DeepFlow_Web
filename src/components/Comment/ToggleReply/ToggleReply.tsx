@@ -23,7 +23,7 @@ const ToggleReply = ({
   commentIdx,
   replies,
 }: ToggleReplyProps): JSX.Element => {
-  const postIdx: number = usePageParam();
+  const questionIdx: number = usePageParam();
 
   const [isReplyWrite, setIsReplyWrite] = useState<boolean>(false);
   const [modifyReply, setModifyReply] = useRecoilState<IReplyModify | null>(modifyReplyState);
@@ -48,13 +48,13 @@ const ToggleReply = ({
     setModifyReply({
       idx,
       contents,
-      postIdx,
+      postIdx: questionIdx,
       commentIdx,
     });
     
     setContents(contents);
     setIsReplyWrite(false);
-  }, [commentIdx, postIdx, setContents, setModifyReply]);
+  }, [commentIdx, questionIdx, setContents, setModifyReply]);
 
   return (
     <>

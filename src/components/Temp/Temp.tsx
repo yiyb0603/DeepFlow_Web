@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import usePosts from 'hooks/post/usePosts';
-import usePostByIdx from 'hooks/post/usePostByIdx';
-import useTempPosts from 'hooks/post/useTempPosts';
+import usePosts from 'hooks/question/usePosts';
+import useQuestionByIdx from 'hooks/question/useQuestionByIdx';
+import useTempQuestions from 'hooks/question/useTempQuestions';
 import { IQuestion } from 'types/question.types';
 import PageTitle from 'components/Common/PageTitle';
 import ListItem from 'components/Common/Post/ListItem';
@@ -23,12 +23,12 @@ const Temp = (): JSX.Element => {
     numberListPage,
     splitedNumberList,
   } = usePosts();
-  const { tempPosts, requestTempPosts } = useTempPosts();
-  const { requestDeleteQuestion } = usePostByIdx();
+  const { tempQuestions, requestTempQuestions } = useTempQuestions();
+  const { requestDeleteQuestion } = useQuestionByIdx();
 
   useEffect(() => {
-    requestTempPosts();
-  }, [requestTempPosts]);
+    requestTempQuestions();
+  }, [requestTempQuestions]);
 
   return (
     <div className={cx('Temp')}>
@@ -40,18 +40,19 @@ const Temp = (): JSX.Element => {
 
       <div className={cx('Temp-List')}>
         {
-          tempPosts.length > 0 ? tempPosts.map((post: IQuestion) => (
+          tempQuestions.length > 0 ?
+          tempQuestions.map((question: IQuestion) => (
             <ListItem
-              key={post.idx}
-              {...post}
-              requestDeletePost={requestDeleteQuestion}
+              key={question.idx}
+              {...question}
+              requestDeleteQuestion={requestDeleteQuestion}
             />
           )) : <NoItems text='임시저장글이 없습니다.' />
         }
       </div>
 
       {
-        tempPosts.length > 0 &&
+        tempQuestions.length > 0 &&
         <PageNumberList
           currentPage={currentPage}
           onChangeCurrentPage={onChangeCurrentPage}

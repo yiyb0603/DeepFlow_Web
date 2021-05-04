@@ -11,7 +11,7 @@ import { IQuestion } from 'types/question.types';
 import { ISearchKeyword } from 'types/search.types';
 import usePagination from '../util/usePagination';
 
-const useSearchPosts = () => {
+const useSearchQuestions = () => {
   const {
     setTotalPage,
     currentPage,
@@ -23,7 +23,7 @@ const useSearchPosts = () => {
   } = usePagination();
   const history: History = useHistory();
 
-  const [searchPosts, setSearchPosts] = useState<IQuestion[]>([]);
+  const [searchQuestions, setSearchQuestions] = useState<IQuestion[]>([]);
 
   const [keyword, setKeyword] = useRecoilState<string>(searchKeywordState);
   const setShowHistory: SetterOrUpdater<boolean> = useSetRecoilState<boolean>(showSearchHistoryState);
@@ -54,7 +54,7 @@ const useSearchPosts = () => {
       if (status === EResponse.OK) {
         setShowHistory(false);
         setTotalPage(totalPage!);
-        setSearchPosts(posts);
+        setSearchQuestions(posts);
       }
     } catch (error) {
       console.log(error);
@@ -94,7 +94,7 @@ const useSearchPosts = () => {
 
     handlePushToSearch,
 
-    searchPosts,
+    searchQuestions,
     currentPage,
     onChangeCurrentPage,
     handlePrevPage,
@@ -105,4 +105,4 @@ const useSearchPosts = () => {
   };
 }
 
-export default useSearchPosts;
+export default useSearchQuestions;

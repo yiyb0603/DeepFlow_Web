@@ -1,4 +1,4 @@
-import usePostByIdx from 'hooks/post/usePostByIdx';
+import useQuestionByIdx from 'hooks/question/useQuestionByIdx';
 import { getGithubAddress } from 'util/getGithubAddress';
 import Comment from 'components/Comment';
 import Helmet from 'components/Common/Helmet';
@@ -13,7 +13,7 @@ import Thumbnail from './Thumbnail';
 import PostUserInfo from './PostUserInfo';
 
 const QuestionView = (): JSX.Element => {
-  const { question, requestDeleteQuestion } = usePostByIdx();
+  const { question, requestDeleteQuestion } = useQuestionByIdx();
 
   return (
     <>
@@ -35,7 +35,7 @@ const QuestionView = (): JSX.Element => {
           idx={question.idx}
           createdAt={question.createdAt}
           user={question.user}
-          requestDeletePost={requestDeleteQuestion}
+          requestDeleteQuestion={requestDeleteQuestion}
         />
 
         <PostTags
@@ -46,7 +46,9 @@ const QuestionView = (): JSX.Element => {
           thumbnail={question.thumbnail!}
         />
 
-        <MarkdownRender contents={question.contents!} />
+        <MarkdownRender
+          contents={question.contents!}
+        />
 
         <PostLike />
 
