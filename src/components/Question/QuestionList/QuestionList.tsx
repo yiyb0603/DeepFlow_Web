@@ -16,12 +16,12 @@ import HomeLoading from 'components/Home/HomeLoading';
 import SelectViewMode from 'components/Common/Post/SelectViewMode';
 import GridItem from 'components/Common/Post/GridItem';
 import SelectTab from 'components/Common/SelectTab';
-import AskButton from './AskButton';
+import AskButton from '../AskButton';
 
-const style = require('./Questions.scss');
+const style = require('./QuestionList.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-const Questions = (): JSX.Element => {
+const QuestionList = (): JSX.Element => {
   const {
     postLoading,
     questionList,
@@ -47,7 +47,7 @@ const Questions = (): JSX.Element => {
   }, [requestPostList, sortTab, currentPage]);
 
   return (
-    <div className={cx('Questions')}>
+    <div className={cx('QuestionList')}>
     {
       postLoading && questionList.length <= 0 ? <HomeLoading />
       :
@@ -57,8 +57,8 @@ const Questions = (): JSX.Element => {
           <AskButton />
         </PageTitle>
 
-        <div className={cx('Questions-TabViewWrapper')}>
-          <div className={cx('Questions-TabViewWrapper-Tab')}>
+        <div className={cx('QuestionList-TabViewWrapper')}>
+          <div className={cx('QuestionList-TabViewWrapper-Tab')}>
             {
               sortPostTabs.map(({ name, route }: IPostTab, idx: number) => (
                 <SelectTab
@@ -115,4 +115,4 @@ const Questions = (): JSX.Element => {
   );
 };
 
-export default Questions;
+export default QuestionList;

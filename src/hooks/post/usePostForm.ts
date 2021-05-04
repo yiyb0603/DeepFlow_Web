@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState, ChangeEvent, KeyboardEvent } from 're
 import { useHistory } from 'react-router-dom';
 import { History } from 'history';
 import { useRecoilState } from 'recoil';
-import { initialRequestPostState, requestPostState } from 'atom/post';
+import { initialRequestPostState, requestPostState } from 'atom/question';
 import { MAX_TAG_LENGTH } from 'constants/post';
 import { customTrim } from 'converter/customTrim';
 import { createPost, modifyPost } from 'lib/api/post/post.api';

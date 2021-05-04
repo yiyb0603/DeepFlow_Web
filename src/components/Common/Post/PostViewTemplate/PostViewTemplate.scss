@@ -1,10 +1,6 @@
-.Post {
+.PostViewTemplate {
   max-width: 870px;
   padding: 0 0.625rem;
   margin: 2rem auto;
   color: var(--contrast);
-
-  &-Contents {
-    white-space: pre-wrap;
-  }
 }

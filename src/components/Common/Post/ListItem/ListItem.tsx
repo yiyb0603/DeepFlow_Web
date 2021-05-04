@@ -2,12 +2,12 @@ import { useCallback, useMemo, memo, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import useTempPosts from 'hooks/post/useTempPosts';
+import { APP_LOGO } from 'constants/util';
 import { isNullOrUndefined } from 'util/isNullOrUndefined';
 import { IUser } from 'types/user.types';
 import TimeSticker from '../TimeSticker';
 import PostSubInfo from '../PostSubInfo';
-import useTempPosts from 'hooks/post/useTempPosts';
-import { APP_LOGO } from 'constants/util';
 
 const style = require('./ListItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -46,7 +46,7 @@ const ListItem = ({
   requestDeletePost,
 }: ItemProps): JSX.Element => {
   const { requestTempPosts } = useTempPosts();
-  const postLink: string = useMemo(() => isTemp ? `/post-form/${idx}` : `/post/${idx}`, [idx, isTemp]);
+  const postLink: string = useMemo(() => isTemp ? `/question-form/${idx}` : `/question/${idx}`, [idx, isTemp]);
   
   const onDelete = useCallback(async (e: MouseEvent<HTMLDivElement>): Promise<void> => {
     e.preventDefault();

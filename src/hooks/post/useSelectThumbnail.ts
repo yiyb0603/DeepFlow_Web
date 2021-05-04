@@ -1,6 +1,6 @@
 import { useCallback, ChangeEvent, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { requestPostState } from 'atom/post';
+import { requestPostState } from 'atom/question';
 import { IPostDto } from 'lib/api/post/post.dto';
 import { uploadFiles } from 'lib/api/uploads/uploads.api';
 import { EResponse } from 'lib/enum/response';

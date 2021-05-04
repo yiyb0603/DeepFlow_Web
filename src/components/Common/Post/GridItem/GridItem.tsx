@@ -26,7 +26,7 @@ const GridItem = ({
   user,
 }: ItemProps): JSX.Element => {
   return (
-    <Link to={`/post/${idx}`} className={cx('GridItem')}>
+    <Link to={`/question/${idx}`} className={cx('GridItem')}>
       <div className={cx('GridItem-ImageWrap')}>
         <img src={thumbnail || Sample} className={cx('GridItem-ImageWrap-Thumbnail')} alt='thumbnail' />
         <TimeSticker createdAt={createdAt} updatedAt={updatedAt} />

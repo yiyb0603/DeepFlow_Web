@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { History } from 'history';
-import { postState } from 'atom/post';
+import { postState } from 'atom/question';
 import { IPost, IPostResponse } from 'types/post.types';
 import { deletePost, getPostByIdx } from 'lib/api/post/post.api';
 import { EResponse } from 'lib/enum/response';

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import { postListLoadingState, tempPostState } from 'atom/post';
+import { postListLoadingState, tempPostState } from 'atom/question';
 import { getTempPosts } from 'lib/api/post/post.api';
 import { EResponse } from 'lib/enum/response';
 import { IPost } from 'types/post.types';

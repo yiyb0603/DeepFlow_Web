@@ -45,7 +45,7 @@ const Header = (): JSX.Element => {
         <div className={cx('Header-Contents-RightWrap')}>
           <AiOutlineSearch
             className={cx('Header-Contents-RightWrap-SearchIcon')}
-            onClick={() => handlePushToPage('/search-posts')}
+            onClick={() => handlePushToPage('/search-questions')}
           />
 
           <a

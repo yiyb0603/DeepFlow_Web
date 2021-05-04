@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { postListLoadingState, tagPostState } from 'atom/post';
+import { postListLoadingState, tagPostState } from 'atom/question';
 import { CHUNK_POST_COUNT } from 'constants/util';
 import { getPostsByTag } from 'lib/api/post/post.api';
 import { EResponse } from 'lib/enum/response';

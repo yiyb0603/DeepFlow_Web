@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { recentPostLoading, recentPostState } from 'atom/post';
+import { recentPostLoading, recentPostState } from 'atom/question';
 import { getRecentPosts } from 'lib/api/post/post.api';
 import { EResponse } from 'lib/enum/response';
 import { IRecentPostListResponse } from 'types/post.types';

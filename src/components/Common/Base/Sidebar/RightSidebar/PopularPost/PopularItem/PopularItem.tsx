@@ -36,7 +36,7 @@ const PopularItem = ({
     <div className={cx('PopularItem')}>
       <div
         className={cx('PopularItem-Title')}
-        onClick={() => history.push(`/post/${idx}`)}
+        onClick={() => history.push(`/question/${idx}`)}
       >
         {order}. {title}
       </div>

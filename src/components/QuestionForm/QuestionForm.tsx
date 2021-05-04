@@ -6,14 +6,14 @@ import TagForm from './TagForm';
 import TagList from './TagList';
 import FormBottom from '../Common/Form/FormBottom';
 import MarkdownForm from 'components/Common/Markdown/MarkdownForm';
-import SubmitModal from 'components/PostForm/SubmitModal';
+import SubmitModal from 'components/QuestionForm/SubmitModal';
 import Helmet from 'components/Common/Helmet';
 import FormTemplate from 'components/Common/Form';
 
-const style = require('./PostForm.scss');
+const style = require('./QuestionForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-const PostForm = (): JSX.Element => {
+const QuestionForm = (): JSX.Element => {
   const {
     isLoading,
 
@@ -58,8 +58,8 @@ const PostForm = (): JSX.Element => {
         />
       }
 
-      <div className={cx('PostForm-TagWrapper')}>
-        <div className={cx('PostForm-TagWrapper-Left')}>
+      <div className={cx('QuestionForm-TagWrapper')}>
+        <div className={cx('QuestionForm-TagWrapper-Left')}>
           <TagForm
             postTags={postTags}
             tagInput={tagInput}
@@ -86,4 +86,4 @@ const PostForm = (): JSX.Element => {
   );
 };
 
-export default memo(PostForm);
+export default memo(QuestionForm);

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import { postListLoadingState, questionListState } from 'atom/post';
+import { postListLoadingState, questionListState } from 'atom/question';
 import usePagination from 'hooks/util/usePagination';
 import { getPostsBySort } from 'lib/api/post/post.api';
 import { EResponse } from 'lib/enum/response';
