@@ -5,7 +5,7 @@ import { CHUNK_POST_COUNT } from 'constants/util';
 import { getUserInfo } from 'lib/api/user/user.api';
 import { EResponse } from 'lib/enum/response';
 import { getUserPosts } from 'lib/api/question/question.api';
-import { EUserPost } from 'lib/enum/post';
+import { EUserQuestion } from 'lib/enum/question';
 import { IUser } from 'types/user.types';
 import { IQuestion } from 'types/question.types';
 import usePageParam from '../util/usePageParam';
@@ -27,7 +27,7 @@ const useUserInfo = () => {
   } = usePagination();
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [userPostTab, setUserPostTab] = useTabState<EUserPost>('tab', EUserPost.WRITED);
+  const [userPostTab, setUserPostTab] = useTabState<EUserQuestion>('tab', EUserQuestion.WRITED);
 
   const [userQuestionList, setUserQuestionList] = useRecoilState<IQuestion[]>(userQuestionState);
   const [userInfo, setUserInfo] = useRecoilState<IUser | null>(userInfoState);
@@ -36,7 +36,7 @@ const useUserInfo = () => {
     return chunkArray(userQuestionList, CHUNK_POST_COUNT);
   }, [userQuestionList]);
 
-  const onChangeUserPostTab = useCallback((userPostTab: EUserPost): void => {
+  const onChangEUserQuestionTab = useCallback((userPostTab: EUserQuestion): void => {
     setUserPostTab(userPostTab);
     onChangeCurrentPage(1);
   }, [onChangeCurrentPage, setUserPostTab]);
@@ -81,7 +81,7 @@ const useUserInfo = () => {
     isLoading,
     userInfo,
     setUserInfo,
-    onChangeUserPostTab,
+    onChangEUserQuestionTab,
     userPostTab,
     renderUserInfo,
     requestUserInfo,

@@ -4,11 +4,11 @@ import { IUser } from './user.types';
 export interface INotice {
   idx: number;
   title: string;
-  introduction: string;
   contents: string;
   user: IUser;
   createdAt: Date | string;
   updatedAt: Date | null;
+  viewCount: number;
 }
 
 export interface INoticeListResponse extends IResponse {

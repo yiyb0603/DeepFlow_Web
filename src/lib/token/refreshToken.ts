@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { getRefreshToken } from 'lib/api/token/token.api';
 import { setCookie } from 'lib/Cookie';
-import { decodeToken, getToken } from 'lib/Token';
+import { decodeToken, getToken } from 'lib/token';
 import { ITokenResponse } from 'types/token.types';
 import { IToken } from 'types/user.types';
 

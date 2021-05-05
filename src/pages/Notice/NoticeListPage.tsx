@@ -1,10 +1,10 @@
-import NoticeList from 'components/Notice/NoticeList';
+import NoticeTemplate from 'components/Notice';
 import PageTemplate from 'components/Template/PageTemplate';
 
 const NoticeListPage = (): JSX.Element => {
   return (
     <PageTemplate>
-      <NoticeList />
+      <NoticeTemplate />
     </PageTemplate>
   );
 }

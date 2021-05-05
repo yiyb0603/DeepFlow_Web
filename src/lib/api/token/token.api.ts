@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { SERVER_URL } from 'config/config.json';
-import { getToken } from 'lib/Token';
+import { getToken } from 'lib/token';
 import { ITokenResponse } from 'types/token.types';
 
 export const getRefreshToken = async (accessToken: string): Promise<ITokenResponse> => {

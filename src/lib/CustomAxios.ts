@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import { SERVER_URL } from 'config/config.json';
-import { refreshToken } from 'util/refreshToken';
-import { getToken } from './Token';
+import { refreshToken } from 'lib/token/refreshToken';
+import { getToken } from './token';
 
 export const customAxios: AxiosInstance = axios.create({
   baseURL: SERVER_URL,

@@ -2,11 +2,12 @@ import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { initialNoticeState, requestNoticeState } from 'atom/notice';
+import useFocus from 'hooks/util/useFocus';
 import { INoticeDto } from 'lib/api/notice/notice.dto';
 import { createNotice, modifyNotice } from 'lib/api/notice/notice.api';
 import { successToast } from 'lib/Toast';
+import { checkLoggedIn } from 'util/checkLoggedIn';
 import { validateNotice } from 'validation/notice.validation';
-import useFocus from 'hooks/util/useFocus';
 import useNoticeByIdx from './useNoticeByIdx';
 
 const useNoticeForm = () => {
@@ -37,17 +38,17 @@ const useNoticeForm = () => {
 
   const requestOfferNotice = useCallback(async (): Promise<void> => {
     try {
-      if (!validateNotice(request)) {
+      if (!checkLoggedIn() || !validateNotice(request)) {
         return;
       }
 
       if (Number.isInteger(noticeIdx)) {
-        await createNotice(request);
-      } else {
         await modifyNotice(noticeIdx, request);
+      } else {
+        await createNotice(request);
       }
 
-      successToast(`공지사항을 ${Number.isInteger(noticeIdx) ? '작성' : '수정'}하였습니다.`);
+      successToast(`공지사항을 ${Number.isInteger(noticeIdx) ? '수정' : '작성'}하였습니다.`);
       setRequest(initialNoticeState);
       history.push('/notice');
     } catch (error) {

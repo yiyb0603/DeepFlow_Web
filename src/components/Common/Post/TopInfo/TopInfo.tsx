@@ -13,13 +13,15 @@ interface TopInfoProps {
   idx: number;
   createdAt: Date | string;
   user: IUser;
-  requestDeleteQuestion: (postIdx: number) => Promise<void>
+  modifyLink: string;
+  requestDeleteQuestion: (postIdx: number) => Promise<void>;
 }
 
 const TopInfo = ({
   idx,
   createdAt,
   user,
+  modifyLink,
   requestDeleteQuestion,
 }: TopInfoProps): JSX.Element => {
   const myInfo: IToken = useMemo(() => getMyInfo(), []);
@@ -42,7 +44,7 @@ const TopInfo = ({
         myInfo && myInfo.idx === user.idx &&
         <div className={cx('TopInfo-Right')}>
           <Link
-            to={`/question-form/${idx}`}
+            to={modifyLink}
             className={cx('TopInfo-Right-Modify')}
           >
             수정

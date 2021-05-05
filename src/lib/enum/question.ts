@@ -1,9 +1,9 @@
-export enum EPostSort {
+export enum EQuestionSort {
   RECENT = 'recent',
   POPULAR = 'popular',
 };
 
-export enum EUserPost {
+export enum EUserQuestion {
   WRITED = 'writed',
   COMMENTED = 'commented',
 };

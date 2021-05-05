@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { calculateTime } from 'lib/TimeCounting';
@@ -12,10 +12,9 @@ interface TimeStickerProps {
 }
 
 const TimeSticker = ({ createdAt, updatedAt }: TimeStickerProps): JSX.Element => {
-  const stickerText: string = calculateTime(createdAt) + (updatedAt !== null ? ' (수정됨)' : '');
-  // const timeBackground: CSSProperties = {
-  //   backgroundColor: createRandomColor(),
-  // };
+  const stickerText: string = useMemo(() => {
+    return calculateTime(createdAt) + (updatedAt !== null ? ' (수정됨)' : '');
+  }, [createdAt, updatedAt]);
 
   return (
     <div className={cx('TimeSticker')}>

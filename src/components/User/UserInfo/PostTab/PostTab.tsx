@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { EUserPost } from 'lib/enum/post';
+import { EUserQuestion } from 'lib/enum/question';
 import { userPostTabs } from 'lib/models/tabs/postTabs';
 import SelectTab from 'components/Common/SelectTab';
 
@@ -8,13 +8,13 @@ const style = require('./PostTab.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 export interface PostTabProps {
-  userPostTab: EUserPost;
-  onChangeUserPostTab: (userPostTab: EUserPost) => void;
+  userPostTab: EUserQuestion;
+  onChangEUserQuestionTab: (userPostTab: EUserQuestion) => void;
 };
 
 const PostTab = ({
   userPostTab,
-  onChangeUserPostTab,
+  onChangEUserQuestionTab,
 }: PostTabProps): JSX.Element => {
   return (
     <div className={cx('PostTab')}>
@@ -25,7 +25,7 @@ const PostTab = ({
             name={name}
             route={route}
             selectTab={userPostTab}
-            onChangeSelectTab={onChangeUserPostTab}
+            onChangeSelectTab={onChangEUserQuestionTab}
           />
         ))
       }

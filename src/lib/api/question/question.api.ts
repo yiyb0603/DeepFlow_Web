@@ -1,5 +1,5 @@
 import { customAxios } from 'lib/CustomAxios';
-import { EPostSort, EUserPost } from 'lib/enum/post';
+import { EQuestionSort, EUserQuestion } from 'lib/enum/question';
 import {
   IPopularQuestionListResponse,
   IQuestionListResponse,
@@ -10,7 +10,7 @@ import {
 import { IResponse } from 'types/Response';
 import { IQuestionDto } from './question.dto';
 
-export const getPostsBySort = async (sort: EPostSort, page: number): Promise<IQuestionListResponse> => {
+export const getPostsBySort = async (sort: EQuestionSort, page: number): Promise<IQuestionListResponse> => {
   const url: string = `/posts?page=${page}&sort=${sort}`;
   const { data } = await customAxios.get(url);
   return data;
@@ -46,7 +46,7 @@ export const deletePost = async (postIdx: number): Promise<IResponse> => {
   return data;
 }
 
-export const getUserPosts = async (userIdx: number, type: EUserPost): Promise<IQuestionListResponse> => {
+export const getUserPosts = async (userIdx: number, type: EUserQuestion): Promise<IQuestionListResponse> => {
   const url: string = `/posts/user/${userIdx}?type=${type}`;
   const { data } = await customAxios.get(url);
   return data;

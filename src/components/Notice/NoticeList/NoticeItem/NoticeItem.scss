@@ -1,0 +1,55 @@
+@import 'styles/lib.scss';
+
+.NoticeItem {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--theme);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+
+  &:hover {
+    transform: scale(1.01);
+    color: var(--black) !important;
+    background-color: var(--lighterGray);
+  }
+
+  & > * {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+  }
+
+  &-Left {
+    max-width: 80%;
+
+    &-Order {
+      font-size: var(--font-contents);
+      margin-right: 1rem;
+    }
+
+    &-Title {
+      @include ellipsisLine(1);
+    }
+  }
+
+  &-Right {
+    &-TimeText {
+      margin-right: 1rem;
+    }
+
+    &-ViewWrapper {
+      display: flex;
+      display: -webkit-flex;
+      align-items: center;
+
+      &-Icon {
+        margin-right: 0.15rem;
+      }
+    }
+  }
+}

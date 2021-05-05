@@ -35,6 +35,7 @@ const QuestionView = (): JSX.Element => {
           idx={question.idx}
           createdAt={question.createdAt}
           user={question.user}
+          modifyLink={`/question-form/${question.idx}`}
           requestDeleteQuestion={requestDeleteQuestion}
         />
 

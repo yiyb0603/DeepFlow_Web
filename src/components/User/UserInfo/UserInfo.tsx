@@ -18,7 +18,7 @@ const UserInfo = (): JSX.Element => {
   const {
     userInfo,
     setUserInfo,
-    onChangeUserPostTab,
+    onChangEUserQuestionTab,
     userPostTab,
     renderUserInfo,
     splitedQuestionList,
@@ -51,7 +51,7 @@ const UserInfo = (): JSX.Element => {
 
         <PostTab
           userPostTab={userPostTab}
-          onChangeUserPostTab={onChangeUserPostTab}
+          onChangEUserQuestionTab={onChangEUserQuestionTab}
         />
 
         <div className={cx('UserInfo-PostList')}>

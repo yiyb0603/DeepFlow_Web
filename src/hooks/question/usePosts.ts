@@ -4,12 +4,12 @@ import { questionListLoadingState, questionListState } from 'atom/question';
 import usePagination from 'hooks/util/usePagination';
 import { getPostsBySort } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
-import { EPostSort } from 'lib/enum/post';
+import { EQuestionSort } from 'lib/enum/question';
 import { IQuestion } from 'types/question.types';
 import useTabState from 'hooks/util/useTabState';
 
 const usePosts = () => {
-  const [sortTab, onChangeSortTab] = useTabState<EPostSort>('sort', EPostSort.RECENT);
+  const [sortTab, onChangeSortTab] = useTabState<EQuestionSort>('sort', EQuestionSort.RECENT);
 
   const [questionLoading, setQuestionLoading] = useRecoilState<boolean>(questionListLoadingState);
   const [questionList, setQuestionList] = useRecoilState<IQuestion[]>(questionListState);

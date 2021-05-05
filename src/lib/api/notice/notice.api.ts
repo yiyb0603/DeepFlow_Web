@@ -26,3 +26,9 @@ export const modifyNotice = async (noticeIdx: number, noticeDto: INoticeDto): Pr
   const { data } = await customAxios.put(url, noticeDto);
   return data;
 }
+
+export const deleteNotice = async (noticeIdx: number): Promise<IResponse> => {
+  const url: string = `/notice/${noticeIdx}`;
+  const { data } = await customAxios.delete(url);
+  return data;
+}

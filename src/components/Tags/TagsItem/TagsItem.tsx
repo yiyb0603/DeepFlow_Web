@@ -24,13 +24,18 @@ const TagsItem = ({
 
   const handlePushToTagPosts = useCallback((): void => {
     ls.set('tagInfo', { name, description, count });
-    history.push(`/tag-posts/${name}`);
+    history.push(`/tag-questions/${name}`);
   }, [count, description, history, ls, name]);
 
   return (
     <div className={cx('TagsItem')}>
       <div className={cx('TagsItem-Top')}>
-        <div className={cx('TagsItem-Top-Name')} onClick={handlePushToTagPosts}>{name}</div>
+        <div
+          className={cx('TagsItem-Top-Name')}
+          onClick={handlePushToTagPosts}
+        >
+          {name}
+        </div>
 
         <div className={cx('TagsItem-Top-Description')}>
           {description}

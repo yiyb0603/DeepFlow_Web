@@ -21,16 +21,16 @@ const TagItem = ({
 }: TagItemProps): JSX.Element => {
   const history: History = useHistory();
 
-  const handlePushToTagPosts = useCallback((): void => {
+  const handlePushToTagQuestions = useCallback((): void => {
     if (!isClose) {
-      history.push(`/tag-posts/${postTag}`);
+      history.push(`/tag-questions/${postTag}`);
     }
   }, [history, isClose, postTag]);
 
   return (
     <div
       className={cx('TagItem')}
-      onClick={handlePushToTagPosts}
+      onClick={handlePushToTagQuestions}
     >
       {
         isClose &&

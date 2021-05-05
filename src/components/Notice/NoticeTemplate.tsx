@@ -1,13 +1,14 @@
 import { useCallback, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
+import FadeIn from 'react-fade-in';
 import { History } from 'history';
 import { checkLoggedIn } from 'util/checkLoggedIn';
 import { getMyInfo } from 'util/getMyInfo';
 import { IToken } from 'types/user.types';
+import { palette } from 'styles/Palette/Palette';
 import PageTitle from 'components/Common/PageTitle';
 import Helmet from 'components/Common/Helmet';
 import Button from 'components/Common/Button';
-import { palette } from 'styles/Palette/Palette';
 import NoticeList from './NoticeList';
 
 const NoticeTemplate = (): JSX.Element => {
@@ -23,7 +24,7 @@ const NoticeTemplate = (): JSX.Element => {
   }, [history]);
 
   return (
-    <div>
+    <FadeIn>
       <Helmet title='공지사항' />
       <PageTitle title='공지사항' subTitle='공지사항 목록이 여기에 표시됩니다.'>
         {
@@ -41,7 +42,7 @@ const NoticeTemplate = (): JSX.Element => {
       </PageTitle>
       
       <NoticeList />
-    </div>
+    </FadeIn>
   );
 };
 

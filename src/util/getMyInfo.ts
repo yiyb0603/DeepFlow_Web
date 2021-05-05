@@ -1,4 +1,4 @@
-import { decodeToken } from 'lib/Token';
+import { decodeToken } from 'lib/token';
 import { IToken } from 'types/user.types';
 
 export const getMyInfo = (): IToken => {
