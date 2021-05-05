@@ -2,20 +2,21 @@ import { ReactNode } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import LeftSidebar from 'components/Common/Base/Sidebar/LeftSidebar';
-import ToggleTheme from 'components/Common/Base/ToggleTheme';
-import ScrollToTop from 'components/Common/Base/ScrollToTop';
 import Footer from 'components/Common/Base/Footer';
 import Header from 'components/Common/Base/Header';
 import RightSidebar from 'components/Common/Base/Sidebar/RightSidebar';
+import PageFixed from 'components/Common/Base/PageFixed';
 
 const style = require('./PageTemplate.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface IPageTemplateProps {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
-const PageTemplate = ({ children }: IPageTemplateProps): JSX.Element => {
+const PageTemplate = ({
+  children
+}: IPageTemplateProps): JSX.Element => {
   return (
     <div className={cx('PageTemplate')}>
       <Header />
@@ -23,16 +24,13 @@ const PageTemplate = ({ children }: IPageTemplateProps): JSX.Element => {
       <div className={cx('PageTemplate-Contents')}>
         <LeftSidebar />
         <div className={cx('PageTemplate-Contents-Children')}>
-          {children}
+          {children && children}
         </div>
         <RightSidebar />
       </div>
 
       <Footer />
-      <div className={cx('PageTemplate-Fixed')}>
-        <ToggleTheme />
-        <ScrollToTop />
-      </div>
+      <PageFixed />
     </div>
   );
 };

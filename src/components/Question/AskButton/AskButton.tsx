@@ -12,7 +12,7 @@ const AskButton = (): JSX.Element => {
       return;
     }
 
-    history.push('/post-form');
+    history.push('/question-form');
   }, [history]);
 
   return (

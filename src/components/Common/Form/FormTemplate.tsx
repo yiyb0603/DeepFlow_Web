@@ -2,6 +2,7 @@ import { ChangeEvent, ReactNode } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import TitleForm from './TitleForm';
+import PageFixed from '../Base/PageFixed';
 
 const style = require('./FormTemplate.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -18,14 +19,18 @@ const FormTemplate = ({
   children,
 }: FormTemplateProps): JSX.Element => {
   return (
-    <div className={cx('FormTemplate')}>
-      <TitleForm
-        title={title}
-        onChangeTitle={onChangeTitle}
-      />
+    <>
+      <div className={cx('FormTemplate')}>
+        <TitleForm
+          title={title}
+          onChangeTitle={onChangeTitle}
+        />
 
-      {children}
-    </div>
+        {children}
+      </div>
+
+      <PageFixed />
+    </>
   );
 }
 

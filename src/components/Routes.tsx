@@ -42,7 +42,7 @@ const Routes = (): JSX.Element => {
       <Route exact path='/users' component={UserListPage} />
       <Route exact path='/user/:idx' component={UserInfoPage} />
       <Route exact path='/user-recommand/:idx' component={UserRecommandPage} />
-      
+
       <Route exact path='/temp' component={TempPage} />
       <Route exact path='/tags' component={TagsPage} />
       <Route exact path='/tag-questions/:tag' component={TagQuestionsPage} />
