@@ -1,0 +1,37 @@
+.FallbackLoader {
+  width: 100%;
+  max-width: 1400px;
+  height: 100vh;
+  margin: 0 auto;
+
+  &-Header {
+    height: 70px;
+    background-color: var(--skeleton);
+  }
+
+  &-ContentsWrap {
+    display: flex;
+    display: -webkit-flex;
+    height: calc(100% - 90px);
+    margin-top: 1rem;
+
+    & > * {
+      background-color: var(--skeleton);
+      height: 90%;
+    }
+
+    &-LeftSidebar {
+      width: 160px;
+    }
+
+    &-Center {
+      width: 65%;
+      padding-top: 1rem;
+      margin: 0 1rem;
+    }
+
+    &-RightSidebar {
+      flex: 1;
+    }
+  }
+}

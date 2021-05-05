@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import { ChakraProvider } from '@chakra-ui/react';
+import FallbackLoader from 'components/Common/FallbackLoader';
 import App from 'components/App';
 
 import 'styles/util.scss';
@@ -12,7 +13,7 @@ const Root = (): JSX.Element => {
   return (
     <RecoilRoot>
       <BrowserRouter>
-        <Suspense fallback={null}>
+        <Suspense fallback={<FallbackLoader />}>
           <ChakraProvider>
             <App />
           </ChakraProvider>
