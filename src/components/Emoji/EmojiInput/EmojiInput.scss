@@ -1,0 +1,22 @@
+.EmojiInput {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  margin-left: 0.4rem;
+  margin-top: 0.4rem;
+
+  &-Icon {
+    font-size: var(--font-small);
+    margin-right: 0.2rem;
+  }
+
+  &-Input {
+    background: none !important;
+    color: var(--black) !important;
+    font-size: var(--font-smallest);
+
+    &::placeholder {
+      color: var(--black);
+    }
+  }
+}

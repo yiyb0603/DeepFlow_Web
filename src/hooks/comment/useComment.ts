@@ -1,5 +1,6 @@
 import { useCallback, ChangeEvent } from 'react';
 import { SetterOrUpdater, useRecoilState, useSetRecoilState } from 'recoil';
+import { emojiIconListState } from 'atom/commentEmoji';
 import { commentContentsState, commentFormLoadingState, commentListState, modifyState } from 'atom/comment';
 import usePageParam from '../util/usePageParam';
 import { createComment, deleteComment, getCommentsByPostIdx, modifyComment } from 'lib/api/comment/comment.api';
@@ -12,10 +13,12 @@ import { checkLoggedIn } from 'util/checkLoggedIn';
 const useComment = () => {
   const postIdx: number = usePageParam();
 
-  const setIsLoading: SetterOrUpdater<boolean> = useSetRecoilState<boolean>(commentFormLoadingState);
   const [commentList, setCommentList] = useRecoilState<IComment[]>(commentListState);
   const [contents, setContents] = useRecoilState<string>(commentContentsState);
   const [modifyObject, setModifyObject] = useRecoilState<ICommentModify | null>(modifyState);
+  const [iconEmojies, setIconEmojies] = useRecoilState<string[]>(emojiIconListState);
+
+  const setIsLoading: SetterOrUpdater<boolean> = useSetRecoilState<boolean>(commentFormLoadingState);
 
   const onChangeContents = useCallback((e: ChangeEvent<HTMLTextAreaElement>): void => {
     const { value } = e.target;
@@ -28,11 +31,21 @@ const useComment = () => {
 
       if (status === EResponse.OK) {
         setCommentList(comments);
+
+        for (const comment of comments) {
+          for (const { emoji } of comment.emojies) {
+            if (iconEmojies.includes(emoji)) {
+              continue;
+            }
+
+            setIconEmojies((prevIconEmojies: string[]) => [...prevIconEmojies, emoji]);
+          }
+        }
       }
     } catch (error) {
       console.log(error);
     }
-  }, [postIdx, setCommentList]);
+  }, [iconEmojies, postIdx, setCommentList, setIconEmojies]);
 
   const requestOfferComment = useCallback(async (): Promise<void> => {
     try {

@@ -47,7 +47,7 @@ const ListItem = ({
 }: ItemProps): JSX.Element => {
   const { requestTempQuestions } = useTempQuestions();
   const questionLink: string = useMemo(() => {
-    return isTemp ? `/question-form/${idx}` : `/notice/${idx}`;
+    return isTemp ? `/question-form/${idx}` : `/question/${idx}`;
   }, [idx, isTemp]);
   
   const onDelete = useCallback(async (e: MouseEvent<HTMLDivElement>): Promise<void> => {

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useCallback, useState } from 'react';
 import { SetterOrUpdater, useSetRecoilState } from 'recoil';
 import { commentEmojiListState } from 'atom/comment';
 import { toggleEmojiState } from 'atom/commentEmoji';
@@ -51,7 +51,13 @@ const useEmoji = () => {
     }
   }, [requestCommentList, setUserEmojies]);
 
-  const onChangeEmoji = useCallback((
+  const onChangeEmoji = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
+    const { value } = e.target;
+
+    setEmoji(value);
+  }, []);
+
+  const onClickEmoji = useCallback((
     emoji: string, 
     commentIdx: number,
     existEmoji?: ICommentEmojiInfo | undefined
@@ -67,11 +73,25 @@ const useEmoji = () => {
     } else {
       requestDeleteEmoji(existEmoji!.idx, commentIdx, emoji);
     }
+
+    setEmoji('');
   }, [requestCreateEmoji, requestDeleteEmoji]);
+
+  const onKeydownEmoji = useCallback((
+    { key }: KeyboardEvent<HTMLInputElement>,
+    commentIdx: number,
+    existEmoji?: ICommentEmojiInfo | undefined,
+  ): void => {
+    if (key === 'Enter') {
+      onClickEmoji(emoji, commentIdx, existEmoji);
+    }
+  }, [emoji, onClickEmoji]);
 
   return {
     emoji,
     onChangeEmoji,
+    onKeydownEmoji,
+    onClickEmoji,
     requestCreateEmoji,
     requestDeleteEmoji,
   };

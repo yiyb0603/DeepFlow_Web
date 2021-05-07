@@ -3,12 +3,12 @@ import { SetterOrUpdater, useRecoilValue, useSetRecoilState } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { commentEmojiListState } from 'atom/comment';
+import { emojiIconListState, toggleEmojiState } from 'atom/commentEmoji';
 import useEmoji from 'hooks/comment/useEmoji';
-import { emojies as selectEmojies } from 'lib/models/menu/emojies';
+import { IToken } from 'types/user.types';
 import { ICommentEmojiInfo } from 'types/commentEmoji.types';
 import { getMyInfo } from 'util/getMyInfo';
-import { IToken } from 'types/user.types';
-import { toggleEmojiState } from 'atom/commentEmoji';
+import EmojiInput from '../EmojiInput';
 
 const style = require('./EmojiSelect.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -20,12 +20,13 @@ interface EmojiSelectProps {
 const EmojiSelect = ({
   commentIdx,
 }: EmojiSelectProps): JSX.Element => {
-  const { onChangeEmoji } = useEmoji();
+  const { emoji, onChangeEmoji, onClickEmoji, onKeydownEmoji } = useEmoji();
   const selectRef = useRef<HTMLDivElement | null>(null);
   const myInfo: IToken = useMemo(() => getMyInfo(), []);
 
   const setIsToggle: SetterOrUpdater<boolean> = useSetRecoilState<boolean>(toggleEmojiState);
   const userEmojies: ICommentEmojiInfo[] = useRecoilValue<ICommentEmojiInfo[]>(commentEmojiListState);
+  const emojiIcons: string[] = useRecoilValue<string[]>(emojiIconListState);
 
   const findExistEmoji = useCallback((emoji: string): ICommentEmojiInfo | undefined => {
     const existEmoji = userEmojies.find((emojies: ICommentEmojiInfo) => {
@@ -52,14 +53,22 @@ const EmojiSelect = ({
 
   return (
     <div className={cx('EmojiSelect')} ref={selectRef}>
+      <EmojiInput
+        commentIdx={commentIdx}
+        emoji={emoji}
+        onChangeEmoji={onChangeEmoji}
+        onKeydownEmoji={onKeydownEmoji}
+        findExistEmoji={findExistEmoji}
+      />
+
       {
-        selectEmojies.map((emoji: string, idx: number) => (
+        emojiIcons && emojiIcons.map((emoji: string, idx: number) => (
           <div
             key={idx}
             className={cx('EmojiSelect-Emoji', {
               'EmojiSelect-Emoji-Selected': findExistEmoji(emoji) !== undefined,
             })}
-            onClick={() => onChangeEmoji(emoji, commentIdx, findExistEmoji(emoji))}
+            onClick={() => onClickEmoji(emoji, commentIdx, findExistEmoji(emoji))}
           >
             {emoji}
           </div>
