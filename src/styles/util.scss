@@ -1,37 +1,35 @@
-@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
-
 @font-face {
-	src: url('../assets/fonts/NotoSansKR/NotoSansKR-Black.ttf') format('woff');
-	font-family: 'Noto Sans KR' !important;
-	font-style: normal;
+  src: url('../assets/fonts/NotoSansKR/NotoSansKR-Black.otf');
+  font-family: 'Noto Sans KR' !important;
+  font-style: normal;
 }
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'Noto Sans KR' !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR' !important;
 
-	&:focus {
-		outline: none;
-	}
+  &:focus {
+    outline: none;
+  }
 }
 
 h1 {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 a {
-	text-decoration: none;
-	color: var(--contrast) !important;
+  text-decoration: none;
+  color: var(--contrast) !important;
 
-	&:hover {
-		color: var(--contrast);
-	}
+  &:hover {
+    color: var(--contrast);
+  }
 }
 
 textarea {
-	resize: none !important;
+  resize: none !important;
 }
 
 html,
@@ -39,18 +37,18 @@ body,
 #root,
 .light,
 .dark {
-	width: 100%;
-	min-height: 100vh;
-	background-color: var(--theme);
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--theme);
 }
 
 body {
-	line-height: 1.34 !important;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	font-size: 16px !important;
+  line-height: 1.34 !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px !important;
 }
 
 td {
-	vertical-align: middle;
+  vertical-align: middle;
 }

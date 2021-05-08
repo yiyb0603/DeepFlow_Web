@@ -5,7 +5,7 @@ import { APP_NAME } from 'constants/util';
 import usePopularQuestions from 'hooks/question/usePopularQuestions';
 import { IQuestion } from 'types/question.types';
 import SectionTitle from '../SectionTitle';
-import PopularItem from './PopularItem';
+import PopularQuestionItem from './PopularQuestionItem';
 import NoPopularItems from '../NoPopularItems';
 import ViewMore from '../ViewMore';
 
@@ -34,7 +34,7 @@ const PopularQuestion = (): JSX.Element => {
               } = question;
 
               return (
-                <PopularItem
+                <PopularQuestionItem
                   key={idx}
                   idx={idx}
                   order={order + 1}
