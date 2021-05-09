@@ -1,7 +1,8 @@
-import { ChangeEvent, MutableRefObject, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, ChangeEvent, MutableRefObject } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { EComment } from 'lib/enum/comment';
+import useFocus from 'hooks/util/useFocus';
 
 const style = require('./CommentInput.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -21,11 +22,7 @@ const CommentInput = ({
   onChangeContents,
   commentInputRef,
 }: CommentInputProps): JSX.Element => {
-  const [isFocus, setIsFocus] = useState<boolean>(false);
-
-  const onChangeIsFocus = useCallback((): void => {
-    setIsFocus((prevIsFocus: boolean) => !prevIsFocus);
-  }, []);
+  const [isFocus, onChangeIsFocus] = useFocus();
 
   const handleKeyEvent = useCallback((e: globalThis.KeyboardEvent): void => {
     if (e.key === 'Tab') {

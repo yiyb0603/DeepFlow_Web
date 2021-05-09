@@ -1,64 +1,64 @@
 @import 'styles/lib.scss';
 
 .SubmitModal {
-	width: 450px;
-	height: 550px;
-	background-color: var(--white);
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 2;
+  width: 450px;
+  height: 550px;
+  background-color: var(--white);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
 
-	&-Overlay {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		z-index: 1;
-		background-color: rgba(0, 0, 0, 0.4);
-	}
+  &-Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
 
-	&-Wrapper {
-		width: 100%;
-		height: 100%;
+  &-Wrapper {
+    width: 100%;
+    height: 100%;
 
-		&-Thumbnail {
-			width: 100%;
-			height: 45%;
-			max-height: 45%;
-			object-fit: cover;
-		}
+    &-Thumbnail {
+      width: 100%;
+      height: 45%;
+      max-height: 45%;
+      object-fit: cover;
+    }
 
-		&-Contents {
-			height: 40%;
-			padding: 0.625rem;
+    &-Contents {
+      height: 40%;
+      padding: 0.625rem;
 
-			&-Title {
-				@include ellipsisLine(1);
-				font-size: var(--font-small);
-				font-weight: 500;
-				border-bottom: 1px solid var(--lighterBlack);
-				padding-bottom: 0.4rem;
-			}
+      &-Title {
+        @include ellipsisLine(1);
+        font-size: var(--font-small);
+        font-weight: 500;
+        border-bottom: 1px solid var(--lighterBlack);
+        padding-bottom: 0.4rem;
+      }
 
-			&-Introduction {
-				width: 100%;
-				height: 200px;
-				display: inline-block;
-				outline: none;
-				border: 1px solid var(--lighterBlack);
-				border-top: none;
-				padding: 0.35rem;
-			}
+      &-Introduction {
+        width: 100%;
+        height: 200px;
+        display: inline-block;
+        outline: none;
+        border: 1px solid var(--lighterBlack);
+        border-top: none;
+        padding: 0.35rem;
+      }
 
-			&-Buttons {
-				display: flex;
-				display: -webkit-flex;
-				justify-content: flex-end;
-				margin-top: 0.4rem;
-			}
-		}
-	}
+      &-Buttons {
+        display: flex;
+        display: -webkit-flex;
+        justify-content: flex-end;
+        margin-top: 0.4rem;
+      }
+    }
+  }
 }

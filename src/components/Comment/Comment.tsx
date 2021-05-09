@@ -1,11 +1,9 @@
-import { useCallback, useRef, useEffect } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useEffect } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import useComment from 'hooks/comment/useComment';
-import { IComment, ICommentModify } from 'types/comment.types';
+import { IComment } from 'types/comment.types';
 import CommentItem from '../Common/Comment/CommentItem';
-import { commentContentsState, modifyState } from 'atom/comment';
 import CommentForm from 'components/Common/Comment/CommentForm';
 import { EComment } from 'lib/enum/comment';
 
@@ -13,23 +11,12 @@ const style = require('./Comment.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const Comment = (): JSX.Element => {
-  const { commentList, requestCommentList, requestDeleteComment } = useComment();
-  
-  const commentInputRef = useRef<HTMLTextAreaElement | null>(null);
-  const setModifyState = useSetRecoilState<ICommentModify | null>(modifyState);
-  const setContents = useSetRecoilState<string>(commentContentsState);
-
-  const onModifyClick = useCallback((idx: number, contents: string): void => {
-    setModifyState({
-      idx,
-      contents,
-    });
-    setContents(contents);
-    
-    if (commentInputRef.current) {
-      commentInputRef.current.focus();
-    }
-  }, [setContents, setModifyState]);
+  const {
+    commentList,
+    requestCommentList,
+    requestDeleteComment,
+    onModifyClick,
+  } = useComment();
 
   useEffect(() => {
     requestCommentList();
@@ -43,7 +30,6 @@ const Comment = (): JSX.Element => {
 
       <CommentForm
         type={EComment.COMMENT}
-        commentInputRef={commentInputRef}
       />
 
       <div className={cx('Comment-List')}>

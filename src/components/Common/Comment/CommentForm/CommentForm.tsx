@@ -1,4 +1,4 @@
-import { MutableRefObject, useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import PreviewTab from './PreviewTab';
@@ -16,28 +16,40 @@ const style = require('./CommentForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface CommentFormProps {
-  commentIdx?: number;
   type: EComment;
-  commentInputRef?: MutableRefObject<HTMLTextAreaElement | null>;
+  commentIdx?: number;
   onChangeIsReplyWrite?: (isReplyWrite: boolean) => void;
 }
 
 const CommentForm = ({
   commentIdx,
   type,
-  commentInputRef,
   onChangeIsReplyWrite,
 }: CommentFormProps): JSX.Element => {
   const { WRITE } = ECommentTab;
   const { COMMENT, REPLY } = EComment;
 
   const reply = useReply(commentIdx!);
-  const { contents, onChangeContents, requestOfferComment } = useComment();
+  const {
+    contents,
+    onChangeContents,
+    requestOfferComment,
+    commentInputRef,
+    dragRef,
+    handleDrop,
+    handleDragImage,
+  } = useComment();
 
   const [commentTab, setCommentTab] = useState<ECommentTab>(ECommentTab.WRITE);
 
+  useEffect(() => {
+    if (dragRef.current !== null) {
+      dragRef.current.addEventListener('drop', (e) => handleDrop(e, handleDragImage), true);
+    }
+  }, [dragRef, handleDragImage, handleDrop]);
+
   return (
-    <div className={cx('CommentForm')}>
+    <div className={cx('CommentForm')} ref={dragRef}>
       <div className={cx('CommentForm-ContentsWrap')}>
         <PreviewTab>
         {
