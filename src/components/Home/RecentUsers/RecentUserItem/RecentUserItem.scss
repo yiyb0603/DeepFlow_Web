@@ -1,60 +1,61 @@
 $width: 300px;
 
 .RecentUserItem {
-	width: $width;
-	display: flex;
-	display: -webkit-flex;
-	justify-content: space-between;
-	align-items: center;
-	border: 1px solid var(--lighterGray);
-	border-radius: 5px;
-	padding: 0.6rem;
-	margin-right: 0.5rem;
-	transition: all 0.15s ease-in-out;
+  width: $width;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--lighterGray);
+  border-radius: 5px;
+  padding: 0.6rem;
+  margin-right: 0.5rem;
+  transition: all 0.15s ease-in-out;
 
-	@media screen and (max-width: 1500px) {
-		margin-bottom: 0.2rem;
-	}
+  @media screen and (max-width: 1500px) {
+    margin-bottom: 0.2rem;
+  }
 
-	@media screen and (max-width: 1024px) {
-		width: 100%;
-	}
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
 
-	&:hover {
-		transform: scale(1.01);
-	}
+  &:hover {
+    transform: scale(1.01);
+  }
 
-	&-Left {
-		display: flex;
-		display: -webkit-flex;
-		flex-wrap: wrap;
-		-ms-flex-wrap: wrap;
-		align-items: center;
+  &-Left {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    align-items: center;
 
-		&-Avatar {
-			height: 75px;
-			border-radius: 50%;
-			object-fit: cover;
-			margin-right: 0.8rem;
-		}
+    &-Avatar {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 0.8rem;
+    }
 
-		&-Info {
-			color: var(--contrast);
+    &-Info {
+      color: var(--contrast);
 
-			&-Name {
-				font-size: var(--font-small);
-				font-weight: 500;
-			}
+      &-Name {
+        font-size: var(--font-small);
+        font-weight: 500;
+      }
 
-			&-Position {
-				font-size: var(--font-default);
-			}
-		}
-	}
+      &-Position {
+        font-size: var(--font-default);
+      }
+    }
+  }
 
-	&-Recommand {
-		font-size: var(--font-big);
-		color: var(--gray);
-		cursor: pointer;
-	}
+  &-Recommand {
+    font-size: var(--font-big);
+    color: var(--gray);
+    cursor: pointer;
+  }
 }

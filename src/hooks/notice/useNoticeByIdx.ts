@@ -43,7 +43,9 @@ const useNoticeByIdx = () => {
     if (Number.isInteger(noticeIdx)) {
       requestNoticeByIdx();
     }
-  }, [noticeIdx, requestNoticeByIdx]);
+
+    return () => setNotice(null);
+  }, [noticeIdx, requestNoticeByIdx, setNotice]);
 
   return {
     noticeIdx,

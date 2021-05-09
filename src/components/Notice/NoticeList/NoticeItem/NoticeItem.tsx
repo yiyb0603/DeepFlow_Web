@@ -30,7 +30,7 @@ const NoticeItem = ({
   viewCount,
 }: NoticeItemProps): JSX.Element => {
   const timeText: string = useMemo(() => {
-    return calculateTime(createdAt) + (updatedAt !== null ? '(수정됨)' : '');
+    return calculateTime(createdAt) + (updatedAt !== null ? ' (수정됨)' : '');
   }, [createdAt, updatedAt]);
 
   return (

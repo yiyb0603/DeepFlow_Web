@@ -1,9 +1,10 @@
 .Button {
-	outline: none;
-	border: none;
-	background: none;
-	border-radius: 5px;
-	font-size: var(--font-smallest);
-	color: var(--white);
-	cursor: pointer;
+  outline: none;
+  border: none;
+  background: none;
+  border-radius: 5px;
+  font-size: var(--font-smallest);
+  color: var(--white);
+  cursor: pointer;
+  z-index: 4;
 }
