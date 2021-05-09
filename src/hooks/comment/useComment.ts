@@ -126,14 +126,19 @@ const useComment = () => {
       const { status, data: { files } } = await uploadFiles(formData);
       if (status === EResponse.OK) {
         if (commentInputRef.current !== null) {
-           const { selectionStart, selectionEnd, value } = commentInputRef.current!;
-       
-          for (let i = 0; i < files.length; i++) {
+          for (const file of files) {
+            const { selectionStart, selectionEnd, value } = commentInputRef.current!;
+
             const beforeText: string = value.substring(0, selectionStart);
             const nextText: string = value.substring(selectionEnd);
 
-            const markdownImageText: string = `![이미지](${files[i]})`;
-            setContents(beforeText + markdownImageText + nextText);
+            const markdownImageText: string = `\n![이미지](${file})\n`;
+            const mergedText: string = String(beforeText + markdownImageText + nextText);
+
+            commentInputRef.current.value = mergedText;
+            setContents(mergedText);
+
+            commentInputRef.current.setSelectionRange(selectionStart, selectionEnd);
           }
         }
       }
