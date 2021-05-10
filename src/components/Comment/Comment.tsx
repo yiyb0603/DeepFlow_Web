@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import useComment from 'hooks/comment/useComment';
 import { IComment } from 'types/comment.types';
 import CommentItem from '../Common/Comment/CommentItem';
 import CommentForm from 'components/Common/Comment/CommentForm';
 import { EComment } from 'lib/enum/comment';
+import useDeleteComment from 'hooks/comment/useDeleteComment';
+import useCommentList from 'hooks/comment/useCommentList';
+import useOfferComment from 'hooks/comment/useOfferComment';
 
 const style = require('./Comment.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -14,9 +16,10 @@ const Comment = (): JSX.Element => {
   const {
     commentList,
     requestCommentList,
-    requestDeleteComment,
-    onModifyClick,
-  } = useComment();
+  } = useCommentList();
+
+  const { onModifyClick } = useOfferComment();
+  const { requestDeleteComment } = useDeleteComment();
 
   useEffect(() => {
     requestCommentList();

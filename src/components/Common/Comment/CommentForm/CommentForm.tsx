@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { EComment, ECommentTab } from 'lib/enum/comment';
 import { commentTabs, ICommentTab } from 'lib/models/tabs/commentTabs';
-import useComment from 'hooks/comment/useComment';
 import useReply from 'hooks/reply/useReply';
 import ReplyCancel from 'components/Reply/ReplyCancel';
 import CommentInput from './CommentInput';
@@ -11,6 +10,7 @@ import CommentPreview from './CommentPreview';
 import CommentSubmit from './CommentSubmit';
 import PreviewTab from './PreviewTab';
 import PreviewTabItem from './PreviewTab/PreviewTabItem';
+import useOfferComment from 'hooks/comment/useOfferComment';
 
 const style = require('./CommentForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -38,7 +38,7 @@ const CommentForm = ({
     commentDragRef,
     handleDrop,
     handleDragImage,
-  } = useComment();
+  } = useOfferComment();
 
   const [commentTab, setCommentTab] = useState<ECommentTab>(ECommentTab.WRITE);
 
