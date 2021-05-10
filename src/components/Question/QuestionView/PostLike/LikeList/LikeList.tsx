@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import Modal from 'components/Common/Modal';
 import { ILike } from 'types/like.types';
+import Modal from 'components/Common/Modal';
 import LikeItem from './LikeItem';
 
 const style = require('./LikeList.scss');

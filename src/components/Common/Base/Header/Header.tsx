@@ -1,7 +1,6 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { Link, useHistory } from 'react-router-dom';
-import { History } from 'history';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { AiOutlineSearch } from 'react-icons/ai';
@@ -18,15 +17,10 @@ const style = require('./Header.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const Header = (): JSX.Element => {
-  const history: History = useHistory();
   const { myInfo, handleLogout } = useHeader();
 
   const [isSideShow, setIsSideShow] = useState<boolean>(false);
   const theme: ETheme = useRecoilValue<ETheme>(themeState);
-
-  const handlePushToPage = useCallback((url: string): void => {
-    history.push(url);
-  }, [history]);
 
   return (
     <div className={cx('Header')}>
@@ -34,19 +28,21 @@ const Header = (): JSX.Element => {
         <ToggleMenu isSideShow={isSideShow} setIsSideShow={setIsSideShow} />
 
         <div className={cx('Header-Contents-LogoWrap')}>
-          <img
-            src={theme === ETheme.DARK ? BlackThemeLogo : WhiteThemeLogo}
-            alt='logo'
-            className={cx('Header-Contents-LogoWrap-Logo')}
-            onClick={() => handlePushToPage('/')}
-          />
+          <Link to='/'>
+            <img
+              src={theme === ETheme.DARK ? BlackThemeLogo : WhiteThemeLogo}
+              alt='logo'
+              className={cx('Header-Contents-LogoWrap-Logo')}
+            />
+          </Link>
         </div>
 
         <div className={cx('Header-Contents-RightWrap')}>
-          <AiOutlineSearch
-            className={cx('Header-Contents-RightWrap-SearchIcon')}
-            onClick={() => handlePushToPage('/search-questions')}
-          />
+          <Link to='/search-questions'>
+            <AiOutlineSearch
+              className={cx('Header-Contents-RightWrap-SearchIcon')}
+            />
+          </Link>
 
           <a
             href={GITHUB_AUTH_URL}

@@ -1,8 +1,9 @@
 .ViewMore {
-	text-align: end;
-	padding-right: 0.5rem;
-	margin-top: 0.3rem;
-	font-size: var(--font-default);
-	color: var(--contrast);
-	cursor: pointer;
+  display: block;
+  text-align: end;
+  padding-right: 0.5rem;
+  margin-top: 0.3rem;
+  font-size: var(--font-default);
+  color: var(--contrast);
+  cursor: pointer;
 }

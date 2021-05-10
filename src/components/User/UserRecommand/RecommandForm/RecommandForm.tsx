@@ -1,9 +1,9 @@
 import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import Button from 'components/Common/Button';
 import { palette } from 'styles/Palette/Palette';
 import useCreateRecommand from 'hooks/recommand/useCreateRecommand';
+import Button from 'components/Common/Button';
 
 const style = require('./RecommandForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -19,7 +19,6 @@ const RecommandForm = (): JSX.Element => {
         value={reason}
         onChange={onChangeReason}
       ></textarea>
-
 
       <Button
         width={'65px'}

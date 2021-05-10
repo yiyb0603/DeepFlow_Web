@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { useHistory } from 'react-router-dom';
-import { History } from 'history';
+import { Link } from 'react-router-dom';
 import usePathName from 'hooks/util/usePathName';
 
 const style = require('./MobileSidebarItem.scss');
@@ -18,19 +17,18 @@ const MobileSidebarItem = ({
   menuName,
   icon,
 }: MobileSidebarItemProps) => {
-  const history: History = useHistory();
   const pathname: string = usePathName();
 
   return (
-    <div
+    <Link
+      to={link}
       className={cx('MobileSidebarItem', {
         'MobileSidebarItem-Current': pathname === link,
       })}
-      onClick={() => history.push(link)}
     >
       {icon}
       <div className={cx('MobileSidebarItem-MenuName')}>{menuName}</div>
-    </div>
+    </Link>
   );
 };
 

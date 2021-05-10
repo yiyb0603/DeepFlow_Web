@@ -1,24 +1,24 @@
 .SelectNavbar {
-	display: flex;
-	display: -webkit-flex;
-	align-items: center;
-	margin-bottom: 1rem;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  margin-bottom: 1rem;
 
-	&-Item {
-		height: 35px;
-		display: flex;
-		display: -webkit-flex;
-		justify-content: center;
-		align-items: center;
-		font-size: var(--font-smallest);
-		margin-right: 1rem;
-		border-radius: 5px;
-		cursor: pointer;
+  &-Item {
+    height: 35px;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--font-smallest);
+    margin-right: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
 
-		&-Current {
-			padding: 0 0.5rem;
-			background-color: var(--main);
-			color: var(--white);
-		}
-	}
+    &-Current {
+      padding: 0 0.5rem;
+      background-color: var(--main);
+      color: var(--white) !important;
+    }
+  }
 }

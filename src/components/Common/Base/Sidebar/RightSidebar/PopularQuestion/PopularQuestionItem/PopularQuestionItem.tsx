@@ -1,8 +1,7 @@
 import { memo } from 'react';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { useHistory } from 'react-router-dom';
-import { History } from 'history';
 import PostSubInfo from 'components/Common/Post/PostSubInfo';
 import { calculateTime } from 'lib/TimeCounting';
 
@@ -30,16 +29,14 @@ const PopularQuestionItem = ({
   replyCount,
   likeCount,
 }: PopularQuestionItemProps) => {
-  const history: History = useHistory();
-
   return (
     <div className={cx('PopularQuestionItem')}>
-      <div
+      <Link
+        to={`/question/${idx}`}
         className={cx('PopularQuestionItem-Title')}
-        onClick={() => history.push(`/question/${idx}`)}
       >
         {order}. {title}
-      </div>
+      </Link>
 
       <div className={cx('PopularQuestionItem-SubInfo')}>
         <PostSubInfo

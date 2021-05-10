@@ -1,82 +1,82 @@
 .Header {
-	width: 100%;
-	height: 70px;
-	max-height: 70px;
-	padding: 0 1.5rem;
-	display: flex;
-	display: -webkit-flex;
-	align-items: center;
-	background-color: var(--theme);
-	border-bottom: 1px solid var(--lighterGray);
-	z-index: 2;
+  width: 100%;
+  height: 70px;
+  max-height: 70px;
+  padding: 0 1.5rem;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  background-color: var(--theme);
+  border-bottom: 1px solid var(--lighterGray);
+  z-index: 2;
 
-	&-Contents {
-		width: 100%;
-		max-width: 1400px;
-		margin: 0 auto;
-		display: flex;
-		display: -webkit-flex;
-		justify-content: space-between;
-		align-items: center;
+  &-Contents {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    align-items: center;
 
-		&-LogoWrap {
-			width: 140px;
-			display: flex;
-			display: -webkit-flex;
-			align-items: center;
+    &-LogoWrap {
+      width: 140px;
+      display: flex;
+      display: -webkit-flex;
+      align-items: center;
 
-			&-Logo {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				cursor: pointer;
-			}
-		}
+      &-Logo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        cursor: pointer;
+      }
+    }
 
-		&-RightWrap {
-			display: flex;
-			display: -webkit-flex;
-			align-items: center;
+    &-RightWrap {
+      display: flex;
+      display: -webkit-flex;
+      align-items: center;
 
-			&-SearchIcon {
-				color: var(--contrast);
-				font-size: var(--font-normallest);
-				cursor: pointer;
-			}
+      &-SearchIcon {
+        color: var(--contrast);
+        font-size: var(--font-normallest);
+        cursor: pointer;
+      }
 
-			&-Login {
-				display: flex;
-				display: -webkit-flex;
-				align-items: center;
-				border: 1px solid var(--contrast);
-				border-radius: 25px;
-				padding: 6px 10px;
-				background-color: var(--contrast);
-				margin: 0 0.625rem;
-				color: var(--theme) !important;
-				cursor: pointer;
+      &-Login {
+        display: flex;
+        display: -webkit-flex;
+        align-items: center;
+        border: 1px solid var(--contrast);
+        border-radius: 25px;
+        padding: 6px 10px;
+        background-color: var(--contrast);
+        margin: 0 0.625rem;
+        color: var(--theme) !important;
+        cursor: pointer;
 
-				&-Icon {
-					margin-right: 2px;
-					font-size: var(--font-contents);
-				}
+        &-Icon {
+          margin-right: 2px;
+          font-size: var(--font-contents);
+        }
 
-				&-Name {
-					font-size: var(--font-smallest);
-				}
+        &-Name {
+          font-size: var(--font-smallest);
+        }
 
-				&:hover {
-					background-color: var(--theme);
-					color: var(--contrast) !important;
-				}
-			}
+        &:hover {
+          background-color: var(--theme);
+          color: var(--contrast) !important;
+        }
+      }
 
-			&-Profile {
-				width: 45px;
-				height: 45px;
-				border-radius: 50%;
-				cursor: pointer;
-			}
-		}
-	}
+      &-Profile {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    }
+  }
 }

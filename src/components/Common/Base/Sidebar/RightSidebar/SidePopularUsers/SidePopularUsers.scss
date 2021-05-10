@@ -1,11 +1,11 @@
 .SidePopularUsers {
-	&-ContentsWrap {
-		padding: 0.6rem;
+  &-ContentsWrap {
+    padding: 0.6rem;
 
-		&-Users {
-			& > *:last-child {
-				margin-bottom: 0;
-			}
-		}
-	}
+    &-Users {
+      & > *:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
 }

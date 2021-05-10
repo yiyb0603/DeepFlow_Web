@@ -1,49 +1,49 @@
 .Modal {
-	&-Overlay {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-color: rgba(0, 0, 0, 0.4);
-		z-index: 2;
-	}
+  &-Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 5;
+  }
 
-	&-Box {
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		z-index: 3;
-		background-color: var(--theme);
-		border-radius: 5px;
-		padding: 1rem;
-		overflow-x: hidden;
-		overflow-y: auto;
+  &-Box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+    background-color: var(--theme);
+    border-radius: 5px;
+    padding: 1rem;
+    overflow-x: hidden;
+    overflow-y: auto;
 
-		&-Top {
-			display: flex;
-			display: -webkit-flex;
-			justify-content: space-between;
-			align-items: center;
-			border-bottom: 0.5px solid var(--gray);
-			padding-bottom: 0.4rem;
-			margin-bottom: 0.5rem;
+    &-Top {
+      display: flex;
+      display: -webkit-flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 0.5px solid var(--gray);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
 
-			&-Title {
-				font-size: var(--font-small);
-				font-weight: 500;
-			}
+      &-Title {
+        font-size: var(--font-small);
+        font-weight: 500;
+      }
 
-			&-Close {
-				font-size: var(--font-normal);
-				cursor: pointer;
-				transition: 0.15s ease-in-out;
+      &-Close {
+        font-size: var(--font-normal);
+        cursor: pointer;
+        transition: 0.15s ease-in-out;
 
-				&:hover {
-					color: var(--red);
-				}
-			}
-		}
-	}
+        &:hover {
+          color: var(--red);
+        }
+      }
+    }
+  }
 }
