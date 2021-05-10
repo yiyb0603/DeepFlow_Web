@@ -5,13 +5,15 @@ import { CgUserList } from 'react-icons/cg';
 import { infoToast } from 'lib/Toast';
 import LikeSubmit from './LikeSubmit';
 import LikeList from './LikeList';
-import useLike from 'hooks/question/useLike';
+import useLikeList from 'hooks/question/like/useLikeList';
+import useLikePress from 'hooks/question/like/useLikePress';
 
 const style = require('./PostLike.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const PostLike = (): JSX.Element => {
-  const { isPressed, likeList, handlePressLike } = useLike();
+  const { isPressed, handlePressLike } = useLikePress();
+  const { likeList } = useLikeList();
   const [isModal, setIsModal] = useState<boolean>(false);
 
   const onChangeIsModal = useCallback((): void => {

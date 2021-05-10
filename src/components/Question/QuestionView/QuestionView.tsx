@@ -1,4 +1,5 @@
-import useQuestionByIdx from 'hooks/question/useQuestionByIdx';
+import useQuestionByIdx from 'hooks/question/questionHooks/useQuestionByIdx';
+import useDeleteQuestion from 'hooks/question/questionHooks/useDeleteQuestion';
 import { getGithubAddress } from 'util/getGithubAddress';
 import Comment from 'components/Comment';
 import Helmet from 'components/Common/Helmet';
@@ -13,7 +14,8 @@ import Thumbnail from './Thumbnail';
 import PostUserInfo from './PostUserInfo';
 
 const QuestionView = (): JSX.Element => {
-  const { question, requestDeleteQuestion } = useQuestionByIdx();
+  const { question } = useQuestionByIdx();
+  const { requestDeleteQuestion } = useDeleteQuestion();
 
   return (
     <>

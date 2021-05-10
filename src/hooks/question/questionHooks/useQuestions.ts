@@ -8,7 +8,7 @@ import { EQuestionSort } from 'lib/enum/question';
 import { IQuestion } from 'types/question.types';
 import useTabState from 'hooks/util/useTabState';
 
-const usePosts = () => {
+const useQuestions = () => {
   const [sortTab, onChangeSortTab] = useTabState<EQuestionSort>('sort', EQuestionSort.RECENT);
 
   const [questionLoading, setQuestionLoading] = useRecoilState<boolean>(questionListLoadingState);
@@ -25,7 +25,7 @@ const usePosts = () => {
     splitedNumberList,
   } = usePagination();
 
-  const requestPostList = useCallback(async () => {
+  const requestQuestionList = useCallback(async () => {
     try {
       setQuestionLoading(true);
       const { status, data: { posts, totalPage } } = await getPostsBySort(sortTab, currentPage);
@@ -56,8 +56,8 @@ const usePosts = () => {
     sortTab,
     onChangeSortTab,
 
-    requestPostList,
+    requestQuestionList,
   };
 }
 
-export default usePosts;
+export default useQuestions;

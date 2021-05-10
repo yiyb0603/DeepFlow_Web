@@ -1,23 +1,21 @@
 import { MouseEvent, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import useRecommand from 'hooks/user/useRecommand';
 import { IUserRecommand } from 'types/userRecommand.types';
 import UserItem from 'components/Common/User/UserItem';
 import Helmet from 'components/Common/Helmet';
 import RecommandTitle from './RecommandTitle';
 import RecommandForm from './RecommandForm';
 import RecommandLength from './RecommandLength';
+import useRecommandList from 'hooks/recommand/useRecommandList';
+import useDeleteRecommand from 'hooks/recommand/useDeleteRecommand';
 
 const style = require('./UserRecommand.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const UserRecommand = (): JSX.Element => {
-  const {
-    userInfo,
-    userRecommands,
-    requestDeleteRecommand,
-  } = useRecommand();
+  const { userInfo, userRecommands } = useRecommandList();
+  const { requestDeleteRecommand } = useDeleteRecommand();
   
   return (
     <>

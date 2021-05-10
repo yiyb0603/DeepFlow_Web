@@ -4,12 +4,10 @@ import { useRecoilState } from 'recoil';
 import { History } from 'history';
 import { questionState } from 'atom/question';
 import { IQuestion, IQuestionResponse } from 'types/question.types';
-import { deletePost, getPostByIdx } from 'lib/api/question/question.api';
+import { getPostByIdx } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
 import PostError from 'error/PostError';
-import usePageParam from '../util/usePageParam';
-import { successToast } from 'lib/Toast';
-import { IResponse } from 'types/Response';
+import usePageParam from '../../util/usePageParam';
 
 const useQuestionByIdx = () => {
   const history: History = useHistory();
@@ -28,22 +26,6 @@ const useQuestionByIdx = () => {
     }
   }, [history, questionIdx, setQuestion]);
 
-  const requestDeleteQuestion = useCallback(async (questionIdx: number, isDetail: boolean = true): Promise<void> => {
-    try {
-      const { status }: IResponse = await deletePost(questionIdx);
-
-      if (status === EResponse.OK) {
-        successToast('글을 삭제하였습니다.');
-        
-        if (isDetail) {
-          history.goBack();
-        }
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, [history]);
-
   useEffect(() => {
     if (Number.isInteger(questionIdx)) {
       requestQuestionByIdx();
@@ -54,7 +36,6 @@ const useQuestionByIdx = () => {
 
   return {
     question,
-    requestDeleteQuestion,
   };
 };
 

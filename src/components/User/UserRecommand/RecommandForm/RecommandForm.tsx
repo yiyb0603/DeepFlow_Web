@@ -1,15 +1,15 @@
 import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import useRecommand from 'hooks/user/useRecommand';
 import Button from 'components/Common/Button';
 import { palette } from 'styles/Palette/Palette';
+import useCreateRecommand from 'hooks/recommand/useCreateRecommand';
 
 const style = require('./RecommandForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const RecommandForm = (): JSX.Element => {
-  const { reason, onChangeReason, requestCreateRecommand } = useRecommand();
+  const { reason, onChangeReason, requestCreateRecommand } = useCreateRecommand();
 
   return (
     <div className={cx('RecommandForm')}>

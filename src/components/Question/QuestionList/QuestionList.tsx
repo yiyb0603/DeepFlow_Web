@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import FadeIn from 'react-fade-in';
-import usePosts from 'hooks/question/usePosts';
+import useQuestions from 'hooks/question/questionHooks/useQuestions';
 import useViewMode from 'hooks/question/useViewMode';
 import { EView } from 'lib/enum/theme';
 import { IQuestionTab, sortPostTabs } from 'lib/models/tabs/postTabs';
@@ -37,14 +37,14 @@ const QuestionList = (): JSX.Element => {
     sortTab,
     onChangeSortTab,
 
-    requestPostList,
-  } = usePosts();
+    requestQuestionList,
+  } = useQuestions();
 
   const { viewMode, onChangeViewMode, flexStyle } = useViewMode();
 
   useEffect(() => {
-    requestPostList();
-  }, [requestPostList, sortTab, currentPage]);
+    requestQuestionList();
+  }, [requestQuestionList, sortTab, currentPage]);
 
   return (
     <div className={cx('QuestionList')}>
