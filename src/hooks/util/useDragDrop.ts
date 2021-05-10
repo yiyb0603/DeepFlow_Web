@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect, useRef, ChangeEvent } from 'react';
 
 const useDragDrop = () => {
-  const dragRef = useRef<HTMLDivElement | null>(null);
+  const dragRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState<boolean>(false);
 
   const handleDragIn = useCallback((e: DragEvent): void => {

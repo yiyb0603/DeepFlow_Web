@@ -1,65 +1,64 @@
 .CommentItem {
-	margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 
-	&-TopInfo {
-		display: flex;
-		display: -webkit-flex;
-		flex-wrap: wrap;
-		-ms-flex-wrap: wrap;
-		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 0.8rem;
+  &-TopInfo {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
 
-		&-Left {
-			display: flex;
-			display: -webkit-flex;
-			align-items: center;
+    &-Left {
+      display: flex;
+      display: -webkit-flex;
+      align-items: center;
 
-			&-Profile {
-				width: 80px;
-				height: 80px;
-				border-radius: 50%;
-				margin-right: 0.7rem;
-			}
+      &-Profile {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-right: 0.7rem;
+      }
 
-			&-UserTime {
-				font-size: var(--font-small);
+      &-UserTime {
+        &-User {
+          font-weight: 500;
+          font-size: var(--font-small);
+        }
 
-				&-User {
-					font-weight: 500;
-				}
+        &-Time {
+          color: var(--gray);
+        }
+      }
+    }
 
-				&-Time {
-					color: var(--gray);
-				}
-			}
-		}
+    &-Right {
+      display: flex;
+      display: -webkit-flex;
 
-		&-Right {
-			display: flex;
-			display: -webkit-flex;
+      & > * {
+        cursor: pointer;
+        font-size: var(--font-small);
+      }
 
-			& > * {
-				cursor: pointer;
-				font-size: var(--font-small);
-			}
+      &-Delete {
+        color: var(--red);
+        margin-left: 0.4rem;
+      }
+    }
+  }
 
-			&-Delete {
-				color: var(--red);
-				margin-left: 0.4rem;
-			}
-		}
-	}
+  &-Contents {
+    word-break: break-all;
+    white-space: pre-wrap;
+  }
 
-	&-Contents {
-		word-break: break-all;
-		white-space: pre-wrap;
-	}
-
-	&-Emojies {
-		display: flex;
-		display: -webkit-flex;
-		align-items: center;
-		margin-top: 0.5rem;
-	}
+  &-Emojies {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
 }

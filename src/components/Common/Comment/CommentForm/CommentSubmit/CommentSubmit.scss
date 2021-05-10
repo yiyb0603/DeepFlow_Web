@@ -1,23 +1,23 @@
 .CommentSubmit {
-	display: flex;
-	display: -webkit-flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-left: 0.5rem;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 0.5rem;
 
-	&-Cancel {
-		display: flex;
-		display: -webkit-flex;
-		align-items: center;
+  &-Cancel {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
 
-		&-Text {
-			font-size: var(--font-small);
-		}
+    &-Text {
+      font-size: var(--font-smallest);
+    }
 
-		&-Icon {
-			font-size: var(--font-regular) !important;
-			color: var(--red);
-			cursor: pointer;
-		}
-	}
+    &-Icon {
+      font-size: var(--font-normallest) !important;
+      color: var(--red);
+      cursor: pointer;
+    }
+  }
 }

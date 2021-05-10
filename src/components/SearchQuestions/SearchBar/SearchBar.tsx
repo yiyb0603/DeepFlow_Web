@@ -25,7 +25,7 @@ const SearchBar = ({
   keyword,
   onChangeKeyword,
 }: SearchBarProps): JSX.Element => {
-  const searchZoneRef = useRef<HTMLDivElement | null>(null);
+  const searchZoneRef = useRef<HTMLDivElement>(null);
   
   const searchKeyword: string = useRecoilValue<string>(searchKeywordState);
   const [isShowHistory, setIsShowHistory] = useRecoilState(showSearchHistoryState);

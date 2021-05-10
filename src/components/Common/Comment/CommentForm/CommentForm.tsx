@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import PreviewTab from './PreviewTab';
-import CommentInput from './CommentInput';
 import { EComment, ECommentTab } from 'lib/enum/comment';
-import CommentPreview from './CommentPreview';
-import CommentSubmit from './CommentSubmit';
-import ReplyCancel from 'components/Reply/ReplyCancel';
+import { commentTabs, ICommentTab } from 'lib/models/tabs/commentTabs';
 import useComment from 'hooks/comment/useComment';
 import useReply from 'hooks/reply/useReply';
-import { commentTabs, ICommentTab } from 'lib/models/tabs/commentTabs';
+import ReplyCancel from 'components/Reply/ReplyCancel';
+import CommentInput from './CommentInput';
+import CommentPreview from './CommentPreview';
+import CommentSubmit from './CommentSubmit';
+import PreviewTab from './PreviewTab';
 import PreviewTabItem from './PreviewTab/PreviewTabItem';
 
 const style = require('./CommentForm.scss');
@@ -35,7 +35,7 @@ const CommentForm = ({
     onChangeContents,
     requestOfferComment,
     commentInputRef,
-    dragRef,
+    commentDragRef,
     handleDrop,
     handleDragImage,
   } = useComment();
@@ -43,13 +43,22 @@ const CommentForm = ({
   const [commentTab, setCommentTab] = useState<ECommentTab>(ECommentTab.WRITE);
 
   useEffect(() => {
-    if (dragRef.current !== null) {
-      dragRef.current.addEventListener('drop', (e) => handleDrop(e, handleDragImage), true);
+    if (type === COMMENT) {
+      if (commentDragRef.current !== null) {
+        commentDragRef.current.addEventListener('drop', (e) => handleDrop(e, handleDragImage), true);
+      }
+    } else {
+      if (reply.replyDragRef.current !== null) {
+        reply.replyDragRef.current.addEventListener('drop', (e) => handleDrop(e, reply.handleDragImage), true);
+      }
     }
-  }, [dragRef, handleDragImage, handleDrop]);
+  }, [COMMENT, commentDragRef, handleDragImage, handleDrop, reply.handleDragImage, reply.replyDragRef, type]);
 
   return (
-    <div className={cx('CommentForm')} ref={dragRef}>
+    <div
+      className={cx('CommentForm')}
+      ref={type === COMMENT ? commentDragRef : reply.replyDragRef}
+    >
       <div className={cx('CommentForm-ContentsWrap')}>
         <PreviewTab>
         {
@@ -71,7 +80,7 @@ const CommentForm = ({
             type={type}
             contents={type === COMMENT ? contents : reply.contents}
             onChangeContents={type === COMMENT ? onChangeContents : reply.onChangeContents}
-            commentInputRef={commentInputRef!}
+            commentInputRef={type === COMMENT ? commentInputRef : reply.replyInputRef}
           />
           :
           <CommentPreview contents={type === COMMENT ? contents : reply.contents} />

@@ -7,7 +7,7 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 const ScrollProgress = (): JSX.Element => {
   const [width, setWidth] = useState<number>(0);
-  const progressRef = useRef<HTMLDivElement | null>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
 
   const handleProgressMove = useCallback((e: MouseEvent<HTMLDivElement>): void => {
     if (progressRef.current !== null) {

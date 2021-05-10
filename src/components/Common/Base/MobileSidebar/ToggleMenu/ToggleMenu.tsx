@@ -16,7 +16,7 @@ const ToggleMenu = ({
   isSideShow,
   setIsSideShow,
 }: ToggleMenuProps): JSX.Element => {
-  const sideRef = useRef<HTMLDivElement | null>(null);
+  const sideRef = useRef<HTMLDivElement>(null);
 
   const handleClickOut = useCallback((e): void => {
     if (sideRef.current && !sideRef.current.contains(e.target)){

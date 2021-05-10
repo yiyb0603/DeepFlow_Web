@@ -21,7 +21,7 @@ const EmojiSelect = ({
   commentIdx,
 }: EmojiSelectProps): JSX.Element => {
   const { emoji, onChangeEmoji, onClickEmoji, onKeydownEmoji } = useEmoji();
-  const selectRef = useRef<HTMLDivElement | null>(null);
+  const selectRef = useRef<HTMLDivElement>(null);
   const myInfo: IToken = useMemo(() => getMyInfo(), []);
 
   const setIsToggle: SetterOrUpdater<boolean> = useSetRecoilState<boolean>(toggleEmojiState);

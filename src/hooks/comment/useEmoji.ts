@@ -7,10 +7,10 @@ import { createCommentEmoji, deleteCommentEmoji } from 'lib/api/commentEmoji/com
 import { EResponse } from 'lib/enum/response';
 import { ICommentEmojiInfo } from 'types/commentEmoji.types';
 import { checkLoggedIn } from 'util/checkLoggedIn';
-import useComment from './useComment';
+import useCommentList from './useCommentList';
 
 const useEmoji = () => {
-  const { requestCommentList } = useComment();
+  const { requestCommentList } = useCommentList();
   const [emoji, setEmoji] = useState<string>('');
 
   const setIsToggle: SetterOrUpdater<boolean> = useSetRecoilState<boolean>(toggleEmojiState);
