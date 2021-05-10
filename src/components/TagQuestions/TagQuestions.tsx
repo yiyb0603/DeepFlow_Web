@@ -1,12 +1,11 @@
 import { useEffect, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { useHistory } from 'react-router-dom';
-import { History } from 'history';
 import useTag from 'hooks/tag/useTag';
 import useViewMode from 'hooks/question/useViewMode';
 import useTagQuestions from 'hooks/question/useTagQuestions';
 import { EView } from 'lib/enum/theme';
+import { historySingleton } from 'lib/singleton/history';
 import { IQuestion } from 'types/question.types';
 import PageLoading from 'components/Common/Loading/PageLoading';
 import ListItem from 'components/Common/Post/ListItem';
@@ -18,8 +17,6 @@ const style = require('./TagQuestions.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const TagQuestions = (): JSX.Element => {
-  const history: History = useHistory();
-
   const { pageParam, tagInfo } = useTag();
   const {
     tagQuestionList,
@@ -36,11 +33,11 @@ const TagQuestions = (): JSX.Element => {
   
   useEffect(() => {
     if (!pageParam.tag) {
-      history.goBack();
+      historySingleton.goBack();
     }
 
     requestPostsByTag();
-  }, [history, requestPostsByTag, tagInfo, pageParam]);
+  }, [requestPostsByTag, tagInfo, pageParam]);
 
   return (
     <>

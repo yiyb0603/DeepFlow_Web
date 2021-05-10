@@ -1,9 +1,8 @@
 import { useCallback, useMemo, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { History } from 'history';
 import { CHUNK_PAGE_COUNT } from 'constants/util';
 import { paginationNumber } from 'util/paginationNumber';
 import useQueryString from './useQueryString';
+import { historySingleton } from 'lib/singleton/history';
 
 const usePagination = () => {
   const query = useQueryString();
@@ -13,16 +12,14 @@ const usePagination = () => {
   const [totalPage, setTotalPage] = useState<number>(1);
 
   const [numberListPage, setNumberListPage] = useState<number>(Math.ceil(currentPage / CHUNK_PAGE_COUNT) || 1);
-
-  const history: History = useHistory();
   const splitedNumberList: number[][] = useMemo(() => paginationNumber(totalPage), [totalPage]);
 
   const onChangeCurrentPage = useCallback((page: number): void => {
     if (currentPage !== page) {
-      history.push(`?page=${page}`);
+      historySingleton.push(`?page=${page}`);
       setCurrentPage(page);
     }
-  }, [currentPage, history, setCurrentPage]);
+  }, [currentPage, setCurrentPage]);
 
   const handlePrevPage = useCallback((): void => {
     if (numberListPage === 1) {

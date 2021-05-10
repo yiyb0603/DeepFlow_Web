@@ -1,22 +1,19 @@
 import { useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
-import { History } from 'history';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import NotFoundImage from 'assets/images/not-found.svg';
 import { palette } from 'styles/Palette/Palette';
 import Button from 'components/Common/Button';
 import Helmet from 'components/Common/Helmet';
+import { historySingleton } from 'lib/singleton/history';
 
 const style = require('./NotFound.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const NotFound = (): JSX.Element => {
-  const history: History = useHistory();
-
   const handlePushToHome = useCallback((): void => {
-    history.push('/');
-  }, [history]);
+    historySingleton.push('/');
+  }, []);
 
   return (
     <div className={cx('NotFound')}>

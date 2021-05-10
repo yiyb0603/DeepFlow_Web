@@ -1,7 +1,6 @@
 import { useCallback, useMemo } from 'react';
-import { useHistory } from 'react-router-dom';
 import FadeIn from 'react-fade-in';
-import { History } from 'history';
+import { historySingleton } from 'lib/singleton/history';
 import { checkLoggedIn } from 'util/checkLoggedIn';
 import { getMyInfo } from 'util/getMyInfo';
 import { IToken } from 'types/user.types';
@@ -12,7 +11,6 @@ import Button from 'components/Common/Button';
 import NoticeList from './NoticeList';
 
 const NoticeTemplate = (): JSX.Element => {
-  const history: History = useHistory();
   const myInfo: IToken = useMemo(() => getMyInfo(), []);
   
   const handlePushToForm = useCallback((): void => {
@@ -20,8 +18,8 @@ const NoticeTemplate = (): JSX.Element => {
       return;
     }
 
-    history.push('/notice-form');
-  }, [history]);
+    historySingleton.push('/notice-form');
+  }, []);
 
   return (
     <FadeIn>

@@ -1,12 +1,11 @@
 import { ChangeEvent, useCallback, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { History } from 'history';
 import firebase from 'firebase/app';
 import '@firebase/messaging';
 import { registerLoading, requestRegisterState } from 'atom/auth';
 import firebaseConfig from 'config/firebase.json';
 import AuthError from 'error/AuthError';
+import { historySingleton } from 'lib/singleton/history';
 import { getGithubInfo, handleRegister } from 'lib/api/auth/auth.api';
 import { IGithubCodeDto } from 'lib/api/auth/auth.dto';
 import { setFCMToken } from 'lib/api/user/user.api';
@@ -20,7 +19,6 @@ import useQueryString from '../util/useQueryString';
 
 const useRegister = () => {
   const { code } = useQueryString();
-  const history: History = useHistory();
   
   const [request, setRequest] = useRecoilState<IRegisterRequest>(requestRegisterState);
   const [isLoading, setIsLoading] = useRecoilState<boolean>(registerLoading);
@@ -69,7 +67,7 @@ const useRegister = () => {
           const { accessToken } = data;
 
           setCookie('access_token', accessToken);
-          history.push('/');
+          historySingleton.push('/');
           successToast('로그인 되었습니다.');
 
           await requestNotificationAllow();
@@ -83,9 +81,9 @@ const useRegister = () => {
         }));
       }
     } catch (error) {
-      new AuthError(error).registerError(history);
+      new AuthError(error).registerError(historySingleton);
     }
-  }, [code, history, requestNotificationAllow, setRequest]);
+  }, [code, requestNotificationAllow, setRequest]);
 
   const requestRegister = useCallback(async (): Promise<void> => {
     try {
@@ -98,7 +96,7 @@ const useRegister = () => {
 
       if (status === EResponse.OK) {
         setCookie('access_token', data.accessToken);
-        history.push('/');
+        historySingleton.push('/');
         successToast('회원가입을 성공하였습니다.');
       }
     } catch (error) {
@@ -106,7 +104,7 @@ const useRegister = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [history, request, setIsLoading]);
+  }, [request, setIsLoading]);
 
   useEffect(() => {
     requestLoginOrGithubInfo();

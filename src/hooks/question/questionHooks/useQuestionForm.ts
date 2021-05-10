@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useState, ChangeEvent, KeyboardEvent } from 'react';
-import { useHistory } from 'react-router-dom';
-import { History } from 'history';
 import { useRecoilState } from 'recoil';
 import { initialRequestQuestionState, requestQuestionState } from 'atom/question';
 import { MAX_TAG_LENGTH } from 'constants/question';
 import { customTrim } from 'converter/customTrim';
+import { historySingleton } from 'lib/singleton/history';
 import { createPost, modifyPost } from 'lib/api/question/question.api';
 import { IQuestionDto } from 'lib/api/question/question.dto';
 import { errorToast, successToast } from 'lib/Toast';
@@ -13,7 +12,6 @@ import { validateBeforeModal, validateQuestion } from 'validation/question.valid
 import useQuestionByIdx from './useQuestionByIdx';
 
 const useQuestionForm = () => {
-  const history: History = useHistory();
   const { question } = useQuestionByIdx();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -137,7 +135,7 @@ const useQuestionForm = () => {
         setIsLoading(false);
         handleIsModal(false);
         successToast(`글 ${questionIdx === null ? '작성' : '수정'}을 성공하였습니다.`);
-        history.push('/');
+        historySingleton.push('/');
 
         setRequest({
           title: '',
@@ -152,7 +150,7 @@ const useQuestionForm = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [handleIsModal, history, questionIdx, request, setRequest]);
+  }, [handleIsModal, questionIdx, request, setRequest]);
 
   const handleSetProperties = useCallback(async (): Promise<void> => {
     const { idx, title, thumbnail, introduction, contents, postTags } = question!;

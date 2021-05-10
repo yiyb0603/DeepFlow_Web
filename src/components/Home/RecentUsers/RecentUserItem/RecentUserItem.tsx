@@ -1,9 +1,9 @@
 import { useCallback, MouseEvent, memo } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { History } from 'history';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { AiOutlineLike } from 'react-icons/ai';
+import { historySingleton } from 'lib/singleton/history';
 
 const style = require('./RecentUserItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -21,13 +21,12 @@ const RecentUserItem = ({
   name,
   position,
 }: RecentUserItemProps): JSX.Element => {
-  const history: History = useHistory();
   const handlePushToRecommand = useCallback((e: MouseEvent<SVGElement>): void => {
     e.preventDefault();
     e.stopPropagation();
 
-    history.push(`/user-recommand/${idx}`)
-  }, [history, idx]);
+    historySingleton.push(`/user-recommand/${idx}`)
+  }, [idx]);
 
   return (
     <Link

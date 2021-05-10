@@ -1,9 +1,8 @@
 import { useCallback, useMemo } from 'react';
-import { useHistory } from 'react-router-dom';
-import { History } from 'history';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import SecureLS from 'secure-ls';
+import { historySingleton } from 'lib/singleton/history';
 
 const style = require('./TagsItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -19,13 +18,12 @@ const TagsItem = ({
   description,
   count,
 }: TagsItemProps): JSX.Element => {
-  const history: History = useHistory();
   const ls: SecureLS = useMemo(() => new SecureLS({ encodingType: 'aes' }), []);
 
   const handlePushToTagPosts = useCallback((): void => {
     ls.set('tagInfo', { name, description, count });
-    history.push(`/tag-questions/${name}`);
-  }, [count, description, history, ls, name]);
+    historySingleton.push(`/tag-questions/${name}`);
+  }, [count, description, ls, name]);
 
   return (
     <div className={cx('TagsItem')}>

@@ -1,9 +1,8 @@
 import { useCallback, memo } from 'react';
-import { useHistory } from 'react-router-dom';
-import { History } from 'history';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { MdClose } from 'react-icons/md';
+import { historySingleton } from 'lib/singleton/history';
 
 const style = require('./TagItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -19,13 +18,11 @@ const TagItem = ({
   isClose = false,
   filterFunction,
 }: TagItemProps): JSX.Element => {
-  const history: History = useHistory();
-
   const handlePushToTagQuestions = useCallback((): void => {
     if (!isClose) {
-      history.push(`/tag-questions/${postTag}`);
+      historySingleton.push(`/tag-questions/${postTag}`);
     }
-  }, [history, isClose, postTag]);
+  }, [isClose, postTag]);
 
   return (
     <div

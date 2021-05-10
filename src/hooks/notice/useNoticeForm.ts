@@ -1,5 +1,4 @@
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { initialNoticeState, requestNoticeState } from 'atom/notice';
 import useFocus from 'hooks/util/useFocus';
@@ -9,9 +8,9 @@ import { successToast } from 'lib/Toast';
 import { checkLoggedIn } from 'util/checkLoggedIn';
 import { validateNotice } from 'validation/notice.validation';
 import useNoticeByIdx from './useNoticeByIdx';
+import { historySingleton } from 'lib/singleton/history';
 
 const useNoticeForm = () => {
-  const history = useHistory();
   const { notice, noticeIdx } = useNoticeByIdx();
   const [isContentsFocus, onChangeIsContentsFocus] = useFocus();
  
@@ -50,11 +49,11 @@ const useNoticeForm = () => {
 
       successToast(`공지사항을 ${Number.isInteger(noticeIdx) ? '수정' : '작성'}하였습니다.`);
       setRequest(initialNoticeState);
-      history.push('/notice');
+      historySingleton.push('/notice');
     } catch (error) {
       console.log(error);
     }
-  }, [history, noticeIdx, request, setRequest]);
+  }, [noticeIdx, request, setRequest]);
 
   const handleSetProperties = useCallback((): void => {
     if (notice !== null) {

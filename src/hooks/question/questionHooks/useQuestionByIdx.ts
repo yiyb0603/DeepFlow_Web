@@ -1,16 +1,14 @@
 import { useCallback, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { History } from 'history';
 import { questionState } from 'atom/question';
 import { IQuestion, IQuestionResponse } from 'types/question.types';
 import { getPostByIdx } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
 import PostError from 'error/PostError';
 import usePageParam from '../../util/usePageParam';
+import { historySingleton } from 'lib/singleton/history';
 
 const useQuestionByIdx = () => {
-  const history: History = useHistory();
   const questionIdx: number = usePageParam();
   const [question, setQuestion] = useRecoilState<IQuestion | null>(questionState);
 
@@ -22,9 +20,9 @@ const useQuestionByIdx = () => {
         setQuestion(data.post);
       }
     } catch (error) {
-      new PostError(error).getPostError(history);
+      new PostError(error).getPostError(historySingleton);
     }
-  }, [history, questionIdx, setQuestion]);
+  }, [questionIdx, setQuestion]);
 
   useEffect(() => {
     if (Number.isInteger(questionIdx)) {

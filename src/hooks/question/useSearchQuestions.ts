@@ -1,7 +1,5 @@
 import { ChangeEvent, KeyboardEvent, useCallback, useEffect, useState } from 'react';
 import { SetterOrUpdater, useRecoilState, useSetRecoilState } from 'recoil';
-import { useHistory } from 'react-router-dom';
-import { History } from 'history';
 import { searchKeywordListState, searchKeywordState, showSearchHistoryState } from 'atom/search';
 import { customTrim } from 'converter/customTrim';
 import { getPostsBySearch } from 'lib/api/question/question.api';
@@ -10,6 +8,7 @@ import { setStorage } from 'lib/Storage';
 import { IQuestion } from 'types/question.types';
 import { ISearchKeyword } from 'types/search.types';
 import usePagination from '../util/usePagination';
+import { historySingleton } from 'lib/singleton/history';
 
 const useSearchQuestions = () => {
   const {
@@ -21,7 +20,6 @@ const useSearchQuestions = () => {
     numberListPage,
     splitedNumberList,
   } = usePagination();
-  const history: History = useHistory();
 
   const [searchQuestions, setSearchQuestions] = useState<IQuestion[]>([]);
 
@@ -62,10 +60,10 @@ const useSearchQuestions = () => {
   }, [handleSaveKeywords, setShowHistory, setTotalPage]);
 
   const handlePushToSearch = useCallback((keyword: string): void => {
-    history.push(`?keyword=${keyword}`);
+    historySingleton.push(`?keyword=${keyword}`);
     setKeyword(keyword);
     requestSearchPosts(keyword);
-  }, [history, requestSearchPosts, setKeyword]);
+  }, [requestSearchPosts, setKeyword]);
 
   const onChangeKeyword = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
