@@ -6,7 +6,7 @@ import { customTrim } from 'converter/customTrim';
 import { historySingleton } from 'lib/singleton/history';
 import { createPost, modifyPost } from 'lib/api/question/question.api';
 import { IQuestionDto } from 'lib/api/question/question.dto';
-import { errorToast, successToast } from 'lib/Toast';
+import Toast from 'lib/Toast';
 import { isEmpty } from 'util/isEmpty';
 import { validateBeforeModal, validateQuestion } from 'validation/question.validation';
 import useQuestionByIdx from './useQuestionByIdx';
@@ -71,13 +71,13 @@ const useQuestionForm = () => {
     }
 
     if (postTags.length >= MAX_TAG_LENGTH) {
-      errorToast('태그는 최대 5개까지 가능합니다.');
+      Toast.errorToast('태그는 최대 5개까지 가능합니다.');
       return;
     }
 
     const isExistTag: boolean = postTags.some((tag) => tag === customTrim(tagInput));
     if (isExistTag) {
-      errorToast('중복된 태그 이름이 존재합니다.');
+      Toast.errorToast('중복된 태그 이름이 존재합니다.');
       return;
     }
 
@@ -123,7 +123,7 @@ const useQuestionForm = () => {
           await modifyPost(questionIdx, request, isTemp);
         }
         
-        successToast('글 임시저장을 성공하였습니다.');
+        Toast.successToast('글 임시저장을 성공하였습니다.');
       } else {
         setIsLoading(true);
         if (questionIdx === null) {
@@ -134,7 +134,7 @@ const useQuestionForm = () => {
 
         setIsLoading(false);
         handleIsModal(false);
-        successToast(`글 ${questionIdx === null ? '작성' : '수정'}을 성공하였습니다.`);
+        Toast.successToast(`글 ${questionIdx === null ? '작성' : '수정'}을 성공하였습니다.`);
         historySingleton.push('/');
 
         setRequest({

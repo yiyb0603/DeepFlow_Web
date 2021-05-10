@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { CgUserList } from 'react-icons/cg';
-import { infoToast } from 'lib/Toast';
+import Toast from 'lib/Toast';
 import LikeSubmit from './LikeSubmit';
 import LikeList from './LikeList';
 import useLikeList from 'hooks/question/like/useLikeList';
@@ -18,7 +18,7 @@ const PostLike = (): JSX.Element => {
 
   const onChangeIsModal = useCallback((): void => {
     if (!isModal && likeList.length <= 0) {
-      infoToast('현재 좋아요 목록이 없습니다.');
+      Toast.infoToast('현재 좋아요 목록이 없습니다.');
       return;
     }
 

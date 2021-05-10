@@ -10,7 +10,7 @@ const iconStyle: CSSProperties = {
   color: palette.white,
 }
 
-export const showToast = async (props: ToastProps): Promise<void> => {
+const showToast = async (props: ToastProps): Promise<void> => {
   if (!AppToaster) {
     AppToaster = await Toaster.create();
   }
@@ -18,29 +18,33 @@ export const showToast = async (props: ToastProps): Promise<void> => {
   AppToaster.show(props);
 }
 
-export const successToast = (message: string): void => {
-  showToast({
-    backgroundColor: palette.green,
-    message,
-    button: <MdClose style={iconStyle} />,
-    icon: <BsCheckCircle style={iconStyle} />,
-  });
+class Toast {
+  public static successToast(message: string): void {
+    showToast({
+      backgroundColor: palette.green,
+      message,
+      button: <MdClose style={iconStyle} />,
+      icon: <BsCheckCircle style={iconStyle} />,
+    });
+  }
+  
+  public static infoToast(message: string): void {
+    showToast({
+      backgroundColor: palette.skyBlue,
+      message,
+      button: <MdClose style={iconStyle} />,
+      icon: <BiErrorAlt style={iconStyle} />,
+    });
+  }
+  
+  public static errorToast(message: string): void {
+    showToast({
+      backgroundColor: palette.red,
+      message,
+      button: <MdClose style={iconStyle} />,
+      icon: <BiErrorAlt style={iconStyle} />,
+    });
+  }
 }
 
-export const infoToast = (message: string): void => {
-  showToast({
-    backgroundColor: palette.skyBlue,
-    message,
-    button: <MdClose style={iconStyle} />,
-    icon: <BiErrorAlt style={iconStyle} />,
-  });
-}
-
-export const errorToast = (message: string): void => {
-  showToast({
-    backgroundColor: palette.red,
-    message,
-    button: <MdClose style={iconStyle} />,
-    icon: <BiErrorAlt style={iconStyle} />,
-  });
-}
+export default Toast;

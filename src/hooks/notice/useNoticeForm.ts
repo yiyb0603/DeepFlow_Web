@@ -4,7 +4,7 @@ import { initialNoticeState, requestNoticeState } from 'atom/notice';
 import useFocus from 'hooks/util/useFocus';
 import { INoticeDto } from 'lib/api/notice/notice.dto';
 import { createNotice, modifyNotice } from 'lib/api/notice/notice.api';
-import { successToast } from 'lib/Toast';
+import Toast from 'lib/Toast';
 import { checkLoggedIn } from 'util/checkLoggedIn';
 import { validateNotice } from 'validation/notice.validation';
 import useNoticeByIdx from './useNoticeByIdx';
@@ -47,7 +47,7 @@ const useNoticeForm = () => {
         await createNotice(request);
       }
 
-      successToast(`공지사항을 ${Number.isInteger(noticeIdx) ? '수정' : '작성'}하였습니다.`);
+      Toast.successToast(`공지사항을 ${Number.isInteger(noticeIdx) ? '수정' : '작성'}하였습니다.`);
       setRequest(initialNoticeState);
       historySingleton.push('/notice');
     } catch (error) {

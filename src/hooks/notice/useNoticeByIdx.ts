@@ -5,7 +5,7 @@ import usePageParam from 'hooks/util/usePageParam';
 import { deleteNotice, getNoticeByIdx } from 'lib/api/notice/notice.api';
 import { EResponse } from 'lib/enum/response';
 import { INotice } from 'types/notice.types';
-import { successToast } from 'lib/Toast';
+import Toast from 'lib/Toast';
 import { historySingleton } from 'lib/singleton/history';
 
 const useNoticeByIdx = () => {
@@ -29,7 +29,7 @@ const useNoticeByIdx = () => {
       const { status } = await deleteNotice(noticeIdx);
 
       if (status === EResponse.OK) {
-        successToast('공지사항을 삭제하였습니다.');
+        Toast.successToast('공지사항을 삭제하였습니다.');
         historySingleton.push('/notice');
       }
     } catch (error) {

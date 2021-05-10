@@ -1,11 +1,15 @@
-export const setStorage = (key: string, value: any): void => {
-  return localStorage.setItem(key, value);
+class Storage {
+  public static setStorage(key: string, value: any): void {
+    localStorage.setItem(key, value);
+  }
+
+  public static getStorage(key: string): any {
+    return localStorage.getItem(key);
+  }
+
+  public static removeStorage(key: string): void {
+    localStorage.removeItem(key);
+  }
 }
 
-export const getStorage = (key: string): any => {
-  return localStorage.getItem(key);
-}
-
-export const removeStorage = (key: string): void => {
-  return localStorage.removeItem(key);
-}
+export default Storage;

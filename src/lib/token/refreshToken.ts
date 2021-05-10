@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import { getRefreshToken } from 'lib/api/token/token.api';
-import { setCookie } from 'lib/Cookie';
+import Cookie from 'lib/Cookie';
 import { decodeToken, getToken } from 'lib/token';
 import { ITokenResponse } from 'types/token.types';
 import { IToken } from 'types/user.types';
@@ -16,7 +16,7 @@ export const refreshToken = async (config: AxiosRequestConfig): Promise<AxiosReq
       const response: ITokenResponse = await getRefreshToken(accessToken);
 
       const { refreshToken } = response.data;
-      setCookie('access_token', refreshToken);
+      Cookie.setCookie('access_token', refreshToken);
       accessToken = refreshToken;
     }
     

@@ -1,6 +1,6 @@
 import { MAX_REASON_LENGTH } from 'constants/recommand';
 import { IRecommandDto } from 'lib/api/userRecommand/userRecommand.dto';
-import { errorToast } from 'lib/Toast';
+import Toast from 'lib/Toast';
 import { IToken } from 'types/user.types';
 import { getMyInfo } from 'util/getMyInfo';
 import { isEmpty } from 'util/isEmpty';
@@ -10,17 +10,17 @@ export const validateRecommand = (request: IRecommandDto): boolean => {
   const { reason, userIdx } = request;
 
   if (isEmpty(reason)) {
-    errorToast('빈칸없이 입력해주세요.');
+    Toast.errorToast('빈칸없이 입력해주세요.');
     return false;
   }
 
   if ((myInfo && myInfo.idx) === userIdx) {
-    errorToast('자기 자신을 추천할 수 없습니다.');
+    Toast.errorToast('자기 자신을 추천할 수 없습니다.');
     return false;
   }
 
   if (reason.length > MAX_REASON_LENGTH) {
-    errorToast('사유는 최대 255자까지 가능합니다.');
+    Toast.errorToast('사유는 최대 255자까지 가능합니다.');
     return false;
   }
 

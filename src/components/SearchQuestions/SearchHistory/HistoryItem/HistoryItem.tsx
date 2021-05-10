@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { VscChromeClose } from 'react-icons/vsc';
 import { searchKeywordListState } from 'atom/search';
-import { setStorage } from 'lib/Storage';
+import Storage from 'lib/Storage';
 import { ISearchKeyword } from 'types/search.types';
 
 const style = require('./HistoryItem.scss');
@@ -28,7 +28,7 @@ const HistoryItem = ({
 
     const filteredKeywords: ISearchKeyword[] = searchKeywords.filter((keyword: ISearchKeyword) => keyword.idx !== idx);
     setSearchKeywords(filteredKeywords);
-    setStorage('keywords', JSON.stringify(filteredKeywords));
+    Storage.setStorage('keywords', JSON.stringify(filteredKeywords));
   }, [idx, searchKeywords, setSearchKeywords]);
 
   return (

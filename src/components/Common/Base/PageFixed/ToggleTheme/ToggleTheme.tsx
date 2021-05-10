@@ -6,7 +6,7 @@ import { IoMdSunny } from 'react-icons/io';
 import { FaMoon } from 'react-icons/fa';
 import { themeState } from 'atom/theme';
 import { ETheme } from 'lib/enum/theme';
-import { setCookie } from 'lib/Cookie';
+import Cookie from 'lib/Cookie';
 
 const style = require('./ToggleTheme.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -17,12 +17,12 @@ const ToggleTheme = (): JSX.Element => {
 
   const handleChangeTheme = useCallback((): void => {
     if (theme === DARK) {
-      setCookie('theme', LIGHT);
+      Cookie.setCookie('theme', LIGHT);
       setTheme(LIGHT);
       return;
     }
 
-    setCookie('theme', DARK);
+    Cookie.setCookie('theme', DARK);
     setTheme(DARK);
   }, [DARK, LIGHT, setTheme, theme]);
 

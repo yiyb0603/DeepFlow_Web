@@ -4,7 +4,7 @@ import { modifyInfoState, modifyModalState } from 'atom/user';
 import { modifyUserInfo } from 'lib/api/user/user.api';
 import { IUserModify } from 'lib/api/user/user.dto';
 import { EResponse } from 'lib/enum/response';
-import { successToast } from 'lib/Toast';
+import Toast from 'lib/Toast';
 import { validateModifyInfo } from 'validation/modifyInfo.validation';
 import useMyInfo from './useMyInfo';
 import useUserInfo from './useUserInfo';
@@ -40,7 +40,7 @@ const useModifyInfo = () => {
       const { status } = await modifyUserInfo(modifyInfo);
 
       if (status === EResponse.OK) {
-        successToast('유저 정보 수정을 성공하였습니다.');
+        Toast.successToast('유저 정보 수정을 성공하였습니다.');
         renderUserInfo();
         onChangeIsModifyModal();
       }

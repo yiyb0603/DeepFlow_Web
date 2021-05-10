@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { searchKeywordListState } from 'atom/search';
 import { ISearchKeyword } from 'types/search.types';
-import { removeStorage } from 'lib/Storage';
+import Storage from 'lib/Storage';
 
 const style = require('./ClearHistory.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -13,7 +13,7 @@ const ClearHistory = (): JSX.Element => {
   const setSearchKeywordList: SetterOrUpdater<ISearchKeyword[]> = useSetRecoilState<ISearchKeyword[]>(searchKeywordListState);
 
   const onClearKeywordList = useCallback((): void => {
-    removeStorage('keywords');
+    Storage.removeStorage('keywords');
     setSearchKeywordList([]);
   }, [setSearchKeywordList]);
 

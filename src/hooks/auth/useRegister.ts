@@ -10,9 +10,9 @@ import { getGithubInfo, handleRegister } from 'lib/api/auth/auth.api';
 import { IGithubCodeDto } from 'lib/api/auth/auth.dto';
 import { setFCMToken } from 'lib/api/user/user.api';
 import { SetFCMDto } from 'lib/api/user/user.dto';
-import { setCookie } from 'lib/Cookie';
+import Cookie from 'lib/Cookie';
 import { EResponse } from 'lib/enum/response';
-import { successToast } from 'lib/Toast';
+import Toast from 'lib/Toast';
 import { IGithubResponse, ILoginResponse, IRegisterRequest } from 'types/user.types';
 import { validateSignUp } from 'validation/auth.validation';
 import useQueryString from '../util/useQueryString';
@@ -66,9 +66,9 @@ const useRegister = () => {
         if (data.accessToken !== undefined) {
           const { accessToken } = data;
 
-          setCookie('access_token', accessToken);
+          Cookie.setCookie('access_token', accessToken);
           historySingleton.push('/');
-          successToast('로그인 되었습니다.');
+          Toast.successToast('로그인 되었습니다.');
 
           await requestNotificationAllow();
           return;
@@ -95,9 +95,9 @@ const useRegister = () => {
       const { status, data }: ILoginResponse = await handleRegister(request);
 
       if (status === EResponse.OK) {
-        setCookie('access_token', data.accessToken);
+        Cookie.setCookie('access_token', data.accessToken);
         historySingleton.push('/');
-        successToast('회원가입을 성공하였습니다.');
+        Toast.successToast('회원가입을 성공하였습니다.');
       }
     } catch (error) {
       console.log(error);

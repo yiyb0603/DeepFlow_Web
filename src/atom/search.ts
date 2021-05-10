@@ -1,4 +1,4 @@
-import { getStorage } from 'lib/Storage';
+import Storage from 'lib/Storage';
 import { atom } from 'recoil';
 import { ISearchKeyword } from 'types/search.types';
 
@@ -15,5 +15,5 @@ export const searchKeywordState = atom<string>({
 
 export const searchKeywordListState = atom<ISearchKeyword[]>({
   key: 'searchKeywordListState',
-  default: JSON.parse(getStorage('keywords')) || [],
+  default: JSON.parse(Storage.getStorage('keywords')) || [],
 });
