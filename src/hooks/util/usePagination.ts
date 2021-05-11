@@ -5,8 +5,10 @@ import useQueryString from './useQueryString';
 import { historySingleton } from 'lib/singleton/history';
 
 const usePagination = () => {
-  const query = useQueryString();
-  const page: number = useMemo(() => isNaN(Number(query.page)) ? 1 : Number(query.page), [query]);
+  const pageQuery = useQueryString('page');
+  const page: number = useMemo(() => {
+    return (!pageQuery || isNaN(Number(pageQuery))) ? 1 : Number(pageQuery);
+  }, [pageQuery]);
 
   const [currentPage, setCurrentPage] = useState<number>(page);
   const [totalPage, setTotalPage] = useState<number>(1);
