@@ -50,11 +50,11 @@ const Header = (): JSX.Element => {
             onClick={handleLogout}
           >
             <IoLogoGithub className={cx('Header-Contents-RightWrap-Login-Icon')} />
-            <div className={cx('Header-Contents-RightWrap-Login-Name')}>
+            <span className={cx('Header-Contents-RightWrap-Login-Name')}>
               {
                 !myInfo ? '로그인' : '로그아웃'
               }
-            </div>
+            </span>
           </a>
 
           {

@@ -6,7 +6,6 @@ import { getPostByIdx } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
 import PostError from 'error/PostError';
 import usePageParam from '../../util/usePageParam';
-import { historySingleton } from 'lib/singleton/history';
 
 const useQuestionByIdx = () => {
   const questionIdx: number = usePageParam();
@@ -20,7 +19,7 @@ const useQuestionByIdx = () => {
         setQuestion(data.post);
       }
     } catch (error) {
-      new PostError(error).getPostError(historySingleton);
+      new PostError(error).getPostError();
     }
   }, [questionIdx, setQuestion]);
 

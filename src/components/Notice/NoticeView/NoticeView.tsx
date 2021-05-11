@@ -1,11 +1,13 @@
+import useNoticeByIdx from 'hooks/notice/useNoticeByIdx';
+import useDeleteNotice from 'hooks/notice/useDeleteNotice';
 import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
 import PostTitle from 'components/Common/Post/PostTitle';
 import PostViewTemplate from 'components/Common/Post/PostViewTemplate';
 import TopInfo from 'components/Common/Post/TopInfo';
-import useNoticeByIdx from 'hooks/notice/useNoticeByIdx';
 
 const NoticeView = (): JSX.Element => {
-  const { notice, requestDeleteNotice } = useNoticeByIdx();
+  const { notice } = useNoticeByIdx();
+  const { requestDeleteNotice } = useDeleteNotice();
 
   return (
     <>

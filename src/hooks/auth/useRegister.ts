@@ -18,7 +18,7 @@ import { validateSignUp } from 'validation/auth.validation';
 import useQueryString from '../util/useQueryString';
 
 const useRegister = () => {
-  const { code } = useQueryString();
+  const code = useQueryString('code');
   
   const [request, setRequest] = useRecoilState<IRegisterRequest>(requestRegisterState);
   const [isLoading, setIsLoading] = useRecoilState<boolean>(registerLoading);
@@ -81,7 +81,7 @@ const useRegister = () => {
         }));
       }
     } catch (error) {
-      new AuthError(error).registerError(historySingleton);
+      new AuthError(error).registerError();
     }
   }, [code, requestNotificationAllow, setRequest]);
 

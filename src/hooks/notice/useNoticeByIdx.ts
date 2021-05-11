@@ -2,11 +2,10 @@ import { useCallback, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { noticeState } from 'atom/notice';
 import usePageParam from 'hooks/util/usePageParam';
-import { deleteNotice, getNoticeByIdx } from 'lib/api/notice/notice.api';
+import { getNoticeByIdx } from 'lib/api/notice/notice.api';
 import { EResponse } from 'lib/enum/response';
 import { INotice } from 'types/notice.types';
-import Toast from 'lib/Toast';
-import { historySingleton } from 'lib/singleton/history';
+import NoticeError from 'error/NoticeError';
 
 const useNoticeByIdx = () => {
   const noticeIdx: number = usePageParam();
@@ -20,22 +19,9 @@ const useNoticeByIdx = () => {
         setNotice(notice);
       }
     } catch (error) {
-      console.log(error);
+      new NoticeError(error).getNoticeError();
     }
   }, [noticeIdx, setNotice]);
-
-  const requestDeleteNotice = useCallback(async (noticeIdx: number): Promise<void> => {
-    try {
-      const { status } = await deleteNotice(noticeIdx);
-
-      if (status === EResponse.OK) {
-        Toast.successToast('공지사항을 삭제하였습니다.');
-        historySingleton.push('/notice');
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
 
   useEffect(() => {
     if (Number.isInteger(noticeIdx)) {
@@ -48,7 +34,6 @@ const useNoticeByIdx = () => {
   return {
     noticeIdx,
     notice,
-    requestDeleteNotice,
   };
 }
 

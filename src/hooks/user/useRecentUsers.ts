@@ -1,7 +1,7 @@
+import { useCallback, useEffect, useState } from 'react';
 import { getUserList } from 'lib/api/user/user.api';
 import { EResponse } from 'lib/enum/response';
 import { EUserSort } from 'lib/enum/user';
-import { useCallback, useEffect, useState } from 'react';
 import { IUser } from 'types/user.types';
 
 const useRecentUsers = () => {

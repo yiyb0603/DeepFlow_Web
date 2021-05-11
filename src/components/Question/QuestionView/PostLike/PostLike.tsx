@@ -3,10 +3,10 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { CgUserList } from 'react-icons/cg';
 import Toast from 'lib/Toast';
-import LikeSubmit from './LikeSubmit';
-import LikeList from './LikeList';
 import useLikeList from 'hooks/question/like/useLikeList';
 import useLikePress from 'hooks/question/like/useLikePress';
+import LikeSubmit from './LikeSubmit';
+import LikeList from './LikeList';
 
 const style = require('./PostLike.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -17,7 +17,7 @@ const PostLike = (): JSX.Element => {
   const [isModal, setIsModal] = useState<boolean>(false);
 
   const onChangeIsModal = useCallback((): void => {
-    if (!isModal && likeList.length <= 0) {
+    if (!isModal && (!likeList || likeList.length <= 0)) {
       Toast.infoToast('현재 좋아요 목록이 없습니다.');
       return;
     }
@@ -50,7 +50,10 @@ const PostLike = (): JSX.Element => {
 
       {
         isModal &&
-        <LikeList likeList={likeList} onChangeIsModal={onChangeIsModal} />
+        <LikeList
+          likeList={likeList}
+          onChangeIsModal={onChangeIsModal}
+        />
       }
     </>
   );
