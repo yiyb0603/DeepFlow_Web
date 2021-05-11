@@ -11,6 +11,7 @@ import useCommentList from './useCommentList';
 import { EResponse } from 'lib/enum/response';
 import { uploadFiles } from 'lib/api/uploads/uploads.api';
 import useDragDrop from 'hooks/util/useDragDrop';
+import UploadError from 'error/UploadError';
 
 const useOfferComment = () => {
   const postIdx: number = usePageParam();
@@ -84,7 +85,7 @@ const useOfferComment = () => {
         }
       }
     } catch (error) {
-      console.log(error);
+      new UploadError(error).uploadError();
     }
   }, [setContents]);
 

@@ -10,10 +10,13 @@ import { EResponse } from 'lib/enum/response';
 import { IReplyModify } from 'types/reply.types';
 import { checkLoggedIn } from 'util/checkLoggedIn';
 import { validateReply } from 'validation/reply.validation';
+import UploadError from 'error/UploadError';
+import useDragDrop from 'hooks/util/useDragDrop';
 
 const useOfferReply = (commentIdx: number) => {
   const postIdx: number = usePageParam();
   const { requestCommentList } = useCommentList();
+  const { dragRef } = useDragDrop();
 
   const replyInputRef = useRef<HTMLTextAreaElement>(null);
   const [contents, setContents] = useRecoilState<string>(replyContents);
@@ -51,7 +54,7 @@ const useOfferReply = (commentIdx: number) => {
       if (status === EResponse.OK) {
         if (replyInputRef.current !== null) {
           for (const file of files) {
-            const { selectionStart, selectionEnd, value } = replyInputRef.current!;
+            const { selectionStart, selectionEnd, value } = replyInputRef.current;
 
             const beforeText: string = value.substring(0, selectionStart);
             const nextText: string = value.substring(selectionEnd);
@@ -67,7 +70,7 @@ const useOfferReply = (commentIdx: number) => {
         }
       }
     } catch (error) {
-      console.log(error);
+      new UploadError(error).uploadError();
     }
   }, [setContents, replyInputRef]);
 
@@ -105,6 +108,7 @@ const useOfferReply = (commentIdx: number) => {
     contents,
     onChangeContents,
     replyInputRef,
+    replyDragRef: dragRef,
     handleDragImage,
     requestOfferReply,
   };

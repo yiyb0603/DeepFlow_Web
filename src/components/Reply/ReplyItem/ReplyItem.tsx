@@ -2,15 +2,15 @@ import { useMemo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { useRecoilValue } from 'recoil';
-import { IToken, IUser } from 'types/user.types';
+import { modifyReplyState } from 'atom/reply';
 import { getMyInfo } from 'util/getMyInfo';
 import { calculateTime } from 'lib/TimeCounting';
-import { modifyReplyState } from 'atom/reply';
-import useReply from 'hooks/reply/useReply';
+import { EComment } from 'lib/enum/comment';
+import useDeleteReply from 'hooks/reply/useDeleteReply';
 import { IReplyModify } from 'types/reply.types';
+import { IToken, IUser } from 'types/user.types';
 import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
 import CommentForm from 'components/Common/Comment/CommentForm';
-import { EComment } from 'lib/enum/comment';
 
 const style = require('./ReplyItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -36,9 +36,9 @@ const ReplyItem = ({
   onClickModifyReply,
   onChangeIsReplyWrite,
 }: ReplyItemProps): JSX.Element => {
-  const { requestDeleteReply } = useReply(commentIdx);
+  const { requestDeleteReply } = useDeleteReply();
   const myInfo: IToken = useMemo(() => getMyInfo(), []);
-  const modifyObject = useRecoilValue<IReplyModify | null>(modifyReplyState);
+  const modifyObject: IReplyModify | null = useRecoilValue<IReplyModify | null>(modifyReplyState);
 
   return (
     <div className={cx('ReplyItem')}>

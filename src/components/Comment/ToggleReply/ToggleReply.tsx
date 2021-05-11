@@ -67,19 +67,23 @@ const ToggleReply = ({
 
       {
         isShowReply &&
-        replies.length > 0 && replies.map(({ idx, contents, createdAt, updatedAt, user, fk_comment_idx }) => (
-          <ReplyItem
-            key={idx}
-            idx={idx}
-            contents={contents}
-            createdAt={createdAt}
-            updatedAt={updatedAt}
-            user={user}
-            commentIdx={fk_comment_idx}
-            onChangeIsReplyWrite={onChangeIsReplyWrite}
-            onClickModifyReply={onClickModifyReply}
-          />
-        ))
+        replies.length > 0 && replies.map((reply: IReply) => {
+          const { idx, contents, createdAt, updatedAt, user, fk_comment_idx } = reply;
+          
+          return (
+            <ReplyItem
+              key={idx}
+              idx={idx}
+              contents={contents}
+              createdAt={createdAt}
+              updatedAt={updatedAt}
+              user={user}
+              commentIdx={fk_comment_idx}
+              onChangeIsReplyWrite={onChangeIsReplyWrite}
+              onClickModifyReply={onClickModifyReply}
+            />
+          );
+        })
       }
 
       {
@@ -90,7 +94,7 @@ const ToggleReply = ({
       }
 
       {
-        isReplyWrite && modifyReply === null &&
+        (isReplyWrite && modifyReply === null) &&
         <CommentForm
           commentIdx={commentIdx}
           type={EComment.REPLY}
