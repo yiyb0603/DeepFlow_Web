@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import FadeIn from 'react-fade-in';
@@ -83,19 +83,17 @@ const QuestionList = (): JSX.Element => {
           {
             questionList.length > 0 ? questionList.map((question: IQuestion) => {
               return (
-                <>
+                <Fragment key={question.idx}>
                 {
                   viewMode === EView.LIST ?
                   <ListItem
-                    key={question.idx}
                     {...question}
                   /> :
                   <GridItem
-                    key={question.idx}
                     {...question}
                   />
                 }
-                </>
+                </Fragment>
               );
             }) : <NoItems text='작성된 글이 없습니다.' />
           }

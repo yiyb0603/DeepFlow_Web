@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { Fragment, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { EView } from 'lib/enum/theme';
@@ -34,20 +34,18 @@ const RecentQuestion = (): JSX.Element => {
         recentQuestions.length > 0 ?
         recentQuestions.map((question: IQuestion) => {
           return (
-            <>
+            <Fragment key={question.idx}>
               {
                 viewMode === LIST ?
                 <ListItem
-                  key={question.idx}
                   {...question}
                 />
                 :
-                <GridItem
-                  key={question.idx}  
+                <GridItem  
                   {...question}
                 />
               }
-            </>
+            </Fragment>
           );
         }) : <NoItems text={'최근 올라온 글이 없습니다.'} imageWidth={'30%'} />
       }

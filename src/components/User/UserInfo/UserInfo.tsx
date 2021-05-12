@@ -1,18 +1,17 @@
-import { useEffect, memo } from 'react';
-import classNames from 'classnames';
-import { ClassNamesFn } from 'classnames/types';
+import { useEffect, memo, Fragment } from 'react';
 import useUserInfo from 'hooks/user/useUserInfo';
+import useViewMode from 'hooks/question/useViewMode';
+import { EView } from 'lib/enum/theme';
 import { IQuestion } from 'types/question.types';
 import NoItems from 'components/Common/NoItems';
 import ListItem from 'components/Common/Post/ListItem';
 import UserLoading from 'components/UserList/UserLoading';
 import Helmet from 'components/Common/Helmet';
 import PageNumberList from 'components/Common/Post/PageNumberList';
+import SelectViewMode from 'components/Common/Post/SelectViewMode';
+import GridItem from 'components/Common/Post/GridItem';
 import InfoBox from './InfoBox';
 import PostTab from './PostTab';
-
-const style = require('./UserInfo.scss');
-const cx: ClassNamesFn = classNames.bind(style);
 
 const UserInfo = (): JSX.Element => {
   const {
@@ -30,6 +29,8 @@ const UserInfo = (): JSX.Element => {
     splitedNumberList,
   } = useUserInfo();
 
+  const { viewMode, onChangeViewMode, flexStyle } = useViewMode();
+
   useEffect(() => {
     renderUserInfo();
 
@@ -43,7 +44,7 @@ const UserInfo = (): JSX.Element => {
     {
       userInfo === null ? <UserLoading />
       :
-      <div className={cx('UserInfo')}>
+      <>
         <Helmet title={`${userInfo.name} (${userInfo.githubId})`} />
         <InfoBox
           {...userInfo}
@@ -54,16 +55,31 @@ const UserInfo = (): JSX.Element => {
           onChangEUserQuestionTab={onChangEUserQuestionTab}
         />
 
-        <div className={cx('UserInfo-PostList')}>
+        <SelectViewMode
+          viewMode={viewMode}
+          onChangeViewMode={onChangeViewMode}
+          margin={'0.5rem 0 0 0'}
+        />
+
+        <div
+          style={flexStyle}
+        >
         {
           splitedQuestionList.length > 0 ? (
             splitedQuestionList[currentPage - 1] &&
             splitedQuestionList[currentPage - 1].map((question: IQuestion) => {
               return (
-                <ListItem
-                  key={question.idx}
-                  {...question}
-                />
+                <Fragment key={question.idx}>
+                  {
+                    viewMode === EView.LIST ?
+                    <ListItem
+                      {...question}
+                    /> :
+                    <GridItem
+                      {...question}
+                    />
+                  }
+                </Fragment>
               );
             })
           ) : <NoItems text='작성한 글 목록이 없습니다.' />
@@ -78,7 +94,7 @@ const UserInfo = (): JSX.Element => {
           handleNextPage={handleNextPage}
           pageList={splitedNumberList}
         />
-      </div>
+      </>
     }
     </>
   );

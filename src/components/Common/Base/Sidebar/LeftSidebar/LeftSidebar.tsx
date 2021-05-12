@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { ISideItemsType, sideItems } from 'lib/models/menu/sideItems';
+import { Fragment } from 'react';
 import { getMyInfo } from 'util/getMyInfo';
 import LeftSidebarItem from './LeftSidebarItem';
 
@@ -17,17 +18,16 @@ const LeftSidebar = (): JSX.Element => {
               const { menuName, icon, link, mustToken } = item;
 
               return (
-                <>
+                <Fragment key={idx}>
                 {
                   (!mustToken || getMyInfo()) &&
                   <LeftSidebarItem
-                    key={idx}
                     menuName={menuName}
                     icon={icon}
                     link={link}
                   />
                 }
-                </>
+                </Fragment>
               );
             })
           }

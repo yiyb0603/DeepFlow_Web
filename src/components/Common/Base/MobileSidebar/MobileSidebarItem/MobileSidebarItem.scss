@@ -1,28 +1,29 @@
 .MobileSidebarItem {
-	display: flex;
-	display: -webkit-flex;
-	justify-content: flex-start;
-	align-items: center;
-	padding: 0.8rem 1.6rem;
-	border-bottom: 1px solid var(--lighterBlack);
-	transition: 0.15s ease-in-out;
-	cursor: pointer;
-	font-size: var(--font-small);
-	color: var(--black);
+  display: flex;
+  display: -webkit-flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0.8rem 1.6rem;
+  border-bottom: 1px solid var(--lighterBlack);
+  transition: 0.15s ease-in-out;
+  cursor: pointer;
+  font-size: var(--font-small);
+  background-color: var(--theme);
+  color: var(--contrast);
 
-	&-Current {
-		border-right: 2px solid var(--main);
-		background-color: var(--main);
-		color: var(--white);
-	}
+  &-Current {
+    border-right: 2px solid var(--main);
+    background-color: var(--main);
+    color: var(--white) !important;
+  }
 
-	&-Icon {
-		margin-right: 0.4rem;
-		font-size: var(--font-normal);
-	}
+  &-Icon {
+    margin-right: 0.4rem;
+    font-size: var(--font-normal);
+  }
 
-	&:hover {
-		background-color: var(--lighterGray);
-		color: var(--black) !important;
-	}
+  &:hover {
+    background-color: var(--contrast);
+    color: var(--theme) !important;
+  }
 }

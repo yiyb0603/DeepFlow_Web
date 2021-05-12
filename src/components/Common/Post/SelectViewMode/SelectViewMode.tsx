@@ -3,6 +3,7 @@ import { ClassNamesFn } from 'classnames/types';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
 import { CgMenuGridO } from 'react-icons/cg';
 import { EView } from 'lib/enum/theme';
+import { CSSProperties, useMemo } from 'react';
 
 const style = require('./SelectViewMode.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -10,16 +11,27 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface SelectViewModeProps {
   viewMode: EView;
   onChangeViewMode: (viewMode: EView) => void;
+  margin?: string;
 }
 
 const SelectViewMode = ({
   viewMode,
   onChangeViewMode,
+  margin = '0 0 0 0',
 }: SelectViewModeProps): JSX.Element => {
   const { LIST, GRID } = EView;
 
+  const viewModeStyle: CSSProperties = useMemo(() => {
+    return {
+      margin,
+    };
+  }, [margin]);
+
   return (
-    <div className={cx('SelectViewMode')}>
+    <div
+      className={cx('SelectViewMode')}
+      style={viewModeStyle}
+    >
       <AiOutlineUnorderedList
         className={cx('SelectViewMode-Item', {
           'SelectViewMode-Item-Current': viewMode === LIST,
