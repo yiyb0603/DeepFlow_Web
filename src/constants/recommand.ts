@@ -1,1 +1,1 @@
-export const MAX_REASON_LENGTH: number = 255;
+export const MAX_REASON_LENGTH = 255 as const;

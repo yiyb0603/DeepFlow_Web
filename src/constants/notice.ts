@@ -1,1 +1,1 @@
-export const MAX_TITLE_LENGTH: number = 100;
+export const MAX_TITLE_LENGTH = 100 as const;

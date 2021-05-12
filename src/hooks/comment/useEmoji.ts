@@ -8,6 +8,7 @@ import { EResponse } from 'lib/enum/response';
 import { ICommentEmojiInfo } from 'types/commentEmoji.types';
 import { checkLoggedIn } from 'util/checkLoggedIn';
 import useCommentList from './useCommentList';
+import { validateCommentEmoji } from 'validation/commentEmoji.validation';
 
 const useEmoji = () => {
   const { requestCommentList } = useCommentList();
@@ -18,6 +19,10 @@ const useEmoji = () => {
 
   const requestCreateEmoji = useCallback(async (emoji: string, commentIdx: number): Promise<void> => {
     try {
+      if (!validateCommentEmoji(emoji)) {
+        return;
+      }
+
       const createEmojiDto: ICommentEmojiDto = {
         emoji,
         commentIdx,

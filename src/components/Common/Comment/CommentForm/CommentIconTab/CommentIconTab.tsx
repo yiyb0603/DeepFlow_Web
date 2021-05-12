@@ -24,6 +24,7 @@ const CommentIconTab = ({
         onChange={onImageSelect}
         multiple={true}
       />
+
       <label
         htmlFor={selectFileId}
       >

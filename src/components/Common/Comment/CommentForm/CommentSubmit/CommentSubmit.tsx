@@ -5,9 +5,9 @@ import { ClassNamesFn } from 'classnames/types';
 import { MdClose } from 'react-icons/md';
 import { commentContentsState, commentFormLoadingState, modifyState } from 'atom/comment';
 import { stringEllipsis } from 'converter/stringEllipsis';
+import { ICommentModify } from 'types/comment.types';
 import { palette } from 'styles/Palette/Palette';
 import Button from 'components/Common/Button';
-import { ICommentModify } from 'types/comment.types';
 
 const style = require('./CommentSubmit.scss');
 const cx: ClassNamesFn = classNames.bind(style);
