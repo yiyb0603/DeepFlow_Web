@@ -3,119 +3,119 @@
 $height: 145px;
 
 .ListItem {
-	width: 100%;
-	min-height: $height;
-	display: flex;
-	display: -webkit-flex;
-	flex-direction: column;
-	-ms-flex-direction: column;
-	padding-right: 0.625rem;
-	margin-bottom: 1.375rem;
-	background-color: var(--theme);
-	transition: all 0.15s ease-in-out;
+  width: 100%;
+  min-height: $height;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -ms-flex-direction: column;
+  padding-right: 0.625rem;
+  margin-bottom: 1.375rem;
+  background-color: var(--theme);
+  transition: all 0.15s ease-in-out;
 
-	&:hover {
-		transform: scale(1.01);
-	}
+  &:hover {
+    transform: scale(1.01);
+  }
 
-	&-Contents {
-		display: flex;
-		display: -webkit-flex;
-		flex-wrap: wrap;
-		-ms-flex-wrap: wrap;
+  &-Contents {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
 
-		&-ImageWrap {
-			width: 160px;
-			user-select: none;
-			-webkit-user-drag: none;
-			position: relative;
-			display: flex;
-			z-index: 0;
+    &-ImageWrap {
+      width: 160px;
+      user-select: none;
+      -webkit-user-drag: none;
+      position: relative;
+      display: flex;
+      z-index: 0;
 
-			@media screen and (max-width: 430px) {
-				width: 100%;
-			}
+      @media screen and (max-width: 430px) {
+        width: 100%;
+      }
 
-			&-Thumbnail {
-				width: 100%;
-				height: 100%;
-				outline: none;
-				border: none;
-				border-radius: 5px;
-				object-fit: cover;
-			}
-		}
+      &-Thumbnail {
+        width: 100%;
+        height: 100%;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        object-fit: cover;
+      }
+    }
 
-		&-ContentsWrap {
-			flex: 1;
-			padding-left: 0.875rem;
+    &-ContentsWrap {
+      flex: 1;
+      padding-left: 0.875rem;
 
-			&-Top {
-				display: flex;
-				display: -webkit-flex;
-				flex-wrap: wrap;
-				-ms-flex-wrap: wrap;
-				justify-content: space-between;
-				align-items: center;
+      &-Top {
+        display: flex;
+        display: -webkit-flex;
+        flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
 
-				&-Writer {
-					color: var(--contrast);
-					font-size: var(--font-small);
-					font-weight: 500;
-					margin: 0.5rem 0;
-				}
+        &-Writer {
+          color: var(--contrast);
+          font-size: var(--font-small);
+          font-weight: 500;
+          margin: 0.5rem 0;
+        }
 
-				&-RightInfo {
-					display: flex;
-					display: -webkit-flex;
-				}
-			}
+        &-RightInfo {
+          display: flex;
+          display: -webkit-flex;
+        }
+      }
 
-			&-TitleWrap {
-				display: flex;
-				display: -webkit-flex;
-				justify-content: space-between;
-				align-items: center;
-				border-bottom: 1px solid var(--lighterGray);
-				padding-bottom: 0.5rem;
+      &-TitleWrap {
+        display: flex;
+        display: -webkit-flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--lighterGray);
+        padding-bottom: 0.5rem;
 
-				&-Title {
-					font-weight: 500;
-					color: var(--contrast);
-					font-size: var(--font-small);
-				}
+        &-Title {
+          font-weight: 500;
+          color: var(--contrast);
+          font-size: var(--font-small);
+        }
 
-				&-Delete {
-					color: var(--red);
-					cursor: pointer;
-				}
-			}
+        &-Delete {
+          color: var(--red);
+          cursor: pointer;
+        }
+      }
 
-			&-Introduction {
-				margin-bottom: 0.625rem;
+      &-Introduction {
+        margin-bottom: 0.625rem;
 
-				& > div {
-					height: 45px;
-					max-height: 45px;
-					line-height: 1.6rem;
-					@include ellipsisLine(2);
-				}
-			}
+        & > div {
+          height: 45px;
+          max-height: 45px;
+          line-height: 1.6rem;
+          @include ellipsisLine(2);
+        }
+      }
 
-			&-Tags {
-				display: flex;
-				display: -webkit-flex;
-				align-items: center;
-				margin-top: 4px;
+      &-Tags {
+        display: flex;
+        display: -webkit-flex;
+        align-items: center;
+        margin-top: 4px;
 
-				&-Tag {
-					margin-right: 6px;
-					background-color: var(--main);
-					color: var(--white);
-					border-radius: 5px;
-					padding: 3px 8px;
-				}
-			}
-		}
-	}
+        &-Tag {
+          margin-right: 6px;
+          background-color: var(--main);
+          color: var(--white);
+          border-radius: 5px;
+          padding: 3px 8px;
+        }
+      }
+    }
+  }
 }

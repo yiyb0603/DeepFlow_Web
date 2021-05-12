@@ -1,17 +1,17 @@
 .PageNumberList {
-	display: flex;
-	display: -webkit-flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  align-items: center;
 
-	&-Pages {
-		width: 120px;
-		max-width: 120px;
-		display: flex;
-		display: -webkit-flex;
-		justify-content: center;
-		align-items: center;
-		margin: 0 1rem;
-		z-index: 4;
-	}
+  &-Pages {
+    width: 120px;
+    max-width: 120px;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 1rem;
+    z-index: 4;
+  }
 }

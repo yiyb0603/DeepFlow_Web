@@ -1,18 +1,18 @@
 .NoItems {
-	display: flex;
-	display: -webkit-flex;
-	flex-flow: column wrap;
-	align-items: center;
-	margin-top: 3rem;
+  display: flex;
+  display: -webkit-flex;
+  flex-flow: column wrap;
+  align-items: center;
+  margin-top: 3rem;
 
-	&-Image {
-		width: 50%;
-	}
+  &-Image {
+    width: 50%;
+  }
 
-	&-Text {
-		text-align: center;
-		font-size: var(--font-contents);
-		color: var(--contrast);
-		margin-top: 1.5rem;
-	}
+  &-Text {
+    text-align: center;
+    font-size: var(--font-contents);
+    color: var(--contrast);
+    margin-top: 1.5rem;
+  }
 }

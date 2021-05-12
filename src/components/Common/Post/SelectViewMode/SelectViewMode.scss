@@ -1,16 +1,17 @@
 .SelectViewMode {
-	display: flex;
-	display: -webkit-flex;
-	justify-content: flex-end;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: flex-end;
+  margin-right: 0.625rem;
 
-	&-Item {
-		margin-left: 0.15rem;
-		font-size: var(--font-regular);
-		color: var(--contrast);
-		cursor: pointer;
+  &-Item {
+    margin-left: 0.15rem;
+    font-size: var(--font-regular);
+    color: var(--contrast);
+    cursor: pointer;
 
-		&-Current {
-			color: var(--main) !important;
-		}
-	}
+    &-Current {
+      color: var(--main) !important;
+    }
+  }
 }

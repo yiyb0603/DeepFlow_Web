@@ -1,33 +1,33 @@
 .SearchInput {
-	display: flex;
-	display: -webkit-flex;
-	align-items: center;
-	outline: none;
-	background: none;
-	color: var(--contrast);
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  outline: none;
+  background: none;
+  color: var(--contrast);
 
-	&-Border {
-		outline: 1px solid var(--gray);
+  &-Border {
+    outline: 1px solid var(--gray);
 
-		&:focus-within {
-			outline: 1px solid var(--main);
-		}
-	}
+    &:focus-within {
+      outline: 1px solid var(--main);
+    }
+  }
 
-	&-Icon {
-		font-size: var(--font-normallest);
-		margin-right: 0.5rem;
-	}
+  &-Icon {
+    font-size: var(--font-normallest);
+    margin-right: 0.5rem;
+  }
 
-	&-Input {
-		width: 100%;
-		outline: none;
-		background: none;
-		border: none;
-		font-size: var(--font-smallest);
+  &-Input {
+    width: 100%;
+    outline: none;
+    background: none;
+    border: none;
+    font-size: var(--font-smallest);
 
-		&::placeholder {
-			color: var(--contrast);
-		}
-	}
+    &::placeholder {
+      color: var(--contrast);
+    }
+  }
 }

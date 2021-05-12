@@ -1,75 +1,75 @@
 @import 'styles/lib.scss';
 
 @mixin sectionStyle() {
-	padding: 3px 5px;
-	border-bottom: 1px solid var(--lighterGray);
+  padding: 3px 5px;
+  border-bottom: 1px solid var(--lighterGray);
 }
 
 $maxHeight: 337px;
 
 .GridItem {
-	width: 295px;
-	height: $maxHeight;
-	max-height: $maxHeight;
-	margin-right: 0.75rem;
-	margin-bottom: 0.75rem;
-	border: 1px solid var(--lighterGray);
-	border-radius: 5px;
-	transition: all 0.15s ease-in-out;
+  width: 295px;
+  height: $maxHeight;
+  max-height: $maxHeight;
+  margin-right: 0.75rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--lighterGray);
+  border-radius: 5px;
+  transition: all 0.15s ease-in-out;
 
-	&:hover {
-		transform: scale(1.01);
-	}
+  &:hover {
+    transform: scale(1.01);
+  }
 
-	&-ImageWrap {
-		width: 100%;
-		height: 180px;
-		max-height: 180px;
-		user-select: none;
-		-webkit-user-drag: none;
-		display: flex;
-		display: -webkit-flex;
+  &-ImageWrap {
+    width: 100%;
+    height: 180px;
+    max-height: 180px;
+    user-select: none;
+    -webkit-user-drag: none;
+    display: flex;
+    display: -webkit-flex;
 
-		&-Thumbnail {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			border-radius: 5px;
-		}
-	}
+    &-Thumbnail {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+  }
 
-	&-Contents {
-		color: var(--contrast);
+  &-Contents {
+    color: var(--contrast);
 
-		&-Title {
-			@include ellipsisLine(1);
-			@include sectionStyle();
-			font-weight: 500;
-			font-size: var(--font-smallest);
-		}
+    &-Title {
+      @include ellipsisLine(1);
+      @include sectionStyle();
+      font-weight: 500;
+      font-size: var(--font-smallest);
+    }
 
-		&-Introduction {
-			& > div {
-				height: 100px;
-				max-height: 100px;
-				line-height: 1.6rem;
-				@include sectionStyle();
-				@include ellipsisLine(4);
-				font-size: var(--font-default);
-			}
-		}
+    &-Introduction {
+      & > div {
+        height: 100px;
+        max-height: 100px;
+        line-height: 1.6rem;
+        @include sectionStyle();
+        @include ellipsisLine(4);
+        font-size: var(--font-default);
+      }
+    }
 
-		&-Info {
-			display: flex;
-			display: -webkit-flex;
-			justify-content: space-between;
-			align-items: center;
-			padding: 0 0.8rem;
-			margin-top: 2px;
+    &-Info {
+      display: flex;
+      display: -webkit-flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 0.8rem;
+      margin-top: 2px;
 
-			&-UserInfo {
-				font-weight: 500;
-			}
-		}
-	}
+      &-UserInfo {
+        font-weight: 500;
+      }
+    }
+  }
 }
