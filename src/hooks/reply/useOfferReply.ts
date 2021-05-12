@@ -1,5 +1,5 @@
 import { useCallback, ChangeEvent, useRef } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { SetterOrUpdater, useRecoilState, useSetRecoilState } from 'recoil';
 import { replyContents, modifyReplyState, isShowReplyState } from 'atom/reply';
 import useCommentList from 'hooks/comment/useCommentList';
 import usePageParam from 'hooks/util/usePageParam';
@@ -22,7 +22,7 @@ const useOfferReply = (commentIdx: number) => {
   const [contents, setContents] = useRecoilState<string>(replyContents);
   const [modifyObject, setModifyObject] = useRecoilState<IReplyModify | null>(modifyReplyState);
 
-  const setIsShowReply = useSetRecoilState<boolean>(isShowReplyState);
+  const setIsShowReply: SetterOrUpdater<boolean> = useSetRecoilState<boolean>(isShowReplyState);
 
   const onChangeContents = useCallback((e: ChangeEvent<HTMLTextAreaElement>): void => {
     const { value } = e.target;

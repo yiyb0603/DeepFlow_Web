@@ -3,11 +3,11 @@ import Button from 'components/Common/Button';
 import { palette } from 'styles/Palette/Palette';
 
 interface ReplyWriteButtonProps {
-  onChangeIsReplyWrite: (isReplyWrite: boolean) => void;
+  onClick: () => void;
 }
 
 const ReplyWriteButton = ({
-  onChangeIsReplyWrite,
+  onClick,
 }: ReplyWriteButtonProps): JSX.Element => {
   const customButtonStyle: CSSProperties = useMemo(() => {
     return {
@@ -23,7 +23,7 @@ const ReplyWriteButton = ({
       customStyle={customButtonStyle}
       backgroundColor={palette.white}
       color={palette.black}
-      handleClick={() => onChangeIsReplyWrite(true)}
+      handleClick={onClick}
     >
       답글 작성
     </Button>

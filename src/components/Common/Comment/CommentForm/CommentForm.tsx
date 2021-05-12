@@ -19,12 +19,12 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface CommentFormProps {
   type: EComment;
   commentIdx?: number;
-  onChangeIsReplyWrite?: (isReplyWrite: boolean) => void;
+  onChangeIsReplyWrite?: (isReplyWrite?: boolean) => void;
 }
 
 const CommentForm = ({
-  commentIdx,
   type,
+  commentIdx,
   onChangeIsReplyWrite,
 }: CommentFormProps): JSX.Element => {
   const { WRITE } = ECommentTab;

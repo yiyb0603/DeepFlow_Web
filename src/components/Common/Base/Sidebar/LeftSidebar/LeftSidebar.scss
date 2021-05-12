@@ -1,17 +1,17 @@
 .LeftSidebar {
-	width: 160px;
-	border-right: 1px solid var(--bd-sidebar);
+  width: 160px;
+  border-right: 1px solid var(--bd-sidebar);
 
-	&-Menus {
-		position: sticky;
-		top: 0;
+  &-Menus {
+    position: sticky;
+    top: 0;
 
-		&-Wrapper {
-			padding-top: 1.5rem;
-		}
-	}
+    &-Wrapper {
+      padding-top: 1.5rem;
+    }
+  }
 
-	@media screen and (max-width: 1150px) {
-		display: none;
-	}
+  @media screen and (max-width: 1150px) {
+    display: none;
+  }
 }

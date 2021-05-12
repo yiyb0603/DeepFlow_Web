@@ -13,12 +13,14 @@ const ViewMore = ({
   link,
 }: ViewMoreProps): JSX.Element => {
   return (
-    <Link
-      to={link}
-      className={cx('ViewMore')}
-    >
-      더보기
-    </Link>
+    <div className={cx('ViewMore')}>
+      <Link
+        to={link}
+        className={cx('ViewMore-Link')}
+      >
+        더보기
+      </Link>
+    </div>
   );
 };
 

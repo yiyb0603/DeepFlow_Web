@@ -1,15 +1,20 @@
 import { useMemo } from 'react';
+import { useRecoilValue } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import { commentIdxState } from 'atom/reply';
 import { calculateTime } from 'lib/TimeCounting';
+import { EComment } from 'lib/enum/comment';
 import { IToken, IUser } from 'types/user.types';
 import { ICommentEmoji } from 'types/commentEmoji.types';
 import { IReply } from 'types/reply.types';
-import ToggleReply from '../../../Comment/ToggleReply';
+import { getMyInfo } from 'util/getMyInfo';
+import useIsReplyWrite from 'hooks/reply/useIsReplyWrite';
 import EmojiToggle from 'components/Emoji/EmojiToggle';
 import EmojiItem from 'components/Emoji/EmojiItem';
 import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
-import { getMyInfo } from 'util/getMyInfo';
+import CommentForm from '../CommentForm';
+import ToggleReply from '../../../Comment/ToggleReply';
 
 const style = require('./CommentItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -38,6 +43,9 @@ const CommentItem = ({
   requestDeleteComment,
 }: CommentItemProps) => {
   const myInfo: IToken = useMemo(() => getMyInfo(), []);
+  const writeCommentIdx: number = useRecoilValue<number>(commentIdxState);
+
+  const { isReplyWrite, onChangeIsReplyWrite } = useIsReplyWrite();
 
   return (
     <div className={cx('CommentItem')}>
@@ -94,14 +102,25 @@ const CommentItem = ({
           commentIdx={idx}
           emojies={emojies!}
         />
-
       </div>
+
       {
         replies &&
         <ToggleReply
           commentIdx={idx}
           replies={replies}
-        />
+          isReplyWrite={isReplyWrite}
+          onChangeIsReplyWrite={onChangeIsReplyWrite}
+        >
+          {
+            (isReplyWrite && writeCommentIdx === idx) &&
+            <CommentForm
+              commentIdx={idx}
+              type={EComment.REPLY}
+              onChangeIsReplyWrite={onChangeIsReplyWrite}
+            />
+          }
+        </ToggleReply>
       }
     </div>
   );
