@@ -4,11 +4,11 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { commentEmojiListState } from 'atom/comment';
 import { emojiIconListState, toggleEmojiState } from 'atom/commentEmoji';
-import useEmoji from 'hooks/comment/useEmoji';
 import { IToken } from 'types/user.types';
 import { ICommentEmojiInfo } from 'types/commentEmoji.types';
 import { getMyInfo } from 'util/getMyInfo';
 import EmojiInput from '../EmojiInput';
+import useControlEmoji from 'hooks/commentEmoji/useControlEmoji';
 
 const style = require('./EmojiSelect.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -20,7 +20,7 @@ interface EmojiSelectProps {
 const EmojiSelect = ({
   commentIdx,
 }: EmojiSelectProps): JSX.Element => {
-  const { emoji, onChangeEmoji, onClickEmoji, onKeydownEmoji } = useEmoji();
+  const { emoji, onChangeEmoji, onClickEmoji, onKeydownEmoji } = useControlEmoji();
   const selectRef = useRef<HTMLDivElement>(null);
   const myInfo: IToken = useMemo(() => getMyInfo(), []);
 

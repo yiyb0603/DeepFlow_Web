@@ -1,11 +1,12 @@
 import { useCallback, useMemo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import useEmoji from 'hooks/comment/useEmoji';
 import { ICommentEmojiInfo } from 'types/commentEmoji.types';
 import { IToken } from 'types/user.types';
 import { getMyInfo } from 'util/getMyInfo';
 import { checkLoggedIn } from 'util/checkLoggedIn';
+import useDeleteEmoji from 'hooks/commentEmoji/useDeleteEmoji';
+import useCreateEmoji from 'hooks/commentEmoji/useCreateEmoji';
 
 const style = require('./EmojiItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -23,7 +24,8 @@ const EmojiItem = ({
   users,
   commentIdx,
 }: EmojiItemProps): JSX.Element => {
-  const { requestDeleteEmoji, requestCreateEmoji } = useEmoji();
+  const { requestCreateEmoji } = useCreateEmoji();
+  const { requestDeleteEmoji } = useDeleteEmoji();
   const myInfo: IToken = useMemo(() => getMyInfo(), []);
   
   const existEmoji: ICommentEmojiInfo | undefined = useMemo(() => {

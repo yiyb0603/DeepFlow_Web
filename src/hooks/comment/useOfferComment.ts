@@ -1,6 +1,6 @@
 import { useCallback, useRef, ChangeEvent } from 'react';
 import { useRecoilState, SetterOrUpdater, useSetRecoilState } from 'recoil';
-import { modifyState, commentFormLoadingState, commentContentsState } from 'atom/comment';
+import { commentModifyState, commentFormLoadingState, commentContentsState } from 'atom/comment';
 import usePageParam from 'hooks/util/usePageParam';
 import { createComment, modifyComment } from 'lib/api/comment/comment.api';
 import { ICommentDto } from 'lib/api/comment/comment.dto';
@@ -19,7 +19,7 @@ const useOfferComment = () => {
   const { dragRef, handleDrop } = useDragDrop(); 
 
   const [contents, setContents] = useRecoilState<string>(commentContentsState);
-  const [modifyObject, setModifyObject] = useRecoilState<ICommentModify | null>(modifyState);
+  const [modifyObject, setModifyObject] = useRecoilState<ICommentModify | null>(commentModifyState);
   const setIsLoading: SetterOrUpdater<boolean> = useSetRecoilState<boolean>(commentFormLoadingState);
 
   const commentInputRef = useRef<HTMLTextAreaElement>(null);
