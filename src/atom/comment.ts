@@ -12,7 +12,7 @@ export const commentFormLoadingState = atom<boolean>({
   default: false,
 });
 
-export const modifyState = atom<ICommentModify | null>({
+export const commentModifyState = atom<ICommentModify | null>({
   key: 'modifyState',
   default: null,
 });

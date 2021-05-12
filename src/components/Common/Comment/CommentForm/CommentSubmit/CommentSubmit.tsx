@@ -3,8 +3,9 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { MdClose } from 'react-icons/md';
-import { commentContentsState, commentFormLoadingState, modifyState } from 'atom/comment';
+import { commentContentsState, commentFormLoadingState, commentModifyState } from 'atom/comment';
 import { stringEllipsis } from 'converter/stringEllipsis';
+import { EComment } from 'lib/enum/comment';
 import { ICommentModify } from 'types/comment.types';
 import { palette } from 'styles/Palette/Palette';
 import Button from 'components/Common/Button';
@@ -13,17 +14,19 @@ const style = require('./CommentSubmit.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface CommentSubmitProps {
+  type: EComment;
   requestOfferComment: () => void;
 }
 
 const CommentSubmit = ({
+  type,
   requestOfferComment,
 }: CommentSubmitProps) => {
   const isLoading: boolean = useRecoilValue<boolean>(commentFormLoadingState);
   const setContents = useSetRecoilState<string>(commentContentsState);
-  const [modifyObject, setModifyObject] = useRecoilState<ICommentModify | null>(modifyState);
+  const [modifyObject, setModifyObject] = useRecoilState<ICommentModify | null>(commentModifyState);
 
-  const setModifyNull = useCallback((): void => {
+  const setModifyToNull = useCallback((): void => {
     setContents('');
     setModifyObject(null);
   }, [setContents, setModifyObject]);
@@ -32,14 +35,14 @@ const CommentSubmit = ({
     <div className={cx('CommentSubmit')}>
       <div className={cx('CommentSubmit-Cancel')}>
         {
-          modifyObject !== null &&
+          (modifyObject !== null && type === EComment.COMMENT) &&
           <>
             <div className={cx('CommentSubmit-Cancel-Text')}>
               {stringEllipsis(modifyObject.contents, 30)} 댓글 수정하기
             </div>
             <MdClose
               className={cx('CommentSubmit-Cancel-Icon')}
-              onClick={setModifyNull}
+              onClick={setModifyToNull}
             />
           </>
         }

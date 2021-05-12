@@ -106,6 +106,7 @@ const CommentForm = ({
         }
 
         <CommentSubmit
+          type={type}
           requestOfferComment={type === COMMENT ? requestOfferComment : reply.requestOfferReply}
         />
       </div>

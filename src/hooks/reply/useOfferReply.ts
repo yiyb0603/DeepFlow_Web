@@ -1,8 +1,9 @@
-import { useCallback, ChangeEvent, useRef } from 'react';
+import { useCallback, ChangeEvent, useRef, useState } from 'react';
 import { SetterOrUpdater, useRecoilState, useSetRecoilState } from 'recoil';
-import { replyContents, modifyReplyState, isShowReplyState } from 'atom/reply';
+import { replyContents, isShowReplyState } from 'atom/reply';
 import useCommentList from 'hooks/comment/useCommentList';
 import usePageParam from 'hooks/util/usePageParam';
+import useDragDrop from 'hooks/util/useDragDrop';
 import { modifyReply, createReply } from 'lib/api/reply/reply.api';
 import { IReplyDto } from 'lib/api/reply/reply.dto';
 import { uploadFiles } from 'lib/api/uploads/uploads.api';
@@ -11,7 +12,6 @@ import { IReplyModify } from 'types/reply.types';
 import { checkLoggedIn } from 'util/checkLoggedIn';
 import { validateReply } from 'validation/reply.validation';
 import UploadError from 'error/UploadError';
-import useDragDrop from 'hooks/util/useDragDrop';
 
 const useOfferReply = (commentIdx: number) => {
   const postIdx: number = usePageParam();
@@ -20,7 +20,7 @@ const useOfferReply = (commentIdx: number) => {
 
   const replyInputRef = useRef<HTMLTextAreaElement>(null);
   const [contents, setContents] = useRecoilState<string>(replyContents);
-  const [modifyObject, setModifyObject] = useRecoilState<IReplyModify | null>(modifyReplyState);
+  const [modifyObject, setModifyObject] = useState<IReplyModify | null>(null);
 
   const setIsShowReply: SetterOrUpdater<boolean> = useSetRecoilState<boolean>(isShowReplyState);
 
@@ -107,9 +107,14 @@ const useOfferReply = (commentIdx: number) => {
   return {
     contents,
     onChangeContents,
+
+    modifyObject,
+    setModifyObject,
+
     replyInputRef,
     replyDragRef: dragRef,
     handleDragImage,
+
     requestOfferReply,
   };
 }

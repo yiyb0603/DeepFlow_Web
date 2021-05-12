@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { SetterOrUpdater, useSetRecoilState } from 'recoil';
-import { modifyState } from 'atom/comment';
+import { commentModifyState } from 'atom/comment';
 import { deleteComment } from 'lib/api/comment/comment.api';
 import { EResponse } from 'lib/enum/response';
 import usePageParam from 'hooks/util/usePageParam';
@@ -11,7 +11,7 @@ const useDeleteComment = () => {
   const { requestCommentList } = useCommentList();
 
   const postIdx: number = usePageParam();
-  const setModifyObject: SetterOrUpdater<ICommentModify | null> = useSetRecoilState<ICommentModify | null>(modifyState);
+  const setModifyObject: SetterOrUpdater<ICommentModify | null> = useSetRecoilState<ICommentModify | null>(commentModifyState);
 
   const requestDeleteComment = useCallback(async (commentIdx: number): Promise<void> => {
     try {
