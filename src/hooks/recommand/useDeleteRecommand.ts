@@ -4,7 +4,7 @@ import { useCallback, MouseEvent } from 'react';
 import useRecommandList from './useRecommandList';
 
 const useDeleteRecommand = () => {
-  const { requestRecommandList } = useRecommandList();
+  const { recommandListCallback } = useRecommandList();
 
   const requestDeleteRecommand = useCallback(async (
     e: MouseEvent<SVGElement>,
@@ -17,12 +17,12 @@ const useDeleteRecommand = () => {
       const { status } = await deleteRecommand(recommandIdx);
       
       if (status === EResponse.OK) {
-        await requestRecommandList();
+        await recommandListCallback();
       }
     } catch (error) {
       console.log(error);
     }
-  }, [requestRecommandList]);
+  }, [recommandListCallback]);
 
   return {
     requestDeleteRecommand,

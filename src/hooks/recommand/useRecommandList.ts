@@ -1,11 +1,12 @@
+import { useCallback, useEffect } from 'react';
+import { SetterOrUpdater, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { userRecommandListState, userRecommandReasonState } from 'lib/recoil/atom/userRecommand';
+import { userRecommandListSelector } from 'lib/recoil/selector/userRecommand';
+import { isNullOrUndefined } from 'util/isNullOrUndefined';
 import useUserInfo from 'hooks/user/useUserInfo';
 import usePageParam from 'hooks/util/usePageParam';
+import { IUserRecommand, IUserRecommandResponse } from 'types/userRecommand.types';
 import { getRecommandsByUserIdx } from 'lib/api/userRecommand/userRecommand.api';
-import { EResponse } from 'lib/enum/response';
-import { useCallback, useEffect } from 'react';
-import { SetterOrUpdater, useRecoilState, useSetRecoilState } from 'recoil';
-import { IUserRecommand } from 'types/userRecommand.types';
 
 const useRecommandList = () => {
   const userIdx: number = usePageParam();
@@ -14,16 +15,17 @@ const useRecommandList = () => {
   const [userRecommands, setUserRecommands] = useRecoilState<IUserRecommand[]>(userRecommandListState);
   const setReason: SetterOrUpdater<string> = useSetRecoilState<string>(userRecommandReasonState);
 
-  const requestRecommandList = useCallback(async (): Promise<void> => {
-    try {
-      const { status, data: { recommands } } = await getRecommandsByUserIdx(userIdx);
+  const userRecommandResponse: IUserRecommandResponse = useRecoilValue(userRecommandListSelector(userIdx));
 
-      if (status === EResponse.OK) {
-        setUserRecommands(recommands);
-      }
-    } catch (error) {
-      console.log(error);
+  const requestRecommandList = useCallback((): void => {
+    if (!isNullOrUndefined(userRecommandResponse.data)) {
+      setUserRecommands(userRecommandResponse.data.recommands);
     }
+  }, [setUserRecommands, userRecommandResponse]);
+
+  const recommandListCallback = useCallback(async (): Promise<void> => {
+    const { data } = await getRecommandsByUserIdx(userIdx);
+    setUserRecommands(data.recommands);
   }, [setUserRecommands, userIdx]);
 
   useEffect(() => {
@@ -38,7 +40,7 @@ const useRecommandList = () => {
   return {
     userInfo,
     userRecommands,
-    requestRecommandList,
+    recommandListCallback,
   };
 }
 

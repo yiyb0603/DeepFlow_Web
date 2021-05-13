@@ -1,11 +1,11 @@
 import { useCallback, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { tagListState, tagLoadingState } from 'lib/recoil/atom/tag';
-import { getTagList } from 'lib/api/tag/tag.api';
 import { ETagSort } from 'lib/enum/tag';
-import { EResponse } from 'lib/enum/response';
 import useTabState from 'hooks/util/useTabState';
-import { ITag } from 'types/tag.types';
+import { ITag, ITagListResponse } from 'types/tag.types';
+import { tagListSelector } from 'lib/recoil/selector/tag';
+import { isNullOrUndefined } from 'util/isNullOrUndefined';
 
 const useTagList = () => {
   const [tagLoading, setTagLoading] = useRecoilState<boolean>(tagLoadingState);
@@ -13,20 +13,15 @@ const useTagList = () => {
 
   const [sortRule, onChangeSortRule] = useTabState<ETagSort>('sort', ETagSort.POPULAR);
 
-  const requestTagList = useCallback(async (): Promise<void> => {
-    try {
-      setTagLoading(true);
-      const { status, data: { tags } } = await getTagList(sortRule);
+  const tagListResponse: ITagListResponse = useRecoilValue(tagListSelector(sortRule));
 
-      if (status === EResponse.OK) {
-        setTagList(tags);
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
+  const requestTagList = useCallback((): void => {
+    if (!isNullOrUndefined(tagListResponse.data)) {
+      setTagLoading(true);
+      setTagList(tagListResponse.data.tags);
       setTagLoading(false);
     }
-  }, [setTagList, setTagLoading, sortRule]);
+  }, [setTagList, setTagLoading, tagListResponse]);
 
   useEffect(() => {
     requestTagList();

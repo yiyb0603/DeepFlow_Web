@@ -1,8 +1,8 @@
 import { useCallback, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { recentQuestionLoading, recentQuestionState } from 'lib/recoil/atom/question';
-import { getRecentPosts } from 'lib/api/question/question.api';
-import { EResponse } from 'lib/enum/response';
+import { recentQuestionSelector } from 'lib/recoil/selector/question';
+import { isNullOrUndefined } from 'util/isNullOrUndefined';
 import { IQuestion, IRecentPostListResponse } from 'types/question.types';
 import { RECENT_COUNT } from 'constants/question';
 
@@ -10,19 +10,15 @@ const useRecentQuestions = () => {
   const [isLoading, setIsLoading] = useRecoilState<boolean>(recentQuestionLoading);
   const [recentQuestions, setRecentQuestions] = useRecoilState<IQuestion[]>(recentQuestionState);
 
-  const requestRecentQuestions = useCallback(async (): Promise<void> => {
-    try {
-      const { status, data: { recentPosts } }: IRecentPostListResponse = await getRecentPosts(RECENT_COUNT);
-      
-      if (status === EResponse.OK) {
-        setRecentQuestions(recentPosts);
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
+  const recentQuestionResponse: IRecentPostListResponse = useRecoilValue(recentQuestionSelector(RECENT_COUNT));
+
+  const requestRecentQuestions = useCallback((): void => {
+    if (!isNullOrUndefined(recentQuestionResponse.data)) {
+      setIsLoading(true);
+      setRecentQuestions(recentQuestionResponse.data.recentPosts);
       setIsLoading(false);
     }
-  }, [setIsLoading, setRecentQuestions]);
+  }, [recentQuestionResponse, setIsLoading, setRecentQuestions]);
 
   useEffect(() => {
     requestRecentQuestions();

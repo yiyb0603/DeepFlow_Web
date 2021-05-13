@@ -1,12 +1,12 @@
 import { useState, useCallback, useEffect, useMemo, ChangeEvent } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { userListState, userSearchKeywordState } from 'lib/recoil/atom/user';
-import { IUser, IUserListResponse } from 'types/user.types';
-import { getUserList } from 'lib/api/user/user.api';
-import { EResponse } from 'lib/enum/response';
+import { EUserSort } from 'lib/enum/user';
+import { userListSelector } from 'lib/recoil/selector/user';
+import { isNullOrUndefined } from 'util/isNullOrUndefined';
 import { getMaxGeneration } from 'util/getMaxGeneration';
 import useTabState from 'hooks/util/useTabState';
-import { EUserSort } from 'lib/enum/user';
+import { IUser, IUserListResponse } from 'types/user.types';
 
 const useUserList = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -14,6 +14,8 @@ const useUserList = () => {
 
   const [sortTab, onChangeSortTab] = useTabState<EUserSort>('sort', EUserSort.GENERATION);
   const [userList, setUserList] = useRecoilState<IUser[][]>(userListState);
+
+  const userListResponse: IUserListResponse = useRecoilValue(userListSelector(sortTab));
 
   const onChangeKeyword = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
@@ -34,30 +36,23 @@ const useUserList = () => {
     }
   }, [filteredUsersByKeyword, keyword.length]);
 
-  const requestUserList = useCallback(async (): Promise<void> => {
-    try {
+  const requestUserList = useCallback((): void => {
+    if (!isNullOrUndefined(userListResponse.data)) {
       setIsLoading(true);
-      const { status, data }: IUserListResponse = await getUserList(sortTab);
-      const { users } = data;
+      const { users } = userListResponse.data;
+      users.slice().sort((a: IUser, b: IUser) => a.generation - b.generation);
 
-      if (status === EResponse.OK) {
-        setUserList([]);
-        users.sort((a: IUser, b: IUser) => a.generation - b.generation);
-
-        for (let generation = 1; generation < getMaxGeneration(); generation++) {
-          const filteredByGeneration: IUser[] = users.filter((user: IUser) => user.generation === generation);
-          
-          setUserList((prevList: IUser[][]) => (
-            [...prevList, filteredByGeneration]
-          ));
-        }
+      setUserList([]);
+      for (let generation = 1; generation < getMaxGeneration(); generation++) {
+        const filteredByGeneration: IUser[] = users.filter((user: IUser) => user.generation === generation);
+        
+        setUserList((prevList: IUser[][]) => (
+          [...prevList, filteredByGeneration]
+        ));
       }
-    } catch (error) {
-      console.log(error);
-    } finally {
       setIsLoading(false);
     }
-  }, [setUserList, sortTab]);
+  }, [setUserList, userListResponse]);
 
   useEffect(() => {
     requestUserList();

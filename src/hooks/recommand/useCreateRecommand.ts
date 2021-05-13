@@ -12,7 +12,7 @@ import useRecommandList from './useRecommandList';
 
 const useCreateRecommand = () => {
   const userIdx: number = usePageParam();
-  const { requestRecommandList } = useRecommandList();
+  const { recommandListCallback } = useRecommandList();
 
   const [reason, setReason] = useRecoilState<string>(userRecommandReasonState);
 
@@ -39,12 +39,12 @@ const useCreateRecommand = () => {
       const { status } = await createRecommand(recommandDto);
       if (status === EResponse.OK) {
         setReason('');
-        await requestRecommandList();
+        await recommandListCallback();
       }
     } catch (error) {
       new RecommandError(error).createRecommandError();
     }
-  }, [reason, requestRecommandList, setReason, userIdx]);
+  }, [reason, recommandListCallback, setReason, userIdx]);
 
   return {
     reason,

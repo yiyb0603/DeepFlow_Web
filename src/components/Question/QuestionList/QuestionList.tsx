@@ -37,14 +37,14 @@ const QuestionList = (): JSX.Element => {
     sortTab,
     onChangeSortTab,
 
-    requestQuestionList,
+    questionListCallback,
   } = useQuestions();
 
   const { viewMode, onChangeViewMode, flexStyle } = useViewMode();
 
   useEffect(() => {
-    requestQuestionList();
-  }, [requestQuestionList, sortTab, currentPage]);
+    questionListCallback();
+  }, [questionListCallback, sortTab, currentPage]);
 
   return (
     <div className={cx('QuestionList')}>
