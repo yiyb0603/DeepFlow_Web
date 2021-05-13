@@ -1,17 +1,16 @@
 import { useState, useCallback, useMemo } from 'react';
-import { useRecoilState } from 'recoil';
-import { userInfoState, userQuestionState } from 'atom/user';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { userInfoState, userQuestionState } from 'lib/recoil/atom/user';
 import { CHUNK_POST_COUNT } from 'constants/util';
-import { getUserInfo } from 'lib/api/user/user.api';
-import { EResponse } from 'lib/enum/response';
-import { getUserPosts } from 'lib/api/question/question.api';
 import { EUserQuestion } from 'lib/enum/question';
-import { IUser } from 'types/user.types';
-import { IQuestion } from 'types/question.types';
-import usePageParam from '../util/usePageParam';
-import { chunkArray } from 'util/chunkArray';
 import useTabState from 'hooks/util/useTabState';
 import usePagination from 'hooks/util/usePagination';
+import { userInfoSelector, userQuestionSelector } from 'lib/recoil/selector/user';
+import { isNullOrUndefined } from 'util/isNullOrUndefined';
+import { IUser, IUserResponse } from 'types/user.types';
+import { IQuestion, IQuestionListResponse } from 'types/question.types';
+import usePageParam from '../util/usePageParam';
+import { chunkArray } from 'util/chunkArray';
 
 const useUserInfo = () => {
   const userIdx: number = usePageParam();
@@ -29,8 +28,14 @@ const useUserInfo = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [userPostTab, setUserPostTab] = useTabState<EUserQuestion>('tab', EUserQuestion.WRITED);
 
-  const [userQuestionList, setUserQuestionList] = useRecoilState<IQuestion[]>(userQuestionState);
   const [userInfo, setUserInfo] = useRecoilState<IUser | null>(userInfoState);
+  const [userQuestionList, setUserQuestionList] = useRecoilState<IQuestion[]>(userQuestionState);
+
+  const userResponse: IUserResponse = useRecoilValue<IUserResponse>(userInfoSelector(userIdx));
+  const userQuestionResponse: IQuestionListResponse = useRecoilValue(userQuestionSelector({
+    userIdx,
+    userPostTab,
+  }));
 
   const splitedQuestionList: IQuestion[][] = useMemo(() => {
     return chunkArray(userQuestionList, CHUNK_POST_COUNT);
@@ -42,29 +47,18 @@ const useUserInfo = () => {
   }, [onChangeCurrentPage, setUserPostTab]);
 
   const requestUserInfo = useCallback(async (): Promise<void> => {
-    try {
-      const { status, data: { user } } = await getUserInfo(userIdx);
-
-      if (status === EResponse.OK) {
-        setUserInfo(user);
-      }
-    } catch (error) {
-      console.log(error);
+    if (!isNullOrUndefined(userResponse.data)) {
+      setUserInfo(userResponse.data.user);
     }
-  }, [setUserInfo, userIdx]);
+  }, [setUserInfo, userResponse]);
 
   const requestUserPosts = useCallback(async (): Promise<void> => {
-    try {
-      const { status, data: { posts } } = await getUserPosts(userIdx, userPostTab);
-
-      if (status === EResponse.OK) {
-        setUserQuestionList(posts);
-        setTotalPage(posts.length / CHUNK_POST_COUNT);
-      }
-    } catch (error) {
-      console.log(error);
+    if (!isNullOrUndefined(userQuestionResponse.data)) {
+      const { posts } = userQuestionResponse.data;
+      setUserQuestionList(posts);
+      setTotalPage(posts.length / CHUNK_POST_COUNT);
     }
-  }, [setTotalPage, setUserQuestionList, userIdx, userPostTab]);
+  }, [setTotalPage, setUserQuestionList, userQuestionResponse]);
 
   const renderUserInfo = useCallback(async (): Promise<void> => {
     if (Number.isInteger(userIdx)) {

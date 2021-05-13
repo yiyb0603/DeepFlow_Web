@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { commentEmojiListState } from 'atom/comment';
+import { commentEmojiListState } from 'lib/recoil/atom/comment';
 import useCommentList from 'hooks/comment/useCommentList';
 import { deleteCommentEmoji } from 'lib/api/commentEmoji/commentEmoji.api';
 import { EResponse } from 'lib/enum/response';

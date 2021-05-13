@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { questionState } from 'atom/question';
+import { questionState } from 'lib/recoil/atom/question';
 import { IQuestion, IQuestionResponse } from 'types/question.types';
 import { getPostByIdx } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';

@@ -1,18 +1,15 @@
 import { useCallback } from 'react';
-import { useRecoilState } from 'recoil';
-import { questionListLoadingState, questionListState } from 'atom/question';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { questionListLoadingState, questionListState } from 'lib/recoil/atom/question';
 import usePagination from 'hooks/util/usePagination';
-import { getPostsBySort } from 'lib/api/question/question.api';
-import { EResponse } from 'lib/enum/response';
 import { EQuestionSort } from 'lib/enum/question';
-import { IQuestion } from 'types/question.types';
+import { IQuestion, IQuestionListResponse } from 'types/question.types';
 import useTabState from 'hooks/util/useTabState';
+import { questionListSelector } from 'lib/recoil/selector/question';
 
 const useQuestions = () => {
   const [sortTab, onChangeSortTab] = useTabState<EQuestionSort>('sort', EQuestionSort.RECENT);
-
   const [questionLoading, setQuestionLoading] = useRecoilState<boolean>(questionListLoadingState);
-  const [questionList, setQuestionList] = useRecoilState<IQuestion[]>(questionListState);
 
   const {
     totalPage,
@@ -25,21 +22,23 @@ const useQuestions = () => {
     splitedNumberList,
   } = usePagination();
 
-  const requestQuestionList = useCallback(async () => {
+  const question: IQuestionListResponse = useRecoilValue<IQuestionListResponse>(
+    questionListSelector({
+      page: currentPage,
+      sort: sortTab,
+    }));
+  const [questionList, setQuestionList] = useRecoilState<IQuestion[]>(questionListState);
+
+  const requestQuestionList = useCallback((): void => {
     try {
       setQuestionLoading(true);
-      const { status, data: { posts, totalPage } } = await getPostsBySort(sortTab, currentPage);
-
-      if (status === EResponse.OK) {
-        setQuestionList(posts);
-        setTotalPage(totalPage!);
-      }
+      setTotalPage(question.data.totalPage!);
+      setQuestionList(question.data.posts);
+      setQuestionLoading(false);
     } catch (error) {
       console.log(error);
-    } finally {
-      setQuestionLoading(false);
     }
-  }, [currentPage, setQuestionLoading, setQuestionList, setTotalPage, sortTab]);
+  }, [question, setQuestionList, setQuestionLoading, setTotalPage]);
 
   return {
     questionLoading,

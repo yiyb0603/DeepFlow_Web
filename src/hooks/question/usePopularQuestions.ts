@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { popularQuestionState } from 'atom/question';
+import { popularQuestionState } from 'lib/recoil/atom/question';
 import { POPULAR_COUNT } from 'constants/question';
 import { getPopularPosts } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';

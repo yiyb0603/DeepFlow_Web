@@ -1,6 +1,6 @@
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { initialNoticeState, requestNoticeState } from 'atom/notice';
+import { initialNoticeState, requestNoticeState } from 'lib/recoil/atom/notice';
 import useFocus from 'hooks/util/useFocus';
 import { INoticeDto } from 'lib/api/notice/notice.dto';
 import { createNotice, modifyNotice } from 'lib/api/notice/notice.api';

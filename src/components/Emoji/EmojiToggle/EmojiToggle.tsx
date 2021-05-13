@@ -4,9 +4,9 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { VscSmiley } from 'react-icons/vsc';
 import EmojiSelect from '../EmojiSelect';
-import { emojiCommentIdxState, toggleEmojiState } from 'atom/commentEmoji';
+import { emojiCommentIdxState, toggleEmojiState } from 'lib/recoil/atom/commentEmoji';
 import { ICommentEmoji, ICommentEmojiInfo } from 'types/commentEmoji.types';
-import { commentEmojiListState } from 'atom/comment';
+import { commentEmojiListState } from 'lib/recoil/atom/comment';
 
 const style = require('./EmojiToggle.scss');
 const cx: ClassNamesFn = classNames.bind(style);

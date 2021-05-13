@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { IoLogoGithub } from 'react-icons/io';
-import { themeState } from 'atom/theme';
+import { themeState } from 'lib/recoil/atom/theme';
 import { ETheme } from 'lib/enum/theme';
 import useHeader from 'hooks/header/useHeader';
 import WhiteThemeLogo from 'assets/icons/TextBlackLogo.svg';

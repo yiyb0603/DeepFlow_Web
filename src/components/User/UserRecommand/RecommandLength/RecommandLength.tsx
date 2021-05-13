@@ -1,7 +1,7 @@
 import { useRecoilValue } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { userRecommandReasonState } from 'atom/userRecommand';
+import { userRecommandReasonState } from 'lib/recoil/atom/userRecommand';
 import { MAX_REASON_LENGTH } from 'constants/recommand';
 
 const style = require('./RecommandLength.scss');

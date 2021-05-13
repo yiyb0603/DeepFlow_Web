@@ -2,7 +2,7 @@ import { memo, useCallback } from 'react';
 import { SetterOrUpdater, useSetRecoilState } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { searchKeywordListState } from 'atom/search';
+import { searchKeywordListState } from 'lib/recoil/atom/search';
 import { ISearchKeyword } from 'types/search.types';
 import Storage from 'lib/Storage';
 

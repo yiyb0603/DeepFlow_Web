@@ -1,6 +1,6 @@
 import { ChangeEvent, KeyboardEvent, useCallback, useEffect, useState } from 'react';
 import { SetterOrUpdater, useRecoilState, useSetRecoilState } from 'recoil';
-import { searchKeywordListState, searchKeywordState, showSearchHistoryState } from 'atom/search';
+import { searchKeywordListState, searchKeywordState, showSearchHistoryState } from 'lib/recoil/atom/search';
 import { customTrim } from 'converter/customTrim';
 import { getPostsBySearch } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';

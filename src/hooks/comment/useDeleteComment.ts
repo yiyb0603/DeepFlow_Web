@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { SetterOrUpdater, useSetRecoilState } from 'recoil';
-import { commentModifyState } from 'atom/comment';
+import { commentModifyState } from 'lib/recoil/atom/comment';
 import { deleteComment } from 'lib/api/comment/comment.api';
 import { EResponse } from 'lib/enum/response';
 import usePageParam from 'hooks/util/usePageParam';

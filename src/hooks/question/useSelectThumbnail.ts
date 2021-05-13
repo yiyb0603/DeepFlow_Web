@@ -1,6 +1,6 @@
 import { useCallback, ChangeEvent, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { requestQuestionState } from 'atom/question';
+import { requestQuestionState } from 'lib/recoil/atom/question';
 import { IQuestionDto } from 'lib/api/question/question.dto';
 import { uploadFiles } from 'lib/api/uploads/uploads.api';
 import { EResponse } from 'lib/enum/response';

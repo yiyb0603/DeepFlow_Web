@@ -11,7 +11,9 @@ interface PageLoadingProps {
   text: string;
 }
 
-const PageLoading = ({ text }: PageLoadingProps) => {
+const PageLoading = ({
+  text,
+}: PageLoadingProps) => {
   return (
     <div className={cx('PageLoading')}>
       <ScaleLoader color={palette.main} />

@@ -3,7 +3,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { MdClose } from 'react-icons/md';
-import { commentContentsState, commentFormLoadingState, commentModifyState } from 'atom/comment';
+import { commentContentsState, commentFormLoadingState, commentModifyState } from 'lib/recoil/atom/comment';
 import { stringEllipsis } from 'converter/stringEllipsis';
 import { EComment } from 'lib/enum/comment';
 import { ICommentModify } from 'types/comment.types';

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState, ChangeEvent, KeyboardEvent } from 'react';
 import { useRecoilState } from 'recoil';
-import { initialRequestQuestionState, requestQuestionState } from 'atom/question';
+import { initialRequestQuestionState, requestQuestionState } from 'lib/recoil/atom/question';
 import { MAX_TAG_LENGTH } from 'constants/question';
 import { customTrim } from 'converter/customTrim';
 import { historySingleton } from 'lib/singleton/history';

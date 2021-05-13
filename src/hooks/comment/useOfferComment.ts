@@ -1,6 +1,6 @@
 import { useCallback, useRef, ChangeEvent } from 'react';
 import { useRecoilState, SetterOrUpdater, useSetRecoilState } from 'recoil';
-import { commentModifyState, commentFormLoadingState, commentContentsState } from 'atom/comment';
+import { commentModifyState, commentFormLoadingState, commentContentsState } from 'lib/recoil/atom/comment';
 import usePageParam from 'hooks/util/usePageParam';
 import { createComment, modifyComment } from 'lib/api/comment/comment.api';
 import { ICommentDto } from 'lib/api/comment/comment.dto';

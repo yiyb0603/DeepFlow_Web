@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import { commentListState } from 'atom/comment';
-import { emojiIconListState } from 'atom/commentEmoji';
+import { commentListState } from 'lib/recoil/atom/comment';
+import { emojiIconListState } from 'lib/recoil/atom/commentEmoji';
 import usePageParam from 'hooks/util/usePageParam';
 import { getCommentsByPostIdx } from 'lib/api/comment/comment.api';
 import { EResponse } from 'lib/enum/response';

@@ -1,4 +1,4 @@
-import { userRecommandReasonState } from 'atom/userRecommand';
+import { userRecommandReasonState } from 'lib/recoil/atom/userRecommand';
 import RecommandError from 'error/RecommandError';
 import usePageParam from 'hooks/util/usePageParam';
 import { createRecommand } from 'lib/api/userRecommand/userRecommand.api';

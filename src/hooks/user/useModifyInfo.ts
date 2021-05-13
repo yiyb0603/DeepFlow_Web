@@ -1,6 +1,6 @@
 import { useCallback, useEffect, ChangeEvent } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { modifyInfoState, modifyModalState } from 'atom/user';
+import { modifyInfoState, modifyModalState } from 'lib/recoil/atom/user';
 import { modifyUserInfo } from 'lib/api/user/user.api';
 import { IUserModify } from 'lib/api/user/user.dto';
 import { EResponse } from 'lib/enum/response';

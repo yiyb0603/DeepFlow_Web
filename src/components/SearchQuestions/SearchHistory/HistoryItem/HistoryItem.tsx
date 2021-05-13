@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { VscChromeClose } from 'react-icons/vsc';
-import { searchKeywordListState } from 'atom/search';
+import { searchKeywordListState } from 'lib/recoil/atom/search';
 import Storage from 'lib/Storage';
 import { ISearchKeyword } from 'types/search.types';
 

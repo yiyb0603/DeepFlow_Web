@@ -1,6 +1,6 @@
 import { useCallback, ChangeEvent, useRef, useState } from 'react';
 import { SetterOrUpdater, useRecoilState, useSetRecoilState } from 'recoil';
-import { replyContents, isShowReplyState } from 'atom/reply';
+import { replyContents, isShowReplyState } from 'lib/recoil/atom/reply';
 import useCommentList from 'hooks/comment/useCommentList';
 import usePageParam from 'hooks/util/usePageParam';
 import useDragDrop from 'hooks/util/useDragDrop';

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { noticeListState } from 'atom/notice'
+import { noticeListState } from 'lib/recoil/atom/notice'
 import { getNoticeList } from 'lib/api/notice/notice.api';
 import { EResponse } from 'lib/enum/response';
 import { INotice } from 'types/notice.types';

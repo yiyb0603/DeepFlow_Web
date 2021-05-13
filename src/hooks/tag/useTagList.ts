@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { tagListState, tagLoadingState } from 'atom/tag';
+import { tagListState, tagLoadingState } from 'lib/recoil/atom/tag';
 import { getTagList } from 'lib/api/tag/tag.api';
 import { ETagSort } from 'lib/enum/tag';
 import { EResponse } from 'lib/enum/response';

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
-import { isLikePressedState, likeListState } from 'atom/like';
+import { isLikePressedState, likeListState } from 'lib/recoil/atom/like';
 import usePageParam from 'hooks/util/usePageParam';
 import { getMyInfo } from 'util/getMyInfo';
 import { getLikeList } from 'lib/api/like/like.api';

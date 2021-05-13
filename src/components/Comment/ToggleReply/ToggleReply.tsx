@@ -2,7 +2,7 @@ import { ReactNode, useCallback } from 'react';
 import { SetterOrUpdater, useRecoilState, useSetRecoilState } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { commentIdxState, isShowReplyState, replyContents } from 'atom/reply';
+import { commentIdxState, isShowReplyState, replyContents } from 'lib/recoil/atom/reply';
 import { AiOutlineMinusSquare, AiOutlinePlusSquare } from 'react-icons/ai';
 import { IReply } from 'types/reply.types';
 import usePageParam from 'hooks/util/usePageParam';

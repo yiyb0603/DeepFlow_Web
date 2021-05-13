@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { IoMdSunny } from 'react-icons/io';
 import { FaMoon } from 'react-icons/fa';
-import { themeState } from 'atom/theme';
+import { themeState } from 'lib/recoil/atom/theme';
 import { ETheme } from 'lib/enum/theme';
 import Cookie from 'lib/Cookie';
 

@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useMemo, ChangeEvent } from 'react';
 import { useRecoilState } from 'recoil';
-import { userListState, userSearchKeywordState } from 'atom/user';
+import { userListState, userSearchKeywordState } from 'lib/recoil/atom/user';
 import { IUser, IUserListResponse } from 'types/user.types';
 import { getUserList } from 'lib/api/user/user.api';
 import { EResponse } from 'lib/enum/response';

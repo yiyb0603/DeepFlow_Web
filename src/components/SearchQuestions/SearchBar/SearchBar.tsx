@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, memo, useRef, ChangeEvent, KeyboardEve
 import { useRecoilState, useRecoilValue } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { searchKeywordListState, searchKeywordState, showSearchHistoryState } from 'atom/search';
+import { searchKeywordListState, searchKeywordState, showSearchHistoryState } from 'lib/recoil/atom/search';
 import { ISearchKeyword } from 'types/search.types';
 import SearchInput from 'components/Common/Input/SearchInput';
 import SearchHistory from '../SearchHistory';

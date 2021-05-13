@@ -2,7 +2,7 @@ import { ChangeEvent, useCallback, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import firebase from 'firebase/app';
 import '@firebase/messaging';
-import { registerLoading, requestRegisterState } from 'atom/auth';
+import { registerLoading, requestRegisterState } from 'lib/recoil/atom/auth';
 import firebaseConfig from 'config/firebase.json';
 import AuthError from 'error/AuthError';
 import { historySingleton } from 'lib/singleton/history';

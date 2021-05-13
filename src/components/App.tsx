@@ -1,5 +1,5 @@
 import { useRecoilValue } from 'recoil';
-import { themeState } from 'atom/theme';
+import { themeState } from 'lib/recoil/atom/theme';
 import { ETheme } from 'lib/enum/theme';
 import Routes from './Routes';
 

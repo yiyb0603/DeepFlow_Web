@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
-import { myInfoState } from 'atom/user';
+import { myInfoState } from 'lib/recoil/atom/user';
 import { getUserInfo } from 'lib/api/user/user.api';
 import { IToken, IUser } from 'types/user.types';
 import { getMyInfo } from 'util/getMyInfo';

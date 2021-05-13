@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { commentIdxState } from 'atom/reply';
+import { commentIdxState } from 'lib/recoil/atom/reply';
 import { calculateTime } from 'lib/TimeCounting';
 import { EComment } from 'lib/enum/comment';
 import { IToken, IUser } from 'types/user.types';

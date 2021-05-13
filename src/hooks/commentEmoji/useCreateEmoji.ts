@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { SetterOrUpdater, useSetRecoilState } from 'recoil';
-import { toggleEmojiState } from 'atom/commentEmoji';
+import { toggleEmojiState } from 'lib/recoil/atom/commentEmoji';
 import useCommentList from 'hooks/comment/useCommentList';
 import { createCommentEmoji } from 'lib/api/commentEmoji/commentEmoji.api';
 import { ICommentEmojiDto } from 'lib/api/commentEmoji/commentEmoji.dto';

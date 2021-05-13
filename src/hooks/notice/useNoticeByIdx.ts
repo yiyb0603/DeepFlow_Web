@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { noticeState } from 'atom/notice';
+import { noticeState } from 'lib/recoil/atom/notice';
 import usePageParam from 'hooks/util/usePageParam';
 import { getNoticeByIdx } from 'lib/api/notice/notice.api';
 import { EResponse } from 'lib/enum/response';
