@@ -31,7 +31,7 @@ const useUserInfo = () => {
   const [userInfo, setUserInfo] = useRecoilState<IUser | null>(userInfoState);
   const [userQuestionList, setUserQuestionList] = useRecoilState<IQuestion[]>(userQuestionState);
 
-  const userResponse: IUserResponse = useRecoilValue<IUserResponse>(userInfoSelector(userIdx));
+  const userResponse: IUserResponse | null = useRecoilValue(userInfoSelector(userIdx));
   const userQuestionResponse: IQuestionListResponse = useRecoilValue(userQuestionSelector({
     userIdx,
     userPostTab,
@@ -47,8 +47,8 @@ const useUserInfo = () => {
   }, [onChangeCurrentPage, setUserPostTab]);
 
   const requestUserInfo = useCallback((): void => {
-    if (!isNullOrUndefined(userResponse.data)) {
-      setUserInfo(userResponse.data.user);
+    if (!isNullOrUndefined(userResponse!.data)) {
+      setUserInfo(userResponse!.data.user);
     }
   }, [setUserInfo, userResponse]);
 

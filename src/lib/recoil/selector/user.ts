@@ -14,10 +14,14 @@ export const userListSelector = selectorFamily<IUserListResponse, EUserSort>({
   },
 });
 
-export const userInfoSelector = selectorFamily<IUserResponse, number>({
+export const userInfoSelector = selectorFamily<IUserResponse | null, number | null>({
   key: 'userInfoSelector',
-  get: (userIdx: number) => async () => {
-    const data = await getUserInfo(userIdx);
+  get: (userIdx: number | null) => async () => {
+    if (userIdx === null) {
+      return null;
+    }
+
+    const data = await getUserInfo(userIdx!);
     return data;
   },
 });

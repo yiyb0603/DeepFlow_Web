@@ -1,30 +1,26 @@
 import { useCallback, useEffect, useMemo } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { myInfoState } from 'lib/recoil/atom/user';
-import { getUserInfo } from 'lib/api/user/user.api';
-import { IToken, IUser } from 'types/user.types';
+import { IToken, IUser, IUserResponse } from 'types/user.types';
 import { getMyInfo } from 'util/getMyInfo';
-import { EResponse } from 'lib/enum/response';
+import { userInfoSelector } from 'lib/recoil/selector/user';
+import { isNullOrUndefined } from 'util/isNullOrUndefined';
 
 const useMyInfo = () => {
   const [myInfo, setMyInfo] = useRecoilState<IUser | null>(myInfoState);
   const myToken: IToken = useMemo(() => getMyInfo(), []);
 
-  const requestMyInfo = useCallback(async (idx: number): Promise<void> => {
-    try {
-      const { status, data } = await getUserInfo(idx);
+  const userInfoResonse: IUserResponse | null = useRecoilValue(userInfoSelector(myToken ? myToken.idx : null));
 
-      if (status === EResponse.OK) {
-        setMyInfo(data.user);
-      }
-    } catch (error) {
-      console.log(error);
+  const requestMyInfo = useCallback(async (): Promise<void> => {
+    if (!isNullOrUndefined(userInfoResonse!.data)) {
+      setMyInfo(userInfoResonse!.data.user);
     }
-  }, [setMyInfo]);
+  }, [setMyInfo, userInfoResonse]);
 
   useEffect(() => {
     if (myToken) {
-      requestMyInfo(myToken.idx);
+      requestMyInfo();
     }
   }, [myToken, requestMyInfo]);
 
