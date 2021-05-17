@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { APP_NAME } from 'constants/util';
@@ -14,7 +14,11 @@ const style = require('./SidePopularUsers.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const SidePopularUsers = (): JSX.Element => {
-  const { popularUsers } = usePopularUsers();
+  const { popularUsers, requestPopularUsers } = usePopularUsers();
+
+  useEffect(() => {
+    requestPopularUsers();
+  }, [requestPopularUsers]);
 
   return (
     <div className={cx('SidePopularUsers')}>

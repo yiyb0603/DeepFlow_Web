@@ -2,7 +2,7 @@
 
 .SubmitModal {
   width: 450px;
-  height: 550px;
+  height: 600px;
   background-color: var(--white);
   position: fixed;
   top: 50%;
@@ -36,11 +36,11 @@
       padding: 0.625rem;
 
       &-Title {
-        @include ellipsisLine(1);
+        @include ellipsisLine(2);
         font-size: var(--font-small);
         font-weight: 500;
         border-bottom: 1px solid var(--lighterBlack);
-        padding-bottom: 0.4rem;
+        padding-bottom: 0.3rem;
       }
 
       &-Introduction {

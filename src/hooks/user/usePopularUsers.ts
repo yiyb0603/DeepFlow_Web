@@ -1,10 +1,12 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { popularUserListState, userSearchKeywordState } from 'lib/recoil/atom/user';
 import { IUser, IUserListResponse } from 'types/user.types';
 import { EUserSort } from 'lib/enum/user';
 import { userListSelector } from 'lib/recoil/selector/user';
 import { isNullOrUndefined } from 'util/isNullOrUndefined';
+import { getUserList } from 'lib/api/user/user.api';
+import { EResponse } from 'lib/enum/response';
 
 const usePopularUsers = () => {
   const keyword: string = useRecoilValue<string>(userSearchKeywordState);
@@ -18,17 +20,27 @@ const usePopularUsers = () => {
 
   const requestPopularUsers = useCallback((): void => {
     if (!isNullOrUndefined(userListResponse)) {
-      setPopularUsers(userListResponse.data.users);
+      setPopularUsers(userListResponse.data.users.slice(0, 3));
     }
   }, [setPopularUsers, userListResponse]);
 
-  useEffect(() => {
-    requestPopularUsers();
-  }, [requestPopularUsers]);
+  const popularUsersCallback = useCallback(async (): Promise<void> => {
+    try {
+      const { status, data: { users } } = await getUserList(EUserSort.POPULAR);
+
+      if (status === EResponse.OK) {
+        setPopularUsers(users.slice(0, 3));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [setPopularUsers]);
 
   return {
     popularUsers,
     filteredUsers,
+    requestPopularUsers,
+    popularUsersCallback,
   };
 }
 

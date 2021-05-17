@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { APP_NAME } from 'constants/util';
@@ -13,7 +13,11 @@ const style = require('./PopularQuestion.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const PopularQuestion = (): JSX.Element => {
-  const { popularQuestions } = usePopularQuestions();
+  const { popularQuestions, requestPopularQuestions } = usePopularQuestions();
+
+  useEffect(() => {
+    requestPopularQuestions();
+  }, [requestPopularQuestions]);
 
   return (
     <div className={cx('PopularQuestion')}>

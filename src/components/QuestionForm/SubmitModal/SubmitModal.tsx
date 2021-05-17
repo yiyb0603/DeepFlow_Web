@@ -29,7 +29,10 @@ const SubmitModal = ({
 }: SubmitModalProps): JSX.Element => {
   return (
     <>
-      <div className={cx('SubmitModal-Overlay')} onClick={() => handleIsModal(false)}></div>
+      <div
+        className={cx('SubmitModal-Overlay')}
+        onClick={() => handleIsModal(false)}
+      ></div>
       <div className={cx('SubmitModal')}>
         <div className={cx('SubmitModal-Wrapper')}>
           <SelectThumbnail />

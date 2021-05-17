@@ -7,12 +7,14 @@ import { historySingleton } from 'lib/singleton/history';
 import { createPost, modifyPost } from 'lib/api/question/question.api';
 import { IQuestionDto } from 'lib/api/question/question.dto';
 import Toast from 'lib/Toast';
+import usePostCallback from 'hooks/callback/usePostCallback';
 import { isEmpty } from 'util/isEmpty';
 import { validateBeforeModal, validateQuestion } from 'validation/question.validation';
 import useQuestionByIdx from './useQuestionByIdx';
 
 const useQuestionForm = () => {
   const { question } = useQuestionByIdx();
+  const { requestPostCallback } = usePostCallback();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isContentsFocus, setIsContentsFocus] = useState<boolean>(false);
@@ -135,6 +137,7 @@ const useQuestionForm = () => {
         setIsLoading(false);
         handleIsModal(false);
         Toast.successToast(`글 ${questionIdx === null ? '작성' : '수정'}을 성공하였습니다.`);
+        requestPostCallback();
         historySingleton.push('/');
 
         setRequest({
@@ -150,7 +153,7 @@ const useQuestionForm = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [handleIsModal, questionIdx, request, setRequest]);
+  }, [handleIsModal, questionIdx, request, requestPostCallback, setRequest]);
 
   const handleSetProperties = useCallback(async (): Promise<void> => {
     const { idx, title, thumbnail, introduction, contents, postTags } = question!;

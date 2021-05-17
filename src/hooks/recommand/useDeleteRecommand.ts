@@ -1,10 +1,10 @@
+import { useCallback, MouseEvent } from 'react';
 import { deleteRecommand } from 'lib/api/userRecommand/userRecommand.api';
 import { EResponse } from 'lib/enum/response';
-import { useCallback, MouseEvent } from 'react';
-import useRecommandList from './useRecommandList';
+import useRecommandCallback from 'hooks/callback/useRecommandCallback';
 
 const useDeleteRecommand = () => {
-  const { recommandListCallback } = useRecommandList();
+  const { requestRecommandCallback } = useRecommandCallback();
 
   const requestDeleteRecommand = useCallback(async (
     e: MouseEvent<SVGElement>,
@@ -17,12 +17,12 @@ const useDeleteRecommand = () => {
       const { status } = await deleteRecommand(recommandIdx);
       
       if (status === EResponse.OK) {
-        await recommandListCallback();
+        requestRecommandCallback();
       }
     } catch (error) {
       console.log(error);
     }
-  }, [recommandListCallback]);
+  }, [requestRecommandCallback]);
 
   return {
     requestDeleteRecommand,

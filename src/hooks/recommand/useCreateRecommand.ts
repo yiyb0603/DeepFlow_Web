@@ -1,6 +1,7 @@
 import { userRecommandReasonState } from 'lib/recoil/atom/userRecommand';
 import RecommandError from 'error/RecommandError';
 import usePageParam from 'hooks/util/usePageParam';
+import useRecommandCallback from 'hooks/callback/useRecommandCallback';
 import { createRecommand } from 'lib/api/userRecommand/userRecommand.api';
 import { IRecommandDto } from 'lib/api/userRecommand/userRecommand.dto';
 import { EResponse } from 'lib/enum/response';
@@ -8,11 +9,10 @@ import { ChangeEvent, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import { checkLoggedIn } from 'util/checkLoggedIn';
 import { validateRecommand } from 'validation/recommand.validation';
-import useRecommandList from './useRecommandList';
 
 const useCreateRecommand = () => {
   const userIdx: number = usePageParam();
-  const { recommandListCallback } = useRecommandList();
+  const { requestRecommandCallback } = useRecommandCallback();
 
   const [reason, setReason] = useRecoilState<string>(userRecommandReasonState);
 
@@ -39,12 +39,12 @@ const useCreateRecommand = () => {
       const { status } = await createRecommand(recommandDto);
       if (status === EResponse.OK) {
         setReason('');
-        await recommandListCallback();
+        requestRecommandCallback();
       }
     } catch (error) {
       new RecommandError(error).createRecommandError();
     }
-  }, [reason, recommandListCallback, setReason, userIdx]);
+  }, [reason, requestRecommandCallback, setReason, userIdx]);
 
   return {
     reason,

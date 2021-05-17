@@ -1,4 +1,4 @@
-import { useEffect, memo, Fragment } from 'react';
+import { useEffect, memo, Fragment, useMemo, CSSProperties } from 'react';
 import useUserInfo from 'hooks/user/useUserInfo';
 import useViewMode from 'hooks/question/useViewMode';
 import { EView } from 'lib/enum/theme';
@@ -28,8 +28,13 @@ const UserInfo = (): JSX.Element => {
     numberListPage,
     splitedNumberList,
   } = useUserInfo();
-
   const { viewMode, onChangeViewMode, flexStyle } = useViewMode();
+  const customFlexStyle: CSSProperties = useMemo(() => {
+    return {
+      ...flexStyle,
+      marginTop: '0.5rem',
+    };
+  }, [flexStyle]);
 
   useEffect(() => {
     renderUserInfo();
@@ -61,9 +66,7 @@ const UserInfo = (): JSX.Element => {
           margin={'0.5rem 0 0 0'}
         />
 
-        <div
-          style={flexStyle}
-        >
+        <div style={customFlexStyle}>
         {
           splitedQuestionList.length > 0 ? (
             splitedQuestionList[currentPage - 1] &&
