@@ -12,7 +12,8 @@
     border: none;
     padding: 0.25rem 0.5rem;
     line-height: 1.7rem;
-    color: var(--black);
+    background-color: var(--theme);
+    color: var(--contrast);
     font-size: var(--font-smallest);
     resize: vertical !important;
   }
