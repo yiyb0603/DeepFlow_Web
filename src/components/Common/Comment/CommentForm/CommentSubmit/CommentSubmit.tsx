@@ -7,7 +7,7 @@ import { commentContentsState, commentFormLoadingState, commentModifyState } fro
 import { stringEllipsis } from 'converter/stringEllipsis';
 import { EComment } from 'lib/enum/comment';
 import { ICommentModify } from 'types/comment.types';
-import { palette } from 'styles/Palette/Palette';
+import palette from 'styles/palette';
 import Button from 'components/Common/Button';
 
 const style = require('./CommentSubmit.scss');

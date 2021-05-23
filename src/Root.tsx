@@ -7,7 +7,7 @@ import App from 'components/App';
 
 import 'styles/util.scss';
 import 'styles/font.scss';
-import 'styles/Palette/Palette.scss';
+import 'styles/palette/palette.scss';
 
 const Root = (): JSX.Element => {
   return (

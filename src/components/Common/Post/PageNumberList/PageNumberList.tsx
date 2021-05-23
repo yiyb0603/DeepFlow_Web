@@ -2,7 +2,7 @@ import { CSSProperties, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import Button from 'components/Common/Button';
-import { palette } from 'styles/Palette/Palette';
+import palette from 'styles/palette';
 import PageNumberItem from './PageNumberItem';
 
 const style = require('./PageNumberList.scss');

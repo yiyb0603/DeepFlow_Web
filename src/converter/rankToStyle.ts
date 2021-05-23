@@ -1,5 +1,5 @@
 import { ERank } from 'lib/enum/rank';
-import { palette } from 'styles/Palette/Palette';
+import palette from 'styles/palette';
 import { createRandomColor } from 'util/createRandomColor';
 
 export interface IRank {

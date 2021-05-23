@@ -2,7 +2,7 @@ import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import FadeLoader from 'react-spinners/FadeLoader';
-import { palette } from 'styles/Palette/Palette';
+import palette from 'styles/palette';
 import Helmet from 'components/Common/Helmet';
 
 const style = require('./GithubLoading.scss');

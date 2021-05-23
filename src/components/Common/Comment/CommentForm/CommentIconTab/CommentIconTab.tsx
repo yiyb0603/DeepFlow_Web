@@ -2,7 +2,7 @@ import { ChangeEvent, memo, useMemo } from 'react';
 import { MdImage } from 'react-icons/md';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import createRandomNumber from 'lib/CreateRandomNumber';
+import createRandomNumber from 'util/createRandomNumber';
 
 const style = require('./CommentIconTab.scss');
 const cx: ClassNamesFn = classNames.bind(style);

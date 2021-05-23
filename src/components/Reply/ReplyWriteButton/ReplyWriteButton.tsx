@@ -1,6 +1,6 @@
 import { CSSProperties, useMemo } from 'react';
 import Button from 'components/Common/Button';
-import { palette } from 'styles/Palette/Palette';
+import palette from 'styles/palette';
 
 interface ReplyWriteButtonProps {
   onClick: () => void;

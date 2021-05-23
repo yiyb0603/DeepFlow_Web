@@ -1,6 +1,6 @@
 import { CSSProperties, ReactElement, useMemo } from 'react';
 import { Tooltip as ReactTooltip, withStyles } from '@material-ui/core';
-import { palette } from 'styles/Palette/Palette';
+import palette from 'styles/palette';
 
 const LightTooltip = withStyles(() => ({
   tooltip: {

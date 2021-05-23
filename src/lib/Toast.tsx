@@ -3,7 +3,7 @@ import { BiErrorAlt } from 'react-icons/bi';
 import { BsCheckCircle } from 'react-icons/bs';
 import { MdClose } from 'react-icons/md';
 import { Toaster, ToastProps } from '@class101/ui';
-import { palette } from 'styles/Palette/Palette';
+import palette from 'styles/palette';
 
 let AppToaster: Toaster | null = null;
 const iconStyle: CSSProperties = {

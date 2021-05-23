@@ -1,7 +1,7 @@
 import { CSSProperties, ReactNode, useCallback, useMemo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { palette } from 'styles/Palette/Palette';
+import palette from 'styles/palette';
 import LoadingSpinner from '../Loading/LoadingSpinner';
 
 const style = require('./Button.scss');

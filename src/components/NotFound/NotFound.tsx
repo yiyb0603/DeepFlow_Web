@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import NotFoundImage from 'assets/images/not-found.svg';
-import { palette } from 'styles/Palette/Palette';
+import palette from 'styles/palette';
 import Button from 'components/Common/Button';
 import Helmet from 'components/Common/Helmet';
 import { historySingleton } from 'lib/singleton/history';

@@ -4,7 +4,7 @@ import { historySingleton } from 'lib/singleton/history';
 import { checkLoggedIn } from 'util/checkLoggedIn';
 import { getMyInfo } from 'util/getMyInfo';
 import { IToken } from 'types/user.types';
-import { palette } from 'styles/Palette/Palette';
+import palette from 'styles/palette';
 import PageTitle from 'components/Common/PageTitle';
 import Helmet from 'components/Common/Helmet';
 import Button from 'components/Common/Button';

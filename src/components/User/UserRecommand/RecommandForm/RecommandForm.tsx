@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { palette } from 'styles/Palette/Palette';
+import palette from 'styles/palette';
 import useCreateRecommand from 'hooks/recommand/useCreateRecommand';
 import Button from 'components/Common/Button';
 

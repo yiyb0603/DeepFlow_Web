@@ -1,5 +1,5 @@
 import { Spinner } from '@class101/ui';
-import { palette } from 'styles/Palette/Palette';
+import palette from 'styles/palette';
 
 const LoadingSpinner = (): JSX.Element => {
   return (

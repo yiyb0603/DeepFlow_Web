@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { palette } from 'styles/Palette/Palette';
+import palette from 'styles/palette';
 import PostButton from 'components/Common/Post/PostButton';
 
 const style = require('./FormBottom.scss');
