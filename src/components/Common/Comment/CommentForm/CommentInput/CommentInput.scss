@@ -1,20 +1,14 @@
 .CommentInput {
   width: 100%;
-  height: 150px;
-  max-height: 150px;
+  min-height: 200px;
+  max-height: 200px;
+  overflow-x: hidden;
   overflow-y: auto;
-  display: flex;
-  display: -webkit-flex;
-
-  &-Input {
-    flex: 1;
-    outline: none;
-    border: none;
-    padding: 0.25rem 0.5rem;
-    line-height: 1.7rem;
-    background-color: var(--theme);
-    color: var(--contrast);
-    font-size: var(--font-smallest);
-    resize: vertical !important;
-  }
+  outline: none;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  line-height: 1.7rem;
+  background-color: var(--theme);
+  color: var(--contrast);
+  font-size: var(--font-smallest);
 }

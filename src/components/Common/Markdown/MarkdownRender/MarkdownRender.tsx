@@ -1,3 +1,4 @@
+import { CSSProperties } from 'react';
 import ReactMarkdown from 'react-markdown';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
@@ -11,23 +12,30 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 interface MarkdownRenderProps {
 	contents: string;
+	style?: CSSProperties;
 }
 
 const MarkdownRender = ({
 	contents,
+	style,
 }: MarkdownRenderProps): JSX.Element => {
 	return (
-		<ReactMarkdown
+		<div
 			className={cx('MarkdownRender')}
-			source={contents}
-			plugins={[gfm]}
-			escapeHtml={false}
-			renderers={{
-				code: CodeBlock,
-				blockquote: BlockQuote,
-				image: Image,
-			}}
-		/>
+			style={style}
+		>
+			<ReactMarkdown
+				className={cx('MarkdownRender-Render')}
+				source={contents}
+				plugins={[gfm]}
+				escapeHtml={false}
+				renderers={{
+					code: CodeBlock,
+					blockquote: BlockQuote,
+					image: Image,
+				}}
+			/>
+		</div>
 	);
 };
 

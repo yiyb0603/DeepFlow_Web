@@ -1,4 +1,6 @@
 .MarkdownForm {
+  width: 50%;
+
   .custom-html-style {
     div,
     p,
@@ -53,4 +55,8 @@
     margin: auto;
     object-fit: cover;
   }
+}
+
+.rc-md-editor .editor-container .sec-html {
+  display: none;
 }

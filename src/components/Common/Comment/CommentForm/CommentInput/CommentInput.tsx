@@ -40,17 +40,15 @@ const CommentInput = ({
   }, [handleKeyEvent, isFocus]);
 
   return (
-    <div className={cx('CommentInput')}>
-      <textarea
-        placeholder={`${type === EComment.COMMENT ? '댓글' : '답글'}을 입력해주세요.`}
-        ref={commentInputRef}
-        className={cx('CommentInput-Input')}
-        value={contents}
-        onChange={onChangeContents}
-        onFocus={onChangeIsFocus}
-        onBlur={onChangeIsFocus}
-      ></textarea>
-    </div>
+    <textarea
+      placeholder={`${type === EComment.COMMENT ? '댓글' : '답글'}을 입력해주세요.`}
+      ref={commentInputRef}
+      className={cx('CommentInput')}
+      value={contents}
+      onChange={onChangeContents}
+      onFocus={onChangeIsFocus}
+      onBlur={onChangeIsFocus}
+    ></textarea>
   );
 };
 
