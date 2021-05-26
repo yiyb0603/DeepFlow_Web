@@ -7,7 +7,7 @@ import { customTrim } from 'converter/customTrim';
 const style = require('./TitleForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface TitleFormProps {
+export interface TitleFormProps {
   title: string;
   onChangeTitle: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
@@ -17,6 +17,7 @@ const TitleForm = ({ title, onChangeTitle }: TitleFormProps): JSX.Element => {
     <div className={cx('TitleForm')}>
       <Textarea
         name='title'
+        id='titleFormInput'
         className={cx('TitleForm-Input')}
         value={title}
         onChange={onChangeTitle}

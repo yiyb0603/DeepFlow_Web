@@ -8,7 +8,7 @@ import 'react-markdown-editor-lite/lib/index.css';
 const style = require('./MarkdownForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface MarkdownFormProps {
+export interface MarkdownFormProps {
 	height?: string;
 	maxHeight?: string;
 	contents: string;

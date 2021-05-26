@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TitleForm props render correctly 1`] = `
+<textarea
+  class="TitleForm-Input"
+  id="titleFormInput"
+  name="title"
+  placeholder="제목을 입력하세요"
+  rows="1"
+  style="overflow-x: hidden; word-wrap: break-word; overflow-y: hidden;"
+>
+  제목
+</textarea>
+`;
+
+exports[`TitleForm render correctly 1`] = `
+<div>
+  <div
+    class="TitleForm"
+  >
+    <textarea
+      class="TitleForm-Input"
+      id="titleFormInput"
+      name="title"
+      placeholder="제목을 입력하세요"
+      rows="1"
+      style="overflow-x: hidden; word-wrap: break-word; overflow-y: hidden;"
+    />
+    <textarea
+      class="TitleForm-Input"
+      readonly=""
+      rows="1"
+      style="overflow-x: hidden; word-wrap: break-word; overflow-y: hidden;"
+      type="text"
+    />
+  </div>
+</div>
+`;

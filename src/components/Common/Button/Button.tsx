@@ -7,7 +7,7 @@ import LoadingSpinner from '../Loading/LoadingSpinner';
 const style = require('./Button.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface ButtonProps {
+export interface ButtonProps {
   width?: string;
   height?: string;
   backgroundColor: string;

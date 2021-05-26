@@ -1,0 +1,373 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MarkdownForm render correctly 1`] = `
+<div>
+  <div
+    class="MarkdownForm"
+  >
+    <div
+      class="rc-md-editor "
+      style="height: 75vh; max-height: 75vh;"
+    >
+      <div
+        class="rc-md-navigation visible"
+      >
+        <div
+          class="navigation-nav left"
+        >
+          <div
+            class="button-wrap"
+          >
+            <span
+              class="button button-type-header"
+              title="Header"
+            >
+              <i
+                class="rmel-iconfont rmel-icon-font-size"
+              />
+              <div
+                class="drop-wrap hidden"
+              >
+                <ul
+                  class="header-list"
+                >
+                  <li
+                    class="list-item"
+                  >
+                    <h1>
+                      H1
+                    </h1>
+                  </li>
+                  <li
+                    class="list-item"
+                  >
+                    <h2>
+                      H2
+                    </h2>
+                  </li>
+                  <li
+                    class="list-item"
+                  >
+                    <h3>
+                      H3
+                    </h3>
+                  </li>
+                  <li
+                    class="list-item"
+                  >
+                    <h4>
+                      H4
+                    </h4>
+                  </li>
+                  <li
+                    class="list-item"
+                  >
+                    <h5>
+                      H5
+                    </h5>
+                  </li>
+                  <li
+                    class="list-item"
+                  >
+                    <h6>
+                      H6
+                    </h6>
+                  </li>
+                </ul>
+              </div>
+            </span>
+            <span
+              class="button button-type-bold"
+              title="Bold"
+            >
+              <i
+                class="rmel-iconfont rmel-icon-bold"
+              />
+            </span>
+            <span
+              class="button button-type-italic"
+              title="Italic"
+            >
+              <i
+                class="rmel-iconfont rmel-icon-italic"
+              />
+            </span>
+            <span
+              class="button button-type-underline"
+              title="Underline"
+            >
+              <i
+                class="rmel-iconfont rmel-icon-underline"
+              />
+            </span>
+            <span
+              class="button button-type-strikethrough"
+              title="Strikethrough"
+            >
+              <i
+                class="rmel-iconfont rmel-icon-strikethrough"
+              />
+            </span>
+            <span
+              class="button button-type-unordered"
+              title="Unordered list"
+            >
+              <i
+                class="rmel-iconfont rmel-icon-list-unordered"
+              />
+            </span>
+            <span
+              class="button button-type-ordered"
+              title="Ordered list"
+            >
+              <i
+                class="rmel-iconfont rmel-icon-list-ordered"
+              />
+            </span>
+            <span
+              class="button button-type-quote"
+              title="Quote"
+            >
+              <i
+                class="rmel-iconfont rmel-icon-quote"
+              />
+            </span>
+            <span
+              class="button button-type-wrap"
+              title="Line break"
+            >
+              <i
+                class="rmel-iconfont rmel-icon-wrap"
+              />
+            </span>
+            <span
+              class="button button-type-code-inline"
+              title="Inline code"
+            >
+              <i
+                class="rmel-iconfont rmel-icon-code"
+              />
+            </span>
+            <span
+              class="button button-type-code-block"
+              title="Code"
+            >
+              <i
+                class="rmel-iconfont rmel-icon-code-block"
+              />
+            </span>
+            <span
+              class="button button-type-table"
+              title="Table"
+            >
+              <i
+                class="rmel-iconfont rmel-icon-grid"
+              />
+              <div
+                class="drop-wrap hidden"
+              >
+                <ul
+                  class="table-list wrap"
+                  style="width: 135px; height: 89px;"
+                >
+                  <li
+                    class="list-item "
+                    style="top: 0px; left: 0px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 0px; left: 23px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 0px; left: 46px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 0px; left: 69px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 0px; left: 92px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 0px; left: 115px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 23px; left: 0px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 23px; left: 23px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 23px; left: 46px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 23px; left: 69px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 23px; left: 92px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 23px; left: 115px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 46px; left: 0px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 46px; left: 23px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 46px; left: 46px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 46px; left: 69px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 46px; left: 92px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 46px; left: 115px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 69px; left: 0px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 69px; left: 23px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 69px; left: 46px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 69px; left: 69px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 69px; left: 92px;"
+                  />
+                  <li
+                    class="list-item "
+                    style="top: 69px; left: 115px;"
+                  />
+                </ul>
+              </div>
+            </span>
+            <span
+              class="button button-type-image"
+              style="position: relative;"
+              title="Image"
+            >
+              <i
+                class="rmel-iconfont rmel-icon-image"
+              />
+              <input
+                accept=""
+                style="position: absolute; z-index: -1; left: 0px; top: 0px; width: 0px; height: 0px; opacity: 0;"
+                type="file"
+              />
+            </span>
+            <span
+              class="button button-type-link"
+              title="Link"
+            >
+              <i
+                class="rmel-iconfont rmel-icon-link"
+              />
+            </span>
+            <span
+              class="button button-type-clear"
+              title="Clear"
+            >
+              <i
+                class="rmel-iconfont rmel-icon-delete"
+              />
+            </span>
+            <span
+              class="button button-type-undo disabled"
+              title="Undo"
+            >
+              <i
+                class="rmel-iconfont rmel-icon-undo"
+              />
+            </span>
+            <span
+              class="button button-type-redo disabled"
+              title="Redo"
+            >
+              <i
+                class="rmel-iconfont rmel-icon-redo"
+              />
+            </span>
+          </div>
+        </div>
+        <div
+          class="navigation-nav right"
+        >
+          <div
+            class="button-wrap"
+          >
+            <span
+              class="button button-type-mode"
+              title="Only display editor"
+            >
+              <i
+                class="rmel-iconfont rmel-icon-keyboard"
+              />
+            </span>
+            <span
+              class="button button-type-fullscreen"
+              title="Full screen"
+            >
+              <i
+                class="rmel-iconfont rmel-icon-fullscreen"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="editor-container"
+      >
+        <section
+          class="section sec-md visible"
+        >
+          <textarea
+            class="section-container input "
+            name="contents"
+            placeholder="내용을 입력하세요..."
+            wrap="hard"
+          />
+        </section>
+        <section
+          class="section sec-html visible"
+        >
+          <div
+            class="section-container html-wrap"
+          >
+            <div
+              class="custom-html-style"
+            />
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+`;
