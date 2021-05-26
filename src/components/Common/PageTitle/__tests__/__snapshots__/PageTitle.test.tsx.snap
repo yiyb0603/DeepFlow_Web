@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageTitle props render correctly 1`] = `
+<div
+  class="PageTitle-TitleWrap-Title"
+  data-testid="page-title"
+>
+  제목
+</div>
+`;
+
+exports[`PageTitle props render correctly 2`] = `
+<div
+  class="PageTitle-TitleWrap-SubTitle"
+  data-testid="page-subtitle"
+>
+  부제목
+</div>
+`;
+
+exports[`PageTitle render correctly 1`] = `
+<div>
+  <div
+    class="PageTitle"
+  >
+    <div
+      class="PageTitle-TitleWrap"
+    >
+      <div
+        class="PageTitle-TitleWrap-Title"
+        data-testid="page-title"
+      >
+        제목
+      </div>
+      <div
+        class="PageTitle-TitleWrap-SubTitle"
+        data-testid="page-subtitle"
+      >
+        부제목
+      </div>
+    </div>
+  </div>
+</div>
+`;

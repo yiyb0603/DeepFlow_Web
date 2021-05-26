@@ -5,7 +5,7 @@ import { ClassNamesFn } from 'classnames/types';
 const style = require('./PageTitle.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface PageTitleProps {
+export interface PageTitleProps {
   title: string;
   subTitle: string;
   children?: ReactNode;
@@ -19,8 +19,18 @@ const PageTitle = ({
   return (
     <div className={cx('PageTitle')}>
       <div className={cx('PageTitle-TitleWrap')}>
-        <div className={cx('PageTitle-TitleWrap-Title')}>{title}</div>
-        <div className={cx('PageTitle-TitleWrap-SubTitle')}>{subTitle}</div>
+        <div
+          data-testid='page-title'
+          className={cx('PageTitle-TitleWrap-Title')}
+        >
+          {title}
+        </div>
+        <div
+          data-testid='page-subtitle'
+          className={cx('PageTitle-TitleWrap-SubTitle')}
+        >
+          {subTitle}
+        </div>
       </div>
 
       {children && children}

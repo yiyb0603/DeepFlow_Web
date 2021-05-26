@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoItems props render correctly 1`] = `
+<div
+  class="NoItems-Text"
+  data-testid="no-items-text"
+>
+  목록이 없습니다.
+</div>
+`;
+
+exports[`NoItems props render correctly 2`] = `
+<img
+  alt="noPost"
+  class="NoItems-Image"
+  data-testid="no-items-image"
+  src="no-post.svg"
+  style="width: 45%;"
+/>
+`;
+
+exports[`NoItems render correctly 1`] = `
+<div>
+  <div
+    class="NoItems"
+  >
+    <img
+      alt="noPost"
+      class="NoItems-Image"
+      data-testid="no-items-image"
+      src="no-post.svg"
+      style="width: 45%;"
+    />
+    <div
+      class="NoItems-Text"
+      data-testid="no-items-text"
+    />
+  </div>
+</div>
+`;
