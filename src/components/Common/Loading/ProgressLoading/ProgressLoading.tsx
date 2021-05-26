@@ -4,7 +4,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 const ProgressLoading = (): JSX.Element => {
   const customProgressStyle: CSSProperties = useMemo(() => {
     return {
-      position: 'absolute',
+      position: 'fixed',
       top: '70px',
       left: 0,
       right: 0,

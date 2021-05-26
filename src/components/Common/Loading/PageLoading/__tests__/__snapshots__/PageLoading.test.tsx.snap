@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageLoading render correctly 1`] = `
+<div>
+  <div
+    class="PageLoading"
+  >
+    <span
+      class="css-0"
+    >
+      <span
+        class="css-x63co1"
+      />
+      <span
+        class="css-89r7oh"
+      />
+      <span
+        class="css-3cy2mi"
+      />
+      <span
+        class="css-n3yql8"
+      />
+      <span
+        class="css-1rxpohb"
+      />
+    </span>
+    <div>
+      로딩중
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MarkdownRender render correctly 1`] = `
+<div>
+  <div
+    class="MarkdownRender"
+  >
+    <div
+      class="MarkdownRender-Render"
+    />
+  </div>
+</div>
+`;

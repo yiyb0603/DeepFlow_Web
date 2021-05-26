@@ -10,7 +10,7 @@ import Image from './Image';
 const style = require('./MarkdownRender.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface MarkdownRenderProps {
+export interface MarkdownRenderProps {
 	contents: string;
 	style?: CSSProperties;
 }

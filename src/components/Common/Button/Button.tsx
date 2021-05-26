@@ -54,6 +54,7 @@ const Button = ({
 
   return (
     <button
+      data-testid='button'
       className={cx('Button')}
       style={buttonStyle}
       onClick={onClick}

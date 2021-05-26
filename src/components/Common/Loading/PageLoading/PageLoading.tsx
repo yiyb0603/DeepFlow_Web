@@ -7,7 +7,7 @@ import palette from 'styles/palette';
 const style = require('./PageLoading.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface PageLoadingProps {
+export interface PageLoadingProps {
   text: string;
 }
 
