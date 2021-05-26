@@ -8,7 +8,7 @@ import { CSSProperties, useMemo } from 'react';
 const style = require('./SelectViewMode.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface SelectViewModeProps {
+export interface SelectViewModeProps {
   viewMode: EView;
   onChangeViewMode: (viewMode: EView) => void;
   margin?: string;
@@ -33,6 +33,7 @@ const SelectViewMode = ({
       style={viewModeStyle}
     >
       <AiOutlineUnorderedList
+        data-testid='view-mode-click'
         className={cx('SelectViewMode-Item', {
           'SelectViewMode-Item-Current': viewMode === LIST,
         })}
@@ -40,6 +41,7 @@ const SelectViewMode = ({
       />
       
       <CgMenuGridO
+        data-testid='view-mode-click'
         className={cx('SelectViewMode-Item', {
           'SelectViewMode-Item-Current': viewMode === GRID,
         })}

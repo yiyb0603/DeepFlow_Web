@@ -6,6 +6,7 @@ describe('PageTitle', () => {
     const initialProps: PageTitleProps = {
       title: '제목',
       subTitle: '부제목',
+      ...props,
     };
 
     return render(<PageTitle {...initialProps} />);
