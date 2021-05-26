@@ -5,7 +5,7 @@ import { ClassNamesFn } from 'classnames/types';
 const style = require('./InfoInput.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface InfoInputProps {
+export interface InfoInputProps {
   width?: string;
   name?: string;
   value: string;

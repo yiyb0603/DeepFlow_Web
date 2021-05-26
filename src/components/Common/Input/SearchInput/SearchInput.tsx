@@ -6,7 +6,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 const style = require('./SearchInput.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface SearchInputProps {
+export interface SearchInputProps {
   value: string;
   onChangeValue: (e: ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
