@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { Link } from 'react-router-dom';
-import { calculateTime } from 'lib/TimeCounting';
+import calculateTime from 'lib/TimeCounting';
 import { IToken, IUser } from 'types/user.types';
 import { getMyInfo } from 'util/getMyInfo';
 

@@ -1,4 +1,4 @@
-import { customTrim } from 'converter/customTrim';
+import customTrim from 'converter/customTrim';
 import { IUser } from 'types/user.types';
 import NoItems from 'components/Common/NoItems';
 import UserItem from 'components/Common/User/UserItem';

@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { getMyInfo } from 'util/getMyInfo';
-import { calculateTime } from 'lib/TimeCounting';
+import calculateTime from 'lib/TimeCounting';
 import { EComment } from 'lib/enum/comment';
 import useDeleteReply from 'hooks/reply/useDeleteReply';
 import { IToken, IUser } from 'types/user.types';

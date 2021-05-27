@@ -2,7 +2,7 @@ import { ChangeEvent, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import Textarea from 'react-autosize-textarea';
-import { customTrim } from 'converter/customTrim';
+import customTrim from 'converter/customTrim';
 
 const style = require('./TitleForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);

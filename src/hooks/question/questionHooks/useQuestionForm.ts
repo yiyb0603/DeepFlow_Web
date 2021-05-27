@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState, ChangeEvent, KeyboardEvent } from 're
 import { useRecoilState } from 'recoil';
 import { initialRequestQuestionState, requestQuestionState } from 'lib/recoil/atom/question';
 import { MAX_TAG_LENGTH } from 'constants/question';
-import { customTrim } from 'converter/customTrim';
+import customTrim from 'converter/customTrim';
 import { historySingleton } from 'lib/singleton/history';
 import { createPost, modifyPost } from 'lib/api/question/question.api';
 import { IQuestionDto } from 'lib/api/question/question.dto';
