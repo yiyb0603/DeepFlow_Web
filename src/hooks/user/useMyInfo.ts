@@ -4,7 +4,7 @@ import { myInfoState } from 'lib/recoil/atom/user';
 import { IToken, IUser, IUserResponse } from 'types/user.types';
 import { getMyInfo } from 'util/getMyInfo';
 import { userInfoSelector } from 'lib/recoil/selector/user';
-import { isNullOrUndefined } from 'util/isNullOrUndefined';
+import isNullOrUndefined from 'util/isNullOrUndefined';
 
 const useMyInfo = () => {
   const [myInfo, setMyInfo] = useRecoilState<IUser | null>(myInfoState);

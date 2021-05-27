@@ -1,6 +1,6 @@
 import useQuestionByIdx from 'hooks/question/questionHooks/useQuestionByIdx';
 import useDeleteQuestion from 'hooks/question/questionHooks/useDeleteQuestion';
-import { getGithubAddress } from 'util/getGithubAddress';
+import getGithubAddress from 'util/getGithubAddress';
 import Comment from 'components/Comment';
 import Helmet from 'components/Common/Helmet';
 import MarkdownRender from 'components/Common/Markdown/MarkdownRender';

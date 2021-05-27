@@ -3,7 +3,7 @@ import { useState, useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { ITag, ITagResponse } from 'types/tag.types';
-import { isNullOrUndefined } from 'util/isNullOrUndefined';
+import isNullOrUndefined from 'util/isNullOrUndefined';
 
 const useTag = () => {
   const pageParam: { tag: string } = useParams();

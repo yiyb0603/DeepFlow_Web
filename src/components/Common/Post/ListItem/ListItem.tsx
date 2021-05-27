@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import useTempQuestions from 'hooks/question/useTempQuestions';
 import { APP_LOGO } from 'constants/util';
-import { isNullOrUndefined } from 'util/isNullOrUndefined';
+import isNullOrUndefined from 'util/isNullOrUndefined';
 import { IUser } from 'types/user.types';
 import TimeSticker from '../TimeSticker';
 import PostSubInfo from '../PostSubInfo';

@@ -1,7 +1,7 @@
 import Toast from 'lib/Toast';
 import { IToken } from 'types/user.types';
 import { getMyInfo } from './getMyInfo'
-import { isNullOrUndefined } from './isNullOrUndefined';
+import isNullOrUndefined from './isNullOrUndefined';
 
 export const checkLoggedIn = (): boolean => {
   const myInfo: IToken = getMyInfo();

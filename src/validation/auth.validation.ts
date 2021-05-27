@@ -1,4 +1,4 @@
-import { isEmpty } from 'util/isEmpty';
+import isEmpty from 'util/isEmpty';
 import Toast from 'lib/Toast';
 import { IRegisterRequest } from 'types/user.types';
 import { EMAIL_REGULAR } from 'constants/regExp';

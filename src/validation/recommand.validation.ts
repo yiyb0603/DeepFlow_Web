@@ -3,7 +3,7 @@ import { IRecommandDto } from 'lib/api/userRecommand/userRecommand.dto';
 import Toast from 'lib/Toast';
 import { IToken } from 'types/user.types';
 import { getMyInfo } from 'util/getMyInfo';
-import { isEmpty } from 'util/isEmpty';
+import isEmpty from 'util/isEmpty';
 
 export const validateRecommand = (request: IRecommandDto): boolean => {
   const myInfo: IToken = getMyInfo();

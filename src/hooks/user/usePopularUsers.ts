@@ -4,7 +4,7 @@ import { popularUserListState, userSearchKeywordState } from 'lib/recoil/atom/us
 import { IUser, IUserListResponse } from 'types/user.types';
 import { EUserSort } from 'lib/enum/user';
 import { userListSelector } from 'lib/recoil/selector/user';
-import { isNullOrUndefined } from 'util/isNullOrUndefined';
+import isNullOrUndefined from 'util/isNullOrUndefined';
 import { getUserList } from 'lib/api/user/user.api';
 import { EResponse } from 'lib/enum/response';
 

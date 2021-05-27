@@ -5,7 +5,7 @@ import { ETagSort } from 'lib/enum/tag';
 import useTabState from 'hooks/util/useTabState';
 import { ITag, ITagListResponse } from 'types/tag.types';
 import { tagListSelector } from 'lib/recoil/selector/tag';
-import { isNullOrUndefined } from 'util/isNullOrUndefined';
+import isNullOrUndefined from 'util/isNullOrUndefined';
 
 const useTagList = () => {
   const [tagLoading, setTagLoading] = useRecoilState<boolean>(tagLoadingState);

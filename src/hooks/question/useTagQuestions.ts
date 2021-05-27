@@ -7,7 +7,7 @@ import { getPostsByTag } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
 import { IQuestion } from 'types/question.types';
 import usePagination from 'hooks/util/usePagination';
-import { chunkArray } from 'util/chunkArray';
+import chunkArray from 'util/chunkArray';
 
 const useTagQuestions = () => {
   const { tag }: { tag: string } = useParams();

@@ -1,6 +1,6 @@
 import { CHUNK_PAGE_COUNT } from 'constants/util';
 
-export const paginationNumber = (maxPage: number): number[][] => {
+const paginationNumber = (maxPage: number): number[][] => {
   const numbers: number[][] = [];
 
   let temp: number[] = [];
@@ -16,3 +16,5 @@ export const paginationNumber = (maxPage: number): number[][] => {
   numbers.push(temp);
   return numbers;
 }
+
+export default paginationNumber;

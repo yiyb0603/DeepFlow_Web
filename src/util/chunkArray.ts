@@ -1,4 +1,4 @@
-export const chunkArray = (array: any[], size: number): any[][] => {
+const chunkArray = (array: any[], size: number): any[][] => {
   const chunked = [];
   let index: number = 0;
 
@@ -11,3 +11,5 @@ export const chunkArray = (array: any[], size: number): any[][] => {
 
   return chunked;
 }
+
+export default chunkArray;

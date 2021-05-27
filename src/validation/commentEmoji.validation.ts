@@ -1,5 +1,5 @@
 import Toast from 'lib/Toast';
-import { isEmpty } from 'util/isEmpty';
+import isEmpty from 'util/isEmpty';
 
 export const validateCommentEmoji = (emoji: string): boolean => {
   if (isEmpty(emoji)) {

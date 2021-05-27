@@ -3,8 +3,8 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { userListState, userSearchKeywordState } from 'lib/recoil/atom/user';
 import { EUserSort } from 'lib/enum/user';
 import { userListSelector } from 'lib/recoil/selector/user';
-import { isNullOrUndefined } from 'util/isNullOrUndefined';
-import { getMaxGeneration } from 'util/getMaxGeneration';
+import isNullOrUndefined from 'util/isNullOrUndefined';
+import getMaxGeneration from 'util/getMaxGeneration';
 import useTabState from 'hooks/util/useTabState';
 import { IUser, IUserListResponse } from 'types/user.types';
 

@@ -1,5 +1,5 @@
 import Toast from 'lib/Toast';
-import { isEmpty } from 'util/isEmpty';
+import isEmpty from 'util/isEmpty';
 
 export const validateReply = (contents: string): boolean => {
   if (isEmpty(contents)) {

@@ -10,7 +10,7 @@ import { HiCode } from 'react-icons/hi';
 import { modifyModalState } from 'lib/recoil/atom/user';
 import { getMyInfo } from 'util/getMyInfo';
 import { IToken } from 'types/user.types';
-import { getGithubAddress } from 'util/getGithubAddress';
+import getGithubAddress from 'util/getGithubAddress';
 import { ERank } from 'lib/enum/rank';
 import ModifyButton from './ModifyButton';
 import RankProfile from 'components/Common/User/RankProfile';

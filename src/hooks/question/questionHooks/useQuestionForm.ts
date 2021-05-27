@@ -8,7 +8,7 @@ import { createPost, modifyPost } from 'lib/api/question/question.api';
 import { IQuestionDto } from 'lib/api/question/question.dto';
 import Toast from 'lib/Toast';
 import usePostCallback from 'hooks/callback/usePostCallback';
-import { isEmpty } from 'util/isEmpty';
+import isEmpty from 'util/isEmpty';
 import { validateBeforeModal, validateQuestion } from 'validation/question.validation';
 import useQuestionByIdx from './useQuestionByIdx';
 

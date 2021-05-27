@@ -1,8 +1,8 @@
 import { IQuestionDto } from 'lib/api/question/question.dto';
 import Toast from 'lib/Toast';
 import { MAX_INTRODUCTION_LENGTH, MAX_TAG_LENGTH, MAX_TITLE_LENGTH } from 'constants/question';
-import { isEmpty } from 'util/isEmpty';
-import { isNullOrUndefined } from 'util/isNullOrUndefined';
+import isEmpty from 'util/isEmpty';
+import isNullOrUndefined from 'util/isNullOrUndefined';
 
 export const validateBeforeModal = (request: IQuestionDto): boolean => {
   const { title, contents, postTags } = request;

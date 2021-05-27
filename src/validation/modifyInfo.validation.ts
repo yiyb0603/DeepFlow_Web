@@ -2,7 +2,7 @@ import { MAX_BLOG_LENGTH, MAX_DESCRIPTION_LENGTH, MAX_LOCATION_LENGTH, MAX_POSIT
 import { EMAIL_REGULAR } from 'constants/regExp';
 import { IUserModify } from 'lib/api/user/user.dto';
 import Toast from 'lib/Toast';
-import { isEmpty } from 'util/isEmpty';
+import isEmpty from 'util/isEmpty';
 
 export const validateModifyInfo = (modifyInfo: IUserModify): boolean => {
   const { name, email, location, position, description, blog } = modifyInfo;

@@ -1,4 +1,4 @@
-import { getMaxGeneration } from 'util/getMaxGeneration';
+import getMaxGeneration from 'util/getMaxGeneration';
 
 export interface IAuthOption {
   value: number;

@@ -1,7 +1,7 @@
 import { MAX_TITLE_LENGTH } from 'constants/notice';
 import { INoticeDto } from 'lib/api/notice/notice.dto';
 import Toast from 'lib/Toast';
-import { isEmpty } from 'util/isEmpty';
+import isEmpty from 'util/isEmpty';
 
 export const validateNotice = (request: INoticeDto): boolean => {
   const { title, contents } = request;

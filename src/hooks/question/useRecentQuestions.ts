@@ -4,7 +4,7 @@ import { getRecentPosts } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
 import { recentQuestionLoading, recentQuestionState } from 'lib/recoil/atom/question';
 import { recentQuestionSelector } from 'lib/recoil/selector/question';
-import { isNullOrUndefined } from 'util/isNullOrUndefined';
+import isNullOrUndefined from 'util/isNullOrUndefined';
 import { IQuestion, IRecentPostListResponse } from 'types/question.types';
 import { RECENT_COUNT } from 'constants/question';
 

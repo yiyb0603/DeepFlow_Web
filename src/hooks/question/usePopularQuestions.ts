@@ -6,7 +6,7 @@ import { POPULAR_COUNT } from 'constants/question';
 import { getPopularPosts } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
 import { IPopularQuestionListResponse, IQuestion } from 'types/question.types';
-import { isNullOrUndefined } from 'util/isNullOrUndefined';
+import isNullOrUndefined from 'util/isNullOrUndefined';
 
 const usePopularQuestions = () => {
   const [popularQuestions, setPopularQuestions] = useRecoilState<IQuestion[]>(popularQuestionState);

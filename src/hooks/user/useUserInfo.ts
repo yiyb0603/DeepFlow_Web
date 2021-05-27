@@ -6,11 +6,11 @@ import { EUserQuestion } from 'lib/enum/question';
 import useTabState from 'hooks/util/useTabState';
 import usePagination from 'hooks/util/usePagination';
 import { userInfoSelector, userQuestionSelector } from 'lib/recoil/selector/user';
-import { isNullOrUndefined } from 'util/isNullOrUndefined';
+import isNullOrUndefined from 'util/isNullOrUndefined';
 import { IUser, IUserResponse } from 'types/user.types';
 import { IQuestion, IQuestionListResponse } from 'types/question.types';
 import usePageParam from '../util/usePageParam';
-import { chunkArray } from 'util/chunkArray';
+import chunkArray from 'util/chunkArray';
 
 const useUserInfo = () => {
   const userIdx: number = usePageParam();

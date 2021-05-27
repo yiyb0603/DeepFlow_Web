@@ -1,5 +1,5 @@
 import { History, createBrowserHistory } from 'history';
-import { isNullOrUndefined } from 'util/isNullOrUndefined';
+import isNullOrUndefined from 'util/isNullOrUndefined';
 
 class HistorySingleton {
   private static instance: History;
