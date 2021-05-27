@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 import { CHUNK_PAGE_COUNT } from 'constants/util';
-import { paginationNumber } from 'util/paginationNumber';
+import paginationNumber from 'util/paginationNumber';
 import useQueryString from './useQueryString';
 import { historySingleton } from 'lib/singleton/history';
 

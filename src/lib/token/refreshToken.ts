@@ -5,7 +5,7 @@ import { decodeToken, getToken } from 'lib/token';
 import { ITokenResponse } from 'types/token.types';
 import { IToken } from 'types/user.types';
 
-export const refreshToken = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
+const refreshToken = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
   let accessToken: string = getToken();
 
   if (accessToken) {
@@ -25,3 +25,5 @@ export const refreshToken = async (config: AxiosRequestConfig): Promise<AxiosReq
   
   return config;
 }
+
+export default refreshToken;
