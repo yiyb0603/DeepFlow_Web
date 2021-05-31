@@ -1,15 +1,17 @@
 import { useCallback, useMemo } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { popularUserListState, userSearchKeywordState } from 'lib/recoil/atom/user';
-import { IUser, IUserListResponse } from 'types/user.types';
-import { EUserSort } from 'lib/enum/user';
-import { userListSelector } from 'lib/recoil/selector/user';
-import isNullOrUndefined from 'util/isNullOrUndefined';
+import { userSearchKeywordState } from 'lib/recoil/atom/user';
+import { popularUserListState, popularUserMountedState } from 'lib/recoil/atom/user/popularUser';
 import { getUserList } from 'lib/api/user/user.api';
 import { EResponse } from 'lib/enum/response';
+import { EUserSort } from 'lib/enum/user';
+import { userListSelector } from 'lib/recoil/selector/user';
+import { IUser, IUserListResponse } from 'types/user.types';
+import isNullOrUndefined from 'util/isNullOrUndefined';
 
 const usePopularUsers = () => {
   const keyword: string = useRecoilValue<string>(userSearchKeywordState);
+  const [popularUserMounted, setPopularUserMounted] = useRecoilState(popularUserMountedState);
   const [popularUsers, setPopularUsers] = useRecoilState<IUser[]>(popularUserListState);
 
   const userListResponse: IUserListResponse = useRecoilValue(userListSelector(EUserSort.POPULAR));
@@ -19,13 +21,13 @@ const usePopularUsers = () => {
   }, [keyword, popularUsers]);
 
   const requestPopularUsers = useCallback((): void => {
-    if (isNullOrUndefined(userListResponse)) {
+    if (isNullOrUndefined(userListResponse.data) || !popularUserMounted) {
       return;
     }
 
     const { users } = userListResponse.data;
     setPopularUsers(users.slice(0, 3));
-  }, [setPopularUsers, userListResponse]);
+  }, [popularUserMounted, setPopularUsers, userListResponse.data]);
 
   const popularUsersCallback = useCallback(async (): Promise<void> => {
     try {
@@ -33,11 +35,12 @@ const usePopularUsers = () => {
 
       if (status === EResponse.OK) {
         setPopularUsers(users.slice(0, 3));
+        setPopularUserMounted(false);
       }
     } catch (error) {
       console.log(error);
     }
-  }, [setPopularUsers]);
+  }, [setPopularUserMounted, setPopularUsers]);
 
   return {
     popularUsers,

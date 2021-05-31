@@ -1,14 +1,16 @@
-import { useCallback, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useCallback } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { getUserList } from 'lib/api/user/user.api';
 import { EResponse } from 'lib/enum/response';
 import { EUserSort } from 'lib/enum/user';
+import { recentUserListState, recentUserMountedState } from 'lib/recoil/atom/user/recentUser';
 import { userListSelector } from 'lib/recoil/selector/user';
 import { IUser, IUserListResponse } from 'types/user.types';
 import isNullOrUndefined from 'util/isNullOrUndefined';
 
 const useRecentUsers = () => {
-  const [recentUsers, setRecentUsers] = useState<IUser[]>([]);
+  const [recentUserMounted, setRecentUserMounted] = useRecoilState<boolean>(recentUserMountedState);
+  const [recentUsers, setRecentUsers] = useRecoilState<IUser[]>(recentUserListState);
   const userListResponse: IUserListResponse = useRecoilValue(userListSelector(EUserSort.GENERATION));
 
   const handleSortByJoinedAt = useCallback((users: IUser[]): void => {
@@ -17,16 +19,16 @@ const useRecentUsers = () => {
     });
 
     setRecentUsers(sortedByJoinedAt.length > 3 ? sortedByJoinedAt.slice(0, 3) : sortedByJoinedAt);
-  }, []);
+  }, [setRecentUsers]);
 
   const requestRecentUsers = useCallback((): void => {
-    if (isNullOrUndefined(userListResponse.data)) {
+    if (isNullOrUndefined(userListResponse.data) || !recentUserMounted) {
       return;
     }
 
     const { users } = userListResponse.data;
     handleSortByJoinedAt(users);
-  }, [handleSortByJoinedAt, userListResponse]);
+  }, [handleSortByJoinedAt, recentUserMounted, userListResponse.data]);
 
   const requestRecentUsersCallback = useCallback(async (): Promise<void> => {
     try {
@@ -34,11 +36,12 @@ const useRecentUsers = () => {
 
       if (status === EResponse.OK) {
         handleSortByJoinedAt(users);
+        setRecentUserMounted(false);
       }
     } catch (error) {
       console.log(error);
     }
-  }, [handleSortByJoinedAt]);
+  }, [handleSortByJoinedAt, setRecentUserMounted]);
 
   return {
     recentUsers,

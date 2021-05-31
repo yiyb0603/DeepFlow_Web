@@ -7,7 +7,7 @@ import { MdEmail } from 'react-icons/md';
 import { ImLocation2 } from 'react-icons/im';
 import { CgComment } from 'react-icons/cg';
 import { HiCode } from 'react-icons/hi';
-import { modifyModalState } from 'lib/recoil/atom/user';
+import { modifyModalState } from 'lib/recoil/atom/user/myInfo';
 import { getMyInfo } from 'util/getMyInfo';
 import { IToken } from 'types/user.types';
 import getGithubAddress from 'util/getGithubAddress';

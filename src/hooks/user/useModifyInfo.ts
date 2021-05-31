@@ -1,6 +1,6 @@
 import { useCallback, useEffect, ChangeEvent } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { modifyInfoState, modifyModalState } from 'lib/recoil/atom/user';
+import { modifyInfoState, modifyModalState } from 'lib/recoil/atom/user/myInfo';
 import { modifyUserInfo } from 'lib/api/user/user.api';
 import { IUserModify } from 'lib/api/user/user.dto';
 import { EResponse } from 'lib/enum/response';
@@ -8,6 +8,7 @@ import Toast from 'lib/Toast';
 import { validateModifyInfo } from 'validation/modifyInfo.validation';
 import useMyInfo from './useMyInfo';
 import useUserCallback from 'hooks/callback/useUserCallback';
+import isNullOrUndefined from 'util/isNullOrUndefined';
 
 const useModifyInfo = () => {
   const { myInfo } = useMyInfo();
@@ -49,24 +50,30 @@ const useModifyInfo = () => {
     }
   }, [modifyInfo, onChangeIsModifyModal, requestUserCallback]);
 
-  useEffect(() => {
-    if (myInfo) {
-      const { name, avatar, description, location, position, email, blog, generation, major } = myInfo;
-
-      setModifyInfo((modifyInfo) => ({
-        ...modifyInfo,
-        name,
-        avatar,
-        description,
-        location,
-        position,
-        email,
-        blog,
-        generation,
-        major,
-      }));
+  const handleSetModifyInfo = useCallback(() => {
+    if (isNullOrUndefined(myInfo)) {
+      return;
     }
+
+    const { name, avatar, description, location, position, email, blog, generation, major } = myInfo!;
+
+    setModifyInfo((modifyInfo) => ({
+      ...modifyInfo,
+      name,
+      avatar,
+      description,
+      location,
+      position,
+      email,
+      blog,
+      generation,
+      major,
+    }));
   }, [myInfo, setModifyInfo]);
+
+  useEffect(() => {
+    handleSetModifyInfo();
+  }, [handleSetModifyInfo]);
 
   return {
     modifyInfo,

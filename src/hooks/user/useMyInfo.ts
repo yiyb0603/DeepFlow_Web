@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { getUserInfo } from 'lib/api/user/user.api';
 import { EResponse } from 'lib/enum/response';
-import { myInfoState } from 'lib/recoil/atom/user';
+import { myInfoState } from 'lib/recoil/atom/user/myInfo';
 import { userInfoSelector } from 'lib/recoil/selector/user';
 import { IToken, IUser, IUserResponse } from 'types/user.types';
 import { getMyInfo } from 'util/getMyInfo';

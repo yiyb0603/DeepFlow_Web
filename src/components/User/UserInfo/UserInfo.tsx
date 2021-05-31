@@ -1,6 +1,7 @@
 import { useEffect, memo, Fragment, useMemo, CSSProperties } from 'react';
 import useUserInfo from 'hooks/user/useUserInfo';
 import useViewMode from 'hooks/question/useViewMode';
+import useUserPost from 'hooks/user/useUserPost';
 import { EView } from 'lib/enum/theme';
 import { IQuestion } from 'types/question.types';
 import NoItems from 'components/Common/NoItems';
@@ -16,10 +17,12 @@ import PostTab from './PostTab';
 const UserInfo = (): JSX.Element => {
   const {
     userInfo,
-    setUserInfo,
+    requestUserInfo,
+  } = useUserInfo();
+
+  const {
     onChangEUserQuestionTab,
     userPostTab,
-    renderUserInfo,
     splitedQuestionList,
     currentPage,
     onChangeCurrentPage,
@@ -27,7 +30,9 @@ const UserInfo = (): JSX.Element => {
     handleNextPage,
     numberListPage,
     splitedNumberList,
-  } = useUserInfo();
+    requestUserPosts,
+  } = useUserPost();
+
   const { viewMode, onChangeViewMode, flexStyle } = useViewMode();
   const customFlexStyle: CSSProperties = useMemo(() => {
     return {
@@ -37,12 +42,9 @@ const UserInfo = (): JSX.Element => {
   }, [flexStyle]);
 
   useEffect(() => {
-    renderUserInfo();
-
-    return () => {
-      setUserInfo(null);
-    }
-  }, [renderUserInfo, setUserInfo]);
+    requestUserInfo();
+    requestUserPosts();
+  }, [requestUserInfo, requestUserPosts]);
 
   return (
     <>
