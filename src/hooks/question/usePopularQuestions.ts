@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { popularQuestionState } from 'lib/recoil/atom/question';
+import { popluarQuestionMountedState, popularQuestionState } from 'lib/recoil/atom/question/popularQuestion';
 import { popularQuestionSelector } from 'lib/recoil/selector/question';
 import { POPULAR_COUNT } from 'constants/question';
 import { getPopularPosts } from 'lib/api/question/question.api';
@@ -9,17 +9,18 @@ import { IPopularQuestionListResponse, IQuestion } from 'types/question.types';
 import isNullOrUndefined from 'util/isNullOrUndefined';
 
 const usePopularQuestions = () => {
+  const [popularQuestionMounted, setPopularQuestionMounted] = useRecoilState<boolean>(popluarQuestionMountedState);
   const [popularQuestions, setPopularQuestions] = useRecoilState<IQuestion[]>(popularQuestionState);
   const popularQuestionResponse: IPopularQuestionListResponse = useRecoilValue(popularQuestionSelector(POPULAR_COUNT));
 
   const requestPopularQuestions = useCallback((): void => {
-    if (isNullOrUndefined(popularQuestionResponse.data)) {
+    if (isNullOrUndefined(popularQuestionResponse.data) || popularQuestionMounted) {
       return;
     }
 
     const { popularPosts } = popularQuestionResponse.data;
     setPopularQuestions(popularPosts);
-  }, [popularQuestionResponse, setPopularQuestions]);
+  }, [popularQuestionMounted, popularQuestionResponse, setPopularQuestions]);
 
   const popularQuestionsCallback = useCallback(async (): Promise<void> => {
     try {
@@ -27,11 +28,12 @@ const usePopularQuestions = () => {
       
       if (status === EResponse.OK) {
         setPopularQuestions(popularPosts);
+        setPopularQuestionMounted(true);
       }
     } catch (error) {
       console.log(error);
     }
-  }, [setPopularQuestions]);
+  }, [setPopularQuestionMounted, setPopularQuestions]);
 
   return {
     popularQuestions,

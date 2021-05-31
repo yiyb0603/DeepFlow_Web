@@ -9,12 +9,12 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 export interface PostTabProps {
   userPostTab: EUserQuestion;
-  onChangEUserQuestionTab: (userPostTab: EUserQuestion) => void;
+  onChangeUserQuestionTab: (userPostTab: EUserQuestion) => void;
 };
 
 const PostTab = ({
   userPostTab,
-  onChangEUserQuestionTab,
+  onChangeUserQuestionTab,
 }: PostTabProps): JSX.Element => {
   return (
     <div className={cx('PostTab')}>
@@ -25,7 +25,7 @@ const PostTab = ({
             name={name}
             route={route}
             selectTab={userPostTab}
-            onChangeSelectTab={onChangEUserQuestionTab}
+            onChangeSelectTab={onChangeUserQuestionTab}
           />
         ))
       }

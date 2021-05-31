@@ -3,6 +3,11 @@ import { IUserModify } from 'lib/api/user/user.dto';
 import { EMajor } from 'lib/enum/majors';
 import { IUser } from 'types/user.types';
 
+export const myInfoMountedState = atom<boolean>({
+  key: 'myInfoMountedState',
+  default: false,
+});
+
 export const myInfoState = atom<IUser | null>({
   key: 'myInfoState',
   default: null,

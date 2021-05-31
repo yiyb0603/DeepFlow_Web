@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { questionListLoadingState, questionListState } from 'lib/recoil/atom/question';
+import { questionListLoadingState, questionListState, questionMountedState } from 'lib/recoil/atom/question';
 import usePagination from 'hooks/util/usePagination';
 import { EQuestionSort } from 'lib/enum/question';
 import { IQuestion, IQuestionListResponse } from 'types/question.types';
@@ -8,10 +8,12 @@ import useTabState from 'hooks/util/useTabState';
 import { questionListSelector } from 'lib/recoil/selector/question';
 import { EResponse } from 'lib/enum/response';
 import { getPostsBySort } from 'lib/api/question/question.api';
+import isNullOrUndefined from 'util/isNullOrUndefined';
 
 const useQuestions = () => {
   const [sortTab, onChangeSortTab] = useTabState<EQuestionSort>('sort', EQuestionSort.RECENT);
   const [questionLoading, setQuestionLoading] = useRecoilState<boolean>(questionListLoadingState);
+  const [questionMounted, setQuestionMounted] = useRecoilState<boolean>(questionMountedState);
 
   const {
     totalPage,
@@ -24,7 +26,7 @@ const useQuestions = () => {
     splitedNumberList,
   } = usePagination();
 
-  const question: IQuestionListResponse = useRecoilValue<IQuestionListResponse>(
+  const questionResponse: IQuestionListResponse = useRecoilValue<IQuestionListResponse>(
     questionListSelector({
       page: currentPage,
       sort: sortTab,
@@ -33,14 +35,21 @@ const useQuestions = () => {
 
   const requestQuestionList = useCallback((): void => {
     try {
+      if (isNullOrUndefined(questionResponse.data) || questionMounted) {
+        return;
+      }
+
       setQuestionLoading(true);
-      setTotalPage(question.data.totalPage!);
-      setQuestionList(question.data.posts);
+
+      const { totalPage, posts } = questionResponse.data;
+      setTotalPage(totalPage!);
+      setQuestionList(posts);
+
       setQuestionLoading(false);
     } catch (error) {
       console.log(error);
     }
-  }, [question, setQuestionList, setQuestionLoading, setTotalPage]);
+  }, [questionMounted, questionResponse, setQuestionList, setQuestionLoading, setTotalPage]);
 
   const questionListCallback = useCallback(async (): Promise<void> => {
     try {
@@ -50,12 +59,13 @@ const useQuestions = () => {
       if (status === EResponse.OK) {
         setQuestionList(posts);
         setTotalPage(totalPage!);
+        setQuestionMounted(true);
       }
       setQuestionLoading(false);
     } catch (error) {
       console.log(error);
     }
-  }, [currentPage, setQuestionList, setQuestionLoading, setTotalPage, sortTab]);
+  }, [currentPage, setQuestionList, setQuestionLoading, setQuestionMounted, setTotalPage, sortTab]);
 
   return {
     questionLoading,

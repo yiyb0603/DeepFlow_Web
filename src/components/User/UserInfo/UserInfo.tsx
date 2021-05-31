@@ -21,7 +21,7 @@ const UserInfo = (): JSX.Element => {
   } = useUserInfo();
 
   const {
-    onChangEUserQuestionTab,
+    onChangeUserQuestionTab,
     userPostTab,
     splitedQuestionList,
     currentPage,
@@ -59,7 +59,7 @@ const UserInfo = (): JSX.Element => {
 
         <PostTab
           userPostTab={userPostTab}
-          onChangEUserQuestionTab={onChangEUserQuestionTab}
+          onChangeUserQuestionTab={onChangeUserQuestionTab}
         />
 
         <SelectViewMode

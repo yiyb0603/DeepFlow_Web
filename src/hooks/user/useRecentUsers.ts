@@ -22,7 +22,7 @@ const useRecentUsers = () => {
   }, [setRecentUsers]);
 
   const requestRecentUsers = useCallback((): void => {
-    if (isNullOrUndefined(userListResponse.data) || !recentUserMounted) {
+    if (isNullOrUndefined(userListResponse.data) || recentUserMounted) {
       return;
     }
 
@@ -36,7 +36,7 @@ const useRecentUsers = () => {
 
       if (status === EResponse.OK) {
         handleSortByJoinedAt(users);
-        setRecentUserMounted(false);
+        setRecentUserMounted(true);
       }
     } catch (error) {
       console.log(error);

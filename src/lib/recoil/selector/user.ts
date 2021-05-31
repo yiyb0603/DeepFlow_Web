@@ -27,14 +27,18 @@ export const userInfoSelector = selectorFamily<IUserResponse | null, number | nu
 });
 
 type userQuestionSelectorParam = {
-  userIdx: number;
+  userIdx: number | null;
   userPostTab: EUserQuestion;
 }
 
-export const userQuestionSelector = selectorFamily<IQuestionListResponse, userQuestionSelectorParam>({
+export const userQuestionSelector = selectorFamily<IQuestionListResponse | null, userQuestionSelectorParam>({
   key: 'userQuestionSelector',
-  get: (param: userQuestionSelectorParam) => async ({ get }) => {
-    const data = await getUserPosts(param.userIdx, param.userPostTab);
-    return data;
+  get: ({ userIdx, userPostTab }: userQuestionSelectorParam) => async () => {
+    if (userIdx !== null) {
+      const data = await getUserPosts(userIdx, userPostTab);
+      return data;
+    } else {
+      return null;
+    }
   },
 });

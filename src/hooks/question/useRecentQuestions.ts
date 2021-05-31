@@ -1,21 +1,22 @@
 import { useCallback, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
+import { RECENT_COUNT } from 'constants/question';
 import { getRecentPosts } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
-import { recentQuestionLoading, recentQuestionState } from 'lib/recoil/atom/question';
+import { recentQuestionLoading, recentQuestionMountedState, recentQuestionState } from 'lib/recoil/atom/question/recentQuestion';
 import { recentQuestionSelector } from 'lib/recoil/selector/question';
 import isNullOrUndefined from 'util/isNullOrUndefined';
 import { IQuestion, IRecentPostListResponse } from 'types/question.types';
-import { RECENT_COUNT } from 'constants/question';
 
 const useRecentQuestions = () => {
   const [isLoading, setIsLoading] = useRecoilState<boolean>(recentQuestionLoading);
+  const [recentQuestionMounted, setRecentQuestionMounted] = useRecoilState<boolean>(recentQuestionMountedState);
   const [recentQuestions, setRecentQuestions] = useRecoilState<IQuestion[]>(recentQuestionState);
 
   const recentQuestionResponse: IRecentPostListResponse = useRecoilValue(recentQuestionSelector(RECENT_COUNT));
 
   const requestRecentQuestions = useCallback((): void => {
-    if (isNullOrUndefined(recentQuestionResponse.data)) {
+    if (isNullOrUndefined(recentQuestionResponse.data) || recentQuestionMounted) {
       return;
     }
 
@@ -25,7 +26,7 @@ const useRecentQuestions = () => {
     setRecentQuestions(recentPosts);
 
     setIsLoading(false);
-  }, [recentQuestionResponse, setIsLoading, setRecentQuestions]);
+  }, [recentQuestionMounted, recentQuestionResponse, setIsLoading, setRecentQuestions]);
 
   const recentQuestionsCallback = useCallback(async (): Promise<void> => {
     try {
@@ -34,13 +35,14 @@ const useRecentQuestions = () => {
 
       if (status === EResponse.OK) {
         setRecentQuestions(recentPosts);
+        setRecentQuestionMounted(true);
       }
     } catch (error) {
       console.log(error);
     } finally {
       setIsLoading(false);
     }
-  }, [setIsLoading, setRecentQuestions]);
+  }, [setIsLoading, setRecentQuestionMounted, setRecentQuestions]);
 
   useEffect(() => {
     requestRecentQuestions();

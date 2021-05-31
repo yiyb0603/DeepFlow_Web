@@ -1,13 +1,14 @@
 import { useCallback, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { questionListLoadingState, tagQuestionState } from 'lib/recoil/atom/question';
+import { tagQuestionState } from 'lib/recoil/atom/question/tagQuestion';
 import { CHUNK_POST_COUNT } from 'constants/util';
 import { getPostsByTag } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
 import { IQuestion } from 'types/question.types';
 import usePagination from 'hooks/util/usePagination';
 import chunkArray from 'util/chunkArray';
+import { questionListLoadingState } from 'lib/recoil/atom/question';
 
 const useTagQuestions = () => {
   const { tag }: { tag: string } = useParams();

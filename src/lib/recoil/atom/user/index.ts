@@ -4,7 +4,7 @@ import { IUser } from 'types/user.types';
 
 export const userMountedState = atom<boolean>({
   key: 'userMountedState',
-  default: true,
+  default: false,
 });
 
 export const userInfoState = atom<IUser | null>({
@@ -24,7 +24,7 @@ export const userSearchKeywordState = atom<string>({
 
 export const userLoading = atom<boolean>({
   key: 'userLoading',
-  default: true,
+  default: false,
 });
 
 export const userQuestionState = atom<IQuestion[]>({

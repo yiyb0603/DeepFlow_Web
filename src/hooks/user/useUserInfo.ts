@@ -19,7 +19,7 @@ const useUserInfo = () => {
   const userResponse: IUserResponse | null = useRecoilValue(userInfoSelector(userIdx));
 
   const requestUserInfo = useCallback((): void => {
-    if (isNullOrUndefined(userResponse!.data) || !userMounted) {
+    if (isNullOrUndefined(userResponse!.data) || userMounted) {
       return;
     }
 
@@ -37,7 +37,7 @@ const useUserInfo = () => {
 
       if (status === EResponse.OK) {
         setUserInfo(user);
-        setUserMounted(false);
+        setUserMounted(true);
       }
     } catch (error) {
       new UserError(error).getUserError();

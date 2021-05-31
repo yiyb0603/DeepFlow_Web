@@ -10,6 +10,8 @@ import { userQuestionSelector } from 'lib/recoil/selector/user';
 import { IQuestionListResponse, IQuestion } from 'types/question.types';
 import chunkArray from 'util/chunkArray';
 import isNullOrUndefined from 'util/isNullOrUndefined';
+import { getUserPosts } from 'lib/api/question/question.api';
+import { EResponse } from 'lib/enum/response';
 
 const useUserPost = () => {
   const userIdx: number = usePageParam();
@@ -26,8 +28,8 @@ const useUserPost = () => {
 
   const [userPostTab, setUserPostTab] = useTabState<EUserQuestion>('tab', EUserQuestion.WRITED);
   const [userQuestionList, setUserQuestionList] = useRecoilState<IQuestion[]>(userQuestionState);
-  const userQuestionResponse: IQuestionListResponse = useRecoilValue(userQuestionSelector({
-    userIdx,
+  const userQuestionResponse: IQuestionListResponse | null = useRecoilValue(userQuestionSelector({
+    userIdx: userIdx || null,
     userPostTab,
   }));
 
@@ -35,23 +37,39 @@ const useUserPost = () => {
     return chunkArray(userQuestionList, CHUNK_POST_COUNT);
   }, [userQuestionList]);
 
-  const onChangEUserQuestionTab = useCallback((userPostTab: EUserQuestion): void => {
+  const onChangeUserQuestionTab = useCallback((userPostTab: EUserQuestion): void => {
     setUserPostTab(userPostTab);
     onChangeCurrentPage(1);
   }, [onChangeCurrentPage, setUserPostTab]);
 
   const requestUserPosts = useCallback((): void => {
-    if (isNullOrUndefined(userQuestionResponse.data)) {
+    if (isNullOrUndefined(userQuestionResponse)) {
       return;
     }
 
-    const { posts } = userQuestionResponse.data;
+    const { posts } = userQuestionResponse?.data!;
     setUserQuestionList(posts);
     setTotalPage(posts.length / CHUNK_POST_COUNT);
   }, [setTotalPage, setUserQuestionList, userQuestionResponse]);
 
+  const requestUserPostsCallback = useCallback(async (): Promise<void> => {
+    if (!Number.isInteger(userIdx)) {
+      return;
+    }
+
+    try {
+      const { status, data: { posts } } = await getUserPosts(userIdx, userPostTab);
+
+      if (status === EResponse.OK) {
+        setUserQuestionList(posts);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [setUserQuestionList, userIdx, userPostTab]);
+
   return {
-    onChangEUserQuestionTab,
+    onChangeUserQuestionTab,
     userPostTab,
     splitedQuestionList,
     currentPage,
@@ -61,6 +79,7 @@ const useUserPost = () => {
     numberListPage,
     splitedNumberList,
     requestUserPosts,
+    requestUserPostsCallback,
   };
 }
 

@@ -21,7 +21,7 @@ const usePopularUsers = () => {
   }, [keyword, popularUsers]);
 
   const requestPopularUsers = useCallback((): void => {
-    if (isNullOrUndefined(userListResponse.data) || !popularUserMounted) {
+    if (isNullOrUndefined(userListResponse.data) || popularUserMounted) {
       return;
     }
 
@@ -35,7 +35,7 @@ const usePopularUsers = () => {
 
       if (status === EResponse.OK) {
         setPopularUsers(users.slice(0, 3));
-        setPopularUserMounted(false);
+        setPopularUserMounted(true);
       }
     } catch (error) {
       console.log(error);

@@ -8,5 +8,5 @@ export const popularUserListState = atom<IUser[]>({
 
 export const popularUserMountedState = atom<boolean>({
   key: 'popularUserMountedState',
-  default: true,
+  default: false,
 });

@@ -3,7 +3,7 @@ import { IUser } from 'types/user.types';
 
 export const recentUserMountedState = atom<boolean>({
   key: 'recentUserMounted',
-  default: true,
+  default: false,
 });
 
 export const recentUserListState = atom<IUser[]>({
