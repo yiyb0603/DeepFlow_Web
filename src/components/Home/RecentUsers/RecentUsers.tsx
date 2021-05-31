@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import useRecentUsers from 'hooks/user/useRecentUsers';
@@ -10,7 +10,14 @@ const style = require('./RecentUsers.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const RecentUsers = (): JSX.Element => {
-  const { recentUsers } = useRecentUsers();
+  const {
+    recentUsers,
+    requestRecentUsers,
+  } = useRecentUsers();
+
+  useEffect(() => {
+    requestRecentUsers();
+  }, [requestRecentUsers]);
 
   return (
     <div className={cx('RecentUsers')}>

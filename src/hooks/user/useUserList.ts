@@ -1,7 +1,9 @@
 import { useState, useCallback, useEffect, useMemo, ChangeEvent } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
+import { getUserList } from 'lib/api/user/user.api';
 import { userListState, userSearchKeywordState } from 'lib/recoil/atom/user';
 import { EUserSort } from 'lib/enum/user';
+import { EResponse } from 'lib/enum/response';
 import { userListSelector } from 'lib/recoil/selector/user';
 import isNullOrUndefined from 'util/isNullOrUndefined';
 import getMaxGeneration from 'util/getMaxGeneration';
@@ -36,23 +38,39 @@ const useUserList = () => {
     }
   }, [filteredUsersByKeyword, keyword.length]);
 
+  const handleSetUsersByGeneration = useCallback((users: IUser[]): void => {
+    setUserList([]);
+    for (let generation = 1; generation < getMaxGeneration(); generation++) {
+      const filteredByGeneration: IUser[] = users.filter((user: IUser) => user.generation === generation);
+      
+      setUserList((prevList: IUser[][]) => (
+        [...prevList, filteredByGeneration]
+      ));
+    }
+  }, [setUserList]);
+
   const requestUserList = useCallback((): void => {
     if (!isNullOrUndefined(userListResponse.data)) {
       setIsLoading(true);
       const { users } = userListResponse.data;
       users.slice().sort((a: IUser, b: IUser) => a.generation - b.generation);
 
-      setUserList([]);
-      for (let generation = 1; generation < getMaxGeneration(); generation++) {
-        const filteredByGeneration: IUser[] = users.filter((user: IUser) => user.generation === generation);
-        
-        setUserList((prevList: IUser[][]) => (
-          [...prevList, filteredByGeneration]
-        ));
-      }
+      handleSetUsersByGeneration(users);
       setIsLoading(false);
     }
-  }, [setUserList, userListResponse]);
+  }, [handleSetUsersByGeneration, userListResponse]);
+
+  const requestUserListCallback = useCallback(async (): Promise<void> => {
+    try {
+      const { status, data: { users } } = await getUserList(sortTab);
+
+      if (status === EResponse.OK) {
+        handleSetUsersByGeneration(users);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [handleSetUsersByGeneration, sortTab]);
 
   useEffect(() => {
     requestUserList();
@@ -67,6 +85,7 @@ const useUserList = () => {
     userList,
     filteredUsers,
     isLoading,
+    requestUserListCallback,
   };
 };
 

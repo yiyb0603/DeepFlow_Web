@@ -7,11 +7,11 @@ import { EResponse } from 'lib/enum/response';
 import Toast from 'lib/Toast';
 import { validateModifyInfo } from 'validation/modifyInfo.validation';
 import useMyInfo from './useMyInfo';
-import useUserInfo from './useUserInfo';
+import useUserCallback from 'hooks/callback/useUserCallback';
 
 const useModifyInfo = () => {
   const { myInfo } = useMyInfo();
-  const { renderUserInfo } = useUserInfo();
+  const { requestUserCallback } = useUserCallback();
 
   const [modifyInfo, setModifyInfo] = useRecoilState<IUserModify>(modifyInfoState);
   const setIsModifyModal = useSetRecoilState<boolean>(modifyModalState);
@@ -41,13 +41,13 @@ const useModifyInfo = () => {
 
       if (status === EResponse.OK) {
         Toast.successToast('유저 정보 수정을 성공하였습니다.');
-        renderUserInfo();
+        requestUserCallback();
         onChangeIsModifyModal();
       }
     } catch (error) {
       console.log(error);
     }
-  }, [modifyInfo, onChangeIsModifyModal, renderUserInfo]);
+  }, [modifyInfo, onChangeIsModifyModal, requestUserCallback]);
 
   useEffect(() => {
     if (myInfo) {

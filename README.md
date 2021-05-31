@@ -9,3 +9,7 @@ https://vo.la/RLtk1
 ### 1주차 ~ 4주차 진행 및 느낀점
 
 https://velog.io/@yiyb0603/DeepFlow-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-1%EC%A3%BC%EC%B0%A8-4%EC%A3%BC%EC%B0%A8
+
+### 5주차 ~ 8주차 진행 및 느낀점
+
+https://velog.io/@yiyb0603/DeepFlow-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-5%EC%A3%BC%EC%B0%A8-8%EC%A3%BC%EC%B0%A8

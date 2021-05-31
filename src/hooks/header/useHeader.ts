@@ -1,11 +1,11 @@
-import { useCallback, MouseEvent } from 'react';
+import { useCallback, MouseEvent, useEffect } from 'react';
 import { historySingleton } from 'lib/singleton/history';
 import Cookie from 'lib/Cookie';
 import Toast from 'lib/Toast';
 import useMyInfo from 'hooks/user/useMyInfo';
 
 const useHeader = () => {
-  const { myInfo, setMyInfo } = useMyInfo();
+  const { myInfo, setMyInfo, requestMyInfo } = useMyInfo();
 
   const handleLogout = useCallback((e: MouseEvent<HTMLHyperlinkElementUtils>): void => {
     if (myInfo) {
@@ -17,6 +17,10 @@ const useHeader = () => {
       historySingleton.push('/');
     }
   }, [myInfo, setMyInfo]);
+
+  useEffect(() => {
+    requestMyInfo();
+  }, [requestMyInfo]);
 
   return {
     myInfo,

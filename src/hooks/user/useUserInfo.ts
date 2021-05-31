@@ -11,6 +11,9 @@ import { IUser, IUserResponse } from 'types/user.types';
 import { IQuestion, IQuestionListResponse } from 'types/question.types';
 import usePageParam from '../util/usePageParam';
 import chunkArray from 'util/chunkArray';
+import { getUserInfo } from 'lib/api/user/user.api';
+import { EResponse } from 'lib/enum/response';
+import UserError from 'error/UserError';
 
 const useUserInfo = () => {
   const userIdx: number = usePageParam();
@@ -52,6 +55,18 @@ const useUserInfo = () => {
     }
   }, [setUserInfo, userResponse]);
 
+  const requestUserInfoCallback = useCallback(async (): Promise<void> => {
+    try {
+      const { status, data: { user } } = await getUserInfo(userIdx);
+
+      if (status === EResponse.OK) {
+        setUserInfo(user);
+      }
+    } catch (error) {
+      new UserError(error).getUserError();
+    }
+  }, [setUserInfo, userIdx]);
+
   const requestUserPosts = useCallback((): void => {
     if (!isNullOrUndefined(userQuestionResponse.data)) {
       const { posts } = userQuestionResponse.data;
@@ -79,6 +94,7 @@ const useUserInfo = () => {
     userPostTab,
     renderUserInfo,
     requestUserInfo,
+    requestUserInfoCallback,
     splitedQuestionList,
     currentPage,
     onChangeCurrentPage,
