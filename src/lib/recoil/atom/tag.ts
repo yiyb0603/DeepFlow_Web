@@ -6,6 +6,11 @@ export const tagLoadingState = atom<boolean>({
   default: true,
 });
 
+export const tagMountedState = atom<boolean>({
+  key: 'tagMountedState',
+  default: false,
+});
+
 export const tagListState = atom<ITag[]>({
   key: 'tagListState',
   default: [] as ITag[],
