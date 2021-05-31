@@ -42,7 +42,7 @@ const useUserList = () => {
     setUserList([]);
     for (let generation = 1; generation < getMaxGeneration(); generation++) {
       const filteredByGeneration: IUser[] = users.filter((user: IUser) => user.generation === generation);
-      
+
       setUserList((prevList: IUser[][]) => (
         [...prevList, filteredByGeneration]
       ));
@@ -50,14 +50,16 @@ const useUserList = () => {
   }, [setUserList]);
 
   const requestUserList = useCallback((): void => {
-    if (!isNullOrUndefined(userListResponse.data)) {
-      setIsLoading(true);
-      const { users } = userListResponse.data;
-      users.slice().sort((a: IUser, b: IUser) => a.generation - b.generation);
-
-      handleSetUsersByGeneration(users);
-      setIsLoading(false);
+    if (isNullOrUndefined(userListResponse.data)) {
+      return;
     }
+
+    setIsLoading(true);
+    const { users } = userListResponse.data;
+    users.slice().sort((a: IUser, b: IUser) => a.generation - b.generation);
+
+    handleSetUsersByGeneration(users);
+    setIsLoading(false);
   }, [handleSetUsersByGeneration, userListResponse]);
 
   const requestUserListCallback = useCallback(async (): Promise<void> => {

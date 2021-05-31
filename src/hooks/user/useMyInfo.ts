@@ -1,12 +1,12 @@
 import { useCallback, useMemo } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { myInfoState } from 'lib/recoil/atom/user';
-import { IToken, IUser, IUserResponse } from 'types/user.types';
-import { getMyInfo } from 'util/getMyInfo';
-import { userInfoSelector } from 'lib/recoil/selector/user';
-import isNullOrUndefined from 'util/isNullOrUndefined';
 import { getUserInfo } from 'lib/api/user/user.api';
 import { EResponse } from 'lib/enum/response';
+import { myInfoState } from 'lib/recoil/atom/user';
+import { userInfoSelector } from 'lib/recoil/selector/user';
+import { IToken, IUser, IUserResponse } from 'types/user.types';
+import { getMyInfo } from 'util/getMyInfo';
+import isNullOrUndefined from 'util/isNullOrUndefined';
 
 const useMyInfo = () => {
   const [myInfo, setMyInfo] = useRecoilState<IUser | null>(myInfoState);
@@ -22,7 +22,7 @@ const useMyInfo = () => {
     setMyInfo(userInfoResonse!.data.user);
   }, [myToken, setMyInfo, userInfoResonse]);
 
-  const requestMyInfoCallback = useCallback(async () => {
+  const requestMyInfoCallback = useCallback(async (): Promise<void> => {
     try {
       if (isNullOrUndefined(myToken)) {
         return;

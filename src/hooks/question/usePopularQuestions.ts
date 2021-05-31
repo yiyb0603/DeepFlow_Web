@@ -13,9 +13,12 @@ const usePopularQuestions = () => {
   const popularQuestionResponse: IPopularQuestionListResponse = useRecoilValue(popularQuestionSelector(POPULAR_COUNT));
 
   const requestPopularQuestions = useCallback((): void => {
-    if (!isNullOrUndefined(popularQuestionResponse.data)) {
-      setPopularQuestions(popularQuestionResponse.data.popularPosts);
+    if (isNullOrUndefined(popularQuestionResponse.data)) {
+      return;
     }
+
+    const { popularPosts } = popularQuestionResponse.data;
+    setPopularQuestions(popularPosts);
   }, [popularQuestionResponse, setPopularQuestions]);
 
   const popularQuestionsCallback = useCallback(async (): Promise<void> => {

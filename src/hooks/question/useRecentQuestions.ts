@@ -15,11 +15,16 @@ const useRecentQuestions = () => {
   const recentQuestionResponse: IRecentPostListResponse = useRecoilValue(recentQuestionSelector(RECENT_COUNT));
 
   const requestRecentQuestions = useCallback((): void => {
-    if (!isNullOrUndefined(recentQuestionResponse.data)) {
-      setIsLoading(true);
-      setRecentQuestions(recentQuestionResponse.data.recentPosts);
-      setIsLoading(false);
+    if (isNullOrUndefined(recentQuestionResponse.data)) {
+      return;
     }
+
+    setIsLoading(true);
+
+    const { recentPosts } = recentQuestionResponse.data;
+    setRecentQuestions(recentPosts);
+
+    setIsLoading(false);
   }, [recentQuestionResponse, setIsLoading, setRecentQuestions]);
 
   const recentQuestionsCallback = useCallback(async (): Promise<void> => {

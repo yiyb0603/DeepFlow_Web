@@ -9,16 +9,16 @@ const useUserCallback = () => {
   const { requestMyInfoCallback } = useMyInfo();
   const { requestUserInfoCallback } = useUserInfo();
   const { popularUsersCallback } = usePopularUsers();
-  const { requestRecentUsers } = useRecentUsers();
+  const { requestRecentUsersCallback } = useRecentUsers();
   const { requestUserListCallback } = useUserList();
 
   const requestUserCallback = useCallback((): void => {
     requestMyInfoCallback();
     requestUserInfoCallback();
     popularUsersCallback();
-    requestRecentUsers();
+    requestRecentUsersCallback();
     requestUserListCallback();
-  }, [popularUsersCallback, requestMyInfoCallback, requestRecentUsers, requestUserInfoCallback, requestUserListCallback]);
+  }, [popularUsersCallback, requestMyInfoCallback, requestRecentUsersCallback, requestUserInfoCallback, requestUserListCallback]);
 
   return {
     requestUserCallback,

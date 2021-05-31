@@ -16,11 +16,16 @@ const useTagList = () => {
   const tagListResponse: ITagListResponse = useRecoilValue(tagListSelector(sortRule));
 
   const requestTagList = useCallback((): void => {
-    if (!isNullOrUndefined(tagListResponse.data)) {
-      setTagLoading(true);
-      setTagList(tagListResponse.data.tags);
-      setTagLoading(false);
+    if (isNullOrUndefined(tagListResponse.data)) {
+      return;
     }
+
+    setTagLoading(true);
+    
+    const { tags } = tagListResponse.data;
+    setTagList(tags);
+    
+    setTagLoading(false);
   }, [setTagList, setTagLoading, tagListResponse]);
 
   useEffect(() => {

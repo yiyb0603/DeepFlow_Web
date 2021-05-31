@@ -18,9 +18,12 @@ const useRecommandList = () => {
   const userRecommandResponse: IUserRecommandResponse = useRecoilValue(userRecommandListSelector(userIdx));
 
   const requestRecommandList = useCallback((): void => {
-    if (!isNullOrUndefined(userRecommandResponse.data)) {
-      setUserRecommands(userRecommandResponse.data.recommands);
+    if (isNullOrUndefined(userRecommandResponse.data)) {
+      return;
     }
+
+    const { recommands } = userRecommandResponse.data;
+    setUserRecommands(recommands);
   }, [setUserRecommands, userRecommandResponse]);
 
   const recommandListCallback = useCallback(async (): Promise<void> => {

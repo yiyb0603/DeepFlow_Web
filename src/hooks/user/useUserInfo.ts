@@ -50,9 +50,12 @@ const useUserInfo = () => {
   }, [onChangeCurrentPage, setUserPostTab]);
 
   const requestUserInfo = useCallback((): void => {
-    if (!isNullOrUndefined(userResponse!.data)) {
-      setUserInfo(userResponse!.data.user);
+    if (isNullOrUndefined(userResponse!.data)) {
+      return;
     }
+
+    const { user } = userResponse!.data;
+    setUserInfo(user);
   }, [setUserInfo, userResponse]);
 
   const requestUserInfoCallback = useCallback(async (): Promise<void> => {
@@ -68,11 +71,13 @@ const useUserInfo = () => {
   }, [setUserInfo, userIdx]);
 
   const requestUserPosts = useCallback((): void => {
-    if (!isNullOrUndefined(userQuestionResponse.data)) {
-      const { posts } = userQuestionResponse.data;
-      setUserQuestionList(posts);
-      setTotalPage(posts.length / CHUNK_POST_COUNT);
+    if (isNullOrUndefined(userQuestionResponse.data)) {
+      return;
     }
+
+    const { posts } = userQuestionResponse.data;
+    setUserQuestionList(posts);
+    setTotalPage(posts.length / CHUNK_POST_COUNT);
   }, [setTotalPage, setUserQuestionList, userQuestionResponse]);
 
   const renderUserInfo = useCallback((): void => {

@@ -19,9 +19,12 @@ const usePopularUsers = () => {
   }, [keyword, popularUsers]);
 
   const requestPopularUsers = useCallback((): void => {
-    if (!isNullOrUndefined(userListResponse)) {
-      setPopularUsers(userListResponse.data.users.slice(0, 3));
+    if (isNullOrUndefined(userListResponse)) {
+      return;
     }
+
+    const { users } = userListResponse.data;
+    setPopularUsers(users.slice(0, 3));
   }, [setPopularUsers, userListResponse]);
 
   const popularUsersCallback = useCallback(async (): Promise<void> => {

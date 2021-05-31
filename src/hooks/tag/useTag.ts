@@ -12,9 +12,12 @@ const useTag = () => {
   const tagResponse: ITagResponse = useRecoilValue(tagSelector(pageParam.tag));
 
   const requestTagInfo = useCallback((): void => {
-    if (!isNullOrUndefined(tagResponse.data)) {
-      setTagInfo(tagResponse.data.tag);
+    if (isNullOrUndefined(tagResponse.data)) {
+      return;
     }
+
+    const { tag } = tagResponse.data;
+    setTagInfo(tag);
   }, [tagResponse]);
 
   useEffect(() => {
