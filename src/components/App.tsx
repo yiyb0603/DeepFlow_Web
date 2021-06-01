@@ -1,14 +1,12 @@
-import { useRecoilValue } from 'recoil';
-import { themeState } from 'lib/recoil/atom/theme';
 import { ETheme } from 'lib/enum/theme';
+import useTheme from 'hooks/theme/useTheme';
 import Routes from './Routes';
 
 const App = (): JSX.Element => {
-  const { LIGHT } = ETheme;
-  const theme: ETheme = useRecoilValue<ETheme>(themeState);
+  const { theme } = useTheme();
 
   return (
-    <div className={theme === LIGHT ? 'light' : 'dark'}>
+    <div className={theme === ETheme.LIGHT ? 'light' : 'dark'}>
       <Routes />
     </div>
   );

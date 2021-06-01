@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { IoLogoGithub } from 'react-icons/io';
-import { themeState } from 'lib/recoil/atom/theme';
 import { ETheme } from 'lib/enum/theme';
 import useHeader from 'hooks/header/useHeader';
+import useTheme from 'hooks/theme/useTheme';
 import WhiteThemeLogo from 'assets/icons/TextBlackLogo.svg';
 import BlackThemeLogo from 'assets/icons/TextWhiteLogo.svg';
 import { GITHUB_AUTH_URL } from 'constants/auth';
@@ -18,9 +17,9 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 const Header = (): JSX.Element => {
   const { myInfo, handleLogout } = useHeader();
+  const { theme } = useTheme();
 
   const [isSideShow, setIsSideShow] = useState<boolean>(false);
-  const theme: ETheme = useRecoilValue<ETheme>(themeState);
 
   return (
     <div className={cx('Header')}>
