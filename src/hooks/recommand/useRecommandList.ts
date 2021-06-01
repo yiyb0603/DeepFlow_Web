@@ -1,12 +1,12 @@
 import { useCallback, useEffect } from 'react';
 import { SetterOrUpdater, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { getRecommandsByUserIdx } from 'lib/api/userRecommand/userRecommand.api';
 import { userRecommandListState, userRecommandReasonState } from 'lib/recoil/atom/userRecommand';
 import { userRecommandListSelector } from 'lib/recoil/selector/userRecommand';
 import isNullOrUndefined from 'util/isNullOrUndefined';
 import useUserInfo from 'hooks/user/useUserInfo';
 import usePageParam from 'hooks/util/usePageParam';
-import { IUserRecommand, IUserRecommandResponse } from 'types/userRecommand.types';
-import { getRecommandsByUserIdx } from 'lib/api/userRecommand/userRecommand.api';
+import { IUserRecommand } from 'types/userRecommand.types';
 
 const useRecommandList = () => {
   const userIdx: number = usePageParam();
@@ -15,15 +15,14 @@ const useRecommandList = () => {
   const [userRecommands, setUserRecommands] = useRecoilState<IUserRecommand[]>(userRecommandListState);
   const setReason: SetterOrUpdater<string> = useSetRecoilState<string>(userRecommandReasonState);
 
-  const userRecommandResponse: IUserRecommandResponse = useRecoilValue(userRecommandListSelector(userIdx));
+  const userRecommandResponse: IUserRecommand[] = useRecoilValue(userRecommandListSelector(userIdx));
 
   const requestRecommandList = useCallback((): void => {
-    if (isNullOrUndefined(userRecommandResponse.data)) {
+    if (isNullOrUndefined(userRecommandResponse)) {
       return;
     }
 
-    const { recommands } = userRecommandResponse.data;
-    setUserRecommands(recommands);
+    setUserRecommands(userRecommandResponse);
   }, [setUserRecommands, userRecommandResponse]);
 
   const recommandListCallback = useCallback(async (): Promise<void> => {

@@ -1,23 +1,26 @@
-import { tagSelector } from 'lib/recoil/selector/tag';
 import { useState, useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { ITag, ITagResponse } from 'types/tag.types';
+import { tagSelector } from 'lib/recoil/selector/tag';
+import { ITag } from 'types/tag.types';
 import isNullOrUndefined from 'util/isNullOrUndefined';
 
+interface PageParam {
+  tag: string;
+}
+
 const useTag = () => {
-  const pageParam: { tag: string } = useParams();
+  const pageParam = useParams<PageParam>();
   const [tagInfo, setTagInfo] = useState<ITag | null>(null);
 
-  const tagResponse: ITagResponse = useRecoilValue(tagSelector(pageParam.tag));
+  const tagResponse: ITag = useRecoilValue(tagSelector(pageParam.tag));
 
   const requestTagInfo = useCallback((): void => {
-    if (isNullOrUndefined(tagResponse.data)) {
+    if (isNullOrUndefined(tagResponse)) {
       return;
     }
 
-    const { tag } = tagResponse.data;
-    setTagInfo(tag);
+    setTagInfo(tagResponse);
   }, [tagResponse]);
 
   useEffect(() => {

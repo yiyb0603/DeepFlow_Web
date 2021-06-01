@@ -5,7 +5,7 @@ import { EResponse } from 'lib/enum/response';
 import { userInfoState, userMountedState } from 'lib/recoil/atom/user';
 import { userInfoSelector } from 'lib/recoil/selector/user';
 import isNullOrUndefined from 'util/isNullOrUndefined';
-import { IUser, IUserResponse } from 'types/user.types';
+import { IUser } from 'types/user.types';
 import usePageParam from '../util/usePageParam';
 import UserError from 'error/UserError';
 
@@ -16,17 +16,16 @@ const useUserInfo = () => {
   const [userInfo, setUserInfo] = useRecoilState<IUser | null>(userInfoState);
   const [userMounted, setUserMounted] = useRecoilState<boolean>(userMountedState);
 
-  const userResponse: IUserResponse | null = useRecoilValue(userInfoSelector(userIdx));
+  const userResponse: IUser | null = useRecoilValue(userInfoSelector(userIdx));
 
   const requestUserInfo = useCallback((): void => {
-    if (isNullOrUndefined(userResponse!.data) || userMounted) {
+    if (isNullOrUndefined(userResponse) || userMounted) {
       return;
     }
 
     setIsLoading(true);
 
-    const { user } = userResponse!.data;
-    setUserInfo(user);
+    setUserInfo(userResponse);
 
     setIsLoading(false);
   }, [setUserInfo, userMounted, userResponse]);

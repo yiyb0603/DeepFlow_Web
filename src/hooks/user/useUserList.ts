@@ -8,7 +8,7 @@ import { userListSelector } from 'lib/recoil/selector/user';
 import isNullOrUndefined from 'util/isNullOrUndefined';
 import getMaxGeneration from 'util/getMaxGeneration';
 import useTabState from 'hooks/util/useTabState';
-import { IUser, IUserListResponse } from 'types/user.types';
+import { IUser } from 'types/user.types';
 
 const useUserList = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -17,7 +17,7 @@ const useUserList = () => {
   const [sortTab, onChangeSortTab] = useTabState<EUserSort>('sort', EUserSort.GENERATION);
   const [userList, setUserList] = useRecoilState<IUser[][]>(userListState);
 
-  const userListResponse: IUserListResponse = useRecoilValue(userListSelector(sortTab));
+  const userListResponse: IUser[] = useRecoilValue(userListSelector(sortTab));
 
   const onChangeKeyword = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
@@ -50,15 +50,14 @@ const useUserList = () => {
   }, [setUserList]);
 
   const requestUserList = useCallback((): void => {
-    if (isNullOrUndefined(userListResponse.data)) {
+    if (isNullOrUndefined(userListResponse)) {
       return;
     }
 
     setIsLoading(true);
-    const { users } = userListResponse.data;
-    users.slice().sort((a: IUser, b: IUser) => a.generation - b.generation);
+    userListResponse.slice().sort((a: IUser, b: IUser) => a.generation - b.generation);
 
-    handleSetUsersByGeneration(users);
+    handleSetUsersByGeneration(userListResponse);
     setIsLoading(false);
   }, [handleSetUsersByGeneration, userListResponse]);
 

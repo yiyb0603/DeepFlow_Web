@@ -4,7 +4,7 @@ import { getUserInfo } from 'lib/api/user/user.api';
 import { EResponse } from 'lib/enum/response';
 import { myInfoMountedState, myInfoState } from 'lib/recoil/atom/user/myInfo';
 import { userInfoSelector } from 'lib/recoil/selector/user';
-import { IToken, IUser, IUserResponse } from 'types/user.types';
+import { IToken, IUser } from 'types/user.types';
 import { getMyInfo } from 'util/getMyInfo';
 import isNullOrUndefined from 'util/isNullOrUndefined';
 
@@ -13,15 +13,14 @@ const useMyInfo = () => {
   const [myInfoMounted, setMyInfoMounted] = useRecoilState<boolean>(myInfoMountedState);
   const myToken: IToken = useMemo(() => getMyInfo(), []);
 
-  const userInfoResponse: IUserResponse | null = useRecoilValue(userInfoSelector(myToken ? myToken.idx : null));
+  const userInfoResponse: IUser | null = useRecoilValue(userInfoSelector(myToken ? myToken.idx : null));
 
   const requestMyInfo = useCallback(async (): Promise<void> => {
-    if (isNullOrUndefined(userInfoResponse?.data) || isNullOrUndefined(myToken) || myInfoMounted) {
+    if (isNullOrUndefined(userInfoResponse) || isNullOrUndefined(myToken) || myInfoMounted) {
       return;
     }
 
-    const { user } = userInfoResponse!.data;
-    setMyInfo(user);
+    setMyInfo(userInfoResponse);
   }, [myInfoMounted, myToken, setMyInfo, userInfoResponse]);
 
   const requestMyInfoCallback = useCallback(async (): Promise<void> => {

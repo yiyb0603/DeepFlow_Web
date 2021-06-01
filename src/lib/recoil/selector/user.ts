@@ -4,25 +4,25 @@ import { getUserInfo, getUserList } from 'lib/api/user/user.api';
 import { EUserQuestion } from 'lib/enum/question';
 import { EUserSort } from 'lib/enum/user';
 import { IQuestionListResponse } from 'types/question.types';
-import { IUserListResponse, IUserResponse } from 'types/user.types';
+import { IUser } from 'types/user.types';
 
-export const userListSelector = selectorFamily<IUserListResponse, EUserSort>({
+export const userListSelector = selectorFamily<IUser[], EUserSort>({
   key: 'userListSelector',
   get: (sort: EUserSort) => async () => {
-    const data = await getUserList(sort);
-    return data;
+    const { data: { users } } = await getUserList(sort);
+    return users;
   },
 });
 
-export const userInfoSelector = selectorFamily<IUserResponse | null, number | null>({
+export const userInfoSelector = selectorFamily<IUser | null, number | null>({
   key: 'userInfoSelector',
   get: (userIdx: number | null) => async () => {
     if (userIdx === null) {
       return null;
     }
 
-    const data = await getUserInfo(userIdx!);
-    return data;
+    const { data: { user } } = await getUserInfo(userIdx!);
+    return user;
   },
 });
 

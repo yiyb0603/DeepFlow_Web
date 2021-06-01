@@ -6,7 +6,7 @@ import { getUserList } from 'lib/api/user/user.api';
 import { EResponse } from 'lib/enum/response';
 import { EUserSort } from 'lib/enum/user';
 import { userListSelector } from 'lib/recoil/selector/user';
-import { IUser, IUserListResponse } from 'types/user.types';
+import { IUser } from 'types/user.types';
 import isNullOrUndefined from 'util/isNullOrUndefined';
 
 const usePopularUsers = () => {
@@ -14,20 +14,19 @@ const usePopularUsers = () => {
   const [popularUserMounted, setPopularUserMounted] = useRecoilState(popularUserMountedState);
   const [popularUsers, setPopularUsers] = useRecoilState<IUser[]>(popularUserListState);
 
-  const userListResponse: IUserListResponse = useRecoilValue(userListSelector(EUserSort.POPULAR));
+  const userListResponse: IUser[] = useRecoilValue(userListSelector(EUserSort.POPULAR));
 
   const filteredUsers: IUser[] = useMemo(() => {
     return popularUsers.filter((user: IUser) => user.name.includes(keyword));
   }, [keyword, popularUsers]);
 
   const requestPopularUsers = useCallback((): void => {
-    if (isNullOrUndefined(userListResponse.data) || popularUserMounted) {
+    if (isNullOrUndefined(userListResponse) || popularUserMounted) {
       return;
     }
 
-    const { users } = userListResponse.data;
-    setPopularUsers(users.slice(0, 3));
-  }, [popularUserMounted, setPopularUsers, userListResponse.data]);
+    setPopularUsers(userListResponse.slice(0, 3));
+  }, [popularUserMounted, setPopularUsers, userListResponse]);
 
   const popularUsersCallback = useCallback(async (): Promise<void> => {
     try {

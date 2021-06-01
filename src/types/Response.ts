@@ -3,10 +3,6 @@ export interface IResponse {
   message: string;
 }
 
-export interface ICustomResponse {
-  data: any;
-}
-
 export interface IError {
   response: {
     data: {

@@ -5,13 +5,13 @@ import { EResponse } from 'lib/enum/response';
 import { EUserSort } from 'lib/enum/user';
 import { recentUserListState, recentUserMountedState } from 'lib/recoil/atom/user/recentUser';
 import { userListSelector } from 'lib/recoil/selector/user';
-import { IUser, IUserListResponse } from 'types/user.types';
+import { IUser } from 'types/user.types';
 import isNullOrUndefined from 'util/isNullOrUndefined';
 
 const useRecentUsers = () => {
   const [recentUserMounted, setRecentUserMounted] = useRecoilState<boolean>(recentUserMountedState);
   const [recentUsers, setRecentUsers] = useRecoilState<IUser[]>(recentUserListState);
-  const userListResponse: IUserListResponse = useRecoilValue(userListSelector(EUserSort.GENERATION));
+  const userListResponse: IUser[] = useRecoilValue(userListSelector(EUserSort.GENERATION));
 
   const handleSortByJoinedAt = useCallback((users: IUser[]): void => {
     const sortedByJoinedAt: IUser[] = users.slice().sort((a, b) => {
@@ -22,13 +22,12 @@ const useRecentUsers = () => {
   }, [setRecentUsers]);
 
   const requestRecentUsers = useCallback((): void => {
-    if (isNullOrUndefined(userListResponse.data) || recentUserMounted) {
+    if (isNullOrUndefined(userListResponse) || recentUserMounted) {
       return;
     }
 
-    const { users } = userListResponse.data;
-    handleSortByJoinedAt(users);
-  }, [handleSortByJoinedAt, recentUserMounted, userListResponse.data]);
+    handleSortByJoinedAt(userListResponse);
+  }, [handleSortByJoinedAt, recentUserMounted, userListResponse]);
 
   const requestRecentUsersCallback = useCallback(async (): Promise<void> => {
     try {

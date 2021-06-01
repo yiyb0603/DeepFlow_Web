@@ -6,24 +6,23 @@ import { EResponse } from 'lib/enum/response';
 import { recentQuestionLoading, recentQuestionMountedState, recentQuestionState } from 'lib/recoil/atom/question/recentQuestion';
 import { recentQuestionSelector } from 'lib/recoil/selector/question';
 import isNullOrUndefined from 'util/isNullOrUndefined';
-import { IQuestion, IRecentPostListResponse } from 'types/question.types';
+import { IQuestion } from 'types/question.types';
 
 const useRecentQuestions = () => {
   const [isLoading, setIsLoading] = useRecoilState<boolean>(recentQuestionLoading);
   const [recentQuestionMounted, setRecentQuestionMounted] = useRecoilState<boolean>(recentQuestionMountedState);
   const [recentQuestions, setRecentQuestions] = useRecoilState<IQuestion[]>(recentQuestionState);
 
-  const recentQuestionResponse: IRecentPostListResponse = useRecoilValue(recentQuestionSelector(RECENT_COUNT));
+  const recentQuestionResponse: IQuestion[] = useRecoilValue(recentQuestionSelector(RECENT_COUNT));
 
   const requestRecentQuestions = useCallback((): void => {
-    if (isNullOrUndefined(recentQuestionResponse.data) || recentQuestionMounted) {
+    if (isNullOrUndefined(recentQuestionResponse) || recentQuestionMounted) {
       return;
     }
 
     setIsLoading(true);
 
-    const { recentPosts } = recentQuestionResponse.data;
-    setRecentQuestions(recentPosts);
+    setRecentQuestions(recentQuestionResponse);
 
     setIsLoading(false);
   }, [recentQuestionMounted, recentQuestionResponse, setIsLoading, setRecentQuestions]);

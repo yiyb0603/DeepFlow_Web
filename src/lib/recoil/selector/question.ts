@@ -1,7 +1,7 @@
 import { selectorFamily } from 'recoil';
 import { getPopularPosts, getPostsBySort, getRecentPosts } from 'lib/api/question/question.api';
 import { EQuestionSort } from 'lib/enum/question';
-import { IPopularQuestionListResponse, IQuestionListResponse, IRecentPostListResponse } from 'types/question.types';
+import { IQuestion, IQuestionListResponse } from 'types/question.types';
 
 type questionListSelectorParam = {
   sort: EQuestionSort;
@@ -10,24 +10,24 @@ type questionListSelectorParam = {
 
 export const questionListSelector = selectorFamily<IQuestionListResponse, questionListSelectorParam>({
   key: 'questionListSelector',
-  get: (param: any) => async () => {
-    const data = await getPostsBySort(param.sort, param.page);
+  get: ({ sort, page }: questionListSelectorParam) => async () => {
+    const data = await getPostsBySort(sort, page);
     return data;
   },
 });
 
-export const popularQuestionSelector = selectorFamily<IPopularQuestionListResponse, number>({
+export const popularQuestionSelector = selectorFamily<IQuestion[], number>({
   key: 'popularQuestionSelector',
   get: (count: number) => async () => {
-    const data = await getPopularPosts(count);
-    return data;
+    const { data: { popularPosts } } = await getPopularPosts(count);
+    return popularPosts;
   },
 });
 
-export const recentQuestionSelector = selectorFamily<IRecentPostListResponse, number>({
+export const recentQuestionSelector = selectorFamily<IQuestion[], number>({
   key: 'recentQuestionSelector',
   get: (count: number) => async () => {
-    const data = await getRecentPosts(count);
-    return data;
+    const { data: { recentPosts } } = await getRecentPosts(count);
+    return recentPosts;
   },
 });
