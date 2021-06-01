@@ -57,7 +57,7 @@ const SubmitModal = ({
 
               <PostButton
                 isLoading={isLoading}
-                contents={'작성'}
+                contents='작성'
                 backgroundColor={palette.main}
                 onClick={() => requestOfferPost(false)}
               />

@@ -47,7 +47,7 @@ const RecentQuestion = (): JSX.Element => {
               }
             </Fragment>
           );
-        }) : <NoItems text={'최근 올라온 글이 없습니다.'} imageWidth={'30%'} />
+        }) : <NoItems text='최근 올라온 글이 없습니다.' imageWidth='30%' />
       }
       </div>
     </div>

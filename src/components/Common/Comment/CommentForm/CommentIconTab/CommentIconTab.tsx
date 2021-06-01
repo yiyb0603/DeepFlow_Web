@@ -22,7 +22,7 @@ const CommentIconTab = ({
         type='file'
         id={selectFileId}
         onChange={onImageSelect}
-        multiple={true}
+        multiple
       />
 
       <label

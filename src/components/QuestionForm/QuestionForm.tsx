@@ -56,7 +56,7 @@ const QuestionForm = (): JSX.Element => {
       title={title}
       onChangeTitle={onChangeTitle}
     >
-      <Helmet title={'질문 글 작성'} />
+      <Helmet title='질문 글 작성' />
       {
         isSubmitModal &&
         <SubmitModal

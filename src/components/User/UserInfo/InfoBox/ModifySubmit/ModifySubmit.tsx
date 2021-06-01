@@ -10,8 +10,8 @@ const ModifySubmit = ({
 }: ModifySubmitProps): JSX.Element => {
   return (
     <Button
-      width={'100%'}
-      height={'45px'}
+      width='100%'
+      height='45px'
       backgroundColor={palette.main}
       handleClick={requestModifyInfo}
     >

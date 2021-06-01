@@ -19,9 +19,9 @@ const PostButton = ({
       isLoading={isLoading}
       backgroundColor={backgroundColor}
       handleClick={onClick}
-      height={'40px'}
-      margin={'0 5px 0 0'}
-      padding={'0 1.4rem'}
+      height='40px'
+      margin='0 5px 0 0'
+      padding='0 1.4rem'
     >
       {contents}
     </Button>

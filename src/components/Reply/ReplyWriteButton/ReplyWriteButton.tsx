@@ -18,8 +18,8 @@ const ReplyWriteButton = ({
 
   return (
     <Button
-      width={'100%'}
-      height={'45px'}
+      width='100%'
+      height='45px'
       customStyle={customButtonStyle}
       backgroundColor={palette.white}
       color={palette.black}

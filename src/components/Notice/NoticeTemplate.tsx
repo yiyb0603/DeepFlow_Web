@@ -28,8 +28,8 @@ const NoticeTemplate = (): JSX.Element => {
         {
           (myInfo && myInfo.isAdmin) &&
           <Button
-            width={'100px'}
-            height={'35px'}
+            width='100px'
+            height='35px'
             backgroundColor={palette.main}
             color={palette.white}
             handleClick={handlePushToForm}

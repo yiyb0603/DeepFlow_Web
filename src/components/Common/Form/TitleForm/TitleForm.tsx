@@ -28,7 +28,7 @@ const TitleForm = ({ title, onChangeTitle }: TitleFormProps): JSX.Element => {
         type='text'
         className={cx('TitleForm-Input')}
         value={customTrim(title).length > 0 ? title : ''}
-        readOnly={true}
+        readOnly
       ></Textarea>
     </div>
   );

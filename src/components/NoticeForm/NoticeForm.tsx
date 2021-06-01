@@ -21,7 +21,7 @@ const NoticeForm = (): JSX.Element => {
       onChangeTitle={onChangeTitle}
     >
      <MarkdownForm
-        height={'80vh'}
+        height='80vh'
         onChangeIsFocus={onChangeIsContentsFocus}
         contents={contents}
         onChangeContents={onChangeContents}

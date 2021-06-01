@@ -1,11 +1,11 @@
 import { useCallback } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import { historySingleton } from 'lib/singleton/history';
 import NotFoundImage from 'assets/images/not-found.svg';
 import palette from 'styles/palette';
 import Button from 'components/Common/Button';
 import Helmet from 'components/Common/Helmet';
-import { historySingleton } from 'lib/singleton/history';
 
 const style = require('./NotFound.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -38,8 +38,8 @@ const NotFound = (): JSX.Element => {
           </div>
 
           <Button
-            width={'120px'}
-            height={'40px'}
+            width='120px'
+            height='40px'
             backgroundColor={palette.main}
             handleClick={handlePushToHome}
           >

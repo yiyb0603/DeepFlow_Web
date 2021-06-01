@@ -49,8 +49,8 @@ const CommentSubmit = ({
       </div>
 
       <Button
-        width={'85px'}
-        height={'35px'}
+        width='85px'
+        height='35px'
         handleClick={requestOfferComment}
         backgroundColor={palette.main}
         isLoading={isLoading}

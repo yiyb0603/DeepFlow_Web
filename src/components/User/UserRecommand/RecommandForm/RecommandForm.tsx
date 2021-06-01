@@ -21,7 +21,7 @@ const RecommandForm = (): JSX.Element => {
       ></textarea>
 
       <Button
-        width={'65px'}
+        width='65px'
         backgroundColor={palette.main}
         handleClick={requestCreateRecommand}
       >

@@ -10,10 +10,10 @@ const ModifyButton = ({
 }: ModifyButtonProps): JSX.Element => {
   return (
     <Button
-      width={'100%'}
+      width='100%'
       backgroundColor={palette.main}
       handleClick={onClick}
-      margin={'0.5rem 0 0 0'}
+      margin='0.5rem 0 0 0'
     >
       수정하기
     </Button>

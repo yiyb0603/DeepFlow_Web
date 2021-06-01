@@ -10,8 +10,8 @@ const ReplyCancel = ({
 }: ReplyCancelProps): JSX.Element => {
   return (
     <Button
-      width={'85px'}
-      height={'35px'}
+      width='85px'
+      height='35px'
       handleClick={onChangeIsReplyWrite}
       backgroundColor={palette.lighterBlack}
     >

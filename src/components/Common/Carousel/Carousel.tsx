@@ -30,9 +30,9 @@ const Carousel = ({
       className='swiper-container'
       slidesPerView={1}
       pagination={{ clickable: true }}
-      loop={true}
+      loop
       autoplay={autoPlayOptions}
-      navigation={true}
+      navigation
     >
       {
         banners.map(({ image, link }, idx: number) => (

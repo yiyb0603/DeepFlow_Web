@@ -15,8 +15,8 @@ const AskButton = (): JSX.Element => {
 
   return (
     <Button
-      width={'100px'}
-      height={'35px'}
+      width='100px'
+      height='35px'
       backgroundColor={palette.main}
       handleClick={handlePushToForm}
     >

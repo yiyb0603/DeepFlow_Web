@@ -57,7 +57,7 @@ const SearchBar = ({
           onClick={() => setIsShowHistory(true)}
           placeholder='검색어를 입력하세요'
           isBorder={false}
-          fontSize={'1.35rem'}
+          fontSize='1.35rem'
         />
 
         {

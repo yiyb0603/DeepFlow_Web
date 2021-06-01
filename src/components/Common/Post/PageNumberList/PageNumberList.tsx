@@ -36,7 +36,7 @@ const PageNumberList = ({
         backgroundColor={palette.main}
         customStyle={visibilityStyle}
         handleClick={handlePrevPage}
-        padding={'0 1rem'}
+        padding='0 1rem'
       >
         이전
       </Button>
@@ -59,7 +59,7 @@ const PageNumberList = ({
         backgroundColor={palette.main}
         customStyle={visibilityStyle}
         handleClick={handleNextPage}
-        padding={'0 1rem'}
+        padding='0 1rem'
       >
         다음
       </Button>

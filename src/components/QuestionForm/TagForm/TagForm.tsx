@@ -29,7 +29,7 @@ const TagForm = ({
             <TagItem
               key={idx}
               postTag={postTag}
-              isClose={true}
+              isClose
               filterFunction={() => handleFilterPostTag(postTag)}
             />
           ))
