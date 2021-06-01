@@ -11,6 +11,7 @@ import SelectTab from 'components/Common/SelectTab';
 import UserLoading from './UserLoading';
 import GenerationUserList from './GenerationUserList';
 import PopularUserList from './PopularUserList';
+import isEmpty from 'util/isEmpty';
 
 const style = require('./UserList.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -26,49 +27,47 @@ const UserList = (): JSX.Element => {
     filteredUsers,
   } = useUserList();
 
+  if (isLoading && isEmpty(userList)) {
+    return <UserLoading />;
+  }
+
   return (
-    <>
-    {
-      isLoading && userList.length <= 0 ? <UserLoading />
-      :
-      <div className={cx('UserList')}>
-        <Helmet title='유저 목록' />
-        <PageTitle title='유저 목록' subTitle='유저 목록이 여기에 표시됩니다.'>
-          <SearchInput
-            value={keyword}
-            onChangeValue={onChangeKeyword}
-            placeholder='유저 이름을 검색하세요'
-            padding={'0.35rem'}
-            fontSize={'1.2rem'}
+    <div className={cx('UserList')}>
+      <Helmet title='유저 목록' />
+      <PageTitle title='유저 목록' subTitle='유저 목록이 여기에 표시됩니다.'>
+        <SearchInput
+          value={keyword}
+          onChangeValue={onChangeKeyword}
+          placeholder='유저 이름을 검색하세요'
+          padding='0.35rem'
+          fontSize='1.2rem'
+        />
+      </PageTitle>
+
+      <div className={cx('UserList-TabWrapper')}>
+      {
+        userSortTabs.map(({ name, route }: ISortTab, idx: number) => (
+          <SelectTab
+            key={idx}
+            name={name}
+            route={route}
+            selectTab={sortTab}
+            onChangeSelectTab={onChangeSortTab}
+            type='Short'
           />
-        </PageTitle>
-
-        <div className={cx('UserList-TabWrapper')}>
-        {
-          userSortTabs.map(({ name, route }: ISortTab, idx: number) => (
-            <SelectTab
-              key={idx}
-              name={name}
-              route={route}
-              selectTab={sortTab}
-              onChangeSelectTab={onChangeSortTab}
-              type='Short'
-            />
-          ))
-        }
-        </div>
-
-        {
-          sortTab === EUserSort.GENERATION ? (
-            <GenerationUserList
-              filteredUsers={filteredUsers}
-              keyword={keyword}
-            />
-          ) : <PopularUserList />
-        }
+        ))
+      }
       </div>
-    }
-    </>
+
+      {
+        sortTab === EUserSort.GENERATION ? (
+          <GenerationUserList
+            filteredUsers={filteredUsers}
+            keyword={keyword}
+          />
+        ) : <PopularUserList />
+      }
+    </div>
   );
 };
 

@@ -46,62 +46,59 @@ const UserInfo = (): JSX.Element => {
     requestUserPosts();
   }, [requestUserInfo, requestUserPosts]);
 
+  if (userInfo === null) {
+    return <UserLoading />;
+  }
+
   return (
-    <>
-    {
-      userInfo === null ? <UserLoading />
-      :
-      <>
-        <Helmet title={`${userInfo.name} (${userInfo.githubId})`} />
-        <InfoBox
-          {...userInfo}
-        />
+    <Fragment>
+      <Helmet title={`${userInfo.name} (${userInfo.githubId})`} />
+      <InfoBox
+        {...userInfo}
+      />
 
-        <PostTab
-          userPostTab={userPostTab}
-          onChangeUserQuestionTab={onChangeUserQuestionTab}
-        />
+      <PostTab
+        userPostTab={userPostTab}
+        onChangeUserQuestionTab={onChangeUserQuestionTab}
+      />
 
-        <SelectViewMode
-          viewMode={viewMode}
-          onChangeViewMode={onChangeViewMode}
-          margin={'0.5rem 0 0 0'}
-        />
+      <SelectViewMode
+        viewMode={viewMode}
+        onChangeViewMode={onChangeViewMode}
+        margin='0.5rem 0 0 0'
+      />
 
-        <div style={customFlexStyle}>
-        {
-          splitedQuestionList.length > 0 ? (
-            splitedQuestionList[currentPage - 1] &&
-            splitedQuestionList[currentPage - 1].map((question: IQuestion) => {
-              return (
-                <Fragment key={question.idx}>
-                  {
-                    viewMode === EView.LIST ?
-                    <ListItem
-                      {...question}
-                    /> :
-                    <GridItem
-                      {...question}
-                    />
-                  }
-                </Fragment>
-              );
-            })
-          ) : <NoItems text='작성한 글 목록이 없습니다.' />
-        }
-        </div>
-        
-        <PageNumberList
-          currentPage={currentPage}
-          onChangeCurrentPage={onChangeCurrentPage}
-          numberListPage={numberListPage}
-          handlePrevPage={handlePrevPage}
-          handleNextPage={handleNextPage}
-          pageList={splitedNumberList}
-        />
-      </>
-    }
-    </>
+      <div style={customFlexStyle}>
+      {
+        splitedQuestionList.length > 0 ? (
+        splitedQuestionList[currentPage - 1] &&
+        splitedQuestionList[currentPage - 1].map((question: IQuestion) => {
+          return (
+            <Fragment key={question.idx}>
+              {
+                viewMode === EView.LIST ?
+                <ListItem
+                  {...question}
+                /> :
+                <GridItem
+                  {...question}
+                />
+              }
+            </Fragment>
+          );
+        })) : <NoItems text='작성한 글 목록이 없습니다.' />
+      }
+      </div>
+      
+      <PageNumberList
+        currentPage={currentPage}
+        onChangeCurrentPage={onChangeCurrentPage}
+        numberListPage={numberListPage}
+        handlePrevPage={handlePrevPage}
+        handleNextPage={handleNextPage}
+        pageList={splitedNumberList}
+      />
+    </Fragment>
   );
 };
 

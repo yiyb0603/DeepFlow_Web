@@ -17,6 +17,7 @@ import SelectViewMode from 'components/Common/Post/SelectViewMode';
 import GridItem from 'components/Common/Post/GridItem';
 import SelectTab from 'components/Common/SelectTab';
 import AskButton from '../AskButton';
+import isEmpty from 'util/isEmpty';
 
 const style = require('./QuestionList.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -46,11 +47,12 @@ const QuestionList = (): JSX.Element => {
     requestQuestionList();
   }, [sortTab, currentPage, requestQuestionList]);
 
+  if (questionLoading && isEmpty(questionList)) {
+    return <HomeLoading />;
+  }
+
   return (
     <div className={cx('QuestionList')}>
-    {
-      questionLoading && questionList.length <= 0 ? <HomeLoading />
-      :
       <FadeIn>
         <Helmet title='질문 모음' />
         <PageTitle title='질문 모음' subTitle='질문 목록들이 여기에 표시됩니다.'>
@@ -108,7 +110,6 @@ const QuestionList = (): JSX.Element => {
           pageList={splitedNumberList}
         />
       </FadeIn>
-    }
     </div>
   );
 };

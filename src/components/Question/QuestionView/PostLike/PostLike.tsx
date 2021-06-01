@@ -7,6 +7,7 @@ import useLikeList from 'hooks/question/like/useLikeList';
 import useLikePress from 'hooks/question/like/useLikePress';
 import LikeSubmit from './LikeSubmit';
 import LikeList from './LikeList';
+import isEmpty from 'util/isEmpty';
 
 const style = require('./PostLike.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -17,7 +18,7 @@ const PostLike = (): JSX.Element => {
   const [isModal, setIsModal] = useState<boolean>(false);
 
   const onChangeIsModal = useCallback((): void => {
-    if (!isModal && (!likeList || likeList.length <= 0)) {
+    if (!isModal && (!likeList || isEmpty(likeList))) {
       Toast.infoToast('현재 좋아요 목록이 없습니다.');
       return;
     }

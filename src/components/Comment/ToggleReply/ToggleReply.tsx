@@ -9,6 +9,7 @@ import usePageParam from 'hooks/util/usePageParam';
 import ReplyWriteButton from 'components/Reply/ReplyWriteButton';
 import ReplyItem from 'components/Reply/ReplyItem';
 import useOfferReply from 'hooks/reply/useOfferReply';
+import isEmpty from 'util/isEmpty';
 
 const style = require('./ToggleReply.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -43,7 +44,7 @@ const ToggleReply = ({
   }, [commentIdx, onChangeIsReplyWrite, setContents, setWriteCommentIdx]);
 
   const onChangeIsShowReply = useCallback((): void => {
-    if (!replies || replies.length <= 0) {
+    if (!replies || isEmpty(replies)) {
       return;
     }
 

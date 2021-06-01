@@ -39,50 +39,49 @@ const TagQuestions = (): JSX.Element => {
     requestPostsByTag();
   }, [requestPostsByTag, tagInfo, pageParam]);
 
+  if (tagInfo === null) {
+    return <PageLoading text='태그 글 목록을 불러오는 중입니다.' />;
+  }
+
   return (
-    <>
-    {
-      tagInfo !== null ?
-      <div className={cx('TagQuestions')}>
-        <TagInfo
-          tagInfo={tagInfo}
-          count={tagQuestionList.length}
-          viewMode={viewMode}
-          onChangeViewMode={onChangeViewMode}
-        />
+    <div className={cx('TagQuestions')}>
+      <TagInfo
+        tagInfo={tagInfo}
+        count={tagQuestionList.length}
+        viewMode={viewMode}
+        onChangeViewMode={onChangeViewMode}
+      />
 
-        <div className={cx('TagQuestions-List')} style={flexStyle}>
-          {
-            splitedQuestionList[currentPage - 1] &&
-            splitedQuestionList[currentPage - 1].map((tagQuestoin: IQuestion) => (
-              <>
-              {
-                viewMode === EView.LIST ?
-                <ListItem
-                  key={tagQuestoin.idx}
-                  {...tagQuestoin}
-                /> :
-                <GridItem
-                  key={tagQuestoin.idx}
-                  {...tagQuestoin}
-                />
-              }
-              </>
-            ))
-          }
-        </div>
+      <div className={cx('TagQuestions-List')} style={flexStyle}>
+        {
+          splitedQuestionList[currentPage - 1] &&
+          splitedQuestionList[currentPage - 1].map((tagQuestoin: IQuestion) => (
+            <>
+            {
+              viewMode === EView.LIST ?
+              <ListItem
+                key={tagQuestoin.idx}
+                {...tagQuestoin}
+              /> :
+              <GridItem
+                key={tagQuestoin.idx}
+                {...tagQuestoin}
+              />
+            }
+            </>
+          ))
+        }
+      </div>
 
-        <PageNumberList
-          currentPage={currentPage}
-          onChangeCurrentPage={onChangeCurrentPage}
-          numberListPage={numberListPage}
-          handlePrevPage={handlePrevPage}
-          handleNextPage={handleNextPage}
-          pageList={splitedNumberList}
-        />
-      </div> : <PageLoading text={'태그 글 목록을 불러오는 중입니다.'} />
-    }
-    </>
+      <PageNumberList
+        currentPage={currentPage}
+        onChangeCurrentPage={onChangeCurrentPage}
+        numberListPage={numberListPage}
+        handlePrevPage={handlePrevPage}
+        handleNextPage={handleNextPage}
+        pageList={splitedNumberList}
+      />
+    </div>
   );
 };
 

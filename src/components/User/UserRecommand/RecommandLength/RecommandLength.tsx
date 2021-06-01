@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { userRecommandReasonState } from 'lib/recoil/atom/userRecommand';
 import { MAX_REASON_LENGTH } from 'constants/recommand';
+import isEmpty from 'util/isEmpty';
 
 const style = require('./RecommandLength.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -12,7 +13,7 @@ const RecommandLength = (): JSX.Element => {
 
   return (
     <div className={cx('RecommandLength', {
-      'RecommandLength-Hidden': reason.length <= 0,
+      'RecommandLength-Hidden': isEmpty(reason),
       'RecommandLength-Overflow': reason.length > MAX_REASON_LENGTH,
     })}>
       {reason.length} / {MAX_REASON_LENGTH}

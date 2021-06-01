@@ -9,19 +9,17 @@ import RecentUsers from './RecentUsers';
 const Home = (): JSX.Element => {
   const { isLoading } = useRecentQuestions();
 
+  if (isLoading) {
+    return <HomeLoading />;
+  }
+
   return (
-    <>
-    {
-      isLoading ? <HomeLoading />
-      :
-      <FadeIn>
-        <Helmet />
-        <HomeBanner />
-        <RecentUsers />
-        <RecentQuestion />
-      </FadeIn>
-    }
-    </>
+    <FadeIn>
+      <Helmet />
+      <HomeBanner />
+      <RecentUsers />
+      <RecentQuestion />
+    </FadeIn>
   );
 };
 

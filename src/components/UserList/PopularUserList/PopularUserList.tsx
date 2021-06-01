@@ -21,7 +21,7 @@ const PopularUserList = (): JSX.Element => {
               position={position}
               date={joinedAt}
               rankIndex={rank}
-              showRank={true}
+              showRank
             />
           );
         })

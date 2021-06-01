@@ -17,58 +17,56 @@ const QuestionView = (): JSX.Element => {
   const { question } = useQuestionByIdx();
   const { requestDeleteQuestion } = useDeleteQuestion();
 
+  if (question === null) {
+    return <PageLoading text='글을 불러오는 중입니다 🥴' />;
+  }
+
   return (
-    <>
-    {
-      question === null ? <PageLoading text='글을 불러오는 중입니다 🥴' />
-      :
-      <PostViewTemplate>
-        <Helmet
-          title={question.title}
-          description={question.introduction}
-          favicon={question.thumbnail}
-        />
+    <PostViewTemplate>
+      <Helmet
+        title={question.title}
+        description={question.introduction}
+        favicon={question.thumbnail}
+      />
 
-        <PostTitle
-          title={question.title}
-        />
+      <PostTitle
+        title={question.title}
+      />
 
-        <TopInfo
-          idx={question.idx}
-          createdAt={question.createdAt}
-          user={question.user}
-          modifyLink={`/question-form/${question.idx}`}
-          requestDeleteQuestion={requestDeleteQuestion}
-        />
+      <TopInfo
+        idx={question.idx}
+        createdAt={question.createdAt}
+        user={question.user}
+        modifyLink={`/question-form/${question.idx}`}
+        requestDeleteQuestion={requestDeleteQuestion}
+      />
 
-        <PostTags
-          postTags={question.postTags}
-        />
-        
-        <Thumbnail
-          thumbnail={question.thumbnail!}
-        />
+      <PostTags
+        postTags={question.postTags}
+      />
+      
+      <Thumbnail
+        thumbnail={question.thumbnail!}
+      />
 
-        <MarkdownRender
-          contents={question.contents!}
-        />
+      <MarkdownRender
+        contents={question.contents!}
+      />
 
-        <PostLike />
+      <PostLike />
 
-        <PostUserInfo
-          idx={question.user.idx}
-          avatar={question.user.avatar}
-          name={question.user.name}
-          description={question.user.description}
-          blog={question.user.blog}
-          github={getGithubAddress(question.user.githubId)}
-          location={question.user.location}
-        />
+      <PostUserInfo
+        idx={question.user.idx}
+        avatar={question.user.avatar}
+        name={question.user.name}
+        description={question.user.description}
+        blog={question.user.blog}
+        github={getGithubAddress(question.user.githubId)}
+        location={question.user.location}
+      />
 
-        <Comment />
-      </PostViewTemplate>
-    }
-    </>
+      <Comment />
+    </PostViewTemplate>
   );
 };
 
