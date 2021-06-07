@@ -28,10 +28,17 @@ const useRegister = () => {
   ): void => {
     const { name, value } = e.target;
 
-    setRequest((request: IRegisterRequest) => ({
-      ...request,
-      [name]: isNaN(Number(value)) ? value : Number(value),
-    }));
+    if (name === 'major' || name === 'generation') {
+      setRequest((request: IRegisterRequest) => ({
+        ...request,
+        [name]: Number(value),
+      }));
+    } else {
+      setRequest((request: IRegisterRequest) => ({
+        ...request,
+        [name]: value,
+      })); 
+    }
   }, [setRequest]);
 
   const getFCMToken = useCallback(async (): Promise<void> => {
