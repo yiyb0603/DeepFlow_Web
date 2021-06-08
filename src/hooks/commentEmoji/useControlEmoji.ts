@@ -1,18 +1,45 @@
-import { useState, useCallback, ChangeEvent, KeyboardEvent } from 'react';
+import { useState, useCallback, useEffect, useMemo, useRef, KeyboardEvent, ChangeEvent } from 'react';
+import { SetterOrUpdater, useSetRecoilState, useRecoilValue } from 'recoil';
+import { commentEmojiListState } from 'lib/recoil/atom/comment';
+import { toggleEmojiState, emojiIconListState } from 'lib/recoil/atom/commentEmoji';
 import { ICommentEmojiInfo } from 'types/commentEmoji.types';
+import { IToken } from 'types/user.types';
 import { checkLoggedIn } from 'util/checkLoggedIn';
+import { getMyInfo } from 'util/getMyInfo';
 import useCreateEmoji from './useCreateEmoji';
 import useDeleteEmoji from './useDeleteEmoji';
 
-const useControlEmoji = () => {
+const useControlEmoji = (commentIdx: number) => {
   const { requestCreateEmoji } = useCreateEmoji();
   const { requestDeleteEmoji } = useDeleteEmoji();
 
   const [emoji, setEmoji] = useState<string>('');
+  const selectRef = useRef<HTMLDivElement>(null);
+  const myInfo: IToken = useMemo(() => getMyInfo(), []);
+
+  const setIsToggle: SetterOrUpdater<boolean> = useSetRecoilState<boolean>(toggleEmojiState);
+  const userEmojies: ICommentEmojiInfo[] = useRecoilValue<ICommentEmojiInfo[]>(commentEmojiListState);
+  const emojiIcons: string[] = useRecoilValue<string[]>(emojiIconListState);
+
+  const findExistEmoji = useCallback((emoji: string): ICommentEmojiInfo | undefined => {
+    const existEmoji = userEmojies.find((emojies: ICommentEmojiInfo) => {
+      return (emojies.emoji === emoji)
+        && (emojies.user.idx === (myInfo && myInfo.idx))
+        && emojies.fk_comment_idx === commentIdx;
+    });
+
+    return existEmoji;
+  }, [commentIdx, myInfo, userEmojies]);
+
+  const handleClickOut = useCallback((e): void => {
+    if (selectRef.current && !selectRef.current.contains(e.target)) {
+      e.stopPropagation();
+      setIsToggle(false);
+    }
+  }, [setIsToggle]);
 
   const onChangeEmoji = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
-
     setEmoji(value);
   }, []);
 
@@ -46,11 +73,21 @@ const useControlEmoji = () => {
     }
   }, [emoji, onClickEmoji]);
 
+  useEffect(() => {
+    document.addEventListener('click', handleClickOut, true);
+    
+    return () => document.removeEventListener('click', handleClickOut, true);
+  }, [handleClickOut]);
+
   return {
     emoji,
     onChangeEmoji,
     onClickEmoji,
     onKeydownEmoji,
+
+    selectRef,
+    findExistEmoji,
+    emojiIcons,
   };
 }
 

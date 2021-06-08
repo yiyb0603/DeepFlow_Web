@@ -1,58 +1,59 @@
 $selectBackground: #cccfd8;
 
 .SelectThumbnail {
-	width: 100%;
-	height: 45%;
-	position: relative;
-	background-color: $selectBackground;
+  width: 100%;
+  height: 45%;
+  position: relative;
+  background-color: $selectBackground;
+  border-radius: 5px;
 
-	&:hover {
-		.SelectThumbnail-Overlay {
-			height: 100%;
+  &:hover {
+    .SelectThumbnail-Overlay {
+      height: 100%;
 
-			&-Icon {
-				opacity: 1;
-			}
-		}
-	}
+      &-Icon {
+        opacity: 1;
+      }
+    }
+  }
 
-	input[type='file'] {
-		display: none;
-	}
+  input[type='file'] {
+    display: none;
+  }
 
-	&-Thumbnail {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
+  &-Thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-	&-Overlay {
-		width: 100%;
-		height: 0;
-		background-color: rgba(0, 0, 0, 0.4);
-		display: flex;
-		display: -webkit-flex;
-		justify-content: center;
-		align-items: center;
-		position: absolute;
-		top: 0;
-		left: 50%;
-		transform: translate(-50%, 0%);
-		transition: 0.2s ease;
+  &-Overlay {
+    width: 100%;
+    height: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    transition: 0.2s ease;
 
-		&-Show {
-			height: 100%;
+    &-Show {
+      height: 100%;
 
-			& > * {
-				opacity: 1;
-			}
-		}
+      & > * {
+        opacity: 1;
+      }
+    }
 
-		&-Icon {
-			font-size: var(--font-large);
-			color: var(--white);
-			opacity: 0;
-			cursor: pointer;
-		}
-	}
+    &-Icon {
+      font-size: var(--font-large);
+      color: var(--white);
+      opacity: 0;
+      cursor: pointer;
+    }
+  }
 }

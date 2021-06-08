@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
@@ -19,12 +18,10 @@ const Header = (): JSX.Element => {
   const { myInfo, handleLogout } = useHeader();
   const { theme } = useTheme();
 
-  const [isSideShow, setIsSideShow] = useState<boolean>(false);
-
   return (
     <div className={cx('Header')}>
       <div className={cx('Header-Contents')}>
-        <ToggleMenu isSideShow={isSideShow} setIsSideShow={setIsSideShow} />
+        <ToggleMenu />
 
         <div className={cx('Header-Contents-LogoWrap')}>
           <Link to='/'>
