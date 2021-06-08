@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { questionState } from 'lib/recoil/atom/question';
-import { IQuestion, IQuestionResponse } from 'types/question.types';
+import { IQuestion } from 'types/question.types';
 import { getPostByIdx } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
 import PostError from 'error/PostError';
@@ -13,10 +13,10 @@ const useQuestionByIdx = () => {
 
   const requestQuestionByIdx = useCallback(async (): Promise<void> => {
     try {
-      const { status, data }: IQuestionResponse = await getPostByIdx(questionIdx);
+      const { status, data: { post } } = await getPostByIdx(questionIdx);
 
       if (status === EResponse.OK) {
-        setQuestion(data.post);
+        setQuestion(post);
       }
     } catch (error) {
       new PostError(error).getPostError();

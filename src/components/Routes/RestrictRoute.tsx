@@ -6,14 +6,12 @@ import { getMyInfo } from 'util/getMyInfo';
 interface RestrictRouteProps {
   path: string;
   exact: boolean;
-  isAllow: boolean;
   isAdmin?: boolean;
   component: FC;
 }
 
 const RestrictRoute = ({
   component: Component,
-  isAllow,
   isAdmin = false,
 }: RestrictRouteProps): JSX.Element => {
   const myInfo: IToken = useMemo(() => getMyInfo(), []);
@@ -25,11 +23,7 @@ const RestrictRoute = ({
       return <Redirect to='/not-found' />
     }
   } else {
-    if (isAllow) {
-      return <Component />
-    } else {
-      return getMyInfo() ? <Component /> : <Redirect to='/not-found' />
-    }
+    return getMyInfo() ? <Component /> : <Redirect to='/not-found' />
   }
 };
 

@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { Switch, Redirect } from 'react-router-dom';
+import { Switch, Redirect, Route } from 'react-router-dom';
 import RestrictRoute from './RestrictRoute';
 
 const HomePage = lazy(() => import('pages/Home'));
@@ -10,152 +10,137 @@ const NoticeFormPage = lazy(() => import('pages/NoticeForm'));
 
 const QuestionListPage = lazy(() => import('pages/Question/QuestionList'));
 const QuestionViewPage = lazy(() => import('pages/Question/QuestionView'));
-
 const QuestionFormPage = lazy(() => import('pages/QuestionForm'));
+const SearchQuestionsPage = lazy(() => import('pages/SearchQuestions'));
 
 const SignPage = lazy(() => import('pages/Sign'));
+
 const UserInfoPage = lazy(() => import('pages/UserInfo'));
 const UserListPage = lazy(() => import('pages/UserList'));
+const UserRecommandPage = lazy(() => import('pages/UserRecommand'));
+
 const TagsPage = lazy(() => import('pages/Tags'));
 const TagQuestionsPage = lazy(() => import('pages/TagQuestions'));
+
 const TempPage = lazy(() => import('pages/Temp'));
-const UserRecommandPage = lazy(() => import('pages/UserRecommand'));
-const SearchQuestionsPage = lazy(() => import('pages/SearchQuestions'));
+
 const PolicyPage = lazy(() => import('pages/Policy'));
 const NotFoundPage = lazy(() => import('pages/NotFound'));
 
 const Routes = (): JSX.Element => {
   return (
     <Switch>
-      <RestrictRoute
+      <Route
         exact
-        isAllow
         path='/'
         component={HomePage}
       />
 
-      <RestrictRoute
+      <Route
         exact
-        isAllow
         path='/github-login'
         component={SignPage}
       />
 
-      <RestrictRoute
+      <Route
         exact
-        isAllow
         path='/notice'
         component={NoticeListPage}
       />
 
-      <RestrictRoute
+      <Route
         exact
-        isAllow
         path='/notice/:idx'
         component={NoticeViewPage}
       />
 
       <RestrictRoute
         exact
+        isAdmin={true}
         path='/notice-form'
-        isAllow={false}
         component={NoticeFormPage}
       />
 
-      <RestrictRoute
+      <Route
         exact
-        isAllow
         path='/notice-form/:idx'
         component={NoticeFormPage}
       />
       
-      <RestrictRoute
+      <Route
         exact
-        isAllow
         path='/questions'
         component={QuestionListPage}
       />
 
-      <RestrictRoute
+      <Route
         exact
-        isAllow
         path='/question/:idx'
         component={QuestionViewPage}
       />
 
       <RestrictRoute
         exact
-        isAllow={false}
         path='/question-form'
         component={QuestionFormPage}
       />
 
       <RestrictRoute
         exact
-        isAllow={false}
         path='/question-form/:idx'
         component={QuestionFormPage}
       />
 
-      <RestrictRoute
+      <Route
         exact
-        isAllow
         path='/search-questions'
         component={SearchQuestionsPage}
       />
 
-      <RestrictRoute
+      <Route
         exact
-        isAllow
         path='/users'
         component={UserListPage}
       />
 
-      <RestrictRoute
+      <Route
         exact
-        isAllow
         path='/user/:idx'
         component={UserInfoPage}
       />
 
-      <RestrictRoute
+      <Route
         exact
-        isAllow
         path='/user-recommand/:idx'
         component={UserRecommandPage}
       />
 
       <RestrictRoute
         exact
-        isAllow={false}
         path='/temp'
         component={TempPage}
       />
 
-      <RestrictRoute
+      <Route
         exact
-        isAllow
         path='/tags'
         component={TagsPage}
       />
 
-      <RestrictRoute
+      <Route
         exact
-        isAllow
         path='/tag-questions/:tag'
         component={TagQuestionsPage}
       />
 
-      <RestrictRoute
+      <Route
         exact
-        isAllow
         path='/policy'
         component={PolicyPage}
       />
       
-      <RestrictRoute
+      <Route
         exact
-        isAllow
         path='/not-found'
         component={NotFoundPage}
       />
