@@ -2,7 +2,6 @@ import { IQuestionDto } from 'lib/api/question/question.dto';
 import Toast from 'lib/Toast';
 import { MAX_INTRODUCTION_LENGTH, MAX_TAG_LENGTH, MAX_TITLE_LENGTH } from 'constants/question';
 import isEmpty from 'util/isEmpty';
-import isNullOrUndefined from 'util/isNullOrUndefined';
 
 export const validateBeforeModal = (request: IQuestionDto): boolean => {
   const { title, contents, postTags } = request;
@@ -31,18 +30,11 @@ export const validateBeforeModal = (request: IQuestionDto): boolean => {
 }
 
 export const validateQuestion = (request: IQuestionDto, isTemp: boolean): boolean => {
-  const { title, thumbnail, introduction, contents, postTags } = request;
+  const { title, introduction, contents, postTags } = request;
 
   if (isEmpty(title) || (isEmpty(introduction) && !isTemp) || isEmpty(contents)) {
     Toast.errorToast('빈칸 없이 입력해주세요.');
     return false;
-  }
-
-  if (!isTemp) {
-    if (isNullOrUndefined(thumbnail) || isEmpty(thumbnail)) {
-      Toast.errorToast('썸네일을 추가해주세요.');
-      return false;
-    }
   }
 
   if (!isTemp) {

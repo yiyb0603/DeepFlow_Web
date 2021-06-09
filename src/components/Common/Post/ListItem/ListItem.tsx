@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import useTempQuestions from 'hooks/question/useTempQuestions';
-import { APP_LOGO } from 'constants/util';
+import NoThumbnail from 'assets/images/no-thumbnail.jpg';
 import isNullOrUndefined from 'util/isNullOrUndefined';
 import { IUser } from 'types/user.types';
 import TimeSticker from '../TimeSticker';
@@ -63,7 +63,7 @@ const ListItem = ({
       <div className={cx('ListItem-Contents')}>
         <div className={cx('ListItem-Contents-ImageWrap')}>
           <img
-            src={thumbnail || APP_LOGO}
+            src={thumbnail || NoThumbnail}
             className={cx('ListItem-Contents-ImageWrap-Thumbnail')}
             alt='thumbnail'
           />

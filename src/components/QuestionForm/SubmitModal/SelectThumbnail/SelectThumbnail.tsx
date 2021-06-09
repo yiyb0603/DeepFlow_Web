@@ -4,6 +4,7 @@ import { ClassNamesFn } from 'classnames/types';
 import { ImFolderUpload } from 'react-icons/im';
 import NoSelected from 'assets/images/select-thumbnail.png';
 import useSelectThumbnail from 'hooks/question/useSelectThumbnail';
+import Tooltip from 'components/Common/Tooltip';
 
 const style = require('./SelectThumbnail.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -28,10 +29,17 @@ const SelectThumbnail = (): JSX.Element => {
           'SelectThumbnail-Overlay-Show': isDragging,
         })}
       >
-        <input type='file' id='selectFile' onChange={onChangeThumbnail} />
-        <label htmlFor='selectFile'>
-          <ImFolderUpload className={cx('SelectThumbnail-Overlay-Icon')} />
-        </label>
+        <input
+          type='file'
+          id='selectFile'
+          onChange={onChangeThumbnail}
+        />
+
+        <Tooltip title='썸네일 선택' placement='bottom'>
+          <label htmlFor='selectFile'>
+            <ImFolderUpload className={cx('SelectThumbnail-Overlay-Icon')} />
+          </label>
+        </Tooltip>
       </div>
     </div>
   );

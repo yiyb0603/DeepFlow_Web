@@ -1,4 +1,4 @@
-import { CSSProperties, ReactElement, useMemo } from 'react';
+import { ReactElement } from 'react';
 import { Tooltip as ReactTooltip, withStyles } from '@material-ui/core';
 import palette from 'styles/palette';
 
@@ -22,18 +22,10 @@ const Tooltip = ({
   placement,
   children,
 }: TooltipProps): JSX.Element => {
-  const tooltipStyle: CSSProperties = useMemo(() => {
-    return {
-      backgroundColor: palette.main,
-      color: palette.white,
-    };
-  }, []);
-
   return (
     <LightTooltip
       title={title}
       placement={placement}
-      style={tooltipStyle}
     >
       {children}
     </LightTooltip>

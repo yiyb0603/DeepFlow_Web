@@ -1,6 +1,7 @@
 import useQuestionByIdx from 'hooks/question/questionHooks/useQuestionByIdx';
 import useDeleteQuestion from 'hooks/question/questionHooks/useDeleteQuestion';
 import getGithubAddress from 'util/getGithubAddress';
+import isEmpty from 'util/isEmpty';
 import Comment from 'components/Comment';
 import Helmet from 'components/Common/Helmet';
 import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
@@ -45,9 +46,12 @@ const QuestionView = (): JSX.Element => {
         postTags={question.postTags}
       />
       
-      <Thumbnail
-        thumbnail={question.thumbnail!}
-      />
+      {
+        !isEmpty(question.thumbnail) &&
+        <Thumbnail
+          thumbnail={question.thumbnail!}
+        />
+      }
 
       <MarkdownRender
         contents={question.contents!}

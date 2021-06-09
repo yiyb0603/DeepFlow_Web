@@ -85,7 +85,7 @@ const Routes = (): JSX.Element => {
         component={QuestionFormPage}
       />
 
-      <RestrictRoute
+      <Route
         exact
         path='/question-form/:idx'
         component={QuestionFormPage}

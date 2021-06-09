@@ -1,3 +1,4 @@
+import { CSSProperties, useMemo } from 'react';
 import useNoticeByIdx from 'hooks/notice/useNoticeByIdx';
 import useDeleteNotice from 'hooks/notice/useDeleteNotice';
 import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
@@ -9,6 +10,12 @@ import PageLoading from 'components/Common/Loading/PageLoading';
 const NoticeView = (): JSX.Element => {
   const { notice } = useNoticeByIdx();
   const { requestDeleteNotice } = useDeleteNotice();
+
+  const markdownRenderMargin: CSSProperties = useMemo(() => {
+    return {
+      marginTop: '1rem',
+    };
+  }, []);
 
   if (notice === null) {
     return <PageLoading text='공지사항을 불러오는 중입니다.' />
@@ -30,6 +37,7 @@ const NoticeView = (): JSX.Element => {
 
       <MarkdownRender
         contents={notice.contents}
+        style={markdownRenderMargin}
       />
     </PostViewTemplate>
   );

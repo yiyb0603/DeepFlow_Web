@@ -1,13 +1,15 @@
-import { useCallback, useEffect, useState, ChangeEvent, KeyboardEvent } from 'react';
+import { useCallback, useEffect, useState, ChangeEvent, KeyboardEvent, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
-import { initialRequestQuestionState, requestQuestionState } from 'lib/recoil/atom/question';
 import { MAX_TAG_LENGTH } from 'constants/question';
 import customTrim from 'converter/customTrim';
+import usePostCallback from 'hooks/callback/usePostCallback';
 import { historySingleton } from 'lib/singleton/history';
 import { createPost, modifyPost } from 'lib/api/question/question.api';
 import { IQuestionDto } from 'lib/api/question/question.dto';
 import Toast from 'lib/Toast';
-import usePostCallback from 'hooks/callback/usePostCallback';
+import { initialRequestQuestionState, requestQuestionState } from 'lib/recoil/atom/question';
+import { IToken } from 'types/user.types';
+import { getMyInfo } from 'util/getMyInfo';
 import isEmpty from 'util/isEmpty';
 import { validateBeforeModal, validateQuestion } from 'validation/question.validation';
 import useQuestionByIdx from './useQuestionByIdx';
@@ -15,6 +17,8 @@ import useQuestionByIdx from './useQuestionByIdx';
 const useQuestionForm = () => {
   const { question } = useQuestionByIdx();
   const { requestPostCallback } = usePostCallback();
+  
+  const myInfo: IToken = useMemo(() => getMyInfo(), []);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isContentsFocus, setIsContentsFocus] = useState<boolean>(false);
@@ -35,7 +39,7 @@ const useQuestionForm = () => {
     setIsSubmitModal(isModal);
   }, [request]);
 
-  const onChangeIsContentsFocus = useCallback(() => {
+  const onChangeIsContentsFocus = useCallback((): void => {
     setIsContentsFocus((prevFocus) => !prevFocus);
   }, []);
 
@@ -140,13 +144,7 @@ const useQuestionForm = () => {
         requestPostCallback();
         historySingleton.push('/');
 
-        setRequest({
-          title: '',
-          introduction: '',
-          thumbnail: '',
-          contents: '',
-          postTags: [],
-        });
+        setRequest(initialRequestQuestionState);
       }
     } catch (error) {
       console.log(error);
@@ -155,8 +153,22 @@ const useQuestionForm = () => {
     }
   }, [handleIsModal, questionIdx, request, requestPostCallback, setRequest]);
 
+  const isOwnQuestion = useCallback((questionUserIdx: number) => {
+    if (!myInfo || (myInfo.idx !== questionUserIdx)) {
+      historySingleton.push('/not-found');
+      return false;
+    }
+
+    return true;
+  }, [myInfo]);
+
   const handleSetProperties = useCallback(async (): Promise<void> => {
-    const { idx, title, thumbnail, introduction, contents, postTags } = question!;
+    const { idx, title, thumbnail, introduction, contents, postTags, user } = question!;
+
+    if (!isOwnQuestion(user.idx)) {
+      return;
+    }
+
     setQuestionIdx(idx);
     setContents(contents!);
     setRequest({
@@ -166,7 +178,7 @@ const useQuestionForm = () => {
       contents: contents!,
       postTags,
     });
-  }, [question, setRequest]);
+  }, [isOwnQuestion, question, setRequest]);
 
   const handleKeyEvents = useCallback((e: globalThis.KeyboardEvent): void => {
     if (e.key === 'Tab') {

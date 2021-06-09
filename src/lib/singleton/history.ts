@@ -4,7 +4,7 @@ import isNullOrUndefined from 'util/isNullOrUndefined';
 class HistorySingleton {
   private static instance: History;
 
-  static getInstance(): History {
+  public static getInstance(): History {
     if (isNullOrUndefined(this.instance)) {
       this.instance = createBrowserHistory();
     }
