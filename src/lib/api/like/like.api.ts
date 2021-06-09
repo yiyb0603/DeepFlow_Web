@@ -1,4 +1,4 @@
-import { customAxios } from 'lib/CustomAxios';
+import customAxios from 'lib/customAxios';
 import { ILikeResponse } from 'types/like.types';
 import { ILikeDto } from './like.dto';
 

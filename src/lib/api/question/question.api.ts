@@ -1,4 +1,4 @@
-import { customAxios } from 'lib/CustomAxios';
+import customAxios from 'lib/customAxios';
 import { EQuestionSort, EUserQuestion } from 'lib/enum/question';
 import {
   IPopularQuestionListResponse,

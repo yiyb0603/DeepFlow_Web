@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { VscChromeClose } from 'react-icons/vsc';
-import calculateTime from 'lib/TimeCounting';
+import calculateTime from 'lib/calculateTime';
 import { getMyInfo } from 'util/getMyInfo';
 import { IToken } from 'types/user.types';
 import UserRank from './UserRank';

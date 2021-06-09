@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AiOutlineEye } from 'react-icons/ai';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import calculateTime from 'lib/TimeCounting';
+import calculateTime from 'lib/calculateTime';
 import { IUser } from 'types/user.types';
 import NoticeCategory from './NoticeCategory';
 

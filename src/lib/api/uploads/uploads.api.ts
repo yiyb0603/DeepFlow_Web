@@ -1,4 +1,4 @@
-import { customAxios } from 'lib/CustomAxios';
+import customAxios from 'lib/customAxios';
 import { IUploadResponse } from 'types/uploads.types';
 
 export const uploadFiles = async (formData: FormData): Promise<IUploadResponse> => {

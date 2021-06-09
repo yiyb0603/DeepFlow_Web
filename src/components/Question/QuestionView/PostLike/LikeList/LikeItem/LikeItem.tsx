@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { Link } from 'react-router-dom';
-import calculateTime from 'lib/TimeCounting';
+import calculateTime from 'lib/calculateTime';
 
 const style = require('./LikeItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);

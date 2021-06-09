@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import calculateTime from 'lib/TimeCounting';
+import calculateTime from 'lib/calculateTime';
 
 const style = require('./TimeSticker.scss');
 const cx: ClassNamesFn = classNames.bind(style);

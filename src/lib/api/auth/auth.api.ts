@@ -1,4 +1,4 @@
-import { customAxios } from 'lib/CustomAxios';
+import customAxios from 'lib/customAxios';
 import { IGithubCodeDto } from './auth.dto';
 import { IGithubResponse, ILoginResponse, IRegisterRequest } from 'types/user.types';
 

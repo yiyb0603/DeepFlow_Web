@@ -1,4 +1,4 @@
-import { customAxios } from 'lib/CustomAxios';
+import customAxios from 'lib/customAxios';
 import { INoticeListResponse, INoticeResponse } from 'types/notice.types';
 import { IResponse } from 'types/Response';
 import { INoticeDto } from './notice.dto';

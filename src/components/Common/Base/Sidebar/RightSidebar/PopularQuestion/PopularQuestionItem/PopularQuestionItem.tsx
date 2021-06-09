@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import PostSubInfo from 'components/Common/Post/PostSubInfo';
-import calculateTime from 'lib/TimeCounting';
+import calculateTime from 'lib/calculateTime';
 
 const style = require('./PopularQuestionItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);

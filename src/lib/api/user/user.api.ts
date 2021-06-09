@@ -1,4 +1,4 @@
-import { customAxios } from 'lib/CustomAxios';
+import customAxios from 'lib/customAxios';
 import { EUserSort } from 'lib/enum/user';
 import { IResponse } from 'types/Response';
 import { IUserListResponse, IUserResponse } from 'types/user.types';

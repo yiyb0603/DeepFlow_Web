@@ -1,4 +1,4 @@
-import { customAxios } from 'lib/CustomAxios';
+import customAxios from 'lib/customAxios';
 import { IResponse } from 'types/Response';
 import { IUserRecommandResponse } from 'types/userRecommand.types';
 import { IRecommandDto } from './userRecommand.dto';

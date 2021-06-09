@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { commentIdxState } from 'lib/recoil/atom/reply';
-import calculateTime from 'lib/TimeCounting';
+import calculateTime from 'lib/calculateTime';
 import { EComment } from 'lib/enum/comment';
 import { IToken, IUser } from 'types/user.types';
 import { ICommentEmoji } from 'types/commentEmoji.types';

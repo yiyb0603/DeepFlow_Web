@@ -1,4 +1,4 @@
-import { customAxios } from 'lib/CustomAxios';
+import customAxios from 'lib/customAxios';
 import { IResponse } from 'types/Response';
 import { IReplyDto } from './reply.dto';
 

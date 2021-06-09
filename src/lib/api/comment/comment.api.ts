@@ -1,4 +1,4 @@
-import { customAxios } from 'lib/CustomAxios';
+import customAxios from 'lib/customAxios';
 import { ICommentListResponse } from 'types/comment.types';
 import { IResponse } from 'types/Response';
 import { ICommentDto } from './comment.dto';

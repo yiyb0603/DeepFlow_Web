@@ -1,4 +1,4 @@
-import { customAxios } from 'lib/CustomAxios';
+import customAxios from 'lib/customAxios';
 import { ETagSort } from 'lib/enum/tag';
 import { ITagListResponse, ITagResponse } from 'types/tag.types';
 
