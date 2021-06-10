@@ -1,0 +1,18 @@
+.FooterLogo {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+
+  & > *:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  &-Github {
+    font-size: 4rem;
+  }
+
+  &-B1ND {
+    width: 65px;
+  }
+}

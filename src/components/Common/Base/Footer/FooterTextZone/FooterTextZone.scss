@@ -1,0 +1,21 @@
+.FooterTextZone {
+  &-Copyright {
+    margin-bottom: 0.3rem;
+  }
+
+  &-Series {
+    cursor: pointer;
+
+    &:hover {
+      border-bottom: 1px solid var(--navy);
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    font-size: var(--font-default);
+  }
+
+  @media screen and (max-width: 550px) {
+    font-size: 12px;
+  }
+}
