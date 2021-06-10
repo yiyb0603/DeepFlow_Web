@@ -4,7 +4,9 @@ const useScrollProgress = () => {
   const [width, setWidth] = useState<number>(0);
   const progressRef = useRef<HTMLDivElement>(null);
 
-  const handleProgressMove = useCallback(({ clientX }: MouseEvent<HTMLDivElement>): void => {
+  const handleProgressMove = useCallback(({
+    clientX,
+  }: MouseEvent<HTMLDivElement>): void => {
     if (progressRef.current !== null) {
       const { scrollWidth } = progressRef.current;
 
@@ -19,7 +21,7 @@ const useScrollProgress = () => {
       window.scrollTo({
         top: moveScrollPercent,
         behavior: 'smooth',
-      })
+      });
     }
   }, []);
 

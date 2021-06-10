@@ -1,11 +1,19 @@
 import { useState, useCallback, useEffect } from 'react';
 
 const useScrollToTop = () => {
-  const [isTop, setIsTop] = useState<boolean>(true);
+  const [isBothSide, setIsBothSide] = useState<boolean>(true);
 
 	const detectingScroll = useCallback((): void => {
+		const { innerHeight } = window;
 		const { scrollTop } = document.documentElement;
-		setIsTop(!(scrollTop > 0));
+		const { scrollHeight } = document.body;
+
+		if (scrollTop <= 0 || Math.round(scrollTop + innerHeight) >= scrollHeight) {
+			setIsBothSide(true);
+			return;
+		}
+
+		setIsBothSide(false);
 	}, []);
 
 	const scrollToTop = useCallback((): void => {
@@ -22,7 +30,7 @@ const useScrollToTop = () => {
 	}, [detectingScroll]);
 
   return {
-    isTop,
+    isBothSide,
     scrollToTop,
   };
 }

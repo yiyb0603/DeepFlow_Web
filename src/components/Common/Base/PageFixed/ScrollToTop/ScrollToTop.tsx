@@ -8,12 +8,12 @@ const style = require('./ScrollToTop.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const ScrollToTop = (): JSX.Element => {
-	const { isTop, scrollToTop } = useScrollToTop();
+	const { isBothSide, scrollToTop } = useScrollToTop();
 
 	return (
 		<>
 			{
-				!isTop &&
+				!isBothSide &&
 				<div className={cx('ScrollToTop')} onClick={scrollToTop}>
 					<BsBoxArrowInUp className={cx('ScrollToTop-Icon')} />
 				</div>
