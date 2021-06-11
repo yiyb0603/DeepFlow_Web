@@ -31,7 +31,7 @@ const useRecommandList = () => {
   }, [setUserRecommands, userIdx]);
 
   useEffect(() => {
-    if (!userInfo) {
+    if (userInfo) {
       requestUserInfo();
       requestRecommandList();
     }
