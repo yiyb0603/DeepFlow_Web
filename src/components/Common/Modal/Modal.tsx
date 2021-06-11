@@ -11,7 +11,7 @@ export interface ModalProps {
   height: string;
   title: string;
   onChangeIsModal: () => void;
-  children?: ReactNode;
+  children: ReactNode;
 }
 
 const Modal = ({

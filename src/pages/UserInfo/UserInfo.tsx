@@ -1,4 +1,4 @@
-import PageTemplate from 'components/Template/PageTemplate';
+import PageTemplate from 'components/Common/Base/PageTemplate';
 import UserTemplate from 'components/User';
 import UserInfo from 'components/User/UserInfo';
 

@@ -3,7 +3,7 @@ import { AiOutlineGithub, AiOutlineLink } from 'react-icons/ai';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { Link } from 'react-router-dom';
-import { pushToWindowLink } from 'util/pushToWindowLink';
+import pushToWindowLink from 'util/pushToWindowLink';
 
 const style = require('./PostUserInfo.scss');
 const cx: ClassNamesFn = classNames.bind(style);

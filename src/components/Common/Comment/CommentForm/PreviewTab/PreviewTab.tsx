@@ -6,7 +6,7 @@ const style = require('./PreviewTab.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface PreviewTabProps {
-  children?: ReactNode;
+  children: ReactNode;
 }
 
 const PreviewTab = ({

@@ -1,6 +1,6 @@
 import ScrollProgress from 'components/Common/Base/ScrollProgress';
 import QuestionView from 'components/Question/QuestionView';
-import PageTemplate from 'components/Template/PageTemplate';
+import PageTemplate from 'components/Common/Base/PageTemplate';
 
 const QuestionViewPage = (): JSX.Element => {
   return (

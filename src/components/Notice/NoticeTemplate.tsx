@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import FadeIn from 'react-fade-in';
 import { historySingleton } from 'lib/singleton/history';
-import { checkLoggedIn } from 'util/checkLoggedIn';
+import checkLoggedIn from 'util/checkLoggedIn';
 import { getMyInfo } from 'util/getMyInfo';
 import { IToken } from 'types/user.types';
 import palette from 'styles/palette';

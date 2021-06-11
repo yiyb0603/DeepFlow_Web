@@ -1,5 +1,5 @@
 import TagQuestions from 'components/TagQuestions';
-import PageTemplate from 'components/Template/PageTemplate';
+import PageTemplate from 'components/Common/Base/PageTemplate';
 
 const TagQuestionsPage = (): JSX.Element => {
   return (

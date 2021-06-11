@@ -8,7 +8,7 @@ const style = require('./UserTemplate.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface UserTemplateProps {
-  children?: ReactNode;
+  children: ReactNode;
 }
 
 const UserTemplate = ({

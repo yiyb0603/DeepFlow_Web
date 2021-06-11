@@ -7,7 +7,7 @@ import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
 import { IBanner } from 'lib/models/banners';
-import { pushToWindowLink } from 'util/pushToWindowLink';
+import pushToWindowLink from 'util/pushToWindowLink';
 
 interface CarouselProps {
   banners: IBanner[];

@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { checkLoggedIn } from 'util/checkLoggedIn';
+import checkLoggedIn from 'util/checkLoggedIn';
 import palette from 'styles/palette';
 import { historySingleton } from 'lib/singleton/history';
 import Button from 'components/Common/Button';

@@ -5,7 +5,7 @@ import useFocus from 'hooks/util/useFocus';
 import { INoticeDto } from 'lib/api/notice/notice.dto';
 import { createNotice, modifyNotice } from 'lib/api/notice/notice.api';
 import Toast from 'lib/Toast';
-import { checkLoggedIn } from 'util/checkLoggedIn';
+import checkLoggedIn from 'util/checkLoggedIn';
 import { validateNotice } from 'validation/notice.validation';
 import useNoticeByIdx from './useNoticeByIdx';
 import { historySingleton } from 'lib/singleton/history';

@@ -6,7 +6,7 @@ import { createLike, deleteLike } from 'lib/api/like/like.api';
 import { ILikeDto } from 'lib/api/like/like.dto';
 import { ILike } from 'types/like.types';
 import { IToken } from 'types/user.types';
-import { checkLoggedIn } from 'util/checkLoggedIn';
+import checkLoggedIn from 'util/checkLoggedIn';
 import { getMyInfo } from 'util/getMyInfo';
 import useLikeList from './useLikeList';
 

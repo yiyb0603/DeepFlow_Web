@@ -18,7 +18,7 @@ const HomeSectionTitle = ({
     <div className={cx('HomeSectionTitle')}>
       {title}
 
-      {children}
+      {children && children}
     </div>
   );
 };

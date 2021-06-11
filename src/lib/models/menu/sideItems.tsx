@@ -5,7 +5,7 @@ import { HiOutlineSpeakerphone } from 'react-icons/hi';
 import { VscInfo } from 'react-icons/vsc';
 import { AiOutlineTags } from 'react-icons/ai';
 
-export interface ISideItemsType {
+export interface ISideItem {
   menuName: string;
   icon: JSX.Element;
   link: string;
@@ -13,7 +13,7 @@ export interface ISideItemsType {
 }
 
 const ICON_CLASS: string = 'LeftSidebarItem-Icon';
-export const sideItems: ISideItemsType[] = [
+export const sideItems: ISideItem[] = [
   {
     menuName: '메인',
     icon: <VscHome className={ICON_CLASS} />,

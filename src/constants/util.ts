@@ -5,6 +5,7 @@ export const APP_DESCRIPTION = '대구소프트웨어고등학교 학생들을 �
 export const APP_LOGO: string = Logo;
 
 export const APP_VERSION = 'v 1.0.0' as const;
+export const TIMEOUT_SECOND = 10000 as const;
 
 // 한페이지에 몇개의 글 목록을 보여줄것인지.
 export const CHUNK_POST_COUNT = 6 as const;

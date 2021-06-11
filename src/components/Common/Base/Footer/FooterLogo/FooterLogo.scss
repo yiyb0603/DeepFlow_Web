@@ -3,16 +3,13 @@
   display: -webkit-flex;
   align-items: center;
 
-  & > *:hover {
-    cursor: pointer;
-    opacity: 0.7;
-  }
+  & > * {
+    width: 60px;
+    margin-left: 0.1rem;
 
-  &-Github {
-    font-size: 4rem;
-  }
-
-  &-B1ND {
-    width: 65px;
+    &:hover {
+      cursor: pointer;
+      opacity: 0.7;
+    }
   }
 }

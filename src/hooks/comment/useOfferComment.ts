@@ -5,7 +5,7 @@ import usePageParam from 'hooks/util/usePageParam';
 import { createComment, modifyComment } from 'lib/api/comment/comment.api';
 import { ICommentDto } from 'lib/api/comment/comment.dto';
 import { ICommentModify } from 'types/comment.types';
-import { checkLoggedIn } from 'util/checkLoggedIn';
+import checkLoggedIn from 'util/checkLoggedIn';
 import { validateComment } from 'validation/comment.validation';
 import useCommentList from './useCommentList';
 import { EResponse } from 'lib/enum/response';

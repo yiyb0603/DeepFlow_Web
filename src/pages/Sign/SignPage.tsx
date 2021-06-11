@@ -1,4 +1,4 @@
-import PageTemplate from 'components/Template/PageTemplate';
+import PageTemplate from 'components/Common/Base/PageTemplate';
 import SignUp from 'components/Auth/SignUp';
 
 const SignPage = (): JSX.Element => {

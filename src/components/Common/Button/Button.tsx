@@ -12,7 +12,7 @@ export interface ButtonProps {
   height?: string;
   backgroundColor: string;
   color?: string;
-  children?: ReactNode;
+  children: ReactNode;
   handleClick: () => void | Promise<void>;
   isLoading?: boolean;
   padding?: string;

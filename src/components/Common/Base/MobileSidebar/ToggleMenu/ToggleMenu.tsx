@@ -8,7 +8,11 @@ const style = require('./ToggleMenu.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const ToggleMenu = (): JSX.Element => {
-  const { sideRef, isSideShow, toggleIsSideShow } = useSideToggleMenu();
+  const {
+    sideRef,
+    isSideShow,
+    toggleIsSideShow,
+  } = useSideToggleMenu();
 
   return (
     <div

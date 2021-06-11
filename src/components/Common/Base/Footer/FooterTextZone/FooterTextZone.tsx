@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { APP_SERIES_LINK } from 'constants/link';
 import { APP_NAME } from 'constants/util';
-import { pushToWindowLink } from 'util/pushToWindowLink';
+import pushToWindowLink from 'util/pushToWindowLink';
 
 const style = require('./FooterTextZone.scss');
 const cx: ClassNamesFn = classNames.bind(style);

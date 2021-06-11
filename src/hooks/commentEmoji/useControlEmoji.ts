@@ -4,7 +4,7 @@ import { commentEmojiListState } from 'lib/recoil/atom/comment';
 import { toggleEmojiState, emojiIconListState } from 'lib/recoil/atom/commentEmoji';
 import { ICommentEmojiInfo } from 'types/commentEmoji.types';
 import { IToken } from 'types/user.types';
-import { checkLoggedIn } from 'util/checkLoggedIn';
+import checkLoggedIn from 'util/checkLoggedIn';
 import { getMyInfo } from 'util/getMyInfo';
 import useCreateEmoji from './useCreateEmoji';
 import useDeleteEmoji from './useDeleteEmoji';

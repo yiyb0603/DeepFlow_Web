@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { ISideItemsType, sideItems } from 'lib/models/menu/sideItems';
+import { ISideItem, sideItems } from 'lib/models/menu/sideItems';
 import MobileSidebarItem from './MobileSidebarItem';
 
 const style = require('./MobileSidebar.scss');
@@ -10,7 +10,7 @@ const MobileSidebar = (): JSX.Element => {
   return (
     <div className={cx('MobileSidebar')}>
       {
-        sideItems.map((item: ISideItemsType, idx: number) => {
+        sideItems.map((item: ISideItem, idx: number) => {
           const { link, menuName, icon } = item;
           return (
             <MobileSidebarItem

@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import useScrollToTop from 'hooks/scroll/useScrollToTop';
 import ToggleTheme from './ToggleTheme';
 import ScrollToTop from './ScrollToTop';
-import useScrollToTop from 'hooks/scroll/useScrollToTop';
 
 const style = require('./PageFixed.scss');
 const cx: ClassNamesFn = classNames.bind(style);

@@ -10,13 +10,13 @@ import PageFixed from 'components/Common/Base/PageFixed';
 const style = require('./PageTemplate.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface IPageTemplateProps {
-  children?: ReactNode;
+interface PageTemplateProps {
+  children: ReactNode;
 }
 
 const PageTemplate = ({
-  children
-}: IPageTemplateProps): JSX.Element => {
+  children,
+}: PageTemplateProps): JSX.Element => {
   return (
     <div className={cx('PageTemplate')}>
       <Header />
@@ -24,7 +24,7 @@ const PageTemplate = ({
       <div className={cx('PageTemplate-Contents')}>
         <LeftSidebar />
         <div className={cx('PageTemplate-Contents-Children')}>
-          {children && children}
+          {children}
         </div>
         <RightSidebar />
       </div>

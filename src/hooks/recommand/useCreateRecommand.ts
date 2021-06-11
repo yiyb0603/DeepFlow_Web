@@ -7,7 +7,7 @@ import { IRecommandDto } from 'lib/api/userRecommand/userRecommand.dto';
 import { EResponse } from 'lib/enum/response';
 import { ChangeEvent, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import { checkLoggedIn } from 'util/checkLoggedIn';
+import checkLoggedIn from 'util/checkLoggedIn';
 import { validateRecommand } from 'validation/recommand.validation';
 
 const useCreateRecommand = () => {

@@ -3,7 +3,7 @@ import { IToken } from 'types/user.types';
 import { getMyInfo } from './getMyInfo'
 import isNullOrUndefined from './isNullOrUndefined';
 
-export const checkLoggedIn = (): boolean => {
+const checkLoggedIn = (): boolean => {
   const myInfo: IToken = getMyInfo();
 
   if (isNullOrUndefined(myInfo)) {
@@ -13,3 +13,5 @@ export const checkLoggedIn = (): boolean => {
 
   return true;
 }
+
+export default checkLoggedIn;

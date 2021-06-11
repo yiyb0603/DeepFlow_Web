@@ -7,7 +7,7 @@ const style = require('./SearchHistory.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface SearchHistoryProps {
-  children?: ReactNode;
+  children: ReactNode;
 }
 
 const SearchHistory = ({

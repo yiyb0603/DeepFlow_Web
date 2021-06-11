@@ -1,5 +1,5 @@
 import QuestionList from 'components/Question/QuestionList';
-import PageTemplate from 'components/Template/PageTemplate';
+import PageTemplate from 'components/Common/Base/PageTemplate';
 
 const QuestionListPage = (): JSX.Element => {
   return (

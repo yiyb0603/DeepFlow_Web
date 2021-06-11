@@ -1,5 +1,5 @@
 import NoticeView from 'components/Notice/NoticeView';
-import PageTemplate from 'components/Template/PageTemplate';
+import PageTemplate from 'components/Common/Base/PageTemplate';
 
 const NoticeViewPage = (): JSX.Element => {
   return (

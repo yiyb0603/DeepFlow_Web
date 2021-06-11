@@ -4,7 +4,7 @@ import { ClassNamesFn } from 'classnames/types';
 import { ICommentEmojiInfo } from 'types/commentEmoji.types';
 import { IToken } from 'types/user.types';
 import { getMyInfo } from 'util/getMyInfo';
-import { checkLoggedIn } from 'util/checkLoggedIn';
+import checkLoggedIn from 'util/checkLoggedIn';
 import useDeleteEmoji from 'hooks/commentEmoji/useDeleteEmoji';
 import useCreateEmoji from 'hooks/commentEmoji/useCreateEmoji';
 

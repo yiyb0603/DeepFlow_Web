@@ -9,7 +9,7 @@ import { IReplyDto } from 'lib/api/reply/reply.dto';
 import { uploadFiles } from 'lib/api/uploads/uploads.api';
 import { EResponse } from 'lib/enum/response';
 import { IReplyModify } from 'types/reply.types';
-import { checkLoggedIn } from 'util/checkLoggedIn';
+import checkLoggedIn from 'util/checkLoggedIn';
 import { validateReply } from 'validation/reply.validation';
 import UploadError from 'error/UploadError';
 
