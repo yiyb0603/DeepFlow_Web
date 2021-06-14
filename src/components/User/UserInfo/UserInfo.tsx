@@ -1,9 +1,9 @@
 import { useEffect, memo, Fragment, useMemo, CSSProperties } from 'react';
+import { EView } from 'lib/enum/theme';
+import { IQuestion } from 'types/question.types';
 import useUserInfo from 'hooks/user/useUserInfo';
 import useViewMode from 'hooks/question/useViewMode';
 import useUserPost from 'hooks/user/useUserPost';
-import { EView } from 'lib/enum/theme';
-import { IQuestion } from 'types/question.types';
 import NoItems from 'components/Common/NoItems';
 import ListItem from 'components/Common/Post/ListItem';
 import UserLoading from 'components/UserList/UserLoading';
