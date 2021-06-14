@@ -19,7 +19,7 @@ const TagInfo = ({
   count,
   viewMode,
   onChangeViewMode,
-}: TagInfoProps) => {
+}: TagInfoProps): JSX.Element => {
   const { name, description } = tagInfo;
 
   return (

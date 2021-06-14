@@ -3,6 +3,7 @@ import { MdImage } from 'react-icons/md';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import createRandomNumber from 'util/createRandomNumber';
+import { ACCEPT_FILES } from 'constants/upload';
 
 const style = require('./CommentIconTab.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -22,6 +23,7 @@ const CommentIconTab = ({
         type='file'
         id={selectFileId}
         onChange={onImageSelect}
+        accept={ACCEPT_FILES}
         multiple
       />
 

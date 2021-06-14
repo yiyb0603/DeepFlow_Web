@@ -11,7 +11,10 @@ interface TimeStickerProps {
   updatedAt: Date | string | null;
 }
 
-const TimeSticker = ({ createdAt, updatedAt }: TimeStickerProps): JSX.Element => {
+const TimeSticker = ({
+  createdAt,
+  updatedAt,
+}: TimeStickerProps): JSX.Element => {
   const stickerText: string = useMemo(() => {
     return calculateTime(createdAt) + (updatedAt !== null ? ' (수정됨)' : '');
   }, [createdAt, updatedAt]);

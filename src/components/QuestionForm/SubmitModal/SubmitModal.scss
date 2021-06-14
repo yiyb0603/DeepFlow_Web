@@ -27,8 +27,7 @@
 
     &-Thumbnail {
       width: 100%;
-      height: 45%;
-      max-height: 45%;
+      @include setHeightWithMax(45%);
       object-fit: cover;
     }
 

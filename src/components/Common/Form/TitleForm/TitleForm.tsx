@@ -12,7 +12,10 @@ export interface TitleFormProps {
   onChangeTitle: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const TitleForm = ({ title, onChangeTitle }: TitleFormProps): JSX.Element => {
+const TitleForm = ({
+  title,
+  onChangeTitle,
+}: TitleFormProps): JSX.Element => {
   return (
     <div className={cx('TitleForm')}>
       <Textarea

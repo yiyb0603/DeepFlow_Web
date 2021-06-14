@@ -1,53 +1,54 @@
+@import 'styles/lib.scss';
+
 .ModifyInfoModal {
-	&-Center {
-		display: flex;
-		display: -wbekit-flex;
-		flex-wrap: wrap;
-		-ms-flex-wrap: wrap;
-		align-items: center;
+  &-Center {
+    display: flex;
+    display: -wbekit-flex;
+    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    align-items: center;
 
-		&-LeftContents {
-			&-ProfileImage {
-				width: 200px;
-				height: 200px;
-				max-height: 200px;
-				border-radius: 50%;
-				object-fit: cover;
-			}
-		}
+    &-LeftContents {
+      &-ProfileImage {
+        width: 200px;
+        @include setHeightWithMax(200px);
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
 
-		&-Inputs {
-			margin-left: 1rem;
+    &-Inputs {
+      margin-left: 1rem;
 
-			&-Title {
-				font-size: var(--font-normal);
-				font-weight: 500;
-				margin: 0 !important;
-			}
+      &-Title {
+        font-size: var(--font-normal);
+        font-weight: 500;
+        margin: 0 !important;
+      }
 
-			& > * {
-				margin-bottom: 0.8rem;
-			}
-		}
-	}
+      & > * {
+        margin-bottom: 0.8rem;
+      }
+    }
+  }
 
-	&-BottomInputs {
-		flex: 1;
-		margin-top: 2rem;
+  &-BottomInputs {
+    flex: 1;
+    margin-top: 2rem;
 
-		& > * {
-			margin-bottom: 0.8rem;
-		}
-	}
+    & > * {
+      margin-bottom: 0.8rem;
+    }
+  }
 
-	&-BottomSelect {
-		display: flex;
-		display: -webkit-flex;
-		justify-content: space-between;
-		margin-bottom: 1rem;
+  &-BottomSelect {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
 
-		& > *:first-child {
-			margin-right: 0.5rem;
-		}
-	}
+    & > *:first-child {
+      margin-right: 0.5rem;
+    }
+  }
 }

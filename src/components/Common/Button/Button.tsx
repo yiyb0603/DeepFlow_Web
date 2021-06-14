@@ -31,7 +31,7 @@ const Button = ({
   padding = '0',
   margin = '0',
   customStyle,
-}: ButtonProps) => {
+}: ButtonProps): JSX.Element => {
   const buttonStyle: CSSProperties = useMemo(() => {
     return {
       ...customStyle,

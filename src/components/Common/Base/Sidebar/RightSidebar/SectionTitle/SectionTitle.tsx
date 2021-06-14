@@ -11,7 +11,7 @@ interface SectionTitleProps {
 
 const SectionTitle = ({
   title,
-}: SectionTitleProps) => {
+}: SectionTitleProps): JSX.Element => {
   return (
     <div className={cx('SectionTitle')}>{title}</div>
   );

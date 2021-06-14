@@ -13,7 +13,10 @@ const style = require('./PopularQuestion.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const PopularQuestion = (): JSX.Element => {
-  const { popularQuestions, requestPopularQuestions } = usePopularQuestions();
+  const {
+    popularQuestions,
+    requestPopularQuestions,
+  } = usePopularQuestions();
 
   useEffect(() => {
     requestPopularQuestions();
@@ -26,10 +29,12 @@ const PopularQuestion = (): JSX.Element => {
       <div className={cx('PopularQuestion-ContentsWrap')}>
         <div className={cx('PopularQuestion-ContentsWrap-Questions')}>
           {
-            popularQuestions.length > 0 ? popularQuestions.map((question: IQuestion, order: number) => {
+            popularQuestions.length > 0 ?
+            popularQuestions.map((question: IQuestion, order: number) => {
               const {
                 idx,
                 title,
+                thumbnail,
                 createdAt,
                 viewCount,
                 commentCount,
@@ -43,6 +48,7 @@ const PopularQuestion = (): JSX.Element => {
                   idx={idx}
                   order={order + 1}
                   title={title}
+                  thumbnail={thumbnail}
                   viewCount={viewCount}
                   commentCount={commentCount}
                   replyCount={replyCount}

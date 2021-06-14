@@ -1,0 +1,1 @@
+export const ACCEPT_FILES = 'image/gif, image/jpg, image/png, image/jpeg' as const;

@@ -8,3 +8,8 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: $lineClamp;
 }
+
+@mixin setHeightWithMax($height) {
+  height: $height;
+  max-height: $height;
+}

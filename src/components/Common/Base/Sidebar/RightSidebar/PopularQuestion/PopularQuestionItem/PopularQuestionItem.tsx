@@ -12,6 +12,7 @@ interface PopularQuestionItemProps {
   idx: number;
   order: number;
   title: string;
+  thumbnail: string;
   createdAt: Date | string;
   viewCount: number;
   commentCount: number;
@@ -23,14 +24,21 @@ const PopularQuestionItem = ({
   idx,
   order,
   title,
+  thumbnail,
   createdAt,
   viewCount,
   commentCount,
   replyCount,
   likeCount,
-}: PopularQuestionItemProps) => {
+}: PopularQuestionItemProps): JSX.Element => {
   return (
     <div className={cx('PopularQuestionItem')}>
+      <img
+        src={thumbnail}
+        className={cx('PopularQuestionItem-Thumbnail')}
+        alt='thumbnail'
+      />
+
       <Link
         to={`/question/${idx}`}
         className={cx('PopularQuestionItem-Title')}

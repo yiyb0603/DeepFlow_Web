@@ -3,6 +3,13 @@
 .PopularQuestionItem {
   margin-bottom: 1.4rem;
 
+  &-Thumbnail {
+    width: 100%;
+    @include setHeightWithMax(100px);
+    object-fit: cover;
+    margin-bottom: 0.3rem;
+  }
+
   &-Title {
     @include ellipsisLine(1);
     margin-bottom: 0.1rem;

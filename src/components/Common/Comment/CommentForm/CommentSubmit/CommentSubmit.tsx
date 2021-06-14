@@ -21,7 +21,7 @@ interface CommentSubmitProps {
 const CommentSubmit = ({
   type,
   requestOfferComment,
-}: CommentSubmitProps) => {
+}: CommentSubmitProps): JSX.Element => {
   const isLoading: boolean = useRecoilValue<boolean>(commentFormLoadingState);
   const setContents = useSetRecoilState<string>(commentContentsState);
   const [modifyObject, setModifyObject] = useRecoilState<ICommentModify | null>(commentModifyState);

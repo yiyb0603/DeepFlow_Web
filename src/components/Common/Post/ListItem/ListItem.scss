@@ -95,9 +95,8 @@ $height: 145px;
         margin-bottom: 0.625rem;
 
         & > div {
-          height: 45px;
-          max-height: 45px;
           line-height: 1.6rem;
+          @include setHeightWithMax(45px);
           @include ellipsisLine(2);
         }
       }

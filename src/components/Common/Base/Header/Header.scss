@@ -1,7 +1,8 @@
+@import 'styles/lib.scss';
+
 .Header {
   width: 100%;
-  height: 70px;
-  max-height: 70px;
+  @include setHeightWithMax(70px);
   padding: 0 1.5rem;
   display: flex;
   display: -webkit-flex;

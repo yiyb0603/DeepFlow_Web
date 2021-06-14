@@ -13,7 +13,7 @@ export interface PageLoadingProps {
 
 const PageLoading = ({
   text,
-}: PageLoadingProps) => {
+}: PageLoadingProps): JSX.Element => {
   return (
     <div className={cx('PageLoading')}>
       <ScaleLoader color={palette.main} />

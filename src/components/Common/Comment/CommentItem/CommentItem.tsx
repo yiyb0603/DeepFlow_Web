@@ -41,7 +41,7 @@ const CommentItem = ({
   emojies,
   onModifyClick,
   requestDeleteComment,
-}: CommentItemProps) => {
+}: CommentItemProps): JSX.Element => {
   const myInfo: IToken = useMemo(() => getMyInfo(), []);
   const writeCommentIdx: number = useRecoilValue<number>(commentIdxState);
 

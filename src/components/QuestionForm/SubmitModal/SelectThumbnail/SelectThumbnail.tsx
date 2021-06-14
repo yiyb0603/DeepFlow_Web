@@ -5,6 +5,7 @@ import { ImFolderUpload } from 'react-icons/im';
 import NoSelected from 'assets/images/select-thumbnail.png';
 import useSelectThumbnail from 'hooks/question/useSelectThumbnail';
 import Tooltip from 'components/Common/Tooltip';
+import { ACCEPT_FILES } from 'constants/upload';
 
 const style = require('./SelectThumbnail.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -33,6 +34,7 @@ const SelectThumbnail = (): JSX.Element => {
           type='file'
           id='selectFile'
           onChange={onChangeThumbnail}
+          accept={ACCEPT_FILES}
         />
 
         <Tooltip title='썸네일 선택' placement='bottom'>

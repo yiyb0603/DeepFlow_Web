@@ -13,7 +13,7 @@ interface HomeSectionTitleProps {
 const HomeSectionTitle = ({
   title,
   children,
-}: HomeSectionTitleProps) => {
+}: HomeSectionTitleProps): JSX.Element => {
   return (
     <div className={cx('HomeSectionTitle')}>
       {title}
