@@ -31,11 +31,11 @@ const useRecommandList = () => {
   }, [setUserRecommands, userIdx]);
 
   useEffect(() => {
-    if (userInfo) {
+    if (!userInfo) {
       requestUserInfo();
-      requestRecommandList();
     }
 
+    requestRecommandList();
     return () => setReason('');
   }, [requestRecommandList, requestUserInfo, setReason, userInfo]);
 

@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "DeepFlow",
+  "name": "대구소프트웨어마이스터고등학교 교내 StackOverflow 웹 서비스 입니다.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,12 +8,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "FaviconLogo.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "FaviconLogo.png",
       "type": "image/png",
       "sizes": "512x512"
     }

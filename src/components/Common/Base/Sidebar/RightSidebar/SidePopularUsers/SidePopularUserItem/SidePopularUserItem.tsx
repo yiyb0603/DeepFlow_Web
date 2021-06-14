@@ -3,33 +3,32 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { Link } from 'react-router-dom';
 import { AiOutlineLike } from 'react-icons/ai';
-import { medals } from 'lib/models/menu/medals';
 
 const style = require('./SidePopularUserItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface SidePopularUserItemProps {
   idx: number;
+  avatar: string;
   name: string;
   position: string;
-  order: number;
   recommandCount: number;
 }
 
 const SidePopularUserItem = ({
   idx,
+  avatar,
   name,
   position,
-  order,
   recommandCount,
 }: SidePopularUserItemProps): JSX.Element => {
   return (
     <div className={cx('SidePopularUserItem')}>
       <div className={cx('SidePopularUserItem-Left')}>
         <img
-          src={medals[order]}
+          src={avatar}
           className={cx('SidePopularUserItem-Left-Medal')}
-          alt='medal'
+          alt='avatar'
         />
 
         <Link

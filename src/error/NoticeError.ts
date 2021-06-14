@@ -15,13 +15,14 @@ export default class NoticeError extends CustomError {
     switch (status) {
       case ErrorStatus.NOT_FOUND:
         Toast.errorToast('공지사항이 존재하지 않습니다.');
-        historySingleton.goBack();
-        return;
+        break;
 
       default:
         Toast.errorToast(message);
-        return;
+        break;
     }
+
+    historySingleton.goBack();
   }
 
   public noticeFormError(): void {

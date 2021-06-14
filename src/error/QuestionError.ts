@@ -4,33 +4,38 @@ import Toast from 'lib/Toast';
 import { IError } from 'types/Response';
 import CustomError from './CustomError';
 
-export default class PostError extends CustomError {
+export default class QuestionError extends CustomError {
   constructor(
     private _error: IError,
   ) {
     super(_error);
   }
 
-  public getPostError(): void {
+  public getQuestionError(): void {
     const { status, message } = this;
     switch (status) {
       case ErrorStatus.NOT_FOUND:
         Toast.errorToast('존재하지 않는 글입니다.');
-        historySingleton.push('/');
-        return;
+        break;
 
       default:
         Toast.errorToast(message);
-        return;
+        break;
     }
+
+    historySingleton.push('/');
   }
 
-  public postFormError(): void {
+  public questionFormError(): void {
     const { status, message } = this;
 
     switch (status) {
       case ErrorStatus.VALIDATE:
         Toast.errorToast('검증 오류입니다.')
+        return;
+
+      case ErrorStatus.UNFORBIDDEN:
+        Toast.errorToast('권한이 없습니다.');
         return;
 
       default:

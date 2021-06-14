@@ -4,7 +4,7 @@ import { questionState } from 'lib/recoil/atom/question';
 import { IQuestion } from 'types/question.types';
 import { getPostByIdx } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
-import PostError from 'error/PostError';
+import QuestionError from 'error/QuestionError';
 import usePageParam from '../../util/usePageParam';
 
 const useQuestionByIdx = () => {
@@ -19,7 +19,7 @@ const useQuestionByIdx = () => {
         setQuestion(post);
       }
     } catch (error) {
-      new PostError(error).getPostError();
+      new QuestionError(error).getQuestionError();
     }
   }, [questionIdx, setQuestion]);
 

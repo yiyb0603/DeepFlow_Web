@@ -28,16 +28,16 @@ const SidePopularUsers = (): JSX.Element => {
         <div className={cx('SidePopularUsers-ContentsWrap-Users')}>
           {
             popularUsers.length > 0 ?
-            popularUsers.slice(0, SIDE_POPULAR_USER_COUNT).map((user: IUser, order: number) => {
-              const { idx, name, position, recommandCount } = user;
+            popularUsers.slice(0, SIDE_POPULAR_USER_COUNT).map((user: IUser) => {
+              const { idx, avatar, name, position, recommandCount } = user;
 
               return (
                 <SidePopularUserItem
                   key={idx}
                   idx={idx}
+                  avatar={avatar}
                   name={name}
                   position={position}
-                  order={order}
                   recommandCount={recommandCount}
                 />
               );

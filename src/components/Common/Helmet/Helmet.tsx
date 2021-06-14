@@ -14,7 +14,7 @@ const Helmet = ({
 }: HelmetProps): JSX.Element => {
   return (
     <ReactHelmet>
-      <title>{`${title.concat(title === APP_NAME ? '' : ` - ${APP_NAME}`)}`}</title>
+      <title>{title.concat(title === APP_NAME ? '' : ` - ${APP_NAME}`)}</title>
       <meta name='description' content={description} />
 			<meta property='og:title' content={title} />
 			<meta property='og:image' content={favicon} />

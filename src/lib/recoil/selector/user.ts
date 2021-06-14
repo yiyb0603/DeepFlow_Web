@@ -5,6 +5,7 @@ import { EUserQuestion } from 'lib/enum/question';
 import { EUserSort } from 'lib/enum/user';
 import { IQuestionListResponse } from 'types/question.types';
 import { IUser } from 'types/user.types';
+import UserError from 'error/UserError';
 
 export const userListSelector = selectorFamily<IUser[], EUserSort>({
   key: 'userListSelector',
@@ -17,12 +18,17 @@ export const userListSelector = selectorFamily<IUser[], EUserSort>({
 export const userInfoSelector = selectorFamily<IUser | null, number | null>({
   key: 'userInfoSelector',
   get: (userIdx: number | null) => async () => {
-    if (userIdx === null) {
-      return null;
+    try {
+      if (userIdx === null) {
+        return null;
+      }
+  
+      const { data: { user } } = await getUserInfo(userIdx!);
+      return user;
+    } catch (error) {
+      new UserError(error).getUserError();
+      throw error;
     }
-
-    const { data: { user } } = await getUserInfo(userIdx!);
-    return user;
   },
 });
 
