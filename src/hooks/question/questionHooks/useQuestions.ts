@@ -61,6 +61,7 @@ const useQuestions = () => {
         setTotalPage(totalPage!);
         setQuestionMounted(true);
       }
+
       setQuestionLoading(false);
     } catch (error) {
       console.log(error);

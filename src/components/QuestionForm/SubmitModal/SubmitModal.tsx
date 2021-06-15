@@ -4,6 +4,7 @@ import { ClassNamesFn } from 'classnames/types';
 import palette from 'styles/palette';
 import PostButton from 'components/Common/Post/PostButton';
 import SelectThumbnail from './SelectThumbnail';
+import { MAX_INTRODUCTION_LENGTH } from 'constants/question';
 
 const style = require('./SubmitModal.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -38,8 +39,11 @@ const SubmitModal = ({
           <SelectThumbnail />
           
           <div className={cx('SubmitModal-Wrapper-Contents')}>
-            <div className={cx('SubmitModal-Wrapper-Contents-Title')}>
-              제목: {title}
+            <div
+              className={cx('SubmitModal-Wrapper-Contents-Title')}
+              title={title}
+            >
+              {title}
             </div>
             <textarea
               className={cx('SubmitModal-Wrapper-Contents-Introduction')}
@@ -47,6 +51,14 @@ const SubmitModal = ({
               onChange={onChangeIntroduction}
               placeholder='소개글을 작성하세요.'
             ></textarea>
+
+            <div
+              className={cx('SubmitModal-Wrapper-Contents-IntroductionLength', {
+                'SubmitModal-Wrapper-Contents-IntroductionLength-Limit': introduction.length > MAX_INTRODUCTION_LENGTH,
+              })}
+            >
+              {introduction.length} / {MAX_INTRODUCTION_LENGTH}
+            </div>
 
             <div className={cx('SubmitModal-Wrapper-Contents-Buttons')}>
               <PostButton

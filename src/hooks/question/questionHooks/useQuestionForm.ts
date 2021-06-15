@@ -138,10 +138,10 @@ const useQuestionForm = () => {
           await modifyPost(questionIdx, request, isTemp);
         }
 
+        requestPostCallback();
         setIsLoading(false);
         handleIsModal(false);
         Toast.successToast(`글 ${questionIdx === null ? '작성' : '수정'}을 성공하였습니다.`);
-        requestPostCallback();
         historySingleton.push('/');
 
         setRequest(initialRequestQuestionState);

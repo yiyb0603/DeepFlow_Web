@@ -20,7 +20,7 @@ const PostButton = ({
       backgroundColor={backgroundColor}
       handleClick={onClick}
       height='40px'
-      margin='0 5px 0 0'
+      margin='0 0 0 5px'
       padding='0 1.4rem'
     >
       {contents}

@@ -4,6 +4,7 @@ import { ClassNamesFn } from 'classnames/types';
 import Button from 'components/Common/Button';
 import palette from 'styles/palette';
 import PageNumberItem from './PageNumberItem';
+import { useMemo } from 'react';
 
 const style = require('./PageNumberList.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -26,9 +27,11 @@ const PageNumberList = ({
   handleNextPage,
   onChangeCurrentPage,
 }: PageNumberListProps) => {
-  const visibilityStyle: CSSProperties = {
-    visibility: pageList.length > 1 ? 'unset' : 'hidden',
-  }
+  const visibilityStyle: CSSProperties = useMemo(() => {
+    return {
+      visibility: pageList.length > 1 ? 'unset' : 'hidden',
+    };
+  }, [pageList]);
 
   return (
     <div className={cx('PageNumberList')}>

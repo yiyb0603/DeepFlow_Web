@@ -3,21 +3,21 @@
 .PopularQuestionItem {
   margin-bottom: 1.4rem;
 
-  &-Thumbnail {
-    width: 100%;
-    @include setHeightWithMax(100px);
-    object-fit: cover;
-    margin-bottom: 0.3rem;
-  }
+  &-LinkWrap {
+    @include scaleEffect();
 
-  &-Title {
-    @include ellipsisLine(1);
-    margin-bottom: 0.1rem;
-    font-size: var(--font-smallest);
-    cursor: pointer;
+    &-Thumbnail {
+      width: 100%;
+      @include setHeightWithMax(100px);
+      object-fit: cover;
+      margin-bottom: 0.3rem;
+    }
 
-    &:hover {
-      color: var(--main);
+    &-Title {
+      @include ellipsisLine(1);
+      margin-bottom: 0.1rem;
+      font-size: var(--font-smallest);
+      cursor: pointer;
     }
   }
 

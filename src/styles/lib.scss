@@ -13,3 +13,13 @@
   height: $height;
   max-height: $height;
 }
+
+@mixin scaleEffect() {
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+
+  &:hover {
+    transform: scale(1.01);
+    opacity: 0.8;
+  }
+}

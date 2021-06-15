@@ -36,7 +36,7 @@
       padding: 0.625rem;
 
       &-Title {
-        @include ellipsisLine(2);
+        @include ellipsisLine(1);
         font-size: var(--font-small);
         font-weight: 500;
         border-bottom: 1px solid var(--lighterBlack);
@@ -51,6 +51,14 @@
         border: 1px solid var(--lighterBlack);
         border-top: none;
         padding: 0.35rem;
+      }
+
+      &-IntroductionLength {
+        text-align: end;
+
+        &-Limit {
+          color: var(--red);
+        }
       }
 
       &-Buttons {

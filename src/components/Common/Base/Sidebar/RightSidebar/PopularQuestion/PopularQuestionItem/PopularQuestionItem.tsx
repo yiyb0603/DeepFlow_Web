@@ -1,9 +1,9 @@
-import { memo } from 'react';
-import { Link } from 'react-router-dom';
+import { useCallback, memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import PostSubInfo from 'components/Common/Post/PostSubInfo';
 import calculateTime from 'lib/calculateTime';
+import { historySingleton } from 'lib/singleton/history';
+import PostSubInfo from 'components/Common/Post/PostSubInfo';
 
 const style = require('./PopularQuestionItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -31,20 +31,28 @@ const PopularQuestionItem = ({
   replyCount,
   likeCount,
 }: PopularQuestionItemProps): JSX.Element => {
+  const handlePushToQuestionPage = useCallback((): void => {
+    historySingleton.push(`/question/${idx}`);
+  }, [idx]);
+
   return (
     <div className={cx('PopularQuestionItem')}>
-      <img
-        src={thumbnail}
-        className={cx('PopularQuestionItem-Thumbnail')}
-        alt='thumbnail'
-      />
-
-      <Link
-        to={`/question/${idx}`}
-        className={cx('PopularQuestionItem-Title')}
+      <div
+        className={cx('PopularQuestionItem-LinkWrap')}
+        onClick={handlePushToQuestionPage}
       >
-        {order}. {title}
-      </Link>
+        <img
+          src={thumbnail}
+          className={cx('PopularQuestionItem-LinkWrap-Thumbnail')}
+          alt='thumbnail'
+        />
+
+        <div
+          className={cx('PopularQuestionItem-LinkWrap-Title')}
+        >
+          {order}. {title}
+        </div>
+      </div>
 
       <div className={cx('PopularQuestionItem-SubInfo')}>
         <PostSubInfo
