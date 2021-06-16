@@ -2,7 +2,7 @@ export const MAX_POSITION_LENGTH = 100 as const;
 
 export const MAX_BLOG_LENGTH = 100 as const;
 
-export const MAX_DESCRIPTION_LENGTH = 100 as const;
+export const MAX_DESCRIPTION_LENGTH = 50 as const;
 
 export const MAX_LOCATION_LENGTH = 100 as const;
 

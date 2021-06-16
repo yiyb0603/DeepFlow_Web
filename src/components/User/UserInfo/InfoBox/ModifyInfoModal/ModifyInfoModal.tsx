@@ -17,6 +17,7 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 const ModifyInfoModal = (): JSX.Element => {
   const {
+    modifyLoading,
     modifyInfo,
     onChangeIsModifyModal,
     onChangeRequest,
@@ -123,7 +124,10 @@ const ModifyInfoModal = (): JSX.Element => {
           />
         </div>
 
-        <ModifySubmit requestModifyInfo={requestModifyInfo} />
+        <ModifySubmit
+          modifyLoading={modifyLoading}
+          requestModifyInfo={requestModifyInfo}
+        />
       </div>
     </Modal>
   );

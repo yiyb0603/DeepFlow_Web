@@ -23,7 +23,7 @@ export const validateSignUp = (request: IRegisterRequest): boolean => {
   }
 
   if (description.length > MAX_DESCRIPTION_LENGTH) {
-    Toast.errorToast('한줄소개는 최대 100자까지 가능합니다.');
+    Toast.errorToast('한줄소개는 최대 50자까지 가능합니다.');
     return false;
   }
 

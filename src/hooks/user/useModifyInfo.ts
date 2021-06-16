@@ -1,4 +1,4 @@
-import { useCallback, useEffect, ChangeEvent } from 'react';
+import { useCallback, useEffect, ChangeEvent, useState } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { modifyInfoState, modifyModalState } from 'lib/recoil/atom/user/myInfo';
 import { modifyUserInfo } from 'lib/api/user/user.api';
@@ -16,6 +16,8 @@ const useModifyInfo = () => {
 
   const [modifyInfo, setModifyInfo] = useRecoilState<IUserModify>(modifyInfoState);
   const setIsModifyModal = useSetRecoilState<boolean>(modifyModalState);
+
+  const [modifyLoading, setModifyLoading] = useState<boolean>(false);
 
   const onChangeIsModifyModal = useCallback((): void => {
     setIsModifyModal((prevIsModifyModal: boolean) => !prevIsModifyModal);
@@ -38,12 +40,14 @@ const useModifyInfo = () => {
         return;
       }
       
+      setModifyLoading(true);
       const { status } = await modifyUserInfo(modifyInfo);
 
       if (status === EResponse.OK) {
         Toast.successToast('유저 정보 수정을 성공하였습니다.');
         requestUserCallback();
         onChangeIsModifyModal();
+        setModifyLoading(false);
       }
     } catch (error) {
       console.log(error);
@@ -76,6 +80,7 @@ const useModifyInfo = () => {
   }, [handleSetModifyInfo]);
 
   return {
+    modifyLoading,
     modifyInfo,
     onChangeIsModifyModal,
     onChangeRequest,

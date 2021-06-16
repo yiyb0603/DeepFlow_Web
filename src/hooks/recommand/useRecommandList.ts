@@ -31,11 +31,9 @@ const useRecommandList = () => {
   }, [setUserRecommands, userIdx]);
 
   useEffect(() => {
-    if (!userInfo) {
-      requestUserInfo();
-    }
-
+    requestUserInfo();
     requestRecommandList();
+
     return () => setReason('');
   }, [requestRecommandList, requestUserInfo, setReason, userInfo]);
 
