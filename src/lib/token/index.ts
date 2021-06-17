@@ -1,12 +1,13 @@
 import * as jwt from 'jsonwebtoken';
+import { TOKEN_KEY } from 'config/config.json';
 import { IToken } from 'types/user.types';
 import Cookie from '../Cookie';
 
 export const decodeToken = (): IToken => {
-  const token = Cookie.getCookie('access_token');
+  const token = Cookie.getCookie(TOKEN_KEY);
   return jwt.decode(token) as IToken;
 }
 
 export const getToken = (): string => {
-  return Cookie.getCookie('access_token') as string;
+  return Cookie.getCookie(TOKEN_KEY) as string;
 }

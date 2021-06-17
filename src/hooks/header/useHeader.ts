@@ -1,4 +1,5 @@
 import { useCallback, MouseEvent, useEffect } from 'react';
+import { TOKEN_KEY } from 'config/config.json';
 import { historySingleton } from 'lib/singleton/history';
 import Cookie from 'lib/Cookie';
 import Toast from 'lib/Toast';
@@ -12,7 +13,7 @@ const useHeader = () => {
       e.preventDefault();
       e.stopPropagation();
       setMyInfo(null);
-      Cookie.removeCookie('access_token');
+      Cookie.removeCookie(TOKEN_KEY);
       Toast.successToast('로그아웃 되었습니다.');
       historySingleton.push('/');
     }

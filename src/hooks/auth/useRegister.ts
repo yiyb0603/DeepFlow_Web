@@ -4,6 +4,7 @@ import firebase from 'firebase/app';
 import '@firebase/messaging';
 import { registerLoading, requestRegisterState } from 'lib/recoil/atom/auth';
 import firebaseConfig from 'config/firebase.json';
+import { TOKEN_KEY } from 'config/config.json';
 import AuthError from 'error/AuthError';
 import { historySingleton } from 'lib/singleton/history';
 import { getGithubInfo, handleRegister } from 'lib/api/auth/auth.api';
@@ -73,7 +74,7 @@ const useRegister = () => {
         if (data.accessToken !== undefined) {
           const { accessToken } = data;
 
-          Cookie.setCookie('access_token', accessToken);
+          Cookie.setCookie(TOKEN_KEY, accessToken);
           historySingleton.push('/');
           Toast.successToast('로그인 되었습니다.');
 
@@ -102,7 +103,7 @@ const useRegister = () => {
       const { status, data }: ILoginResponse = await handleRegister(request);
 
       if (status === EResponse.OK) {
-        Cookie.setCookie('access_token', data.accessToken);
+        Cookie.setCookie(TOKEN_KEY, data.accessToken);
         historySingleton.push('/');
         Toast.successToast('회원가입을 성공하였습니다.');
       }

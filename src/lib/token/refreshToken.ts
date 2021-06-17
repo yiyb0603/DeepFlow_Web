@@ -1,4 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
+import { TOKEN_KEY } from 'config/config.json';
 import { getRefreshToken } from 'lib/api/token/token.api';
 import Cookie from 'lib/Cookie';
 import { decodeToken, getToken } from 'lib/token';
@@ -16,11 +17,11 @@ const refreshToken = async (config: AxiosRequestConfig): Promise<AxiosRequestCon
       const response: ITokenResponse = await getRefreshToken(accessToken);
 
       const { refreshToken } = response.data;
-      Cookie.setCookie('access_token', refreshToken);
+      Cookie.setCookie(TOKEN_KEY, refreshToken);
       accessToken = refreshToken;
     }
     
-    config.headers['access_token'] = accessToken;
+    config.headers[TOKEN_KEY] = accessToken;
   }
   
   return config;
