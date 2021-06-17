@@ -17,9 +17,4 @@ export const majors: IAuthOption[] = [
     value: 1,
     text: '임베디드 소프트웨어과',
   },
-
-  {
-    value: 2,
-    text: 'AI 인공지능 개발과',
-  },
 ];
