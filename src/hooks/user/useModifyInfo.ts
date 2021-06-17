@@ -47,10 +47,11 @@ const useModifyInfo = () => {
         Toast.successToast('유저 정보 수정을 성공하였습니다.');
         requestUserCallback();
         onChangeIsModifyModal();
-        setModifyLoading(false);
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setModifyLoading(false);
     }
   }, [modifyInfo, onChangeIsModifyModal, requestUserCallback]);
 
