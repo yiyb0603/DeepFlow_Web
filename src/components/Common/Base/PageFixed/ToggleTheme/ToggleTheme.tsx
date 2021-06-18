@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { IoMdSunny } from 'react-icons/io';
 import { FaMoon } from 'react-icons/fa';
-import useTheme from 'hooks/theme/useTheme';
+import useTheme from 'hooks/common/theme/useTheme';
 import { ETheme } from 'lib/enum/theme';
 
 const style = require('./ToggleTheme.scss');

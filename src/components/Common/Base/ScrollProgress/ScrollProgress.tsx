@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import useScrollProgress from 'hooks/scroll/useScrollProgress';
+import useScrollProgress from 'hooks/common/scroll/useScrollProgress';
 
 const style = require('./ScrollProgress.scss');
 const cx: ClassNamesFn = classNames.bind(style);

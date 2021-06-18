@@ -1,0 +1,18 @@
+@mixin setDefaultStyle() {
+  color: var(--gray) !important;
+  opacity: 0.8 !important;
+  font-size: 0.8rem !important;
+}
+
+.slick-dots li {
+  @include setDefaultStyle();
+
+  &.slick-active button:before {
+    color: var(--main) !important;
+    opacity: 1 !important;
+  }
+
+  & button:before {
+    @include setDefaultStyle();
+  }
+}

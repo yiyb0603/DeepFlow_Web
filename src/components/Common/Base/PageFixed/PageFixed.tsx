@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import useScrollToTop from 'hooks/scroll/useScrollToTop';
+import useScrollToTop from 'hooks/common/scroll/useScrollToTop';
 import ToggleTheme from './ToggleTheme';
 import ScrollToTop from './ScrollToTop';
 

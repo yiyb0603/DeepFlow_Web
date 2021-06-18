@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { FiMenu } from 'react-icons/fi';
-import useSideToggleMenu from 'hooks/sidebar/useSideToggleMenu';
+import useSideToggleMenu from 'hooks/common/sidebar/useSideToggleMenu';
 import MobileSidebar from '../MobileSidebar';
 
 const style = require('./ToggleMenu.scss');

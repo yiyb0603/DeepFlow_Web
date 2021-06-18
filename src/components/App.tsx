@@ -1,5 +1,5 @@
 import { ETheme } from 'lib/enum/theme';
-import useTheme from 'hooks/theme/useTheme';
+import useTheme from 'hooks/common/theme/useTheme';
 import Routes from './Routes';
 
 const App = (): JSX.Element => {

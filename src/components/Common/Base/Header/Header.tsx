@@ -7,8 +7,8 @@ import WhiteThemeLogo from 'assets/icons/TextBlackLogo.svg';
 import BlackThemeLogo from 'assets/icons/TextWhiteLogo.svg';
 import { GITHUB_AUTH_URL } from 'constants/auth';
 import { ETheme } from 'lib/enum/theme';
-import useHeader from 'hooks/header/useHeader';
-import useTheme from 'hooks/theme/useTheme';
+import useHeader from 'hooks/common/header/useHeader';
+import useTheme from 'hooks/common/theme/useTheme';
 import ToggleMenu from '../MobileSidebar/ToggleMenu';
 
 const style = require('./Header.scss');

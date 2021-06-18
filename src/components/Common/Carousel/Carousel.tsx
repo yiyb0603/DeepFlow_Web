@@ -1,13 +1,12 @@
-import { useMemo, memo } from 'react';
-import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { memo, MouseEvent } from 'react';
+import SlickSlider from 'react-slick';
 import styled from 'styled-components';
-import 'swiper/swiper.scss';
-import 'swiper/components/navigation/navigation.scss';
-import 'swiper/components/pagination/pagination.scss';
-import 'swiper/components/scrollbar/scrollbar.scss';
 import { IBanner } from 'lib/models/banners';
-import pushToWindowLink from 'util/pushToWindowLink';
+import useBanners from 'hooks/common/banner/useBanners';
+
+import 'slick-carousel/slick/slick.scss';
+import 'slick-carousel/slick/slick-theme.scss';
+import './Carousel.scss';
 
 interface CarouselProps {
   banners: IBanner[];
@@ -16,36 +15,20 @@ interface CarouselProps {
 const Carousel = ({
   banners,
 }: CarouselProps): JSX.Element => {
-  SwiperCore.use([Navigation, Pagination, Autoplay]);
-  const FOUR_SECONDS: number = 4000;
-  const autoPlayOptions = useMemo(() => {
-    return {
-      delay: FOUR_SECONDS,
-      disableOnInteraction: false,
-    };
-  }, []);
+  const { slickSettings, onClickBanner } = useBanners();
 
   return (
-    <Swiper
-      className='swiper-container'
-      slidesPerView={1}
-      pagination={{ clickable: true }}
-      loop
-      autoplay={autoPlayOptions}
-      navigation
-    >
+    <SlickSlider {...slickSettings}>
       {
-        banners.map(({ image, link }, idx: number) => (
-          <SwiperSlide key={idx}>
-            <ImageBanner
-              src={image}
-              alt={image}
-              onClick={() => pushToWindowLink(link)}
-            />
-          </SwiperSlide>
+        banners.map(({ image, link }) => (
+          <ImageBanner
+            key={image}
+            src={image}
+            onClick={(e: MouseEvent<HTMLImageElement>) => onClickBanner(e, link)}
+          />
         ))
       }
-    </Swiper>
+    </SlickSlider>
   );
 }
 
