@@ -14,8 +14,8 @@ const LeftSidebar = (): JSX.Element => {
       <div className={cx('LeftSidebar-Menus')}>
         <div className={cx('LeftSidebar-Menus-Wrapper')}>
           {
-            sideItems.map((item: ISideItem, idx: number) => {
-              const { menuName, icon, link, mustToken } = item;
+            sideItems.map((item: ISideItem) => {
+              const { idx, menuName, icon, link, mustToken } = item;
 
               return (
                 <Fragment key={idx}>

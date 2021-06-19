@@ -17,7 +17,7 @@ const TagsTap = (): JSX.Element => {
     <div className={cx('TagsTap')}>
       <Helmet title={`태그 (${sortRule === ETagSort.POPULAR ? '인기순' : '이름순'})`} />
       {
-        sortTabs.map(({ name, route }: ISortTab, idx: number) => (
+        sortTabs.map(({ idx, name, route }: ISortTab) => (
           <SelectTab
             key={idx}
             name={name}

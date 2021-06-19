@@ -4,6 +4,7 @@ import useUserList from 'hooks/user/useUserList';
 import { ISortTab } from 'lib/models/tabs/sortTabs';
 import { userSortTabs } from 'lib/models/tabs/userSortTabs';
 import { EUserSort } from 'lib/enum/user';
+import isEmpty from 'util/isEmpty';
 import PageTitle from 'components/Common/PageTitle';
 import Helmet from 'components/Common/Helmet';
 import SearchInput from 'components/Common/Input/SearchInput';
@@ -11,7 +12,6 @@ import SelectTab from 'components/Common/SelectTab';
 import UserLoading from './UserLoading';
 import GenerationUserList from './GenerationUserList';
 import PopularUserList from './PopularUserList';
-import isEmpty from 'util/isEmpty';
 
 const style = require('./UserList.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -46,7 +46,7 @@ const UserList = (): JSX.Element => {
 
       <div className={cx('UserList-TabWrapper')}>
       {
-        userSortTabs.map(({ name, route }: ISortTab, idx: number) => (
+        userSortTabs.map(({ idx, name, route }: ISortTab) => (
           <SelectTab
             key={idx}
             name={name}

@@ -1,9 +1,9 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { historySingleton } from 'lib/singleton/history';
-import useQueryString from './useQueryString';
+import getQueryString from 'util/getQueryString';
 
 const useTabState = <T>(queryKey: string, defaultValue: any) => {
-  const query = useQueryString(queryKey);
+  const query = useMemo(() => getQueryString(queryKey), [queryKey]);
   const [selectTab, setSelectTab] = useState<T>(query || defaultValue);
 
   const onChangeSelectTab = useCallback((selectTab: T): void => {

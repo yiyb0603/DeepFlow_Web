@@ -5,10 +5,10 @@ import customTrim from 'converter/customTrim';
 import { getPostsBySearch } from 'lib/api/question/question.api';
 import { EResponse } from 'lib/enum/response';
 import Storage from 'lib/Storage';
+import { historySingleton } from 'lib/singleton/history';
 import { IQuestion } from 'types/question.types';
 import { ISearchKeyword } from 'types/search.types';
 import usePagination from '../util/usePagination';
-import { historySingleton } from 'lib/singleton/history';
 
 const useSearchQuestions = () => {
   const {

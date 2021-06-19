@@ -10,8 +10,8 @@ const MobileSidebar = (): JSX.Element => {
   return (
     <div className={cx('MobileSidebar')}>
       {
-        sideItems.map((item: ISideItem, idx: number) => {
-          const { link, menuName, icon } = item;
+        sideItems.map((item: ISideItem) => {
+          const { idx, link, menuName, icon } = item;
           return (
             <MobileSidebarItem
               key={idx}

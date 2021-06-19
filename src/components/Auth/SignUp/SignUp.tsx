@@ -6,13 +6,13 @@ import { AiOutlineLink, AiOutlineMail, AiOutlineGithub } from 'react-icons/ai';
 import { HiCode } from 'react-icons/hi';
 import { VscSymbolNamespace } from 'react-icons/vsc';
 import useRegister from 'hooks/auth/useRegister';
-import InfoInput from '../../Common/Input/InfoInput';
-import RegisterSubmit from '../RegisterSubmit';
+import isEmpty from 'util/isEmpty';
 import MajorSelect from 'components/Common/Select/MajorSelect';
 import GenerationSelect from 'components/Common/Select/GenerationSelect';
 import GithubLoading from 'components/Auth/GithubLoading';
 import Helmet from 'components/Common/Helmet';
-import isEmpty from 'util/isEmpty';
+import InfoInput from '../../Common/Input/InfoInput';
+import RegisterSubmit from '../RegisterSubmit';
 
 const style = require('./SignUp.scss');
 const cx: ClassNamesFn = classNames.bind(style);

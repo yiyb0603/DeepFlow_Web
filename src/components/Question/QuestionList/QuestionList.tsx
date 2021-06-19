@@ -4,6 +4,7 @@ import { ClassNamesFn } from 'classnames/types';
 import FadeIn from 'react-fade-in';
 import useQuestions from 'hooks/question/questionHooks/useQuestions';
 import useViewMode from 'hooks/question/useViewMode';
+import isEmpty from 'util/isEmpty';
 import { EView } from 'lib/enum/theme';
 import { IQuestionTab, sortPostTabs } from 'lib/models/tabs/postTabs';
 import { IQuestion } from 'types/question.types';
@@ -17,7 +18,6 @@ import SelectViewMode from 'components/Common/Post/SelectViewMode';
 import GridItem from 'components/Common/Post/GridItem';
 import SelectTab from 'components/Common/SelectTab';
 import AskButton from '../AskButton';
-import isEmpty from 'util/isEmpty';
 
 const style = require('./QuestionList.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -62,7 +62,7 @@ const QuestionList = (): JSX.Element => {
         <div className={cx('QuestionList-TabViewWrapper')}>
           <div className={cx('QuestionList-TabViewWrapper-Tab')}>
             {
-              sortPostTabs.map(({ name, route }: IQuestionTab, idx: number) => (
+              sortPostTabs.map(({ idx, name, route }: IQuestionTab) => (
                 <SelectTab
                   key={idx}
                   name={name}

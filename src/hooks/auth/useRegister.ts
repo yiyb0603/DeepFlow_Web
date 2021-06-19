@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useEffect } from 'react';
+import { ChangeEvent, useCallback, useEffect, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
 import firebase from 'firebase/app';
 import '@firebase/messaging';
@@ -14,12 +14,12 @@ import { SetFCMDto } from 'lib/api/user/user.dto';
 import Cookie from 'lib/Cookie';
 import { EResponse } from 'lib/enum/response';
 import Toast from 'lib/Toast';
-import { IGithubResponse, ILoginResponse, IRegisterRequest } from 'types/user.types';
 import { validateSignUp } from 'validation/auth.validation';
-import useQueryString from '../util/useQueryString';
+import getQueryString from 'util/getQueryString';
+import { IGithubResponse, ILoginResponse, IRegisterRequest } from 'types/user.types';
 
 const useRegister = () => {
-  const code = useQueryString('code');
+  const code: string = useMemo(() => getQueryString('code') as string, []);
   
   const [request, setRequest] = useRecoilState<IRegisterRequest>(requestRegisterState);
   const [isLoading, setIsLoading] = useRecoilState<boolean>(registerLoading);

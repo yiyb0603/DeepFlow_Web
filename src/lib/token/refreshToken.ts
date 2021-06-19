@@ -2,15 +2,16 @@ import { AxiosRequestConfig } from 'axios';
 import { TOKEN_KEY } from 'config/config.json';
 import { getRefreshToken } from 'lib/api/token/token.api';
 import Cookie from 'lib/Cookie';
-import { decodeToken, getToken } from 'lib/token';
+import Token from 'lib/token';
+import isEmpty from 'util/isEmpty';
 import { ITokenResponse } from 'types/token.types';
 import { IToken } from 'types/user.types';
 
 const refreshToken = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
-  let accessToken: string = getToken();
+  let accessToken: string = Token.getToken();
 
-  if (accessToken) {
-    const decode: IToken = decodeToken();
+  if (!isEmpty(accessToken)) {
+    const decode: IToken = Token.decodeToken();
     const nowDate: number = Date.now() / 1000;
 
     if (decode.exp < nowDate) {

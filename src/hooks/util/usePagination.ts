@@ -1,11 +1,12 @@
 import { useCallback, useMemo, useState } from 'react';
 import { CHUNK_PAGE_COUNT } from 'constants/util';
 import paginationNumber from 'util/paginationNumber';
-import useQueryString from './useQueryString';
 import { historySingleton } from 'lib/singleton/history';
+import getQueryString from 'util/getQueryString';
 
 const usePagination = () => {
-  const pageQuery = useQueryString('page');
+  const pageQuery = useMemo(() => getQueryString('page'), []);
+
   const page: number = useMemo(() => {
     return (!pageQuery || isNaN(Number(pageQuery))) ? 1 : Number(pageQuery);
   }, [pageQuery]);

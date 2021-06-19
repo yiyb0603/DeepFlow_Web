@@ -21,7 +21,7 @@ const useLikeList = () => {
 
       if (status === EResponse.OK) {
         if (myInfo) {
-          setIsPressed(likes.some((like) => like.user.idx === myInfo.idx));
+          setIsPressed(likes.some((like: ILike) => like.user.idx === myInfo.idx));
         }
 
         setLikeList(likes);

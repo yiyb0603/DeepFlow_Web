@@ -1,17 +1,19 @@
-import { useState, useCallback, CSSProperties } from 'react';
+import { useState, useCallback, CSSProperties, useMemo } from 'react';
 import { EView } from 'lib/enum/theme';
 
 const useViewMode = () => {
   const { LIST } = EView;
   const [viewMode, setViewMode] = useState<EView>(LIST);
 
-  const flexStyle: CSSProperties = {
-    display: 'flex',
-    flexDirection: viewMode === LIST ? 'column' : 'row',
-    flexWrap: 'wrap',
-  };
+  const flexStyle: CSSProperties = useMemo(() => {
+    return {
+      display: 'flex',
+      flexDirection: viewMode === LIST ? 'column' : 'row',
+      flexWrap: 'wrap',
+    };
+  }, [LIST, viewMode]);
 
-  const onChangeViewMode = useCallback((type: EView) => {
+  const onChangeViewMode = useCallback((type: EView): void => {
     if (type === viewMode) {
       return;
     }

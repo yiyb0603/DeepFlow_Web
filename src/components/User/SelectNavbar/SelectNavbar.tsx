@@ -17,7 +17,7 @@ const SelectNavbar = (): JSX.Element => {
   return (
     <div className={cx('SelectNavbar')}>
       {
-        userNavbar.map(({ name, pathName }: IUserNavbar, idx: number) => (
+        userNavbar.map(({ idx, name, pathName }: IUserNavbar) => (
           <Link
             key={idx}
             to={`/${pathName}/${userIdx}`}

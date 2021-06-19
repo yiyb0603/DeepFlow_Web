@@ -19,9 +19,9 @@ const PolicyTab = ({
   return (
     <div className={cx('PolicyTab')}>
       {
-        policyTabs.map(({ name, path }: IPolicyTab, idx: number) => (
+        policyTabs.map(({ key, name, path }: IPolicyTab) => (
           <SelectTab
-            key={idx}
+            key={key}
             name={name}
             route={path}
             selectTab={policyTab}

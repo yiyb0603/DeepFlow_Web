@@ -1,10 +1,6 @@
-import { useMemo } from 'react';
-
-const useQueryString = (queryKey: string | string[]) => {
+const getQueryString = (queryKey: string | string[]) => {
   const queries: Array<string | null> = [];
-  const searchParams: URLSearchParams = useMemo(() => {
-    return new URLSearchParams(window.location.search);
-  }, []);
+  const searchParams: URLSearchParams = new URLSearchParams(window.location.search);
   
   if (Array.isArray(queryKey)) {
     for (const key of queryKey) {
@@ -19,4 +15,4 @@ const useQueryString = (queryKey: string | string[]) => {
   return query as string;
 }
 
-export default useQueryString;
+export default getQueryString;

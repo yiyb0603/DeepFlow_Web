@@ -19,9 +19,9 @@ const MajorSelect = ({
       onChange={onChangeMajor}
     >
       {
-        majors.map(({ text, value }: IAuthOption, idx: number) => (
+        majors.map(({ text, value }: IAuthOption) => (
           <option
-            key={idx}
+            key={value}
             value={value}
           >
             {text}

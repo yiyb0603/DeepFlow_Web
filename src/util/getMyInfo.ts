@@ -1,7 +1,7 @@
-import { decodeToken } from 'lib/token';
+import Token from 'lib/token';
 import { IToken } from 'types/user.types';
 
 export const getMyInfo = (): IToken => {
-  const myInfo: IToken = decodeToken();
+  const myInfo: IToken = Token.decodeToken();
   return myInfo;
 }
